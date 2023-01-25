@@ -110,5 +110,9 @@ namespace MyHealth
         {
             Duration = new TimeSpan(0, minutes, 0);
         }
+        public override string ToString()
+        {
+            return "";
+        }
     }
 }
