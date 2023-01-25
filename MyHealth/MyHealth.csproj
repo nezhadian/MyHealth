@@ -8,6 +8,32 @@
 
   <ItemGroup>
     <None Remove="Images\body.jpg" />
+    <None Remove="Images\body_0000_Layer-26.png" />
+    <None Remove="Images\body_0001_Layer-25.png" />
+    <None Remove="Images\body_0002_Layer-24.png" />
+    <None Remove="Images\body_0003_Layer-23.png" />
+    <None Remove="Images\body_0004_Layer-22.png" />
+    <None Remove="Images\body_0005_Layer-21.png" />
+    <None Remove="Images\body_0006_Layer-20.png" />
+    <None Remove="Images\body_0007_Layer-19.png" />
+    <None Remove="Images\body_0008_Layer-18.png" />
+    <None Remove="Images\body_0009_Layer-17.png" />
+    <None Remove="Images\body_0010_Layer-16.png" />
+    <None Remove="Images\body_0011_Layer-15.png" />
+    <None Remove="Images\body_0012_Layer-14.png" />
+    <None Remove="Images\body_0013_Layer-13.png" />
+    <None Remove="Images\body_0014_Layer-12.png" />
+    <None Remove="Images\body_0015_Layer-11.png" />
+    <None Remove="Images\body_0016_Layer-10.png" />
+    <None Remove="Images\body_0017_Layer-9.png" />
+    <None Remove="Images\body_0018_Layer-8.png" />
+    <None Remove="Images\body_0019_Layer-7.png" />
+    <None Remove="Images\body_0020_Layer-6.png" />
+    <None Remove="Images\body_0021_Layer-5.png" />
+    <None Remove="Images\body_0022_Layer-4.png" />
+    <None Remove="Images\body_0023_Layer-3.png" />
+    <None Remove="Images\body_0024_Layer-2.png" />
+    <None Remove="Images\body_0025_Layer-1.png" />
     <None Remove="Images\eye.jpg" />
     <None Remove="Images\eye_0000_Layer-6.png" />
     <None Remove="Images\eye_0001_Layer-5.png" />
@@ -18,23 +44,101 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\body_0000_Layer-26.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0001_Layer-25.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0002_Layer-24.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0003_Layer-23.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0004_Layer-22.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0005_Layer-21.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0006_Layer-20.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0007_Layer-19.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0008_Layer-18.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0009_Layer-17.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0010_Layer-16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0011_Layer-15.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0012_Layer-14.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0013_Layer-13.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0014_Layer-12.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0015_Layer-11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0016_Layer-10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0017_Layer-9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0018_Layer-8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0019_Layer-7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0020_Layer-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0021_Layer-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0022_Layer-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0023_Layer-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0024_Layer-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\body_0025_Layer-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\eye_0000_Layer-6.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\eye_0001_Layer-5.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\eye_0002_Layer-4.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\eye_0003_Layer-3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\eye_0004_Layer-2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\eye_0005_Layer-1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
