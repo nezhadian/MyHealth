@@ -11,11 +11,9 @@
       Title="FreshStart">
     <Grid Background="Green">
         <TextBlock Foreground="White" TextAlignment="Center" VerticalAlignment="Center"  FontSize="16">
-            حاضرییییی
+            برویییین؟؟
             <LineBreak/>
-            آماده ای
-            <LineBreak/>
-            Are You Ready
+            Ready To Go (Click)
         </TextBlock>
     </Grid>
 </Page>
