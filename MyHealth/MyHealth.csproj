@@ -9,13 +9,31 @@
   <ItemGroup>
     <None Remove="Images\body.jpg" />
     <None Remove="Images\eye.jpg" />
+    <None Remove="Images\eye_0000_Layer-6.png" />
+    <None Remove="Images\eye_0001_Layer-5.png" />
+    <None Remove="Images\eye_0002_Layer-4.png" />
+    <None Remove="Images\eye_0003_Layer-3.png" />
+    <None Remove="Images\eye_0004_Layer-2.png" />
+    <None Remove="Images\eye_0005_Layer-1.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\body.jpg">
+    <Content Include="Images\eye_0000_Layer-6.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\eye.jpg">
+    <Content Include="Images\eye_0001_Layer-5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\eye_0002_Layer-4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\eye_0003_Layer-3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\eye_0004_Layer-2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\eye_0005_Layer-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
