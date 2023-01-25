@@ -17,7 +17,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Frame x:Name="frmExrecise" NavigationUIVisibility="Hidden"/>
-        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
+        <Border x:Name="brdTimer" ContextMenuOpening="brdTimer_ContextMenuOpening" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff" >
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
         </Border>
         

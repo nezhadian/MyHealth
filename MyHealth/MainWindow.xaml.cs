@@ -48,6 +48,7 @@ namespace MyHealth
                     frmExrecise.Content = CurrentPage;
                     LastStartTime = DateTime.Now;
                     updater.IsEnabled = !CurrentPage.RequireClick;
+                    txtTimer.Text = "00:00";
                 }
                 else
                 {
@@ -73,6 +74,24 @@ namespace MyHealth
             };
             updater.Tick += Updater_Tick;
             CurrentIndex = 0;
+
+            ContextMenu menu = new ContextMenu();
+            for (int i = 0; i < Steps.Length; i++)
+            {
+                ITimerSlice item = Steps[i];
+                MenuItem newItem = new MenuItem();
+                newItem.Header = $"{item.GetType().Name} : {item.Duration.ToString("mm':'ss")}";
+                newItem.Tag = i;
+                newItem.Click += MenuItem_Click;
+                menu.Items.Add(newItem);
+            }
+            brdTimer.ContextMenu = menu;
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentIndex = (int)(sender as MenuItem).Tag;
         }
 
         private void Updater_Tick(object sender, EventArgs e)
@@ -91,6 +110,11 @@ namespace MyHealth
             }
         }
 
+
+        private void brdTimer_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            ((MenuItem)brdTimer.ContextMenu.Items[CurrentIndex]).Focus();
+        }
     }
 
     public interface ITimerSlice 
