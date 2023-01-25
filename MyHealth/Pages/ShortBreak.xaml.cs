@@ -45,7 +45,7 @@ namespace MyHealth
 
             DispatcherTimer timer = new DispatcherTimer()
             {
-                Interval = new TimeSpan(0, 1, 0),//Image Changing Time
+                Interval = new TimeSpan(0, 0, 20),//Image Changing Time
                 IsEnabled = true
             };
             timer.Tick += SlideImages;

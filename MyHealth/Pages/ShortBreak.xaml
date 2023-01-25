@@ -11,6 +11,6 @@
       Title="ShortBreak">
 
     <Grid Background="White">
-        <Image x:Name="imgHint" Source="/Images/eye.jpg"/>
+        <Image x:Name="imgHint" Width="600" Height="400" Source="/Images/eye.jpg"/>
     </Grid>
 </Page>
