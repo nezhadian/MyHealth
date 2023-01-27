@@ -52,6 +52,7 @@ namespace MyHealth
                 else
                 {
                     updater.IsEnabled = false;
+                    
                 }
             }
         }
@@ -74,7 +75,6 @@ namespace MyHealth
             updater.Tick += Updater_Tick;
             CurrentIndex = 0;
         }
-
         private void Updater_Tick(object sender, EventArgs e)
         {
             if (Remained < TimeSpan.Zero)
@@ -82,7 +82,6 @@ namespace MyHealth
 
             txtTimer.Text = Remained.ToString("mm':'ss");
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrentPage.RequireClick)
@@ -91,6 +90,10 @@ namespace MyHealth
             }
         }
 
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
+
+        private void ZeroTimerBtn_Click(object sender, RoutedEventArgs e) => LastStartTime = DateTime.Now;
     }
 
     public interface ITimerSlice 

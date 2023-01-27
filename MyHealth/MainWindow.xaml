@@ -14,11 +14,29 @@
         ShowInTaskbar="False"
         Loaded="Window_Loaded"
         MouseDown="Window_MouseDown"
+        x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Frame x:Name="frmExrecise" NavigationUIVisibility="Hidden"/>
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Go To Step">
+                        <MenuItem Header="Fresh Start : 0"/>
+                        <MenuItem Header="Work Time : 52"/>
+                        <MenuItem Header="Break Time : 17"/>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem StaysOpenOnClick="True" Header="Luck On Screen" IsChecked="{Binding Topmost,ElementName=mainWin,Mode=TwoWay}" IsCheckable="True"/>
+                    <Separator/>
+                    <MenuItem x:Name="mnuStop" Header="Stop Timer"/>
+                    <MenuItem x:Name="mnuContinue" Header="Continue Timer"/>
+                    <MenuItem Click="ZeroTimerBtn_Click" Header="Zero Timer"/>
+                    <Separator/>
+                    <MenuItem Header="Exit" Click="ExitBtn_Click"/>
+                </ContextMenu>
+            </Border.ContextMenu>
         </Border>
         
     </Grid>
