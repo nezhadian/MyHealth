@@ -31,6 +31,25 @@ namespace MyHealth
 
         DispatcherTimer updater = new DispatcherTimer();
         DateTime LastStartTime;
+        TimeSpan? StopedTime;
+
+        bool isPaused;
+        public bool IsPaused
+        {
+            get => isPaused;
+            set
+            {
+                isPaused = value;
+                updater.IsEnabled = !value;
+                mnuContinue.IsEnabled = value;
+                mnuStop.IsEnabled = !value;
+
+                if (value)
+                    StopedTime = Elapsed;
+                else
+                    LastStartTime = DateTime.Now - StopedTime.Value;
+            }
+        }
 
         int curIndex;
         public int CurrentIndex
@@ -38,21 +57,17 @@ namespace MyHealth
             get => curIndex;
             set
             {
-                if (value >= Steps.Length)
-                    curIndex = 0;
-                else
-                    curIndex = value;
+                curIndex = value >= Steps.Length ? 0 : value;
 
-                if(curIndex < Steps.Length)
+                if (curIndex < Steps.Length)
                 {
-                    frmExrecise.Content = CurrentPage;
-                    LastStartTime = DateTime.Now;
-                    updater.IsEnabled = !CurrentPage.RequireClick;
+                    frmMain.Content = CurrentPage;
+                    StopedTime = new TimeSpan(0);
+                    IsPaused = CurrentPage.RequireClick;
                 }
                 else
                 {
-                    updater.IsEnabled = false;
-                    
+                    IsPaused = true;
                 }
             }
         }
@@ -92,8 +107,14 @@ namespace MyHealth
 
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
+        private void ZeroTimerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StopedTime = new TimeSpan(0);
+            IsPaused = false;
+        }
 
-        private void ZeroTimerBtn_Click(object sender, RoutedEventArgs e) => LastStartTime = DateTime.Now;
+        private void mnuStop_Click(object sender, RoutedEventArgs e) => IsPaused = true;
+        private void mnuContinue_Click(object sender, RoutedEventArgs e) => IsPaused = false;
     }
 
     public interface ITimerSlice 

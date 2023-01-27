@@ -17,7 +17,7 @@
         x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Frame x:Name="frmExrecise" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
             <Border.ContextMenu>
@@ -28,10 +28,10 @@
                         <MenuItem Header="Break Time : 17"/>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem StaysOpenOnClick="True" Header="Luck On Screen" IsChecked="{Binding Topmost,ElementName=mainWin,Mode=TwoWay}" IsCheckable="True"/>
+                    <MenuItem StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
                     <Separator/>
-                    <MenuItem x:Name="mnuStop" Header="Stop Timer"/>
-                    <MenuItem x:Name="mnuContinue" Header="Continue Timer"/>
+                    <MenuItem x:Name="mnuStop" Click="mnuStop_Click" Header="Stop Timer"/>
+                    <MenuItem x:Name="mnuContinue" Click="mnuContinue_Click" Header="Continue Timer"/>
                     <MenuItem Click="ZeroTimerBtn_Click" Header="Zero Timer"/>
                     <Separator/>
                     <MenuItem Header="Exit" Click="ExitBtn_Click"/>
