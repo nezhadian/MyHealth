@@ -10,10 +10,23 @@
       Unloaded="Page_Unloaded"
       Title="FreshStart">
     <Grid Background="Green">
-        <TextBlock Foreground="White" TextAlignment="Center" VerticalAlignment="Center"  FontSize="16">
-            برویییین؟؟
-            <LineBreak/>
-            Ready To Go (Click)
-        </TextBlock>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <TextBlock Foreground="White" TextAlignment="Center" FontSize="16">
+                برویییین؟؟
+                <LineBreak/>
+                Ready To Go (Click)
+            </TextBlock>
+            <Button Content="Stop Sound" 
+                    BorderThickness="0"
+                    Background="Red"
+                    Foreground="White"
+                    Cursor="Hand"
+                    FontSize="16"
+                    Width="100" 
+                    Height="100" 
+                    Margin="0,20,0,0" 
+                    Click="StopSoundButton_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

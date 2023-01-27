@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,12 +38,11 @@ namespace MyHealth
                 Interval = new TimeSpan(0, 0, 1),
                 IsEnabled = true
             };
-            timer.Tick += (s,eb) => Console.Beep(1000, 1000);
+            timer.Tick += (s, eb) => Console.Beep();
         }
 
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
-        {
-            timer.Stop();
-        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e) => StopSoundButton_Click(null, null);
+        private void StopSoundButton_Click(object sender, RoutedEventArgs e) => timer.Stop();
     }
 }
