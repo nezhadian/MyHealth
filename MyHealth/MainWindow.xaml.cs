@@ -89,6 +89,12 @@ namespace MyHealth
             };
             updater.Tick += Updater_Tick;
             CurrentIndex = 0;
+
+            mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
+            {
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
         }
         private void Updater_Tick(object sender, EventArgs e)
         {
@@ -115,6 +121,7 @@ namespace MyHealth
 
         private void mnuStop_Click(object sender, RoutedEventArgs e) => IsPaused = true;
         private void mnuContinue_Click(object sender, RoutedEventArgs e) => IsPaused = false;
+
     }
 
     public interface ITimerSlice 

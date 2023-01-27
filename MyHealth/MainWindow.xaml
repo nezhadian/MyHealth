@@ -28,7 +28,7 @@
                         <MenuItem Header="Break Time : 17"/>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
+                    <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True" Click="LockOnScreenBtn_Click"/>
                     <Separator/>
                     <MenuItem x:Name="mnuStop" Click="mnuStop_Click" Header="Stop Timer"/>
                     <MenuItem x:Name="mnuContinue" Click="mnuContinue_Click" Header="Continue Timer"/>
