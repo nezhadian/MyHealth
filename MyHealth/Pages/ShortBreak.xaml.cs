@@ -22,6 +22,7 @@ namespace MyHealth
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
+        public string StepName { get; set; } = "Short Break";
 
         private const string IMAGES_FOLDER = "images";
         static string[] imageFiles;
