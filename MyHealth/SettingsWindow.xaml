@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
         Title="SettingsWindow" Height="400" Width="600">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowUp}" CanExecute="ArrowKeys_CanExecute" Executed="ArrowKeys_Executed"/>
+        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowDown}" CanExecute="ArrowKeys_CanExecute" Executed="ArrowKeys_Executed"/>
+    </Window.CommandBindings>
+    
     <Grid Margin="20">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
@@ -24,7 +31,7 @@
             <ComboBoxItem Content="52/17 Standard"/>
             <ComboBoxItem Content="Custom"/>
         </ComboBox>
-        <ListBox Grid.Row="2">
+        <ListBox Grid.Row="2" x:Name="lstItems">
             <ListBoxItem Content="Item 1"/>
             <ListBoxItem Content="Item 2"/>
             <ListBoxItem Content="Item 3"/>
@@ -73,8 +80,8 @@
 
         <Grid Grid.Row="3" >
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Padding="10,5" Content="▼"/>
-                <Button Padding="10,5" Content="▲"/>
+                <Button Padding="10,5" Content="▼" Command="{x:Static local:SettingsWindow.ArrowDown}"/>
+                <Button Padding="10,5" Content="▲" Command="{x:Static local:SettingsWindow.ArrowUp}"/>
             </StackPanel>
 
             <Button Padding="10,5" Content="+" HorizontalAlignment="Left"/>
