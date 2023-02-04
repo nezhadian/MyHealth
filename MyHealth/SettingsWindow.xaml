@@ -6,7 +6,85 @@
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
         Title="SettingsWindow" Height="400" Width="600">
-    <Grid>
-        
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox >
+            <ComboBoxItem Content="Pomoduro"/>
+            <ComboBoxItem Content="52/17 Standard"/>
+            <ComboBoxItem Content="Custom"/>
+        </ComboBox>
+        <ListBox Grid.Row="2">
+            <ListBoxItem Content="Item 1"/>
+            <ListBoxItem Content="Item 2"/>
+            <ListBoxItem Content="Item 3"/>
+            <ListBoxItem Content="Item 4"/>
+            <ListBoxItem Content="Item 5"/>
+        </ListBox>
+
+        <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
+            <StackPanel>
+                <Label >Step Type</Label>
+                <ComboBox>
+                    <ComboBoxItem Content="Work Time" />
+                    <ComboBoxItem Content="Image Slider" />
+                    <ComboBoxItem Content="Fresh Start" />
+                </ComboBox>
+                
+                <Label >Step Name</Label>
+                <TextBox />
+
+                <Label >Image Folder Path</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox />
+                    <Button Grid.Column="1" Content="..." Padding="5,0"/>
+                </Grid>
+                
+
+                <Label >Duration</Label>
+                <StackPanel Orientation="Horizontal" Height="27">
+                    <TextBox Width="25"/>
+                    <Label >:</Label>
+                    <TextBox Width="25"/>
+                    <Label >:</Label>
+                    <TextBox Width="25"/>
+                </StackPanel>
+
+                <CheckBox Margin="0,15,0,0">Require Click</CheckBox>
+                
+                
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" >
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Padding="10,5" Content="▼"/>
+                <Button Padding="10,5" Content="▲"/>
+            </StackPanel>
+
+            <Button Padding="10,5" Content="+" HorizontalAlignment="Left"/>
+
+        </Grid>
+
+
+        <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Padding="20,5" Content="Save"/>
+        </StackPanel>
+
     </Grid>
 </Window>
