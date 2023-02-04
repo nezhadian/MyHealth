@@ -21,18 +21,18 @@
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
             <Border.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Go To Step">
+                <ContextMenu Opened="ContextMenu_Opened">
+                    <MenuItem x:Name="lstSteps" Header="Go To Step">
                         <MenuItem Header="Fresh Start : 0"/>
-                        <MenuItem Header="Work Time : 52"/>
+                        <MenuItem Header="Work Time : 888"/>
                         <MenuItem Header="Break Time : 17"/>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True" Click="LockOnScreenBtn_Click"/>
+                    <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
                     <Separator/>
-                    <MenuItem x:Name="mnuStop" Click="mnuStop_Click" Header="Stop Timer"/>
                     <MenuItem x:Name="mnuContinue" Click="mnuContinue_Click" Header="Continue Timer"/>
-                    <MenuItem Click="ZeroTimerBtn_Click" Header="Zero Timer"/>
+                    <MenuItem x:Name="mnuStop" Click="mnuStop_Click" Header="Stop Timer"/>
+                    <MenuItem Header="Zero Timer" Click="ZeroTimerBtn_Click"/>
                     <Separator/>
                     <MenuItem Header="Exit" Click="ExitBtn_Click"/>
                 </ContextMenu>

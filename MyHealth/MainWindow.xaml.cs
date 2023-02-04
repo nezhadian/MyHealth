@@ -111,7 +111,6 @@ namespace MyHealth
             }
         }
 
-
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
         private void ZeroTimerBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -122,20 +121,41 @@ namespace MyHealth
         private void mnuStop_Click(object sender, RoutedEventArgs e) => IsPaused = true;
         private void mnuContinue_Click(object sender, RoutedEventArgs e) => IsPaused = false;
 
+        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
+        {
+            lstSteps.Items.Clear();
+            for (int i = 0; i < Steps.Length; i++)
+            {
+                ITimerSlice item = Steps[i];
+                MenuItem menuItem = new MenuItem()
+                {
+                    Header = $"{item.StepName} : {item.Duration}",
+                    Tag = i,
+                    IsCheckable = true,
+                    IsChecked = i == CurrentIndex
+                };
+                menuItem.Click += MenuItem_Click;
+                lstSteps.Items.Add(menuItem);
+            }
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentIndex = (int)(sender as MenuItem).Tag;
+        }
     }
 
     public interface ITimerSlice 
     {
         public TimeSpan Duration { set; get; }
         public bool RequireClick { set; get; }
-
-        
+        public string StepName { set; get; }
     }
     public class WorkTime : ITimerSlice
     {
 
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
+        public string StepName { get; set; } = "Work Time";
 
         public WorkTime(int minutes)
         {
