@@ -22,53 +22,77 @@ namespace MyHealth
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
-        public string StepName { get; set; } = "Short Break";
+        public string StepName { get; set; } = "Slider Break";
 
-        private const string IMAGES_FOLDER = "images";
-        static string[] imageFiles;
-        static int index = 0;
+        public FileInfo[] imageFiles;
+        DispatcherTimer timer;
+
+        int curIndex;
+        public int CurrentIndex
+        {
+            get => curIndex;
+            set
+            {
+                curIndex = value >= imageFiles.Length ? 0 : value;
+
+                if (curIndex < imageFiles.Length)
+                {
+                    try
+                    {
+                        mainImage.Source = new BitmapImage(new Uri(imageFiles[value].FullName));
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Error in loading image \r\n {ex.Message}");
+                    }
+                    timer?.Start();
+                }
+                else
+                {
+                    timer?.Stop();
+                }
+            }
+        }
+
+        private DirectoryInfo imageFilesDir;
+        public DirectoryInfo ImagesFileDirectory
+        {
+            get => imageFilesDir;
+            set
+            {
+                if (!value.Exists)
+                    return;
+
+                var files = value.GetFiles();
+                if (files.Length == 0)
+                    return;
+
+                imageFilesDir = value;
+                imageFiles = files;
+                CurrentIndex = 0;
+            }
+        }
+
 
         public ImageSlider()
         {
             InitializeComponent();
         }
-
-        public ImageSlider(int minutes)
+        public ImageSlider(int minutes,string path)
         {
-            Duration = new TimeSpan(0, minutes, 0);
             InitializeComponent();
+            Duration = new TimeSpan(0, minutes, 0);
+            ImagesFileDirectory = new DirectoryInfo(path);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if(imageFiles == null && Directory.Exists(IMAGES_FOLDER))
-                imageFiles = Directory.GetFiles(IMAGES_FOLDER);
-
-            DispatcherTimer timer = new DispatcherTimer()
+            timer = new DispatcherTimer()
             {
                 Interval = new TimeSpan(0, 0, 20),//Image Changing Time
                 IsEnabled = true
             };
-            timer.Tick += SlideImages;
-        }
-
-        private void SlideImages(object sender, EventArgs e)
-        {
-            if(index < imageFiles.Length)
-            {
-                try
-                {
-                    imgHint.Source = new BitmapImage(new Uri($"{Environment.CurrentDirectory}\\{imageFiles[index]}"));
-                }
-                catch
-                {
-                    MessageBox.Show("Error in loading images");
-                }
-            }
-
-            index++;
-            if (index >= imageFiles.Length)
-                index = 0;
+            timer.Tick += (s,ev) => CurrentIndex++;
         }
     }
 }
