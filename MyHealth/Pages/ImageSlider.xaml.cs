@@ -18,7 +18,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for ShortBreak.xaml
     /// </summary>
-    public partial class ShortBreak : Page,ITimerSlice
+    public partial class ImageSlider : Page,ITimerSlice
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
@@ -28,12 +28,12 @@ namespace MyHealth
         static string[] imageFiles;
         static int index = 0;
 
-        public ShortBreak()
+        public ImageSlider()
         {
             InitializeComponent();
         }
 
-        public ShortBreak(int minutes)
+        public ImageSlider(int minutes)
         {
             Duration = new TimeSpan(0, minutes, 0);
             InitializeComponent();

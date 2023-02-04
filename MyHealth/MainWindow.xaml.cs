@@ -25,7 +25,7 @@ namespace MyHealth
         public ITimerSlice[] Steps = new ITimerSlice[]
         {
             new WorkTime(52),
-            new ShortBreak(17),
+            new ImageSlider(17),
             new FreshStart(),
         };
 
