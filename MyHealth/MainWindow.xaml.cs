@@ -24,9 +24,9 @@ namespace MyHealth
 
         public ITimerSlice[] Steps = new ITimerSlice[]
         {
-            new FreshStart(),
             new WorkTime(52),
             new ShortBreak(17),
+            new FreshStart(),
         };
 
         DispatcherTimer updater = new DispatcherTimer();

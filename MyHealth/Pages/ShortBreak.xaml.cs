@@ -50,7 +50,6 @@ namespace MyHealth
                 IsEnabled = true
             };
             timer.Tick += SlideImages;
-            App.Current.MainWindow.Topmost = false;
         }
 
         private void SlideImages(object sender, EventArgs e)
@@ -70,11 +69,6 @@ namespace MyHealth
             index++;
             if (index >= imageFiles.Length)
                 index = 0;
-        }
-
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
-        {
-            App.Current.MainWindow.Topmost = true;
         }
     }
 }
