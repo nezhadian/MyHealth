@@ -65,5 +65,21 @@ namespace MyHealth
                 lstItems.Focus();
             }
         }
+
+        private void NewOrRemoveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ApplicationCommands.New == e.Command)
+                e.CanExecute = lstItems.Items.Count < 10;
+            else if (ApplicationCommands.Delete == e.Command)
+                e.CanExecute = lstItems.SelectedIndex != -1;
+        }
+
+        private void NewOrRemoveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (ApplicationCommands.New == e.Command)
+                lstItems.Items.Add("I`m New Step");
+            else if (ApplicationCommands.Delete == e.Command)
+                lstItems.Items.RemoveAt(lstItems.SelectedIndex);
+        }
     }
 }

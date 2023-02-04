@@ -10,6 +10,9 @@
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:SettingsWindow.ArrowUp}" CanExecute="ArrowKeys_CanExecute" Executed="ArrowKeys_Executed"/>
         <CommandBinding Command="{x:Static local:SettingsWindow.ArrowDown}" CanExecute="ArrowKeys_CanExecute" Executed="ArrowKeys_Executed"/>
+
+        <CommandBinding Command="{x:Static ApplicationCommands.New}" CanExecute="NewOrRemoveCommand_CanExecute" Executed="NewOrRemoveCommand_Executed"/>
+        <CommandBinding Command="{x:Static ApplicationCommands.Delete}" CanExecute="NewOrRemoveCommand_CanExecute" Executed="NewOrRemoveCommand_Executed"/>
     </Window.CommandBindings>
     
     <Grid Margin="20">
@@ -84,7 +87,11 @@
                 <Button Padding="10,5" Content="▲" Command="{x:Static local:SettingsWindow.ArrowUp}"/>
             </StackPanel>
 
-            <Button Padding="10,5" Content="+" HorizontalAlignment="Left"/>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Padding="10,5" Content="+" Command="{x:Static ApplicationCommands.New}"/>
+                <Button Padding="10,5" Content="-" Command="{x:Static ApplicationCommands.Delete}"/>
+            </StackPanel>
+
 
         </Grid>
 
