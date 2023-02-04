@@ -129,7 +129,7 @@ namespace MyHealth
                 ITimerSlice item = Steps[i];
                 MenuItem menuItem = new MenuItem()
                 {
-                    Header = $"{item.StepName} : {item.Duration}",
+                    Header = item.RequireClick ? item.StepName : $"{item.StepName} : {item.Duration}",
                     Tag = i,
                     IsCheckable = true,
                     IsChecked = i == CurrentIndex
