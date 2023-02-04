@@ -34,6 +34,7 @@
                     <MenuItem x:Name="mnuStop" Click="mnuStop_Click" Header="Stop Timer"/>
                     <MenuItem Header="Zero Timer" Click="ZeroTimerBtn_Click"/>
                     <Separator/>
+                    <MenuItem Header="Settings" Click="Settings_Click"/>
                     <MenuItem Header="Exit" Click="ExitBtn_Click"/>
                 </ContextMenu>
             </Border.ContextMenu>

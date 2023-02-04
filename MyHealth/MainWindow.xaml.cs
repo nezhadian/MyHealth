@@ -142,6 +142,11 @@ namespace MyHealth
         {
             CurrentIndex = (int)(sender as MenuItem).Tag;
         }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            new SettingsWindow().Show();
+        }
     }
 
     public interface ITimerSlice 
