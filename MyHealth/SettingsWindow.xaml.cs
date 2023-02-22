@@ -55,6 +55,7 @@ namespace MyHealth
         private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             StepList.RemoveAt(lstItems.SelectedIndex);
+            lstItems.SelectedIndex = StepList.Count - 1;
         }
 
         #region Arrow Commands
@@ -85,11 +86,14 @@ namespace MyHealth
 
         private void StepTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!IsSelected)
+                return;
+
             var stepType = (StepData.StepTypes)cboStepType.SelectedValue;
             grdDuration.Visibility =
-                            grdImagePath.Visibility =
-                            Visibility.Collapsed;
-
+                      grdImagePath.Visibility =
+                      Visibility.Collapsed;
+            
             switch (stepType)
             {
                 case StepData.StepTypes.WorkTime:
@@ -103,12 +107,12 @@ namespace MyHealth
 
             RefreshLabel();
         }
-
+        
         private void txtStepName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            RefreshLabel();
+            if(IsSelected)
+                RefreshLabel();
         }
-
         private void RefreshLabel()
         {
             SetStepData(SelectedStep);
@@ -131,8 +135,8 @@ namespace MyHealth
         {
             cboStepType.SelectedItem = item.StepType;
             txtStepName.Text = item.StepName;
+            
         }
-
         private void SetStepData(StepData item)
         {
             item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
@@ -153,9 +157,11 @@ namespace MyHealth
 
         public string StepName;
 
+        public TimeSpan Duration;
+
         public override string ToString()
         {
-            return $"{StepName}({StepType})";
+            return $"{StepName}({StepType}) {Duration.ToString("hh':'mm':'ss")}";
         }
     }
 }
