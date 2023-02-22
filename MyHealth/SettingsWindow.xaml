@@ -55,7 +55,7 @@
                     </ComboBox>
 
                     <Label >Step Name</Label>
-                    <TextBox x:Name="txtStepName" />
+                    <TextBox x:Name="txtStepName" TextChanged="txtStepName_TextChanged"/>
 
                 </StackPanel>
                 <Grid x:Name="grdDuration" Visibility="Collapsed" >

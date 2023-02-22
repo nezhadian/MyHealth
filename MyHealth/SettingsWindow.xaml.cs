@@ -48,6 +48,7 @@ namespace MyHealth
         private void New_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             StepList.Add(new StepData());
+            lstItems.SelectedIndex = StepList.Count - 1;
         }
 
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
@@ -99,6 +100,19 @@ namespace MyHealth
                     grdImagePath.Visibility = Visibility.Visible;
                     break;
             }
+
+            RefreshLabel();
+        }
+
+        private void txtStepName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshLabel();
+        }
+
+        private void RefreshLabel()
+        {
+            SetStepData(SelectedStep);
+            lstItems.Items.Refresh();
         }
 
         private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -107,6 +121,7 @@ namespace MyHealth
             {
                 SetStepData((StepData)item);
             }
+            lstItems.Items.Refresh();
 
             if (IsSelected)
                 GetStepData(SelectedStep);
@@ -123,6 +138,7 @@ namespace MyHealth
             item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
             item.StepName = txtStepName.Text;
         }
+
     }
 
     public class StepData
@@ -133,9 +149,13 @@ namespace MyHealth
             ImageSlider,
             FreshStart,
         }
-
         public StepTypes StepType;
 
         public string StepName;
+
+        public override string ToString()
+        {
+            return $"{StepName}({StepType})";
+        }
     }
 }
