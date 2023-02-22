@@ -58,19 +58,13 @@
                     <TextBox x:Name="txtStepName" TextChanged="txtStepName_TextChanged"/>
 
                 </StackPanel>
-                <Grid x:Name="grdDuration" Visibility="Collapsed" >
+                <Grid x:Name="grdDuration" Visibility="Visible" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Duration" Grid.Row="0"/>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <TextBox Width="18"/>
-                        <TextBlock Text=":" Padding="5,0" />
-                        <TextBox Width="18"/>
-                        <TextBlock Text=":" Padding="5,0" />
-                        <TextBox Width="18"/>
-                    </StackPanel>
+                    <local:TimeSpanControl x:Name="tscDuration" Grid.Row="1"/>
                 </Grid>
                 <Grid x:Name="grdImagePath" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>

@@ -135,12 +135,13 @@ namespace MyHealth
         {
             cboStepType.SelectedItem = item.StepType;
             txtStepName.Text = item.StepName;
-            
+            tscDuration.TimeSpan = item.Duration;
         }
         private void SetStepData(StepData item)
         {
             item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
             item.StepName = txtStepName.Text;
+            item.Duration = tscDuration.TimeSpan;
         }
 
     }
@@ -161,7 +162,7 @@ namespace MyHealth
 
         public override string ToString()
         {
-            return $"{StepName}({StepType}) {Duration.ToString("hh':'mm':'ss")}";
+            return $"{StepName} ({StepType}) {Duration.ToString("hh':'mm':'ss")}";
         }
     }
 }

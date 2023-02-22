@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200">
     <Grid>
-            
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBox x:Name="txtHour" Width="18" TabIndex="0" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+            <TextBlock Text=":" Padding="5,0" />
+            <TextBox x:Name="txtMin" Width="18" TabIndex="1" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+            <TextBlock Text=":" Padding="5,0" />
+            <TextBox x:Name="txtSecond" Width="18" TabIndex="2" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+        </StackPanel>
     </Grid>
 </UserControl>
