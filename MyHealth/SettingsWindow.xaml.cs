@@ -36,8 +36,14 @@ namespace MyHealth
             lstItems.ItemsSource = StepList;
 
             LoadStepTypes();
+            LoadImageListes();
         }
 
+        private void LoadImageListes()
+        {
+            cboImageList.Items.Clear();
+            cboImageList.ItemsSource = Enum.GetValues(typeof(StepData.ImageListes));
+        }
         private void LoadStepTypes()
         {
             cboStepType.Items.Clear();
@@ -91,7 +97,7 @@ namespace MyHealth
 
             var stepType = (StepData.StepTypes)cboStepType.SelectedValue;
             grdDuration.Visibility =
-                      grdImagePath.Visibility =
+                      grdImageListes.Visibility =
                       Visibility.Collapsed;
             
             switch (stepType)
@@ -101,7 +107,7 @@ namespace MyHealth
                     break;
                 case StepData.StepTypes.ImageSlider:
                     grdDuration.Visibility = Visibility.Visible;
-                    grdImagePath.Visibility = Visibility.Visible;
+                    grdImageListes.Visibility = Visibility.Visible;
                     break;
             }
 
@@ -136,12 +142,14 @@ namespace MyHealth
             cboStepType.SelectedItem = item.StepType;
             txtStepName.Text = item.StepName;
             tscDuration.TimeSpan = item.Duration;
+            cboImageList.SelectedItem = item.ImageList;
         }
         private void SetStepData(StepData item)
         {
             item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
             item.StepName = txtStepName.Text;
             item.Duration = tscDuration.TimeSpan;
+            item.ImageList = (StepData.ImageListes)cboImageList.SelectedItem;
         }
 
     }
@@ -159,6 +167,12 @@ namespace MyHealth
         public string StepName;
 
         public TimeSpan Duration;
+
+        public enum ImageListes
+        {
+            Body,Eye
+        }
+        public ImageListes ImageList;
 
         public override string ToString()
         {
