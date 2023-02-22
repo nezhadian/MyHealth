@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,8 @@ namespace MyHealth
     public partial class SettingsWindow : Window
     {
 
+        public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
+
         public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(SettingsWindow));
         public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(SettingsWindow));
 
@@ -26,60 +29,48 @@ namespace MyHealth
             InitializeComponent();
         }
 
-        private void ArrowKeys_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void main_Loaded(object sender, RoutedEventArgs e)
         {
-            if (lstItems.SelectedIndex == -1)
+            lstItems.Items.Clear();
+            lstItems.ItemsSource = StepList;
+        }
+
+        public bool IsSelected => lstItems.SelectedIndex != -1;
+
+        private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex > 0;
+        private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
+        private void ArrowKeys_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            bool isArrowUp = e.Command == ArrowUp;
+            bool isArrowDown = e.Command == ArrowDown;
+            if (!(isArrowUp || isArrowDown))
                 return;
 
-            if(ArrowUp == e.Command)
-            {
-                e.CanExecute = lstItems.SelectedIndex > 0;
-            }
-            else if (ArrowDown == e.Command)
-            {
-                e.CanExecute = lstItems.SelectedIndex < lstItems.Items.Count - 1;
-            }
+            int selectionIndex = lstItems.SelectedIndex;
+            int targetIndex = isArrowUp ? selectionIndex - 1 : selectionIndex + 1;
+
+            StepData selection = StepList[selectionIndex];
+            StepList.RemoveAt(selectionIndex);
+            StepList.Insert(targetIndex, selection);
+
+            lstItems.SelectedIndex = targetIndex;
+            lstItems.Focus();
         }
-        private void ArrowKeys_Executed(object sender, ExecutedRoutedEventArgs e)
+
+        private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+        private void New_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (ArrowUp == e.Command)
-            {
-                int index = lstItems.SelectedIndex;
-                int target = index - 1;
-                object a = lstItems.SelectedItem;
-                lstItems.Items.RemoveAt(index);
-                lstItems.Items.Insert(target, a);
-                lstItems.SelectedIndex = target;
-                lstItems.Focus();
-
-
-            }
-            else if (ArrowDown == e.Command)
-            {
-                int index = lstItems.SelectedIndex;
-                int target = index + 1;
-                object a = lstItems.SelectedItem;
-                lstItems.Items.RemoveAt(index);
-                lstItems.Items.Insert(target, a);
-                lstItems.SelectedIndex = target;
-                lstItems.Focus();
-            }
+            StepList.Add(new StepData());
         }
 
-        private void NewOrRemoveCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
+        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (ApplicationCommands.New == e.Command)
-                e.CanExecute = lstItems.Items.Count < 10;
-            else if (ApplicationCommands.Delete == e.Command)
-                e.CanExecute = lstItems.SelectedIndex != -1;
+            StepList.RemoveAt(lstItems.SelectedIndex);
         }
+    }
 
-        private void NewOrRemoveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (ApplicationCommands.New == e.Command)
-                lstItems.Items.Add("I`m New Step");
-            else if (ApplicationCommands.Delete == e.Command)
-                lstItems.Items.RemoveAt(lstItems.SelectedIndex);
-        }
+    public class StepData
+    {
     }
 }
