@@ -23,6 +23,8 @@ namespace MyHealth
 
         public bool IsSelected => lstItems.SelectedIndex != -1;
 
+        public StepData SelectedStep => StepList[lstItems.SelectedIndex];
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -80,9 +82,37 @@ namespace MyHealth
         }
         #endregion
 
+        private void StepTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var stepType = (StepData.StepTypes)cboStepType.SelectedValue;
+            UpdateUIForStepType(stepType);
+
+            SelectedStep.StepType = stepType;
+        }
+
+        private void UpdateUIForStepType(StepData.StepTypes stepType)
+        {
+            grdDuration.Visibility =
+                            grdImagePath.Visibility =
+                            Visibility.Collapsed;
+
+            switch (stepType)
+            {
+                case StepData.StepTypes.WorkTime:
+                    grdDuration.Visibility = Visibility.Visible;
+                    break;
+                case StepData.StepTypes.ImageSlider:
+                    grdDuration.Visibility = Visibility.Visible;
+                    grdImagePath.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
+
         private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(cboStepType.SelectedValue.ToString());
+            if (!IsSelected)
+                return;
+            cboStepType.SelectedItem = SelectedStep.StepType;
         }
     }
 
@@ -90,7 +120,11 @@ namespace MyHealth
     {
         public enum StepTypes
         {
-            WorkTime,FreshStart,ImageSlider
+            WorkTime,
+            ImageSlider,
+            FreshStart,
         }
+
+        public StepTypes StepType;
     }
 }

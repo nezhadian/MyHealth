@@ -36,7 +36,7 @@
             <ComboBoxItem Content="52/17 Standard"/>
             <ComboBoxItem Content="Custom"/>
         </ComboBox>
-        <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="Items_SelectionChanged">
+        <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="Items_SelectionChanged" >
             <ListBoxItem Content="Item 1"/>
             <ListBoxItem Content="Item 2"/>
             <ListBoxItem Content="Item 3"/>
@@ -48,7 +48,7 @@
             <StackPanel>
                 <StackPanel>
                     <Label >Step Type</Label>
-                    <ComboBox x:Name="cboStepType" SelectionChanged="Items_SelectionChanged">
+                    <ComboBox x:Name="cboStepType" SelectionChanged="StepTypeCombo_SelectionChanged">
                         <ComboBoxItem Content="Work Time" />
                         <ComboBoxItem Content="Image Slider" />
                         <ComboBoxItem Content="Fresh Start" />
@@ -85,9 +85,6 @@
                     <TextBox Grid.Row="1" />
                     <Button Grid.Row="1" Grid.Column="1" Content="..." Padding="5,0" />
 
-                </Grid>
-                <Grid x:Name="grdRequireClick" Margin="0,10,0,0" Visibility="Collapsed" >
-                    <CheckBox Content="Require Click"/>
                 </Grid>
 
 
