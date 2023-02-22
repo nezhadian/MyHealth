@@ -6,13 +6,22 @@
              xmlns:local="clr-namespace:MyHealth"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200">
+    <UserControl.Resources>
+        <Style x:Key="TimeSpanControl.TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="18" />
+            <Setter Property="MaxLength" Value="2" />
+            <EventSetter Event="TextChanged" Handler="TextBox_TextChanged"/>
+            <EventSetter Event="GotKeyboardFocus"  Handler="TextBox_GotKeyboardFocus"/>
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBox_PreviewMouseLeftButtonDown"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBox x:Name="txtHour" Width="18" TabIndex="0" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+            <TextBox x:Name="txtHour" TabIndex="0" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
             <TextBlock Text=":" Padding="5,0" />
-            <TextBox x:Name="txtMin" Width="18" TabIndex="1" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+            <TextBox x:Name="txtMin" TabIndex="1" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
             <TextBlock Text=":" Padding="5,0" />
-            <TextBox x:Name="txtSecond" Width="18" TabIndex="2" TextChanged="txtHour_TextChanged"  MaxLength="2"/>
+            <TextBox x:Name="txtSecond" TabIndex="2" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -49,7 +49,7 @@ namespace MyHealth
             InitializeComponent();
         }
 
-        private void txtHour_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
             if (Regex.IsMatch(textBox.Text, @"[0-9]{2}"))
@@ -61,14 +61,19 @@ namespace MyHealth
 
         }
 
-        private void TextBoxes_GotFocus(object sender, RoutedEventArgs e)
+        private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            
+            (sender as TextBox).SelectAll();
         }
 
-        private void txtHour_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            TextBox tb = sender as TextBox;
+            if (!tb.IsKeyboardFocusWithin)
+            {
+                e.Handled = true;
+                tb.Focus();
+            }
         }
     }
 }
