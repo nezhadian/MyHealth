@@ -10,13 +10,13 @@
         Title="SettingsWindow" Height="400" Width="600">
 
     <Window.CommandBindings>
-        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowUp}" x:Name="arrowUp" CanExecute="ArrowUp_CanExecute" Executed="ArrowKeys_Execute"/>
-        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowDown}" x:Name="arrowDown" CanExecute="ArrowDown_CanExecute" Executed="ArrowKeys_Execute"/>
+        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowUp}" x:Name="arrowUp" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
+        <CommandBinding Command="{x:Static local:SettingsWindow.ArrowDown}" x:Name="arrowDown" CanExecute="ArrowDown_CanExecute" Executed="ArrowCommands_Execute"/>
 
         <CommandBinding Command="{x:Static ApplicationCommands.New}" x:Name="new" CanExecute="New_CanExecute" Executed="New_Executed"/>
         <CommandBinding Command="{x:Static ApplicationCommands.Delete}" x:Name="delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
     </Window.CommandBindings>
-    
+
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
             <ComboBoxItem Content="52/17 Standard"/>
             <ComboBoxItem Content="Custom"/>
         </ComboBox>
-        <ListBox Grid.Row="2" x:Name="lstItems">
+        <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="Items_SelectionChanged">
             <ListBoxItem Content="Item 1"/>
             <ListBoxItem Content="Item 2"/>
             <ListBoxItem Content="Item 3"/>
@@ -46,39 +46,51 @@
 
         <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
             <StackPanel>
-                <Label >Step Type</Label>
-                <ComboBox>
-                    <ComboBoxItem Content="Work Time" />
-                    <ComboBoxItem Content="Image Slider" />
-                    <ComboBoxItem Content="Fresh Start" />
-                </ComboBox>
-                
-                <Label >Step Name</Label>
-                <TextBox />
+                <StackPanel>
+                    <Label >Step Type</Label>
+                    <ComboBox x:Name="cboStepType" SelectionChanged="Items_SelectionChanged">
+                        <ComboBoxItem Content="Work Time" />
+                        <ComboBoxItem Content="Image Slider" />
+                        <ComboBoxItem Content="Fresh Start" />
+                    </ComboBox>
 
-                <Label >Image Folder Path</Label>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
+                    <Label >Step Name</Label>
                     <TextBox />
-                    <Button Grid.Column="1" Content="..." Padding="5,0"/>
-                </Grid>
-                
 
-                <Label >Duration</Label>
-                <StackPanel Orientation="Horizontal" Height="27">
-                    <TextBox Width="25"/>
-                    <Label >:</Label>
-                    <TextBox Width="25"/>
-                    <Label >:</Label>
-                    <TextBox Width="25"/>
                 </StackPanel>
+                <Grid x:Name="grdDuration" Visibility="Collapsed" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Duration" Grid.Row="0"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBox Width="18"/>
+                        <TextBlock Text=":" Padding="5,0" />
+                        <TextBox Width="18"/>
+                        <TextBlock Text=":" Padding="5,0" />
+                        <TextBox Width="18"/>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="grdImagePath" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Image List Path" Grid.Row="0" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="1" />
+                    <Button Grid.Row="1" Grid.Column="1" Content="..." Padding="5,0" />
 
-                <CheckBox Margin="0,15,0,0">Require Click</CheckBox>
-                
-                
+                </Grid>
+                <Grid x:Name="grdRequireClick" Margin="0,10,0,0" Visibility="Collapsed" >
+                    <CheckBox Content="Require Click"/>
+                </Grid>
+
+
 
             </StackPanel>
         </Grid>

@@ -21,8 +21,7 @@ namespace MyHealth
 
         public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
 
-        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(SettingsWindow));
-        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(SettingsWindow));
+        public bool IsSelected => lstItems.SelectedIndex != -1;
 
         public SettingsWindow()
         {
@@ -33,13 +32,36 @@ namespace MyHealth
         {
             lstItems.Items.Clear();
             lstItems.ItemsSource = StepList;
+
+            LoadStepTypes();
         }
 
-        public bool IsSelected => lstItems.SelectedIndex != -1;
+        private void LoadStepTypes()
+        {
+            cboStepType.Items.Clear();
+            cboStepType.ItemsSource = Enum.GetValues(typeof(StepData.StepTypes));
+        }
+
+        private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+        private void New_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            StepList.Add(new StepData());
+        }
+
+        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
+        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            StepList.RemoveAt(lstItems.SelectedIndex);
+        }
+
+        #region Arrow Commands
+        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(SettingsWindow));
+        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(SettingsWindow));
 
         private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex > 0;
         private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
-        private void ArrowKeys_Execute(object sender, ExecutedRoutedEventArgs e)
+        
+        private void ArrowCommands_Execute(object sender, ExecutedRoutedEventArgs e)
         {
             bool isArrowUp = e.Command == ArrowUp;
             bool isArrowDown = e.Command == ArrowDown;
@@ -56,21 +78,19 @@ namespace MyHealth
             lstItems.SelectedIndex = targetIndex;
             lstItems.Focus();
         }
+        #endregion
 
-        private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
-        private void New_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            StepList.Add(new StepData());
-        }
-
-        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
-        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            StepList.RemoveAt(lstItems.SelectedIndex);
+            MessageBox.Show(cboStepType.SelectedValue.ToString());
         }
     }
 
     public class StepData
     {
+        public enum StepTypes
+        {
+            WorkTime,FreshStart,ImageSlider
+        }
     }
 }
