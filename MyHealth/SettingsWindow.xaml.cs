@@ -85,13 +85,6 @@ namespace MyHealth
         private void StepTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var stepType = (StepData.StepTypes)cboStepType.SelectedValue;
-            UpdateUIForStepType(stepType);
-
-            SelectedStep.StepType = stepType;
-        }
-
-        private void UpdateUIForStepType(StepData.StepTypes stepType)
-        {
             grdDuration.Visibility =
                             grdImagePath.Visibility =
                             Visibility.Collapsed;
@@ -110,9 +103,25 @@ namespace MyHealth
 
         private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!IsSelected)
-                return;
-            cboStepType.SelectedItem = SelectedStep.StepType;
+            foreach (var item in e.RemovedItems)
+            {
+                SetStepData((StepData)item);
+            }
+
+            if (IsSelected)
+                GetStepData(SelectedStep);
+        }
+
+        private void GetStepData(StepData item)
+        {
+            cboStepType.SelectedItem = item.StepType;
+            txtStepName.Text = item.StepName;
+        }
+
+        private void SetStepData(StepData item)
+        {
+            item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
+            item.StepName = txtStepName.Text;
         }
     }
 
@@ -126,5 +135,7 @@ namespace MyHealth
         }
 
         public StepTypes StepType;
+
+        public string StepName;
     }
 }
