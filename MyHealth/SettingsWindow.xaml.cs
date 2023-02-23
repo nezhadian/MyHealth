@@ -157,19 +157,21 @@ namespace MyHealth
             SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
             lstItems.Items.Refresh();
         }
-
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string tag = ((ListBoxItem)cboTemplates.SelectedItem).Tag.ToString();
-            if(tag != "")
-            {
-
-            }
+            string prev = e.RemovedItems.Count > 0 ? ((ListBoxItem)e.RemovedItems[0]).Tag.ToString() : "";
             if(Templates.TemplateDictionary.TryGetValue(tag,out StepData[] template))
             {
-                AddRange(template);
+                var resault = prev == "" ? MessageBox.Show("Clear Designed Steps ??", "Clear", MessageBoxButton.YesNo) : MessageBoxResult.Yes;
+                if (resault == MessageBoxResult.Yes)
+                {
+                    AddRange(template);
+                }
+
             }
         }
+
         private void AddRange(StepData[] steps)
         {
             StepList.Clear();
@@ -182,7 +184,6 @@ namespace MyHealth
 
     public class Templates
     {
-
         public static Dictionary<string, StepData[]> TemplateDictionary = new Dictionary<string, StepData[]>()
         {
             {"pomo" , new StepData[]{
@@ -215,7 +216,6 @@ namespace MyHealth
                         new StepData(){StepName = "Ready",StepType = StepData.StepTypes.FreshStart},
                         }},
         };
-
 
     }
 
