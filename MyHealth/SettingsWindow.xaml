@@ -36,7 +36,7 @@
             <ComboBoxItem Content="52/17 Standard"/>
             <ComboBoxItem Content="Custom"/>
         </ComboBox>
-        <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="Items_SelectionChanged" >
+        <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="lstItems_SelectionChanged">
             <ListBoxItem Content="Item 1"/>
             <ListBoxItem Content="Item 2"/>
             <ListBoxItem Content="Item 3"/>
@@ -45,10 +45,10 @@
         </ListBox>
 
         <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
-            <StackPanel>
-                <StackPanel>
+            <StackPanel x:Name="stckMain" Visibility="Collapsed">
+                <StackPanel >
                     <Label >Step Type</Label>
-                    <ComboBox x:Name="cboStepType" SelectionChanged="StepTypeCombo_SelectionChanged">
+                    <ComboBox x:Name="cboStepType" SelectionChanged="cboStepType_SelectionChanged">
                         <ComboBoxItem Content="Work Time" />
                         <ComboBoxItem Content="Image Slider" />
                         <ComboBoxItem Content="Fresh Start" />
@@ -64,15 +64,15 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Duration" Grid.Row="0"/>
-                    <local:TimeSpanControl x:Name="tscDuration" Grid.Row="1"/>
+                    <local:TimeSpanControl x:Name="tscDuration" Grid.Row="1" TextChanged="tscDuration_TextChanged"/>
                 </Grid>
-                <Grid x:Name="grdImageListes" Visibility="Visible">
+                <Grid x:Name="grdImageListes" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Image List Selection" Grid.Row="0" Grid.ColumnSpan="2"/>
-                    <ComboBox x:Name="cboImageList" Grid.Row="1"/>
+                    <ComboBox x:Name="cboImageList" Grid.Row="1" SelectionChanged="cboImageList_SelectionChanged"/>
                 </Grid>
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -30,6 +31,7 @@ namespace MyHealth
             InitializeComponent();
         }
 
+        #region Loading
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
             lstItems.Items.Clear();
@@ -38,7 +40,6 @@ namespace MyHealth
             LoadStepTypes();
             LoadImageListes();
         }
-
         private void LoadImageListes()
         {
             cboImageList.Items.Clear();
@@ -49,7 +50,8 @@ namespace MyHealth
             cboStepType.Items.Clear();
             cboStepType.ItemsSource = Enum.GetValues(typeof(StepData.StepTypes));
         }
-
+        #endregion
+        #region Commands
         private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
         private void New_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -63,7 +65,7 @@ namespace MyHealth
             StepList.RemoveAt(lstItems.SelectedIndex);
             lstItems.SelectedIndex = StepList.Count - 1;
         }
-
+        #endregion
         #region Arrow Commands
         public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(SettingsWindow));
         public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(SettingsWindow));
@@ -90,16 +92,19 @@ namespace MyHealth
         }
         #endregion
 
-        private void StepTypeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!IsSelected)
-                return;
+            SelectedStep.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
+            lstItems.Items.Refresh();
 
-            var stepType = (StepData.StepTypes)cboStepType.SelectedValue;
+            SwitchUI(SelectedStep.StepType);
+        }
+        private void SwitchUI(StepData.StepTypes stepType)
+        {
             grdDuration.Visibility =
-                      grdImageListes.Visibility =
-                      Visibility.Collapsed;
-            
+                grdImageListes.Visibility =
+                Visibility.Collapsed;
+
             switch (stepType)
             {
                 case StepData.StepTypes.WorkTime:
@@ -110,48 +115,45 @@ namespace MyHealth
                     grdImageListes.Visibility = Visibility.Visible;
                     break;
             }
-
-            RefreshLabel();
         }
-        
+
         private void txtStepName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(IsSelected)
-                RefreshLabel();
-        }
-        private void RefreshLabel()
-        {
-            SetStepData(SelectedStep);
+            SelectedStep.StepName = txtStepName.Text;
             lstItems.Items.Refresh();
         }
 
-        private void Items_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tscDuration_TextChanged(object sender, RoutedEventArgs e)
         {
-            foreach (var item in e.RemovedItems)
+            SelectedStep.Duration = tscDuration.TimeSpan;
+            lstItems.Items.Refresh();
+        }
+
+        private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!IsSelected)
             {
-                SetStepData((StepData)item);
+                stckMain.Visibility = Visibility.Hidden;
+                return;
             }
+
+            stckMain.Visibility = Visibility.Visible;
+
+            SetStepDataValuesToUI(SelectedStep);
+        }
+        private void SetStepDataValuesToUI(StepData step)
+        {
+            cboStepType.SelectedValue = step.StepType;
+            txtStepName.Text = step.StepName;
+            tscDuration.TimeSpan = step.Duration;
+            cboImageList.SelectedValue = step.ImageList;
+        }
+
+        private void cboImageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
             lstItems.Items.Refresh();
-
-            if (IsSelected)
-                GetStepData(SelectedStep);
         }
-
-        private void GetStepData(StepData item)
-        {
-            cboStepType.SelectedItem = item.StepType;
-            txtStepName.Text = item.StepName;
-            tscDuration.TimeSpan = item.Duration;
-            cboImageList.SelectedItem = item.ImageList;
-        }
-        private void SetStepData(StepData item)
-        {
-            item.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
-            item.StepName = txtStepName.Text;
-            item.Duration = tscDuration.TimeSpan;
-            item.ImageList = (StepData.ImageListes)cboImageList.SelectedItem;
-        }
-
     }
 
     public class StepData
@@ -176,7 +178,17 @@ namespace MyHealth
 
         public override string ToString()
         {
-            return $"{StepName} ({StepType}) {Duration.ToString("hh':'mm':'ss")}";
+            switch (StepType)
+            {
+                case StepTypes.WorkTime:
+                    return $"{StepName} {Duration.ToString("hh':'mm':'ss")}";
+                case StepTypes.ImageSlider:
+                    return $"{StepName} ({ImageList}) {Duration.ToString("hh':'mm':'ss")}";
+                case StepTypes.FreshStart:
+                    return $"Fresh Start ({StepName})";
+                default:
+                    return "";
+            }
         }
     }
 }
