@@ -38,12 +38,15 @@ namespace MyHealth
                         {
                             return new TimeSpan(h, m, s);
                         }
+                        return new TimeSpan(h, m, 0);
                     }
+                    return new TimeSpan(h, 0, 0);
                 }
                 return new TimeSpan(0);
                 
             }
         }
+        public event RoutedEventHandler TextChanged;
         public TimeSpanControl()
         {
             InitializeComponent();
@@ -58,6 +61,7 @@ namespace MyHealth
                     Wrapped = true
                 });
             }
+            TextChanged?.Invoke(sender, e);
 
         }
 
