@@ -31,10 +31,10 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox >
-            <ComboBoxItem Content="Pomoduro"/>
-            <ComboBoxItem Content="52/17 Standard"/>
-            <ComboBoxItem Content="Custom"/>
+        <ComboBox x:Name="cboTemplates" SelectionChanged="cboTemplates_SelectionChanged">
+            <ComboBoxItem Content="Pomoduro" Tag="pomo"/>
+            <ComboBoxItem Content="52/17 Standard" Tag="standard"/>
+            <ComboBoxItem Content="Custom" Tag="" IsSelected="True"/>
         </ComboBox>
         <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="lstItems_SelectionChanged">
             <ListBoxItem Content="Item 1"/>
