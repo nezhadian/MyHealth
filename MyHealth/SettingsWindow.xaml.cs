@@ -163,7 +163,7 @@ namespace MyHealth
             string prev = e.RemovedItems.Count > 0 ? ((ListBoxItem)e.RemovedItems[0]).Tag.ToString() : "";
             if(Templates.TemplateDictionary.TryGetValue(tag,out StepData[] template))
             {
-                var resault = prev == "" ? MessageBox.Show("Clear Designed Steps ??", "Clear", MessageBoxButton.YesNo) : MessageBoxResult.Yes;
+                var resault = prev == "" && StepList.Count > 0? MessageBox.Show("Clear Changes ?", "Clear", MessageBoxButton.YesNo) : MessageBoxResult.Yes;
                 if (resault == MessageBoxResult.Yes)
                 {
                     AddRange(template);
