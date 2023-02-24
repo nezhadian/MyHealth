@@ -8,6 +8,7 @@ namespace MyHealth
         {
             WorkTime,
             ImageSlider,
+            ShortBreak,
             FreshStart,
             Seperator
         }
@@ -28,6 +29,7 @@ namespace MyHealth
             switch (StepType)
             {
                 case StepTypes.WorkTime:
+                case StepTypes.ShortBreak:
                     return $"{StepName} | {Duration.ToString("hh':'mm':'ss")}";
                 case StepTypes.ImageSlider:
                     return $"{StepName} | ({ImageList}) {Duration.ToString("hh':'mm':'ss")}";
@@ -50,11 +52,13 @@ namespace MyHealth
                         case ImageListes.Body:
                             return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body")) { StepName = StepName };
                         case ImageListes.Eye:
-                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye")) {StepName = StepName };
+                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye")) { StepName = StepName };
                     }
                     return null;
                 case StepTypes.FreshStart:
                     return new FreshStart() { StepName = StepName };
+                case StepTypes.ShortBreak:
+                    return new ShortBreak(Duration) { StepName = StepName };
                 default:
                     return null;
             }

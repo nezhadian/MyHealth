@@ -131,9 +131,10 @@ namespace MyHealth
             {
                 switch (item.StepType)
                 {
-                    case StepData.StepTypes.WorkTime:
-                    case StepData.StepTypes.ImageSlider:
-                    case StepData.StepTypes.FreshStart:
+                    case StepData.StepTypes.Seperator:
+                        lstSteps.Items.Add(new Separator());
+                        break;
+                    default:
                         MenuItem menuItem = new MenuItem()
                         {
                             Header = item.ToString(),
@@ -144,9 +145,6 @@ namespace MyHealth
                         menuItem.Click += MenuItem_Click;
                         lstSteps.Items.Add(menuItem);
                         i++;
-                        break;
-                    case StepData.StepTypes.Seperator:
-                        lstSteps.Items.Add(new Separator());
                         break;
                 }
 

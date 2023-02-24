@@ -42,8 +42,9 @@ namespace MyHealth
                 file = File.OpenRead($"{Environment.CurrentDirectory}\\{DATA_FILE_NAME}");
                 steps = (StepData[])xml.Deserialize(file);
             }
-            catch
+            catch(Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 steps = Templates.TemplateDictionary["standard"];
             }
             finally
@@ -59,6 +60,7 @@ namespace MyHealth
             {
                 XmlSerializer xml = new XmlSerializer(typeof(StepData[]));
                 file = File.OpenWrite($"{Environment.CurrentDirectory}\\{DATA_FILE_NAME}");
+                file.SetLength(0);
                 xml.Serialize(file, StepDataList);
             }
             catch

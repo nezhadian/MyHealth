@@ -136,6 +136,7 @@ namespace MyHealth
             switch (stepType)
             {
                 case StepData.StepTypes.WorkTime:
+                case StepData.StepTypes.ShortBreak:
                     grdDuration.Visibility = Visibility.Visible;
                     break;
                 case StepData.StepTypes.ImageSlider:
