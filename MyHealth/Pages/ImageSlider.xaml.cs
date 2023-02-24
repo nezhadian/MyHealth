@@ -22,7 +22,12 @@ namespace MyHealth
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
-        public string StepName { get; set; } = "Image Slider";
+
+        public string StepName
+        {
+            get => txtMessage.Text;
+            set => txtMessage.Text = value;
+        }
 
         public FileInfo[] imageFiles;
         DispatcherTimer timer;

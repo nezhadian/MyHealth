@@ -5,11 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MyHealth"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="728" d:DesignWidth="1366"
       Loaded="Page_Loaded"
       Title="ShortBreak">
 
     <Grid Background="White">
-        <Image x:Name="mainImage" Width="600" Height="400" Source="/Images/eye.jpg"/>
+        <Grid Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="txtMessage" Text="This Is Message" Padding="10" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" />
+            <Image x:Name="mainImage" Width="600" Height="400" Grid.Row="1"/>
+        </Grid>
     </Grid>
 </Page>

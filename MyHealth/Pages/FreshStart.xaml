@@ -12,11 +12,8 @@
     <Grid Background="Green">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
 
-            <TextBlock Foreground="White" TextAlignment="Center" FontSize="16">
-                برویییین؟؟
-                <LineBreak/>
-                Ready To Go (Click)
-            </TextBlock>
+            <TextBlock x:Name="txtMessage" Foreground="White" TextAlignment="Center" FontSize="16"/>
+            
             <Button Content="Stop Sound" 
                     BorderThickness="0"
                     Background="Red"

@@ -22,7 +22,10 @@ namespace MyHealth
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
-        public string StepName { get; set; } = "Fresh Start";
+        public string StepName {
+            get => txtMessage.Text;
+            set => txtMessage.Text = value;
+        } 
 
         public FreshStart()
         {
@@ -43,7 +46,7 @@ namespace MyHealth
         }
 
 
-        private void Page_Unloaded(object sender, RoutedEventArgs e) => StopSoundButton_Click(null, null);
+        private void Page_Unloaded(object sender, RoutedEventArgs e) => timer.Stop();
         private void StopSoundButton_Click(object sender, RoutedEventArgs e) => timer.Stop();
     }
 }
