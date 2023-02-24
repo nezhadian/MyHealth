@@ -48,9 +48,9 @@ namespace MyHealth
                     switch (ImageList)
                     {
                         case ImageListes.Body:
-                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "images", "body"));
+                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body"));
                         case ImageListes.Eye:
-                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "images", "eye"));
+                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye"));
                     }
                     return null;
                 case StepTypes.FreshStart:
