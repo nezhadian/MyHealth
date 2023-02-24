@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
@@ -157,6 +156,7 @@ namespace MyHealth
             SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
             lstItems.Items.Refresh();
         }
+
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string tag = ((ListBoxItem)cboTemplates.SelectedItem).Tag.ToString();
@@ -171,87 +171,12 @@ namespace MyHealth
 
             }
         }
-
         private void AddRange(StepData[] steps)
         {
             StepList.Clear();
             foreach (StepData item in steps)
             {
                 StepList.Add(item);
-            }
-        }
-    }
-
-    public class Templates
-    {
-        public static Dictionary<string, StepData[]> TemplateDictionary = new Dictionary<string, StepData[]>()
-        {
-            {"pomo" , new StepData[]{
-                        new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "5min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,5,0)},
-                        new StepData(){StepName = "Ready", StepType = StepData.StepTypes.FreshStart},
-
-                        new StepData(){StepType = StepData.StepTypes.Seperator},
-
-                        new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "5min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,5,0)},
-                        new StepData(){StepName = "Ready", StepType = StepData.StepTypes.FreshStart},
-
-                        new StepData(){StepType = StepData.StepTypes.Seperator},
-
-                        new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "5min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,5,0)},
-                        new StepData(){StepName = "Ready", StepType = StepData.StepTypes.FreshStart},
-
-                        new StepData(){StepType = StepData.StepTypes.Seperator},
-
-                        new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "20min Long Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Body,Duration = new TimeSpan(0,20,0)},
-                        new StepData(){StepName = "Ready For New Pomoduro", StepType = StepData.StepTypes.FreshStart},
-            }},
-
-            {"standard" , new StepData[]{
-                        new StepData(){StepName = "52min Work",StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,52,0)},
-                        new StepData(){StepName = "27min Resting",StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Body,Duration = new TimeSpan(0,17,0)},
-                        new StepData(){StepName = "Ready",StepType = StepData.StepTypes.FreshStart},
-                        }},
-        };
-
-    }
-
-    public class StepData
-    {
-        public enum StepTypes
-        {
-            WorkTime,
-            ImageSlider,
-            FreshStart,
-            Seperator
-        }
-        public StepTypes StepType;
-
-        public string StepName;
-
-        public TimeSpan Duration;
-
-        public enum ImageListes
-        {
-            Body,Eye
-        }
-        public ImageListes ImageList;
-
-        public override string ToString()
-        {
-            switch (StepType)
-            {
-                case StepTypes.WorkTime:
-                    return $"{StepName} | {Duration.ToString("hh':'mm':'ss")}";
-                case StepTypes.ImageSlider:
-                    return $"{StepName} | ({ImageList}) {Duration.ToString("hh':'mm':'ss")}";
-                case StepTypes.FreshStart:
-                    return $"{StepName}";
-                default:
-                    return "";
             }
         }
     }
