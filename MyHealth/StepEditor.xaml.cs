@@ -39,7 +39,14 @@ namespace MyHealth
 
             LoadStepTypes();
             LoadImageListes();
+            LoadStepList();
         }
+
+        private void LoadStepList()
+        {
+            AddRange(DataAccess.StepDataList);
+        }
+
         private void LoadImageListes()
         {
             cboImageList.Items.Clear();
@@ -82,7 +89,7 @@ namespace MyHealth
         {
             StepData[] data = new StepData[StepList.Count];
             StepList.CopyTo(data, 0);
-            DataAccess.Steps = data;
+            DataAccess.StepDataList = data;
 
             DialogResult = true;
         }

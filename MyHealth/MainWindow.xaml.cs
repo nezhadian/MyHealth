@@ -80,7 +80,12 @@ namespace MyHealth
         {
             Steps = DataAccess.GenerateSteps();
 
-            InitTimer();
+            updater = new DispatcherTimer()
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 500)
+            };
+            updater.Tick += Updater_Tick;
+            CurrentIndex = 0;
 
             mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
             {
@@ -88,16 +93,6 @@ namespace MyHealth
                 Mode = BindingMode.TwoWay
             });
 
-        }
-
-        private void InitTimer()
-        {
-            updater = new DispatcherTimer()
-            {
-                Interval = new TimeSpan(0, 0, 0, 0, 500)
-            };
-            updater.Tick += Updater_Tick;
-            CurrentIndex = 0;
         }
         private void Updater_Tick(object sender, EventArgs e)
         {
@@ -131,7 +126,7 @@ namespace MyHealth
 
             int i = 0;
 
-            foreach (StepData item in DataAccess.Steps)
+            foreach (StepData item in DataAccess.StepDataList)
             {
                 switch (item.StepType)
                 {
