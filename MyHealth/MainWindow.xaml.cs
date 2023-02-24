@@ -22,12 +22,7 @@ namespace MyHealth
     public partial class MainWindow : Window
     {
 
-        public ITimerSlice[] Steps = new ITimerSlice[]
-        {
-            new WorkTime(52),
-            new ImageSlider(17,System.IO.Path.Combine(Environment.CurrentDirectory,"images")),
-            new FreshStart(),
-        };
+        public ITimerSlice[] Steps;
 
         DispatcherTimer updater = new DispatcherTimer();
         DateTime LastStartTime;
@@ -83,18 +78,26 @@ namespace MyHealth
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            updater = new DispatcherTimer()
-            {
-                Interval = new TimeSpan(0, 0, 0, 0, 500)
-            };
-            updater.Tick += Updater_Tick;
-            CurrentIndex = 0;
+            Steps = DataAccess.GenerateSteps();
+
+            InitTimer();
 
             mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
             {
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
+
+        }
+
+        private void InitTimer()
+        {
+            updater = new DispatcherTimer()
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 500)
+            };
+            updater.Tick += Updater_Tick;
+            CurrentIndex = 0;
         }
         private void Updater_Tick(object sender, EventArgs e)
         {
@@ -103,6 +106,7 @@ namespace MyHealth
 
             txtTimer.Text = Remained.ToString("mm':'ss");
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrentPage.RequireClick)
@@ -124,18 +128,33 @@ namespace MyHealth
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
             lstSteps.Items.Clear();
-            for (int i = 0; i < Steps.Length; i++)
+
+            int i = 0;
+
+            foreach (StepData item in DataAccess.Steps)
             {
-                ITimerSlice item = Steps[i];
-                MenuItem menuItem = new MenuItem()
+                switch (item.StepType)
                 {
-                    Header = item.RequireClick ? item.StepName : $"{item.StepName} : {item.Duration}",
-                    Tag = i,
-                    IsCheckable = true,
-                    IsChecked = i == CurrentIndex
-                };
-                menuItem.Click += MenuItem_Click;
-                lstSteps.Items.Add(menuItem);
+                    case StepData.StepTypes.WorkTime:
+                    case StepData.StepTypes.ImageSlider:
+                    case StepData.StepTypes.FreshStart:
+                        MenuItem menuItem = new MenuItem()
+                        {
+                            Header = item.ToString(),
+                            Tag = i,
+                            IsCheckable = true,
+                            IsChecked = i == CurrentIndex
+                        };
+                        menuItem.Click += MenuItem_Click;
+                        lstSteps.Items.Add(menuItem);
+                        i++;
+                        break;
+                    case StepData.StepTypes.Seperator:
+                        lstSteps.Items.Add(new Separator());
+                        break;
+                }
+
+                
             }
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -145,7 +164,15 @@ namespace MyHealth
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            new SettingsWindow().Show();
+            var settingsWin = new StepEditor();
+            if(true == settingsWin.ShowDialog())
+            {
+                lock (Steps)
+                {
+                    Steps = DataAccess.GenerateSteps();
+                    CurrentIndex = 0;
+                }
+            }
         }
     }
 
@@ -154,21 +181,5 @@ namespace MyHealth
         public TimeSpan Duration { set; get; }
         public bool RequireClick { set; get; }
         public string StepName { set; get; }
-    }
-    public class WorkTime : ITimerSlice
-    {
-
-        public TimeSpan Duration { get; set; }
-        public bool RequireClick { get; set; }
-        public string StepName { get; set; } = "Work Time";
-
-        public WorkTime(int minutes)
-        {
-            Duration = new TimeSpan(0, minutes, 0);
-        }
-        public override string ToString()
-        {
-            return "";
-        }
     }
 }

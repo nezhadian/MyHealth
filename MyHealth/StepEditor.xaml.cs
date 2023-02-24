@@ -80,6 +80,10 @@ namespace MyHealth
         }
         private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            StepData[] data = new StepData[StepList.Count];
+            StepList.CopyTo(data, 0);
+            DataAccess.Steps = data;
+
             DialogResult = true;
         }
         #endregion
@@ -196,17 +200,7 @@ namespace MyHealth
             }
         }
 
-        public ITimerSlice[] GenerateSteps()
-        {
-            List<ITimerSlice> steps = new List<ITimerSlice>();
-            foreach (StepData item in StepList)
-            {
-                var step = item.ToStep();
-                if(step != null)
-                    steps.Add(step);
-            }
-            return steps.ToArray();
-        }
+
 
     }
 }
