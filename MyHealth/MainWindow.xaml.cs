@@ -59,6 +59,7 @@ namespace MyHealth
                     frmMain.Content = CurrentPage;
                     StopedTime = new TimeSpan(0);
                     IsPaused = CurrentPage.RequireClick;
+                    txtTimer.Text = "";
                 }
                 else
                 {
@@ -96,10 +97,10 @@ namespace MyHealth
         }
         private void Updater_Tick(object sender, EventArgs e)
         {
-            if (Remained < TimeSpan.Zero)
+            if (Remained <= TimeSpan.Zero)
                 CurrentIndex++;
 
-            txtTimer.Text = Remained.ToString("mm':'ss");
+            txtTimer.Text = Remained.ToString(Remained.Hours > 0 ? "hh':'mm':'ss" : "mm':'ss");
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
