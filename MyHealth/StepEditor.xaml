@@ -10,11 +10,13 @@
         Title="SettingsWindow" Height="400" Width="600">
 
     <Window.CommandBindings>
-        <CommandBinding Command="{x:Static local:StepEditor.ArrowUp}" x:Name="arrowUp" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
-        <CommandBinding Command="{x:Static local:StepEditor.ArrowDown}" x:Name="arrowDown" CanExecute="ArrowDown_CanExecute" Executed="ArrowCommands_Execute"/>
+        <CommandBinding Command="{x:Static local:StepEditor.ArrowUp}" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
+        <CommandBinding Command="{x:Static local:StepEditor.ArrowDown}" CanExecute="ArrowDown_CanExecute" Executed="ArrowCommands_Execute"/>
 
-        <CommandBinding Command="{x:Static ApplicationCommands.New}" x:Name="new" CanExecute="New_CanExecute" Executed="New_Executed"/>
-        <CommandBinding Command="{x:Static ApplicationCommands.Delete}" x:Name="delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+        <CommandBinding Command="{x:Static ApplicationCommands.New}" CanExecute="New_CanExecute" Executed="New_Executed"/>
+        <CommandBinding Command="{x:Static ApplicationCommands.Delete}" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+        
+        <CommandBinding Command="{x:Static ApplicationCommands.Save}" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
     </Window.CommandBindings>
 
     <Grid Margin="20">
@@ -96,7 +98,7 @@
 
 
         <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Padding="20,5" Content="Save"/>
+            <Button Padding="20,5" Content="Save" Command="{x:Static ApplicationCommands.Save}"/>
         </StackPanel>
 
     </Grid>

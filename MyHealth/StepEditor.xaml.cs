@@ -66,6 +66,21 @@ namespace MyHealth
             lstItems.SelectedIndex = Math.Min(selIndex,lstItems.Items.Count - 1);
             lstItems.Focus();
         }
+
+        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            int effectiveSteps = 0;
+            foreach (var item in StepList)
+                if (item.StepType != StepData.StepTypes.FreshStart &&
+                    item.StepType != StepData.StepTypes.Seperator)
+                    effectiveSteps++;
+
+            e.CanExecute = effectiveSteps > 0;
+        }
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
         #endregion
         #region Arrow Commands
         public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditor));
@@ -179,5 +194,6 @@ namespace MyHealth
                 StepList.Add(item);
             }
         }
+
     }
 }
