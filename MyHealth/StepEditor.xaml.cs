@@ -16,7 +16,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class StepEditor : Window
     {
 
         public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
@@ -25,7 +25,7 @@ namespace MyHealth
 
         public StepData SelectedStep => StepList[lstItems.SelectedIndex];
 
-        public SettingsWindow()
+        public StepEditor()
         {
             InitializeComponent();
         }
@@ -68,8 +68,8 @@ namespace MyHealth
         }
         #endregion
         #region Arrow Commands
-        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(SettingsWindow));
-        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(SettingsWindow));
+        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditor));
+        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(StepEditor));
 
         private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex > 0;
         private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
