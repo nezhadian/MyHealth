@@ -37,5 +37,27 @@ namespace MyHealth
                     return "";
             }
         }
+
+        internal ITimerSlice ToStep()
+        {
+            switch (StepType)
+            {
+                case StepTypes.WorkTime:
+                    return new WorkTime(Duration);
+                case StepTypes.ImageSlider:
+                    switch (ImageList)
+                    {
+                        case ImageListes.Body:
+                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "images", "body"));
+                        case ImageListes.Eye:
+                            return new ImageSlider(Duration, System.IO.Path.Combine(Environment.CurrentDirectory, "images", "eye"));
+                    }
+                    return null;
+                case StepTypes.FreshStart:
+                    return new FreshStart();
+                default:
+                    return null;
+            }
+        }
     }
 }

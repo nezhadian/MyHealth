@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
@@ -193,6 +194,18 @@ namespace MyHealth
             {
                 StepList.Add(item);
             }
+        }
+
+        public ITimerSlice[] GenerateSteps()
+        {
+            List<ITimerSlice> steps = new List<ITimerSlice>();
+            foreach (StepData item in StepList)
+            {
+                var step = item.ToStep();
+                if(step != null)
+                    steps.Add(step);
+            }
+            return steps.ToArray();
         }
 
     }

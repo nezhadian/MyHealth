@@ -78,10 +78,10 @@ namespace MyHealth
         {
             InitializeComponent();
         }
-        public ImageSlider(int minutes,string path)
+        public ImageSlider(TimeSpan duration,string path)
         {
             InitializeComponent();
-            Duration = new TimeSpan(0, minutes, 0);
+            Duration = duration;
             ImagesFileDirectory = new DirectoryInfo(path);
         }
 
