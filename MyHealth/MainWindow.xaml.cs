@@ -60,6 +60,7 @@ namespace MyHealth
                     StopedTime = new TimeSpan(0);
                     IsPaused = CurrentPage.RequireClick;
                     txtTimer.Text = "";
+                    txtTimer.Visibility = CurrentPage.RequireClick ? Visibility.Collapsed : Visibility.Visible;
                 }
                 else
                 {
