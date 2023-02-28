@@ -15,7 +15,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="txtMessage" Text="This Is Message" Padding="10" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock x:Name="txtMessage" HorizontalAlignment="Center" Style="{StaticResource Pages.MessageText}"/>
             <Image x:Name="mainImage" Width="600" Height="400" Grid.Row="1"/>
         </Grid>
     </Grid>
