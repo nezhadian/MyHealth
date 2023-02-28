@@ -99,8 +99,9 @@ namespace MyHealth
         {
             if (Remained <= TimeSpan.Zero)
                 CurrentIndex++;
-
-            txtTimer.Text = Remained.ToString(Remained.Hours > 0 ? "hh':'mm':'ss" : "mm':'ss");
+            else
+                txtTimer.Text = Remained.ToString(Remained.Hours > 0 ? "hh':'mm':'ss" : "mm':'ss");
+            
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

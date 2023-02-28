@@ -21,8 +21,8 @@
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
         </Grid>
         
-        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
-            <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
+            <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
                 <ContextMenu Opened="ContextMenu_Opened">
                     <MenuItem x:Name="lstSteps" Header="Go To Step">
