@@ -47,6 +47,10 @@ namespace MyHealth
 
 
         private void Page_Unloaded(object sender, RoutedEventArgs e) => timer.Stop();
-        private void StopSoundButton_Click(object sender, RoutedEventArgs e) => timer.Stop();
+        private void MuteButton_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            btnMute.Visibility = Visibility.Collapsed;
+        }
     }
 }

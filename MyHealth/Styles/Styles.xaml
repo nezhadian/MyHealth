@@ -17,9 +17,9 @@
     
     <!--Stop Sound Button-->
     <Style x:Key="FreshStart.StopSound" TargetType="Button">
-        <Setter Property="Width" Value="100" />
-        <Setter Property="Height" Value="100" />
-        <Setter Property="Background" Value="#ff0000" />
+        <Setter Property="Width" Value="50" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Background" Value="#2FFFFFFF" />
         <Setter Property="Foreground" Value="#fff" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="FontWeight" Value="Bold" />
@@ -28,17 +28,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#ff2100" />
+                            <Setter Property="Background" Value="#3fFFFFFF" />
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="#b20000" />
+                            <Setter Property="Background" Value="#4fFFFFFF" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
