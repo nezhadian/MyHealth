@@ -13,11 +13,14 @@
         Topmost="True"
         ShowInTaskbar="False"
         Loaded="Window_Loaded"
-        MouseDown="Window_MouseDown"
         x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid>
-        <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
+        <Grid Background="Transparent" MouseDown="Window_MouseDown">
+            <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
+        </Grid>
+        
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#55ffffff">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16"/>
             <Border.ContextMenu>
