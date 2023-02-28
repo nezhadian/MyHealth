@@ -64,7 +64,6 @@
     <SolidColorBrush x:Key="Menu.Hover" Color="#FFF1F1F1"/>
     <SolidColorBrush x:Key="Menu.Pressed" Color="#FFC9C9C9"/>
     <SolidColorBrush x:Key="Menu.Icons" Color="#333"/>
-    
 
     <Style x:Key="ContextMenu.BgBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource Menu.Bg}" />
@@ -74,7 +73,6 @@
         <Setter Property="Padding" Value="0,5" />
         
     </Style>
-
     <Style TargetType="ContextMenu">
         <Setter Property="Background" Value="{DynamicResource Menu.Bg}" />
         <Setter Property="Template" >
