@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         x:Name="main"
         Loaded="main_Loaded"
-        Title="SettingsWindow" Height="400" Width="600">
+        WindowStartupLocation="CenterScreen"
+        Title="Steps Editor" Height="400" Width="600">
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:StepEditor.ArrowUp}" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
@@ -28,7 +29,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" MinWidth="230"/>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
