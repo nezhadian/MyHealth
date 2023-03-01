@@ -15,9 +15,8 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
-            <TextBlock x:Name="txtMessage" Style="{StaticResource Pages.MessageText.Dark}"/>
 
+            <TextBlock x:Name="txtMessage" Style="{StaticResource Pages.MessageText.Dark}"/>
             <Button 
                 Grid.Row="2"
                 Style="{StaticResource FreshStart.StopSound}" 
@@ -30,10 +29,5 @@
                       Stretch="Uniform" />
             </Button>
         </Grid>
-        
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            
-            
-        </StackPanel>
     </Grid>
 </Page>

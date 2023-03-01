@@ -73,6 +73,7 @@
     <None Remove="Images\eye_0003_Layer-3.png" />
     <None Remove="Images\eye_0004_Layer-2.png" />
     <None Remove="Images\eye_0005_Layer-1.png" />
+    <None Remove="Songs\alarm.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -170,6 +171,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Eye\eye_0005_Layer-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Songs\alarm.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

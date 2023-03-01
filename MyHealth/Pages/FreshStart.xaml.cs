@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,23 +34,24 @@ namespace MyHealth
             RequireClick = true;
         }
 
-        DispatcherTimer timer;
+        SoundPlayer sp;
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            timer = new DispatcherTimer()
+            try
             {
-                Interval = new TimeSpan(0, 0, 1),
-                IsEnabled = true
-            };
-            timer.Tick += (s, eb) => Console.Beep();
+                sp = new SoundPlayer($"{Environment.CurrentDirectory}\\Songs\\alarm.wav");
+                sp.Load();
+                sp.PlayLooping();
+                btnMute.Visibility = Visibility.Visible;
+            }catch { }
+
         }
 
-
-        private void Page_Unloaded(object sender, RoutedEventArgs e) => timer.Stop();
+        private void Page_Unloaded(object sender, RoutedEventArgs e) => sp?.Stop();
         private void MuteButton_Click(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
+            sp?.Stop();
             btnMute.Visibility = Visibility.Collapsed;
         }
     }
