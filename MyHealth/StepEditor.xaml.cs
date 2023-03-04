@@ -62,8 +62,15 @@ namespace MyHealth
         private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
         private void New_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            StepList.Add(new StepData());
-            lstItems.SelectedIndex = StepList.Count - 1;
+            StepData step = new StepData();
+            if (IsSelected)
+            {
+                int index = lstItems.SelectedIndex + 1;
+                StepList.Insert(index, step);
+                lstItems.SelectedIndex = index;
+            }
+            else
+                StepList.Add(step);
         }
 
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
