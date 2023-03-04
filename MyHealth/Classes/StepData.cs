@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace MyHealth
 {
-    public class StepData : 
+    public class StepData : IXmlSerializable
     {
         public enum StepTypes
         {
@@ -15,16 +15,14 @@ namespace MyHealth
             FreshStart,
             Seperator
         }
-        public StepTypes StepType;
-
-        public string StepName;
-
-        public TimeSpan Duration;
-
         public enum ImageListes
         {
             Body,Eye
         }
+
+        public StepTypes StepType;
+        public string StepName;
+        public TimeSpan Duration;
         public ImageListes ImageList;
 
         public override string ToString()
@@ -42,7 +40,6 @@ namespace MyHealth
                     return "";
             }
         }
-
         internal ITimerSlice ToStep()
         {
             switch (StepType)
@@ -68,9 +65,7 @@ namespace MyHealth
         }
 
 
-
         public XmlSchema GetSchema() => null;
-
         public void ReadXml(XmlReader reader)
         {
             reader.Read();
@@ -82,7 +77,6 @@ namespace MyHealth
 
             reader.ReadEndElement();
         }
-
         public void WriteXml(XmlWriter writer)
         {
             void Write(string name,object value)
