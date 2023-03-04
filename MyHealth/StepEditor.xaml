@@ -40,11 +40,10 @@
             <ComboBoxItem Content="Custom" Tag="" IsSelected="True"/>
         </ComboBox>
         <ListBox Grid.Row="2" x:Name="lstItems" SelectionChanged="lstItems_SelectionChanged">
-            <ListBoxItem Content="Item 1"/>
-            <ListBoxItem Content="Item 2"/>
-            <ListBoxItem Content="Item 3"/>
-            <ListBoxItem Content="Item 4"/>
-            <ListBoxItem Content="Item 5"/>
+            <local:StepData StepType="WorkTime" Duration="00:52:00" StepName="52min Work"/>
+            <local:StepData StepType="ImageSlider" Duration="00:17:00" StepName="Resting" ImageList="Body"/>
+            <local:StepData StepType="FreshStart" StepName="Ready"/>
+            <local:StepData StepType="Seperator" StepName="Ready"/>
         </ListBox>
 
         <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">

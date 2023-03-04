@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MyHealth">
 
     <!--Message Text-->
     <Style x:Key="Pages.MessageText" TargetType="TextBlock">
@@ -209,6 +210,109 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    
+    <!--Step Data Style-->
+
+    <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
+        <Border Background="{TemplateBinding Background}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3"/>
+                    <ColumnDefinition Width="23"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border x:Name="selBar" Background="#09f" Visibility="Collapsed" CornerRadius="0,3,3,0"/>
+
+                <Path Grid.Column="1" Margin="3" x:Name="icon" Fill="#333" Stretch="Uniform"/>
+                
+
+                <TextBlock Text="{TemplateBinding StepName}" Grid.Column="2" VerticalAlignment="Center" />
+                
+                <TextBlock Text="{TemplateBinding Duration}" Grid.Column="3" VerticalAlignment="Center"/>
+                
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="#330099ff" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Visibility" Value="Visible" TargetName="selBar" />
+                <Setter Property="Foreground" Value="#09f" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Fill" Value="#09f" TargetName="icon" />
+            </Trigger>
+
+            <Trigger Property="StepType" Value="WorkTime">
+                <Setter Property="Data" TargetName="icon"
+                        Value="F1 M 2.5 3.75 L 17.5 3.75 L 17.5 13.75 L 20 13.75 L 20 3.125 C 20 2.094531 19.155468 1.25 18.125 1.25 L 1.875 1.25 C 0.844531 1.25 -0 2.094531 -0 3.125 L -0 13.75 L 2.5 13.75 L 2.5 3.75 Z M 21.875 14.964844 L -1.875001 14.964844 C -2.216797 14.964844 -2.5 15.248047 -2.5 15.589844 L -2.5 16.214844 C -2.5 17.591797 -1.376954 18.714844 -0 18.714844 L 20 18.714844 C 21.376953 18.714844 22.5 17.591797 22.5 16.214844 L 22.5 15.589844 C 22.5 15.28125 22.21875 14.964844 21.875 14.964844 Z "
+                        />
+            </Trigger>
+            <Trigger Property="StepType" Value="ShortBreak">
+                <Setter Property="Data" TargetName="icon"
+                        Value="F1 M 17.5 1.25 L 2.1875 1.25 C 1.669922 1.25 1.25 1.669922 1.25 2.1875 L 1.250391 11.25 C 1.250391 13.320312 2.930079 15 5.000391 15 L 12.500391 15 C 14.570312 15 16.25 13.320312 16.25 11.25 L 17.5 11.25 C 20.258984 11.25 22.5 9.008594 22.5 6.25 C 22.5 3.491406 20.257812 1.25 17.5 1.25 Z M 17.5 8.75 L 16.25 8.75 L 16.25 3.75 L 17.5 3.75 C 18.876953 3.75 20 4.873047 20 6.25 C 20 7.626953 18.878906 8.75 17.5 8.75 Z M 19.375 16.25 L -1.874999 16.25 C -2.220156 16.25 -2.5 16.53125 -2.5 16.875 C -2.5 17.910156 -1.660546 18.75 -0.624999 18.75 L 18.125 18.75 C 19.160547 18.75 20 17.910547 20 16.875 C 20 16.53125 19.71875 16.25 19.375 16.25 Z "
+                        />
+            </Trigger>
+            <Trigger Property="StepType" Value="FreshStart">
+                <Setter Property="Data" TargetName="icon"
+                        Value="F1 M 18.652344 0.000914 C 18.412306 0.000914 18.162891 0.053413 17.924217 0.166031 C 16.201172 0.980875 14.923828 1.257437 13.857812 1.257437 C 11.596484 1.257437 10.282421 0.012905 7.678124 0.012516 C 6.367188 0.012512 4.738281 0.325157 2.5 1.264843 L 2.5 1.25 C 2.5 0.556641 1.943359 0 1.25 0 C 0.556641 0 0 0.556641 0 1.25 L -0.001563 19.375 C -0.001563 19.716797 0.28164 20 0.623437 20 L 1.875 20 C 2.216797 20 2.5 19.71875 2.5 19.375 L 2.5 15 C 4.521094 14.067969 6.121484 13.75703 7.511719 13.75703 C 10.288672 13.75703 12.222656 14.998437 15 14.998437 C 16.203516 14.998437 17.565233 14.765273 19.222656 14.096484 C 19.699219 13.902344 20 13.453125 20 12.972656 L 20 1.200781 C 20 0.469141 19.367188 0.000914 18.652344 0.000914 Z M 17.5 5.539062 C 16.250391 6.0875 15.241796 6.34336 14.375 6.417579 L 14.375 9.550781 C 15.36875 9.493086 16.390234 9.27918 17.5 8.873438 L 17.5 12.066406 C 16.608204 12.357071 15.783985 12.499218 14.998829 12.499218 C 14.786055 12.499218 14.580469 12.482585 14.375 12.464429 L 14.375 9.550781 C 14.201718 9.560852 14.027617 9.576262 13.855859 9.576262 C 12.847265 9.576262 12.006249 9.398644 11.25 9.182511 L 11.25 11.796184 C 10.319921 11.55966 9.290236 11.35048 8.125 11.289152 L 8.125 8.324219 C 7.976562 8.347656 7.832031 8.332031 7.675781 8.332031 C 6.90625 8.332031 5.980469 8.503906 5 8.792969 L 5 11.492188 C 4.1875 11.695312 3.355469 11.945312 2.5 12.28125 L 2.5 9.792969 L 3.467578 9.38711 C 4.015625 9.160156 4.515625 8.980469 5 8.792969 L 5 5.601562 C 4.253905 5.800781 3.441405 6.0625 2.499999 6.457031 L 2.499999 3.976562 L 3.467577 3.570704 C 4.015624 3.340625 4.515624 3.16289 4.999999 3.008594 L 4.999999 5.602734 C 6.030858 5.331133 6.917577 5.205469 7.674999 5.205859 C 7.834062 5.205859 7.974843 5.223253 8.124999 5.231953 L 8.124999 2.540235 C 8.851562 2.601562 9.468748 2.794922 10.203124 3.040236 C 10.535155 3.14961 10.886718 3.259766 11.249999 3.364062 L 11.249999 5.944921 C 12.062109 6.21211 12.86914 6.451173 13.855858 6.451173 C 14.020194 6.451173 14.198866 6.432554 14.374999 6.417601 L 14.374999 3.732032 C 15.36875 3.674335 16.390232 3.46043 17.499998 3.054688 L 17.499998 5.539062 Z M 8.124999 5.230469 L 8.124999 8.357031 C 8.851952 8.41836 9.467577 8.611835 10.204296 8.857032 C 10.535155 8.96875 10.886718 9.078125 11.249999 9.183594 L 11.249999 5.945312 C 10.316405 5.636719 9.359374 5.304688 8.124999 5.230469 Z "
+                        />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="StepType" Value="ImageSlider"/>
+                    <Condition Property="ImageList" Value="Body"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Data" TargetName="icon"
+                        Value="F1 M 17.5 7.5 L 12.5 7.5 L 12.5 18.320312 L 10.820312 18.320312 L 10.820312 13.320312 L 9.179688 13.320312 L 9.179688 18.320312 L 7.5 18.320312 L 7.5 7.5 L 2.5 7.5 L 2.5 5.820312 L 17.5 5.820312 Z M 8.828125 2.167969 C 9.166666 1.842449 9.557291 1.679688 10 1.679688 C 10.442708 1.679688 10.833333 1.842449 11.171875 2.167969 C 11.510416 2.49349 11.679688 2.877605 11.679688 3.320312 C 11.679688 3.763021 11.510416 4.153646 11.171875 4.492188 C 10.833333 4.83073 10.442708 5.000001 10 5 C 9.557291 5.000001 9.166666 4.83073 8.828125 4.492188 C 8.489583 4.153646 8.320312 3.763021 8.320312 3.320312 C 8.320312 2.877605 8.489583 2.49349 8.828125 2.167969 Z "
+                        />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="StepType" Value="ImageSlider"/>
+                    <Condition Property="ImageList" Value="Eye"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Data" TargetName="icon"
+                        Value="F1 M 9.671875 6.265625 C 9.78125 6.253906 9.890625 6.25 10 6.25 C 12.070312 6.25 13.75 7.894531 13.75 10 C 13.75 12.070312 12.070312 13.75 10 13.75 C 7.894531 13.75 6.25 12.070312 6.25 10 C 6.25 9.890625 6.253906 9.78125 6.265625 9.671875 C 6.628906 9.847656 7.050781 10 7.5 10 C 8.878906 10 10 8.878906 10 7.5 C 10 7.050781 9.847656 6.628906 9.671875 6.265625 Z M 17.523438 4.398438 C 19.351562 6.09375 20.574219 8.089844 21.152344 9.519531 C 21.28125 9.828125 21.28125 10.171875 21.152344 10.480469 C 20.574219 11.875 19.351562 13.871094 17.523438 15.601562 C 15.683594 17.3125 13.15625 18.75 10 18.75 C 6.84375 18.75 4.316406 17.3125 2.477344 15.601562 C 0.649219 13.871094 -0.572656 11.875 -1.153867 10.480469 C -1.282051 10.171875 -1.282051 9.828125 -1.153867 9.519531 C -0.572656 8.089844 0.649219 6.09375 2.477344 4.398438 C 4.316406 2.689062 6.84375 1.25 10 1.25 C 13.15625 1.25 15.683594 2.689062 17.523438 4.398438 L 17.523438 4.398438 Z M 10 4.375 C 6.894531 4.375 4.375 6.894531 4.375 10 C 4.375 13.105469 6.894531 15.625 10 15.625 C 13.105469 15.625 15.625 13.105469 15.625 10 C 15.625 6.894531 13.105469 4.375 10 4.375 Z "
+                        />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
+    <ControlTemplate x:Key="StepData.Seperator" TargetType="{x:Type local:StepData}">
+        <Grid Background="{TemplateBinding Background}">
+            <Rectangle Height="1" Fill="{TemplateBinding Foreground}" x:Name="bar"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Height" Value="5" TargetName="bar"/>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Height" Value="5" TargetName="bar"/>
+                <Setter Property="Fill" Value="#09f" TargetName="bar"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type local:StepData}">
+        <Setter Property="Height" Value="23" />
+        <Setter Property="Template" Value="{StaticResource StepData.Template}"/>
+        <Style.Triggers>
+            <Trigger Property="StepType" Value="Seperator">
+                <Setter Property="Height" Value="15" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="#999" />
+                <Setter Property="Template" Value="{StaticResource StepData.Seperator}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 
