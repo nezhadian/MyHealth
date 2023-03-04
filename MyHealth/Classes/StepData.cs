@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace MyHealth
 {
-    public class StepData
+    public class StepData : 
     {
         public enum StepTypes
         {
@@ -62,6 +65,38 @@ namespace MyHealth
                 default:
                     return null;
             }
+        }
+
+
+
+        public XmlSchema GetSchema() => null;
+
+        public void ReadXml(XmlReader reader)
+        {
+            reader.Read();
+
+            StepType = (StepTypes)reader.ReadElementContentAsInt();
+            StepName = reader.ReadElementContentAsString();
+            Duration = TimeSpan.FromSeconds(reader.ReadElementContentAsInt());
+            ImageList = (ImageListes)reader.ReadElementContentAsInt();
+
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(XmlWriter writer)
+        {
+            void Write(string name,object value)
+            {
+                writer.WriteStartElement(name);
+                writer.WriteValue(value ?? "");
+                writer.WriteEndElement();
+            }
+
+            Write(nameof(StepType), (int)StepType);
+            Write(nameof(StepName), StepName);
+            Write(nameof(Duration), Duration.TotalSeconds);
+            Write(nameof(ImageList), (int)ImageList);
+
         }
     }
 }
