@@ -215,20 +215,21 @@
     <!--Step Data Style-->
 
     <local:StepDataIconConverter x:Key="IconConverter" />
+    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
 
     <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
         <Border Background="{TemplateBinding Background}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3"/>
-                    <ColumnDefinition Width="23"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="3"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
                 <Border x:Name="selBar" Background="#09f" Visibility="Collapsed" CornerRadius="0,3,3,0"/>
-
-                <Path x:Name="icon" Grid.Column="1" Margin="3" Fill="#333" Stretch="Uniform">
+                <Path x:Name="icon" Grid.Column="1" Margin="4" Fill="#999" Stretch="Uniform">
                     <Path.Data>
                         <MultiBinding Converter="{StaticResource IconConverter}">
                             <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Mode="OneWay" Path="StepType"/>
@@ -237,9 +238,8 @@
                     </Path.Data>
                 </Path>
                 
-                <TextBlock Text="{TemplateBinding StepName}" Grid.Column="2" VerticalAlignment="Center" />
-                
-                <TextBlock Text="{TemplateBinding Duration}" Grid.Column="3" VerticalAlignment="Center"/>
+                <TextBlock Text="{TemplateBinding StepName}" Grid.Column="3" VerticalAlignment="Center" />
+                <TextBlock Text="{TemplateBinding Duration,Converter={StaticResource TimeSpanConverter}}" x:Name="timeSpan" Visibility="Collapsed" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 
             </Grid>
         </Border>
@@ -253,17 +253,15 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Fill" Value="#09f" TargetName="icon" />
             </Trigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="StepType" Value="ImageSlider"/>
-                    <Condition Property="ImageList" Value="Eye"/>
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Data" TargetName="icon"
-                        Value="{StaticResource ImageSlider.Eye}"/>
-                </MultiTrigger.Setters>
-            </MultiTrigger>
+            <Trigger Property="StepType" Value="WorkTime">
+                <Setter Property="Visibility" Value="Visible" TargetName="timeSpan"/>
+            </Trigger>
+            <Trigger Property="StepType" Value="ImageSlider">
+                <Setter Property="Visibility" Value="Visible" TargetName="timeSpan"/>
+            </Trigger>
+            <Trigger Property="StepType" Value="ShortBreak">
+                <Setter Property="Visibility" Value="Visible" TargetName="timeSpan"/>
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     
@@ -283,13 +281,13 @@
     </ControlTemplate>
 
     <Style TargetType="{x:Type local:StepData}">
-        <Setter Property="Height" Value="23" />
+        <Setter Property="Height" Value="27" />
         <Setter Property="Template" Value="{StaticResource StepData.Template}"/>
         <Style.Triggers>
             <Trigger Property="StepType" Value="Seperator">
                 <Setter Property="Height" Value="15" />
                 <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="#999" />
+                <Setter Property="Foreground" Value="#ccc" />
                 <Setter Property="Template" Value="{StaticResource StepData.Seperator}"/>
             </Trigger>
         </Style.Triggers>
