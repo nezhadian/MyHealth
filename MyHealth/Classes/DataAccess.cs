@@ -42,7 +42,11 @@ namespace MyHealth
                 file = File.OpenRead($"{Environment.CurrentDirectory}\\{DATA_FILE_NAME}");
                 steps = (StepData[])xml.Deserialize(file);
             }
-            catch(Exception ex)
+            catch (FileNotFoundException)
+            {
+                steps = Templates.TemplateDictionary["standard"];
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 steps = Templates.TemplateDictionary["standard"];
