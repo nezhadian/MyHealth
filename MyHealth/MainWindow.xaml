@@ -15,12 +15,11 @@
         Loaded="Window_Loaded"
         x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
-    
     <Grid>
         <Grid Background="Transparent" MouseDown="Window_MouseDown">
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
         </Grid>
-        
+
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
@@ -33,22 +32,7 @@
                     <Separator/>
                     <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
                     <Separator/>
-                    <MenuItem x:Name="mnuContinue" StaysOpenOnClick="True" Click="mnuContinue_Click" Header="Continue Timer">
-                        <MenuItem.Icon>
-                            <Path Data="{StaticResource Continue}" 
-                              Fill="#FF2EAC2E"
-                              Width="8"
-                              Stretch="Uniform" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem x:Name="mnuStop" StaysOpenOnClick="True" Click="mnuStop_Click" Header="Stop Timer">
-                        <MenuItem.Icon>
-                            <Path Data="{StaticResource Stop}" 
-                                  Fill="#FFEE4747" 
-                                  Width="8"
-                                  Stretch="Uniform" />
-                        </MenuItem.Icon>
-                    </MenuItem>
+                    <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Click="mnuPlayPause_Click"/>
                     <MenuItem Header="Restart Timer" Click="ZeroTimerBtn_Click">
                         <MenuItem.Icon>
                             <Path Data="{StaticResource Restart}" 
@@ -57,12 +41,13 @@
                                   Stretch="Uniform" />
                         </MenuItem.Icon>
                     </MenuItem>
+                    
                     <Separator/>
                     <MenuItem Header="Settings" Click="Settings_Click"/>
                     <MenuItem Header="Exit" Click="ExitBtn_Click"/>
                 </ContextMenu>
             </Border.ContextMenu>
         </Border>
-        
+
     </Grid>
 </Window>

@@ -154,16 +154,16 @@
                         <Trigger Property="HasItems" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" TargetName="indicator"/>
                         </Trigger>
-                        <Trigger Property="IsCheckable" Value="True">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="icon"/>
-                        </Trigger>
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsCheckable" Value="true"/>
                                 <Condition Property="IsChecked" Value="true"/>
+                                <Condition Property="Icon" Value="{x:Null}"/>
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter Property="Visibility" Value="Visible" TargetName="checkMark"/>
+                                <Setter Property="Visibility" Value="Collapsed" TargetName="icon"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
@@ -186,6 +186,33 @@
         </Setter>
     </Style>
     
+    <!--Play Pause Menuitem-->
+    <Path x:Key="PlayPauseMenuItem.PlayIcon" Data="{StaticResource Continue}" 
+                              Fill="#FF2EAC2E"
+                              Width="8"
+                              Stretch="Uniform" />
+    <Path x:Key="PlayPauseMenuItem.PauseIcon" Data="{StaticResource Stop}" 
+                                  Fill="#FFEE4747" 
+                                  Width="8"
+                                  Stretch="Uniform" />
+
+    <Style x:Key="PlayPauseMenuItem.Style" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="IsCheckable" Value="True" />
+        <Setter Property="StaysOpenOnClick" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
+                <Setter Property="Header" Value="Continue Timer" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
+                <Setter Property="Header" Value="Pause Timer" />
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!--Icon Buttons-->
     <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
         <Setter Property="Width" Value="30" />

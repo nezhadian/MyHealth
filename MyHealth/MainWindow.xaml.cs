@@ -36,8 +36,7 @@ namespace MyHealth
             {
                 isPaused = value;
                 updater.IsEnabled = !value;
-                mnuContinue.IsEnabled = value;
-                mnuStop.IsEnabled = !value;
+                mnuPlayPause.IsChecked = value;
 
                 if (value)
                     StopedTime = Elapsed;
@@ -119,9 +118,6 @@ namespace MyHealth
             IsPaused = false;
         }
 
-        private void mnuStop_Click(object sender, RoutedEventArgs e) => IsPaused = true;
-        private void mnuContinue_Click(object sender, RoutedEventArgs e) => IsPaused = false;
-
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
             lstSteps.Items.Clear();
@@ -169,6 +165,8 @@ namespace MyHealth
                 }
             }
         }
+
+        private void mnuPlayPause_Click(object sender, RoutedEventArgs e) => IsPaused = !IsPaused;
     }
 
     public interface ITimerSlice 
