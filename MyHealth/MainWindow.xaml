@@ -23,20 +23,15 @@
         <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
-                <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
+                <ContextMenu Opened="ContextMenu_Opened" >
                     <MenuItem x:Name="lstSteps" Header="Go To Step"/>
+                    
                     <Separator/>
                     <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
+                    
                     <Separator/>
                     <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Click="mnuPlayPause_Click"/>
-                    <MenuItem Header="Restart Timer" Click="ZeroTimerBtn_Click">
-                        <MenuItem.Icon>
-                            <Path Data="{StaticResource Restart}" 
-                                  Fill="#333" 
-                                  Width="10"
-                                  Stretch="Uniform" />
-                        </MenuItem.Icon>
-                    </MenuItem>
+                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIcon}" Click="ZeroTimerBtn_Click"/>
                     
                     <Separator/>
                     <MenuItem Header="Settings" Click="Settings_Click"/>

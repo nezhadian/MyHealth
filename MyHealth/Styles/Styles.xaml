@@ -293,8 +293,6 @@
     </Style>
     
     <!--Step Data Style-->
-
-    <local:StepDataIconConverter x:Key="IconConverter" />
     <local:TimeSpanConverter x:Key="TimeSpanConverter" />
 
     <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
@@ -337,7 +335,6 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    
     <ControlTemplate x:Key="StepData.Seperator" TargetType="{x:Type local:StepData}">
         <Grid Background="{TemplateBinding Background}">
             <Rectangle Height="1" Fill="{TemplateBinding Foreground}" x:Name="bar"/>
@@ -352,7 +349,6 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-
     <Style TargetType="{x:Type local:StepData}">
         <Setter Property="Height" Value="27" />
         <Setter Property="Template" Value="{StaticResource StepData.Template}"/>
@@ -365,6 +361,12 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!--Restart Icon-->
+    <Path x:Key="RestartIcon" Data="{StaticResource Restart}" 
+          Fill="#333" 
+          Width="10"
+          Stretch="Uniform" />
 
 
 </ResourceDictionary>
