@@ -129,7 +129,7 @@ namespace MyHealth
                     MenuItem menuItem = (MenuItem)item;
                     menuItem.Tag = i;
                     menuItem.IsChecked = i == CurrentIndex;
-                    menuItem.Click += (s,ev) => CurrentIndex = (int)(sender as MenuItem).Tag;
+                    menuItem.Click += (s,ev) => CurrentIndex = (int)(s as MenuItem).Tag;
                     i++;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Xml;
@@ -33,8 +34,16 @@ namespace MyHealth
             DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(StepData), new PropertyMetadata());
         public static readonly DependencyProperty ImageListProperty =
             DependencyProperty.Register("ImageList", typeof(ImageListes), typeof(StepData), new PropertyMetadata());
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(Geometry), typeof(StepData), new PropertyMetadata());
 
         #endregion
+
+        public Geometry Icon
+        {
+            get { return (Geometry)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
 
         public StepTypes StepType
         {
@@ -57,6 +66,55 @@ namespace MyHealth
             set { SetValue(ImageListProperty, value); }
         }
 
+        public StepData()
+        {
+            BindIcon();
+        }
+        private void BindIcon()
+        {
+            MultiBinding multiBinding = new MultiBinding();
+            multiBinding.Bindings.Add(new Binding("StepType")
+            {
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
+
+            multiBinding.Bindings.Add(new Binding("ImageList")
+            {
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
+            multiBinding.Converter = new StepDataIconConverter();
+            SetBinding(IconProperty, multiBinding);
+        }
+
+        public XmlSchema GetSchema() => null;
+        public void ReadXml(XmlReader reader)
+        {
+            reader.Read();
+
+            StepType = (StepTypes)reader.ReadElementContentAsInt();
+            StepName = reader.ReadElementContentAsString();
+            Duration = TimeSpan.FromSeconds(reader.ReadElementContentAsInt());
+            ImageList = (ImageListes)reader.ReadElementContentAsInt();
+
+            reader.ReadEndElement();
+        }
+        public void WriteXml(XmlWriter writer)
+        {
+            void Write(string name,object value)
+            {
+                writer.WriteStartElement(name);
+                writer.WriteValue(value ?? "");
+                writer.WriteEndElement();
+            }
+
+            Write(nameof(StepType), (int)StepType);
+            Write(nameof(StepName), StepName);
+            Write(nameof(Duration), Duration.TotalSeconds);
+            Write(nameof(ImageList), (int)ImageList);
+
+        }
 
         public override string ToString()
         {
@@ -96,7 +154,6 @@ namespace MyHealth
                     return null;
             }
         }
-
         public object ToMenuItem()
         {
             switch (StepType)
@@ -107,38 +164,10 @@ namespace MyHealth
                     return new MenuItem()
                     {
                         Header = ToString(),
-                        IsCheckable = true,
+                        Style = (Style)TryFindResource("StepData.MenuItem"),
+                        Icon = this.Icon
                     };
             }
-        }
-
-
-        public XmlSchema GetSchema() => null;
-        public void ReadXml(XmlReader reader)
-        {
-            reader.Read();
-
-            StepType = (StepTypes)reader.ReadElementContentAsInt();
-            StepName = reader.ReadElementContentAsString();
-            Duration = TimeSpan.FromSeconds(reader.ReadElementContentAsInt());
-            ImageList = (ImageListes)reader.ReadElementContentAsInt();
-
-            reader.ReadEndElement();
-        }
-        public void WriteXml(XmlWriter writer)
-        {
-            void Write(string name,object value)
-            {
-                writer.WriteStartElement(name);
-                writer.WriteValue(value ?? "");
-                writer.WriteEndElement();
-            }
-
-            Write(nameof(StepType), (int)StepType);
-            Write(nameof(StepName), StepName);
-            Write(nameof(Duration), Duration.TotalSeconds);
-            Write(nameof(ImageList), (int)ImageList);
-
         }
     }
 }
