@@ -215,26 +215,28 @@
     <!--Step Data MenuItem-->
     <Style x:Key="StepData.MenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="IsCheckable" Value="True" />
+        <Setter Property="Padding" Value="3,0,10,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="MenuItem">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="24" />
+                                <ColumnDefinition Width="3" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="24" />
                             </Grid.ColumnDefinitions>
                             
                             <Path Data="{TemplateBinding Icon}" 
-                                  Fill="#999" 
-                                  Width="12"
+                                  Fill="#aaa" 
+                                  Width="14"
                                   Stretch="Uniform"
                                   x:Name="icon"
+                                  Grid.Column="0"
                                   />
 
                             <ContentPresenter 
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 ContentSource="Header" />
@@ -253,9 +255,8 @@
                             <Setter Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Fill" Value="#09f" TargetName="icon" />
-                            <Setter Property="Background" Value="#330099ff" />
-                            <Setter Property="Foreground" Value="#09f" />
+                            <Setter Property="Fill" Value="#555" TargetName="icon" />
+                            <Setter Property="FontWeight" Value="Bold" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
