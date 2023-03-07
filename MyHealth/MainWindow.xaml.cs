@@ -120,37 +120,20 @@ namespace MyHealth
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
-            lstSteps.Items.Clear();
-
+            object[] items = DataAccess.GenerateMenuItem();
             int i = 0;
-
-            foreach (StepData item in DataAccess.StepDataList)
+            foreach (var item in items)
             {
-                switch (item.StepType)
+                if(item is MenuItem)
                 {
-                    case StepData.StepTypes.Seperator:
-                        lstSteps.Items.Add(new Separator());
-                        break;
-                    default:
-                        MenuItem menuItem = new MenuItem()
-                        {
-                            Header = item.ToString(),
-                            Tag = i,
-                            IsCheckable = true,
-                            IsChecked = i == CurrentIndex
-                        };
-                        menuItem.Click += MenuItem_Click;
-                        lstSteps.Items.Add(menuItem);
-                        i++;
-                        break;
+                    MenuItem menuItem = (MenuItem)item;
+                    menuItem.Tag = i;
+                    menuItem.IsChecked = i == CurrentIndex;
+                    menuItem.Click += (s,ev) => CurrentIndex = (int)(sender as MenuItem).Tag;
+                    i++;
                 }
-
-                
             }
-        }
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            CurrentIndex = (int)(sender as MenuItem).Tag;
+            lstSteps.ItemsSource = items;
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

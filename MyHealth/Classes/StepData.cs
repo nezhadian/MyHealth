@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -92,6 +94,21 @@ namespace MyHealth
                     return new ShortBreak(Duration) { StepName = StepName };
                 default:
                     return null;
+            }
+        }
+
+        public object ToMenuItem()
+        {
+            switch (StepType)
+            {
+                case StepTypes.Seperator:
+                    return new Separator();
+                default:
+                    return new MenuItem()
+                    {
+                        Header = ToString(),
+                        IsCheckable = true,
+                    };
             }
         }
 

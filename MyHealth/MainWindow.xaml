@@ -24,11 +24,7 @@
             <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
                 <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
-                    <MenuItem x:Name="lstSteps" Header="Go To Step">
-                        <MenuItem Header="Fresh Start : 0"/>
-                        <MenuItem Header="Work Time : 888"/>
-                        <MenuItem Header="Break Time : 17"/>
-                    </MenuItem>
+                    <MenuItem x:Name="lstSteps" Header="Go To Step"/>
                     <Separator/>
                     <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
                     <Separator/>

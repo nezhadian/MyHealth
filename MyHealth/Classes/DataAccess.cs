@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Xml.Serialization;
 
 namespace MyHealth
@@ -33,6 +34,16 @@ namespace MyHealth
             return steps.ToArray();
         }
 
+        public static object[] GenerateMenuItem()
+        {
+            List<object> items = new List<object>();
+            foreach (StepData item in StepDataList)
+            {
+                items.Add(item.ToMenuItem());
+            }
+            return items.ToArray();
+        }
+
         public static void LoadData()
         {
             FileStream file = null;
@@ -56,7 +67,6 @@ namespace MyHealth
                 file?.Close();
             }
         }
-
         public static void SaveData()
         {
             FileStream file = null;
