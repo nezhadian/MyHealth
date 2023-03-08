@@ -368,5 +368,19 @@
           Width="10"
           Stretch="Uniform" />
 
+    <!--Timer Style-->
+
+    <Style TargetType="{x:Type local:Timer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Timer}">
+                    <TextBlock Text="{TemplateBinding RemainedTime,Converter={StaticResource TimeSpanConverter}}" 
+                               FontSize="16" 
+                               Foreground="#111"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

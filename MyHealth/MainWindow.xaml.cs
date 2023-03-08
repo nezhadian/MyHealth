@@ -24,27 +24,6 @@ namespace MyHealth
 
         public ITimerSlice[] Steps;
 
-        DispatcherTimer updater = new DispatcherTimer();
-        DateTime LastStartTime;
-        TimeSpan? StopedTime;
-
-        bool isPaused;
-        public bool IsPaused
-        {
-            get => isPaused;
-            set
-            {
-                isPaused = value;
-                updater.IsEnabled = !value;
-                mnuPlayPause.IsChecked = value;
-
-                if (value)
-                    StopedTime = Elapsed;
-                else
-                    LastStartTime = DateTime.Now - StopedTime.Value;
-            }
-        }
-
         int curIndex;
         public int CurrentIndex
         {
@@ -57,20 +36,17 @@ namespace MyHealth
                 {
                     ITimerSlice page = CurrentPage;
                     frmMain.Content = page;
-                    StopedTime = new TimeSpan(0);
-                    IsPaused = page.RequireClick;
-                    txtTimer.Text = "More";
+                    timer.Duration = page.Duration;
+                    timer.IsPaused = page.RequireClick;
+                    //txtTimer.Text = "More";
                 }
                 else
                 {
-                    IsPaused = true;
+                    timer.IsPaused = true;
                 }
             }
         }
-
         public ITimerSlice CurrentPage => Steps?[CurrentIndex];
-        public TimeSpan Elapsed => DateTime.Now - LastStartTime;
-        public TimeSpan Remained => CurrentPage.Duration - Elapsed;
 
         public MainWindow()
         {
@@ -80,28 +56,9 @@ namespace MyHealth
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Steps = DataAccess.GenerateSteps();
-
-            updater = new DispatcherTimer()
-            {
-                Interval = new TimeSpan(0, 0, 0, 0, 500)
-            };
-            updater.Tick += Updater_Tick;
             CurrentIndex = 0;
-
             Bindings();
-
         }
-
-
-        private void Updater_Tick(object sender, EventArgs e)
-        {
-            if (Remained <= TimeSpan.Zero)
-                CurrentIndex++;
-            else
-                txtTimer.Text = Remained.ToString(Remained.Hours > 0 ? "hh':'mm':'ss" : "mm':'ss");
-            
-        }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrentPage.RequireClick)
@@ -153,7 +110,7 @@ namespace MyHealth
             e.CanExecute = CurrentPage != null ? !CurrentPage.RequireClick : false;
         }
         private void RestartCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex = CurrentIndex;
-        private void PausePlayCommand_Executed(object sender, ExecutedRoutedEventArgs e) => IsPaused = !IsPaused;
+        private void PausePlayCommand_Executed(object sender, ExecutedRoutedEventArgs e) => timer.IsPaused = !timer.IsPaused;
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
