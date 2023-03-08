@@ -28,14 +28,19 @@
             <TextBlock x:Name="txtTimer" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
                 <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
+                    <ContextMenu.CommandBindings>
+                        <CommandBinding Command="{x:Static local:TimerCommands.RestartCommand}" CanExecute="RestartCommand_CanExecute" Executed="RestartCommand_Executed"/>
+                        <CommandBinding Command="{x:Static local:TimerCommands.PausePlayCommand}" CanExecute="RestartCommand_CanExecute" Executed="PausePlayCommand_Executed"/>
+                    </ContextMenu.CommandBindings>
+                    
                     <MenuItem x:Name="lstSteps" Header="Go To Step"/>
                     
                     <Separator/>
                     <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
                     
                     <Separator/>
-                    <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Click="mnuPlayPause_Click"/>
-                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIcon}" Click="ZeroTimerBtn_Click"/>
+                    <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Command="{x:Static local:TimerCommands.PausePlayCommand}"/>
+                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIcon}" Command="{x:Static local:TimerCommands.RestartCommand}"/>
                     
                     <Separator/>
                     <MenuItem Header="Settings" Click="Settings_Click"/>

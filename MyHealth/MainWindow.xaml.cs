@@ -55,9 +55,10 @@ namespace MyHealth
 
                 if (curIndex < Steps.Length)
                 {
-                    frmMain.Content = CurrentPage;
+                    ITimerSlice page = CurrentPage;
+                    frmMain.Content = page;
                     StopedTime = new TimeSpan(0);
-                    IsPaused = CurrentPage.RequireClick;
+                    IsPaused = page.RequireClick;
                     txtTimer.Text = "More";
                 }
                 else
@@ -67,7 +68,7 @@ namespace MyHealth
             }
         }
 
-        public ITimerSlice CurrentPage => CurrentIndex < Steps.Length ? Steps[CurrentIndex] : null;
+        public ITimerSlice CurrentPage => Steps?[CurrentIndex];
         public TimeSpan Elapsed => DateTime.Now - LastStartTime;
         public TimeSpan Remained => CurrentPage.Duration - Elapsed;
 
@@ -87,13 +88,19 @@ namespace MyHealth
             updater.Tick += Updater_Tick;
             CurrentIndex = 0;
 
+            BindTopmost();
+
+        }
+
+        private void BindTopmost()
+        {
             mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
             {
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
-
         }
+
         private void Updater_Tick(object sender, EventArgs e)
         {
             if (Remained <= TimeSpan.Zero)
@@ -111,12 +118,8 @@ namespace MyHealth
             }
         }
 
-        private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
-        private void ZeroTimerBtn_Click(object sender, RoutedEventArgs e)
-        {
-            StopedTime = new TimeSpan(0);
-            IsPaused = false;
-        }
+
+        #region Context Menu
 
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
@@ -136,6 +139,16 @@ namespace MyHealth
             lstSteps.ItemsSource = items;
         }
 
+        private void RestoreWindow_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+        private void RestoreWindow_Executed(object sender, ExecutedRoutedEventArgs e) => Activate();
+
+        private void RestartCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = CurrentPage != null ? !CurrentPage.RequireClick : false;
+        }
+        private void RestartCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex = CurrentIndex;
+        private void PausePlayCommand_Executed(object sender, ExecutedRoutedEventArgs e) => IsPaused = !IsPaused;
+
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             var settingsWin = new StepEditor();
@@ -148,11 +161,9 @@ namespace MyHealth
                 }
             }
         }
+        private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
-        private void mnuPlayPause_Click(object sender, RoutedEventArgs e) => IsPaused = !IsPaused;
-
-        private void RestoreWindow_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
-        private void RestoreWindow_Executed(object sender, ExecutedRoutedEventArgs e) => Activate();
+        #endregion
     }
 
     public interface ITimerSlice 
@@ -160,5 +171,11 @@ namespace MyHealth
         public TimeSpan Duration { set; get; }
         public bool RequireClick { set; get; }
         public string StepName { set; get; }
+    }
+
+    public class TimerCommands
+    {
+        public static RoutedCommand RestartCommand = new RoutedCommand("RestartCommand",typeof(TimerCommands));
+        public static RoutedCommand PausePlayCommand = new RoutedCommand("PausePlayCommand", typeof(TimerCommands));
     }
 }
