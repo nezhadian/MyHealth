@@ -40,7 +40,7 @@
                     
                     <Separator x:Name="sepTimerControls"/>
                     <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Command="{x:Static local:TimerCommands.PausePlayCommand}"/>
-                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIcon}" Command="{x:Static local:TimerCommands.RestartCommand}"/>
+                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIconStyle}" Command="{x:Static local:TimerCommands.RestartCommand}"/>
 
                     <Separator/>
                     <MenuItem Header="Settings" Click="Settings_Click"/>

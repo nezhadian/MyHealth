@@ -363,7 +363,7 @@
     </Style>
     
     <!--Restart Icon-->
-    <Path x:Key="RestartIcon" Data="{StaticResource Restart}" 
+    <Path x:Key="RestartIconStyle" Data="{StaticResource Restart}" 
           Fill="#333" 
           Width="10"
           Stretch="Uniform" />
