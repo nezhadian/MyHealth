@@ -40,7 +40,7 @@ namespace MyHealth
                 }
                 else
                 {
-                    timer.IsPaused = true;
+                    timer.Duration = TimeSpan.Zero;
                 }
             }
         }
@@ -113,6 +113,7 @@ namespace MyHealth
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
+            timer.IsPaused = true;
             var settingsWin = new StepEditor();
             if(true == settingsWin.ShowDialog())
             {
@@ -121,6 +122,10 @@ namespace MyHealth
                     Steps = DataAccess.GenerateSteps();
                     CurrentIndex = 0;
                 }
+            }
+            else
+            {
+                timer.IsPaused = false;
             }
         }
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
