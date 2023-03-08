@@ -150,6 +150,9 @@ namespace MyHealth
         }
 
         private void mnuPlayPause_Click(object sender, RoutedEventArgs e) => IsPaused = !IsPaused;
+
+        private void RestoreWindow_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+        private void RestoreWindow_Executed(object sender, ExecutedRoutedEventArgs e) => Activate();
     }
 
     public interface ITimerSlice 

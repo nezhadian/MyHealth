@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
@@ -15,15 +16,18 @@
         Loaded="Window_Loaded"
         x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="RestoreWindow_CanExecute" Executed="RestoreWindow_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid Background="Transparent" MouseDown="Window_MouseDown">
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
         </Grid>
 
-        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
-            <TextBlock x:Name="txtTimer" Text="00:00" FontSize="16" Foreground="#111"/>
+        <Border x:Name="timerBorder" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
+            <TextBlock x:Name="txtTimer" FontSize="16" Foreground="#111"/>
             <Border.ContextMenu>
-                <ContextMenu Opened="ContextMenu_Opened" >
+                <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
                     <MenuItem x:Name="lstSteps" Header="Go To Step"/>
                     
                     <Separator/>
@@ -39,6 +43,10 @@
                 </ContextMenu>
             </Border.ContextMenu>
         </Border>
+
+        <tb:TaskbarIcon IconSource="/Images/icon.ico" ContextMenu="{Binding ContextMenu,ElementName=timerBorder}"
+                        LeftClickCommand="{x:Static SystemCommands.RestoreWindowCommand}">
+        </tb:TaskbarIcon>
 
     </Grid>
 </Window>
