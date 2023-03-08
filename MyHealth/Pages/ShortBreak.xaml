@@ -6,8 +6,6 @@
       xmlns:local="clr-namespace:MyHealth"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Loaded="Page_Loaded"
-      Unloaded="Page_Unloaded"
       Title="ShortBreak">
 
     <Grid Background="Black">
