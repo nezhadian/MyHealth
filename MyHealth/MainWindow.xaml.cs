@@ -88,18 +88,10 @@ namespace MyHealth
             updater.Tick += Updater_Tick;
             CurrentIndex = 0;
 
-            BindTopmost();
+            Bindings();
 
         }
 
-        private void BindTopmost()
-        {
-            mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
-            {
-                Source = this,
-                Mode = BindingMode.TwoWay
-            });
-        }
 
         private void Updater_Tick(object sender, EventArgs e)
         {
@@ -121,6 +113,20 @@ namespace MyHealth
 
         #region Context Menu
 
+        private void Bindings()
+        {
+            mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
+            {
+                Source = this,
+                Mode = BindingMode.TwoWay
+            });
+
+            sepTimerControls.SetBinding(MenuItem.VisibilityProperty, new Binding("Visibility")
+            {
+                Source = mnuPlayPause,
+                Mode = BindingMode.OneWay
+            });
+        }
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
             object[] items = DataAccess.GenerateMenuItem();
