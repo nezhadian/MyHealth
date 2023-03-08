@@ -12,7 +12,13 @@ namespace MyHealth
         {
             if (value is TimeSpan)
             {
-                return ((TimeSpan)value).ToString("hh':'mm':'ss");
+                var timeSpan = (TimeSpan)value;
+                if (timeSpan.Hours > 0)
+                    return timeSpan.ToString("hh':'mm':'ss");
+                else if (timeSpan.Minutes > 0 || timeSpan.Seconds > 0)
+                    return timeSpan.ToString("mm':'ss");
+                else
+                    return "No Time";
             }
             return Binding.DoNothing;
         }

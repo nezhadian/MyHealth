@@ -36,9 +36,7 @@ namespace MyHealth
                 {
                     ITimerSlice page = CurrentPage;
                     frmMain.Content = page;
-                    timer.Duration = page.Duration;
-                    timer.IsPaused = page.RequireClick;
-                    //txtTimer.Text = "More";
+                    timer.Duration = page.RequireClick ? TimeSpan.Zero : page.Duration;
                 }
                 else
                 {
@@ -56,6 +54,7 @@ namespace MyHealth
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Steps = DataAccess.GenerateSteps();
+            timer.Completed += (s, ev) => CurrentIndex++;
             CurrentIndex = 0;
             Bindings();
         }

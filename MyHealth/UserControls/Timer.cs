@@ -37,6 +37,9 @@ namespace MyHealth
             set { 
                 SetValue(DurationProperty, value);
                 StopedTime = TimeSpan.Zero;
+                ElapsedTime = TimeSpan.Zero;
+                RemainedTime = TimeSpan.Zero;
+                IsPaused = value == TimeSpan.Zero;
             }
         }
         public TimeSpan ElapsedTime
@@ -49,7 +52,7 @@ namespace MyHealth
             get { return (TimeSpan)GetValue(RemainedTimeProperty); }
             set { SetValue(RemainedTimeProperty, value); }
         }
-
+        
         public bool IsPaused
         {
             get { return (bool)GetValue(IsPausedProperty); }
@@ -63,8 +66,8 @@ namespace MyHealth
             }
         }
 
-        public event RoutedEventHandler Completed;
 
+        public event RoutedEventHandler Completed;
 
         public Timer()
         {
@@ -73,6 +76,12 @@ namespace MyHealth
                 Interval = new TimeSpan(0, 0, 0, 0, 500)
             };
             updater.Tick += Updater_Tick;
+
+            SetBinding(IsPausedProperty, new Binding("IsEnabled")
+            {
+                Source = this,
+                Mode = BindingMode.OneWayToSource
+            });
         }
 
         private void Updater_Tick(object sender, EventArgs e)
