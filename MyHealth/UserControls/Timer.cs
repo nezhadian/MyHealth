@@ -73,15 +73,9 @@ namespace MyHealth
         {
             updater = new DispatcherTimer()
             {
-                Interval = new TimeSpan(0, 0, 0, 0, 500)
+                Interval = new TimeSpan(0, 0, 0, 0, 50)
             };
             updater.Tick += Updater_Tick;
-
-            SetBinding(IsPausedProperty, new Binding("IsEnabled")
-            {
-                Source = this,
-                Mode = BindingMode.OneWayToSource
-            });
         }
 
         private void Updater_Tick(object sender, EventArgs e)
