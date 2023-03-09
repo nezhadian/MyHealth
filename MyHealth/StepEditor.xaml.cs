@@ -23,15 +23,11 @@ namespace MyHealth
         public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
 
         public bool IsSelected => lstItems.SelectedIndex != -1;
-
         public StepData SelectedStep => StepList[lstItems.SelectedIndex];
 
-        public StepEditor()
-        {
-            InitializeComponent();
-        }
 
         #region Loading
+        public StepEditor() => InitializeComponent();
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
             lstItems.Items.Clear();
@@ -118,7 +114,7 @@ namespace MyHealth
             int selectionIndex = lstItems.SelectedIndex;
             int targetIndex = isArrowUp ? selectionIndex - 1 : selectionIndex + 1;
 
-            StepData selection = StepList[selectionIndex];
+            StepData selection = SelectedStep;
             StepList.RemoveAt(selectionIndex);
             StepList.Insert(targetIndex, selection);
 

@@ -16,8 +16,8 @@
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     
-    <!--Stop Sound Button-->
-    <Style x:Key="FreshStart.StopSound" TargetType="Button">
+    <!--Glass Buttons-->
+    <Style x:Key="Buttons.GlassButton" TargetType="Button">
         <Setter Property="Width" Value="50" />
         <Setter Property="Height" Value="50" />
         <Setter Property="Background" Value="#2FFFFFFF" />
@@ -40,6 +40,37 @@
 
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="#4fFFFFFF" />
+                        </Trigger>
+                        
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--Icon Buttons-->
+    <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="#333" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#e7e7e7" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -257,34 +288,6 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Fill" Value="#555" TargetName="icon" />
                             <Setter Property="FontWeight" Value="Bold" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-
-    <!--Icon Buttons-->
-    <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
-        <Setter Property="Width" Value="30" />
-        <Setter Property="Height" Value="30" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="#333" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#e7e7e7" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
