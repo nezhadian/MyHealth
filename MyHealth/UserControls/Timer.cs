@@ -38,7 +38,7 @@ namespace MyHealth
                 SetValue(DurationProperty, value);
                 StopedTime = TimeSpan.Zero;
                 ElapsedTime = TimeSpan.Zero;
-                RemainedTime = TimeSpan.Zero;
+                RemainedTime = value;
                 IsPaused = value == TimeSpan.Zero;
             }
         }
