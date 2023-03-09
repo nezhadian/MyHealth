@@ -32,7 +32,10 @@
                           Stretch="Uniform"
                         />
                     </Button>
-                    <local:Timer x:Name="timer" VerticalAlignment="Center" Margin="15,0"/>
+                    <StackPanel VerticalAlignment="Center" Margin="15,0">
+                        <local:Timer x:Name="timer"  />
+                        <TextBlock x:Name="txtIndex" Text="20/10" HorizontalAlignment="Center" Foreground="#111"/>
+                    </StackPanel>
                     <Button Style="{StaticResource  Buttons.GlassButton}" Command="{x:Static ComponentCommands.MoveRight}">
                         <Path Data="{StaticResource ArrowRight}"
                           Fill="White"

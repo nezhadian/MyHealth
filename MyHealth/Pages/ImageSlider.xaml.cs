@@ -49,6 +49,7 @@ namespace MyHealth
                     try
                     {
                         mainImage.Source = new BitmapImage(new Uri(imageFiles[curIndex].FullName));
+                        txtIndex.Text = $"{curIndex + 1}/{imageFiles.Length}";
                     }
                     catch(Exception ex)
                     {
