@@ -9,14 +9,39 @@
       Loaded="Page_Loaded"
       Title="ShortBreak">
 
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static ComponentCommands.MoveRight}" CanExecute="LeftRightCommand_CanExecute" Executed="RightCommand_Executed"/>
+        <CommandBinding Command="{x:Static ComponentCommands.MoveLeft}"  CanExecute="LeftRightCommand_CanExecute" Executed="LeftCommand_Executed"/>
+    </Page.CommandBindings>
+
     <Grid Background="White">
         <Grid Margin="40">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="txtMessage" HorizontalAlignment="Center" Style="{StaticResource Pages.MessageText}"/>
             <Image x:Name="mainImage" Width="600" Height="400" Grid.Row="1"/>
+            <Border Background="#aaa" Grid.Row="2" HorizontalAlignment="Center" Padding="0" CornerRadius="5">
+                <StackPanel  Orientation="Horizontal">
+                    <Button Style="{StaticResource  Buttons.GlassButton}" Command="{x:Static ComponentCommands.MoveLeft}">
+                        <Path Data="{StaticResource ArrowLeft}"
+                          Fill="White"
+                          Width="30"
+                          Stretch="Uniform"
+                        />
+                    </Button>
+                    <local:Timer x:Name="timer" VerticalAlignment="Center" Margin="15,0"/>
+                    <Button Style="{StaticResource  Buttons.GlassButton}" Command="{x:Static ComponentCommands.MoveRight}">
+                        <Path Data="{StaticResource ArrowRight}"
+                          Fill="White"
+                          Width="30"
+                          Stretch="Uniform"
+                        />
+                    </Button>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </Page>

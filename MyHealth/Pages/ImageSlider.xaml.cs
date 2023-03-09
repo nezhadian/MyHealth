@@ -22,7 +22,6 @@ namespace MyHealth
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
-
         public string StepName
         {
             get => txtMessage.Text;
@@ -30,7 +29,7 @@ namespace MyHealth
         }
 
         public FileInfo[] imageFiles;
-        DispatcherTimer timer;
+        
 
         int curIndex;
         public int CurrentIndex
@@ -38,27 +37,33 @@ namespace MyHealth
             get => curIndex;
             set
             {
-                curIndex = value >= imageFiles.Length ? 0 : value;
+                if (value >= imageFiles.Length)
+                    curIndex = 0;
+                else if (value < 0)
+                    curIndex = imageFiles.Length - 1;
+                else
+                    curIndex = value;
 
                 if (curIndex < imageFiles.Length)
                 {
                     try
                     {
-                        mainImage.Source = new BitmapImage(new Uri(imageFiles[value].FullName));
+                        mainImage.Source = new BitmapImage(new Uri(imageFiles[curIndex].FullName));
                     }
                     catch(Exception ex)
                     {
                         MessageBox.Show($"Error in loading image \r\n {ex.Message}");
                     }
-                    timer?.Start();
+                    timer.Duration = new TimeSpan(0,0,20);
                 }
                 else
                 {
-                    timer?.Stop();
+                    timer.IsPaused = true;
                 }
             }
         }
 
+        Random r = new Random();
         private DirectoryInfo imageFilesDir;
         public DirectoryInfo ImagesFileDirectory
         {
@@ -74,7 +79,7 @@ namespace MyHealth
 
                 imageFilesDir = value;
                 imageFiles = files;
-                CurrentIndex = 0;
+                CurrentIndex = r.Next(0,imageFiles.Length);
             }
         }
 
@@ -88,16 +93,19 @@ namespace MyHealth
             InitializeComponent();
             Duration = duration;
             ImagesFileDirectory = new DirectoryInfo(path);
+            timer.IsPaused = true;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            timer = new DispatcherTimer()
-            {
-                Interval = new TimeSpan(0, 0, 20),//Image Changing Time
-                IsEnabled = true
-            };
-            timer.Tick += (s,ev) => CurrentIndex++;
+            timer.Completed += (s,ev) => CurrentIndex++;
+            timer.IsPaused = false;
         }
+
+        private void LeftRightCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+
+        private void RightCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex++;
+
+        private void LeftCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex--;
     }
 }
