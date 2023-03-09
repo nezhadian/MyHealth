@@ -44,7 +44,7 @@ namespace MyHealth
 
         private void LoadStepList()
         {
-            AddRange(DataAccess.StepDataList);
+            SetStepList(DataAccess.StepDataList);
         }
 
         private void LoadImageListes()
@@ -166,6 +166,44 @@ namespace MyHealth
             lstItems.Items.Refresh();
         }
 
+        private void cboImageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
+            lstItems.Items.Refresh();
+        }
+
+        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string prevTag = e.RemovedItems.Count == 0 ? "" : ((ComboBoxItem)e.RemovedItems[0]).Tag.ToString();
+            bool isPreviousCustom = prevTag == "";
+            bool hasItems = StepList.Count != 0;
+
+            if (isPreviousCustom && hasItems)
+            {
+                if(MessageBoxResult.No == MessageBox.Show("Clear Changes ?", "Clear", MessageBoxButton.YesNo))
+                {
+                    cboTemplates.SelectedItem = e.RemovedItems[0];
+                    return;
+                }
+            }
+
+            string tag = ((ComboBoxItem)cboTemplates.SelectedItem).Tag.ToString();
+            if (Templates.TemplateDictionary.TryGetValue(tag, out StepData[] template))
+            {
+                SetStepList(template);
+            }
+
+        }
+        private void SetStepList(StepData[] steps)
+        {
+            StepList.Clear();
+            foreach (StepData item in steps)
+            {
+                StepList.Add(item);
+            }
+        }
+
+
         private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!IsSelected)
@@ -185,36 +223,6 @@ namespace MyHealth
             tscDuration.TimeSpan = step.Duration;
             cboImageList.SelectedValue = step.ImageList;
         }
-
-        private void cboImageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
-            lstItems.Items.Refresh();
-        }
-
-        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string tag = ((ListBoxItem)cboTemplates.SelectedItem).Tag.ToString();
-            string prev = e.RemovedItems.Count > 0 ? ((ListBoxItem)e.RemovedItems[0]).Tag.ToString() : "";
-            if(Templates.TemplateDictionary.TryGetValue(tag,out StepData[] template))
-            {
-                var resault = prev == "" && StepList.Count > 0? MessageBox.Show("Clear Changes ?", "Clear", MessageBoxButton.YesNo) : MessageBoxResult.Yes;
-                if (resault == MessageBoxResult.Yes)
-                {
-                    AddRange(template);
-                }
-
-            }
-        }
-        private void AddRange(StepData[] steps)
-        {
-            StepList.Clear();
-            foreach (StepData item in steps)
-            {
-                StepList.Add(item);
-            }
-        }
-
 
 
     }
