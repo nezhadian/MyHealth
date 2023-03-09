@@ -113,6 +113,9 @@ namespace MyHealth
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
+            bool topmost = Topmost;
+            Topmost = false;
+
             timer.IsPaused = true;
             var settingsWin = new StepEditor();
             if(true == settingsWin.ShowDialog())
@@ -127,6 +130,7 @@ namespace MyHealth
             {
                 timer.IsPaused = false;
             }
+            Topmost = topmost;
         }
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
