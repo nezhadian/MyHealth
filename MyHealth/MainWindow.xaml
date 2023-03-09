@@ -17,7 +17,7 @@
         x:Name="mainWin"
         Title="MainWindow" Height="450" Width="800">
     <Window.CommandBindings>
-        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="RestoreWindow_CanExecute" Executed="RestoreWindow_Executed"/>
+        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="AlwaysTrue_CanExecute" Executed="RestoreWindow_Executed"/>
     </Window.CommandBindings>
     <Grid>
         <Grid Background="Transparent" MouseDown="Window_MouseDown">
@@ -29,8 +29,9 @@
             <Border.ContextMenu>
                 <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
                     <ContextMenu.CommandBindings>
-                        <CommandBinding Command="{x:Static local:TimerCommands.RestartCommand}" CanExecute="RestartCommand_CanExecute" Executed="RestartCommand_Executed"/>
-                        <CommandBinding Command="{x:Static local:TimerCommands.PausePlayCommand}" CanExecute="RestartCommand_CanExecute" Executed="PausePlayCommand_Executed"/>
+                        <CommandBinding Command="{x:Static local:TimerCommands.RestartCommand}" CanExecute="IsTimerActive_CanExecute" Executed="RestartCommand_Executed"/>
+                        <CommandBinding Command="{x:Static local:TimerCommands.PausePlayCommand}" CanExecute="IsTimerActive_CanExecute" Executed="PausePlayCommand_Executed"/>
+                        <CommandBinding Command="{x:Static ApplicationCommands.Help}" CanExecute="AlwaysTrue_CanExecute" Executed="About_Executed"/>
                     </ContextMenu.CommandBindings>
                     
                     <MenuItem x:Name="lstSteps" Header="Go To Step"/>
@@ -44,6 +45,7 @@
 
                     <Separator/>
                     <MenuItem Header="Settings" Click="Settings_Click"/>
+                    <MenuItem Header="About Me" Command="{x:Static ApplicationCommands.Help}"/>
                     <MenuItem Header="Exit" Click="ExitBtn_Click"/>
                 </ContextMenu>
             </Border.ContextMenu>
