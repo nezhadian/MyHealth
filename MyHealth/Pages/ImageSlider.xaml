@@ -36,7 +36,7 @@
                         <local:Timer x:Name="timer"  />
                         <TextBlock x:Name="txtIndex" Text="20/10" HorizontalAlignment="Center" Foreground="#111"/>
                     </StackPanel>
-                    <Button Style="{StaticResource  Buttons.GlassButton}" Command="{x:Static ComponentCommands.MoveRight}">
+                    <Button Style="{StaticResource  Buttons.GlassButton}" Command="{x:Static ComponentCommands.MoveRight}" x:Name="btnMoveRight">
                         <Path Data="{StaticResource ArrowRight}"
                           Fill="White"
                           Width="30"

@@ -101,6 +101,7 @@ namespace MyHealth
         {
             timer.Completed += (s,ev) => CurrentIndex++;
             timer.IsPaused = false;
+            btnMoveRight.Focus();
         }
 
         private void LeftRightCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
