@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
-        Title="AboutMe" Height="400" Width="600">
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        Title="AboutMe" Height="500" Width="700">
     <Grid>
-        
+        <Grid  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Ellipse Width="196" Height="196" StrokeThickness="9" Stroke="Green" RenderOptions.BitmapScalingMode="HighQuality">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="pack://application:,,,/Images/me.jpg">
+                    </ImageBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Yasin Ebrahim Nezhadian" FontSize="24" />
+            <Grid Grid.Row="4" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="auto"/>
+
+                </Grid.ColumnDefinitions>
+                <local:CardButton Grid.Column="0" Content="Web"      ToolTip="nezhadian.ir"              UpperContent="{StaticResource WebsiteIconStyle}"  Background="#f90"      Click="CardButton_Click" Foreground="White"/>
+                <local:CardButton Grid.Column="2" Content="Gmail"    ToolTip="yasin.ebr.nezh@gmail.com"  UpperContent="{StaticResource GmailIconStyle}"    Background="Red"       Click="CardButton_Click" Foreground="White"/>
+                <local:CardButton Grid.Column="4" Content="Telegram" ToolTip="t.me/nezhadian"            UpperContent="{StaticResource TelegramIconStyle}" Background="#09f"      Click="CardButton_Click" Foreground="White"/>
+                <local:CardButton Grid.Column="6" Content="GitHub"   ToolTip="github.com/nezhadian"      UpperContent="{StaticResource GithubIconStyle}"   Background="#333"      Click="CardButton_Click" Foreground="White"/>
+                <local:CardButton Grid.Column="8" Content="LinkedIn" ToolTip="linkedin.com/in/nezhadian" UpperContent="{StaticResource LinkedInIconStyle}" Background="#FF0D53A8" Click="CardButton_Click" Foreground="White"/>
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

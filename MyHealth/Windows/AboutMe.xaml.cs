@@ -21,5 +21,11 @@ namespace MyHealth
         {
             InitializeComponent();
         }
+
+        private void CardButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            Clipboard.SetText(button.ToolTip.ToString());
+        }
     }
 }
