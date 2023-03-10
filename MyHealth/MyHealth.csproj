@@ -74,6 +74,7 @@
     <None Remove="Images\eye_0004_Layer-2.png" />
     <None Remove="Images\eye_0005_Layer-1.png" />
     <None Remove="Images\icon.ico" />
+    <None Remove="Images\me.jpg" />
     <None Remove="Songs\alarm.wav" />
   </ItemGroup>
 
@@ -185,6 +186,7 @@
 
   <ItemGroup>
     <Resource Include="Images\icon.ico" />
+    <Resource Include="Images\me.jpg" />
   </ItemGroup>
 
 </Project>
