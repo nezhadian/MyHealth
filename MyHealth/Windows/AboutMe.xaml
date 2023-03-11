@@ -1,12 +1,10 @@
-﻿<Window x:Class="MyHealth.AboutMe"
+﻿<Page x:Class="MyHealth.AboutMe"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="ToolWindow"
         Title="AboutMe" Height="500" Width="700">
     <Grid>
         <Grid  HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -53,4 +51,4 @@
                 <Hyperlink Click="CopyGmail_Click" ToolTip="yasin.ebr.nezh@gmail.com">E-mail</Hyperlink>
         </TextBlock>
     </Grid>
-</Window>
+</Page>
