@@ -110,10 +110,10 @@ namespace MyHealth
             lstSteps.ItemsSource = items;
         }
 
-        private void AlwaysTrue_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+        private void RestoreWindow_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
         private void RestoreWindow_Executed(object sender, ExecutedRoutedEventArgs e) => Activate();
 
-        private void IsTimerActive_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void RestartCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CurrentPage != null ? !CurrentPage.RequireClick : false;
         }
@@ -137,17 +137,9 @@ namespace MyHealth
             }
             Topmost = topmost;
         }
-        private void About_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            bool topmost = Topmost;
-            Topmost = false;
-            new AboutMe().ShowDialog();
-            Topmost = topmost;
-        }
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
 
         #endregion
-
     }
 
     public interface ITimerSlice 
