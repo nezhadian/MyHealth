@@ -17,9 +17,9 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for AboutMe.xaml
     /// </summary>
-    public partial class AboutMe : Page
+    public partial class AboutMePage : Page
     {
-        public AboutMe()
+        public AboutMePage()
         {
             InitializeComponent();
         }
