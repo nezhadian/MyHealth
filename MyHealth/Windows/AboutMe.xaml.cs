@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,9 +23,19 @@ namespace MyHealth
             InitializeComponent();
         }
 
+        Style btnPreviusStyle;
+        Button btnHasCopyStyle = null;
+
         private void CardButton_Click(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
+            if(btnHasCopyStyle != null)
+            {
+                btnHasCopyStyle.Style = btnPreviusStyle;
+            }
+            var button = (CardButton)sender;
+            btnPreviusStyle = button.Style;
+            btnHasCopyStyle = button;
+            button.Style = (Style)FindResource("AboutMe.Copied");
             Clipboard.SetText(button.ToolTip.ToString());
         }
     }

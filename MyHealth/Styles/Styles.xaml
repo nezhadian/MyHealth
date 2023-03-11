@@ -479,4 +479,37 @@
     </Path>
 
 
+
+    <!--AboutMe Social Styles-->
+
+    <Style x:Key="AboutMe.SocialShared" TargetType="local:CardButton" BasedOn="{StaticResource {x:Type local:CardButton}}">
+        <Setter Property="Foreground" Value="#fff" />
+    </Style>
+
+    <Style x:Key="AboutMe.Website" TargetType="local:CardButton" BasedOn="{StaticResource AboutMe.SocialShared}">
+        <Setter Property="Content" Value="Website" />
+        <Setter Property="UpperContent" Value="{StaticResource WebsiteIconStyle}" />
+        <Setter Property="Background" Value="#aaa" />
+    </Style>
+    <Style x:Key="AboutMe.Gmail" TargetType="local:CardButton" BasedOn="{StaticResource AboutMe.SocialShared}">
+        <Setter Property="Content" Value="Gmail" />
+        <Setter Property="UpperContent" Value="{StaticResource GmailIconStyle}" />
+        <Setter Property="Background" Value="Red" />
+    </Style>
+    <Style x:Key="AboutMe.Telegram" TargetType="local:CardButton" BasedOn="{StaticResource AboutMe.SocialShared}">
+        <Setter Property="Content" Value="Telegram" />
+        <Setter Property="UpperContent" Value="{StaticResource TelegramIconStyle}" />
+        <Setter Property="Background" Value="#09f" />
+    </Style>
+    <Style x:Key="AboutMe.GitHub" TargetType="local:CardButton" BasedOn="{StaticResource AboutMe.SocialShared}">
+        <Setter Property="Content" Value="GitHub" />
+        <Setter Property="UpperContent" Value="{StaticResource GithubIconStyle}" />
+        <Setter Property="Background" Value="#333" />
+    </Style>
+    <Style x:Key="AboutMe.LinkedIn" TargetType="local:CardButton" BasedOn="{StaticResource AboutMe.SocialShared}">
+        <Setter Property="Content" Value="LinkedIn" />
+        <Setter Property="UpperContent" Value="{StaticResource LinkedInIconStyle}" />
+        <Setter Property="Background" Value="#FF0D53A8" />
+    </Style>
+
 </ResourceDictionary>

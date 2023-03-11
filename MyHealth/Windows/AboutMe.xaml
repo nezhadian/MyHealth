@@ -41,11 +41,11 @@
                     <ColumnDefinition Width="auto"/>
 
                 </Grid.ColumnDefinitions>
-                <local:CardButton Grid.Column="0" Content="Web"      ToolTip="nezhadian.ir"              UpperContent="{StaticResource WebsiteIconStyle}"  Background="#f90"      Click="CardButton_Click" Foreground="White"/>
-                <local:CardButton Grid.Column="2" Content="Gmail"    ToolTip="yasin.ebr.nezh@gmail.com"  UpperContent="{StaticResource GmailIconStyle}"    Background="Red"       Click="CardButton_Click" Foreground="White"/>
-                <local:CardButton Grid.Column="4" Content="Telegram" ToolTip="t.me/nezhadian"            UpperContent="{StaticResource TelegramIconStyle}" Background="#09f"      Click="CardButton_Click" Foreground="White"/>
-                <local:CardButton Grid.Column="6" Content="GitHub"   ToolTip="github.com/nezhadian"      UpperContent="{StaticResource GithubIconStyle}"   Background="#333"      Click="CardButton_Click" Foreground="White"/>
-                <local:CardButton Grid.Column="8" Content="LinkedIn" ToolTip="linkedin.com/in/nezhadian" UpperContent="{StaticResource LinkedInIconStyle}" Background="#FF0D53A8" Click="CardButton_Click" Foreground="White"/>
+                <local:CardButton Grid.Column="0" ToolTip="nezhadian.ir"              Style="{StaticResource AboutMe.Website}" Click="CardButton_Click" />
+                <local:CardButton Grid.Column="2" ToolTip="yasin.ebr.nezh@gmail.com"  Style="{StaticResource AboutMe.Gmail}" Click="CardButton_Click" />
+                <local:CardButton Grid.Column="4" ToolTip="t.me/nezhadian"            Style="{StaticResource AboutMe.Telegram}" Click="CardButton_Click" />
+                <local:CardButton Grid.Column="6" ToolTip="github.com/nezhadian"      Style="{StaticResource AboutMe.GitHub}" Click="CardButton_Click" />
+                <local:CardButton Grid.Column="8" ToolTip="linkedin.com/in/nezhadian" Style="{StaticResource AboutMe.LinkedIn}" Click="CardButton_Click" />
 
             </Grid>
         </Grid>
