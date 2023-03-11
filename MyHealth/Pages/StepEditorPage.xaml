@@ -1,4 +1,4 @@
-﻿<Window x:Class="MyHealth.StepEditor"
+﻿<Page x:Class="MyHealth.StepEditorPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,18 +7,15 @@
         mc:Ignorable="d"
         x:Name="main"
         Loaded="main_Loaded"
-        WindowStartupLocation="CenterScreen"
         Title="Steps Editor" Height="400" Width="600">
 
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static local:StepEditor.ArrowUp}" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
-        <CommandBinding Command="{x:Static local:StepEditor.ArrowDown}" CanExecute="ArrowDown_CanExecute" Executed="ArrowCommands_Execute"/>
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:StepEditorPage.ArrowUp}" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>
+        <CommandBinding Command="{x:Static local:StepEditorPage.ArrowDown}" CanExecute="ArrowDown_CanExecute" Executed="ArrowCommands_Execute"/>
 
         <CommandBinding Command="{x:Static ApplicationCommands.New}" CanExecute="New_CanExecute" Executed="New_Executed"/>
         <CommandBinding Command="{x:Static ApplicationCommands.Delete}" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
-        
-        <CommandBinding Command="{x:Static ApplicationCommands.Save}" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
-    </Window.CommandBindings>
+    </Page.CommandBindings>
 
     <Grid Margin="20">
 
@@ -84,13 +81,13 @@
 
         <Grid Grid.Row="3" >
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Command="{x:Static local:StepEditor.ArrowDown}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button Command="{x:Static local:StepEditorPage.ArrowDown}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource ArrowDown}" 
                           Width="8"
                           Fill="#333" 
                           Stretch="Uniform" />
                 </Button>
-                <Button  Command="{x:Static local:StepEditor.ArrowUp}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button  Command="{x:Static local:StepEditorPage.ArrowUp}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource ArrowUp}" 
                           Width="8"
                           Fill="#333" 
@@ -116,10 +113,5 @@
 
         </Grid>
 
-
-        <StackPanel Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Padding="20,5" Content="Save" Command="{x:Static ApplicationCommands.Save}"/>
-        </StackPanel>
-
     </Grid>
-</Window>
+</Page>

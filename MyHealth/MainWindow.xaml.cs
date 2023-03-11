@@ -56,11 +56,17 @@ namespace MyHealth
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Steps = DataAccess.GenerateSteps();
             timer.Completed += (s, ev) => CurrentIndex++;
-            CurrentIndex = 0;
+            LoadSteps();
             Bindings();
         }
+
+        private void LoadSteps()
+        {
+            Steps = DataAccess.GenerateSteps();
+            CurrentIndex = 0;
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (CurrentPage.RequireClick)
@@ -120,14 +126,10 @@ namespace MyHealth
             Topmost = false;
 
             timer.IsPaused = true;
-            var settingsWin = new StepEditor();
+            var settingsWin = new SettingsWindow();
             if(true == settingsWin.ShowDialog())
             {
-                lock (Steps)
-                {
-                    Steps = DataAccess.GenerateSteps();
-                    CurrentIndex = 0;
-                }
+                LoadSteps();
             }
             else
             {

@@ -17,7 +17,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class StepEditor : Window
+    public partial class StepEditorPage : Page
     {
 
         public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
@@ -25,9 +25,23 @@ namespace MyHealth
         public bool IsSelected => lstItems.SelectedIndex != -1;
         public StepData SelectedStep => StepList[lstItems.SelectedIndex];
 
+        public bool CanSave
+        {
+            get
+            {
+                int effectiveSteps = 0;
+                foreach (var item in StepList)
+                    if (item.StepType != StepData.StepTypes.FreshStart &&
+                        item.StepType != StepData.StepTypes.Seperator)
+                        effectiveSteps++;
+
+                return effectiveSteps > 0;
+            }
+        }
+
 
         #region Loading
-        public StepEditor() => InitializeComponent();
+        public StepEditorPage() => InitializeComponent();
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
             lstItems.Items.Clear();
@@ -77,29 +91,10 @@ namespace MyHealth
             lstItems.SelectedIndex = Math.Min(selIndex,lstItems.Items.Count - 1);
             lstItems.Focus();
         }
-
-        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            int effectiveSteps = 0;
-            foreach (var item in StepList)
-                if (item.StepType != StepData.StepTypes.FreshStart &&
-                    item.StepType != StepData.StepTypes.Seperator)
-                    effectiveSteps++;
-
-            e.CanExecute = effectiveSteps > 0;
-        }
-        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            StepData[] data = new StepData[StepList.Count];
-            StepList.CopyTo(data, 0);
-            DataAccess.StepDataList = data;
-
-            DialogResult = true;
-        }
         #endregion
         #region Arrow Commands
-        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditor));
-        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(StepEditor));
+        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditorPage));
+        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(StepEditorPage));
 
         private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex > 0;
         private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
