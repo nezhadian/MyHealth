@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         x:Name="main"
         Loaded="main_Loaded"
-        Title="Steps Editor" Height="400" Width="600">
+        Title="Steps Editor" d:Height="400" d:Width="600">
 
     <Page.CommandBindings>
         <CommandBinding Command="{x:Static local:StepEditorPage.ArrowUp}" CanExecute="ArrowUp_CanExecute" Executed="ArrowCommands_Execute"/>

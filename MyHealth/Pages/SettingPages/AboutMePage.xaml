@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
-        Title="AboutMe" Height="500" Width="700">
+        Title="AboutMe" d:Height="500" d:Width="700">
     <Grid>
         <Grid  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
