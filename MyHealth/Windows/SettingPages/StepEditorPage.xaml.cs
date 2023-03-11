@@ -38,18 +38,24 @@ namespace MyHealth
                 return effectiveSteps > 0;
             }
         }
+        bool isListesBinded = false;
 
 
         #region Loading
         public StepEditorPage() => InitializeComponent();
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
+            if (isListesBinded)
+                return;
+
             lstItems.Items.Clear();
             lstItems.ItemsSource = StepList;
 
             LoadStepTypes();
             LoadImageListes();
             LoadStepList();
+
+            isListesBinded = true;
         }
 
         private void LoadStepList()
