@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hardcodet.Wpf.TaskbarNotification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,6 +46,8 @@ namespace MyHealth
             }
         }
         public ITimerSlice CurrentPage => Steps?[CurrentIndex];
+
+        public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
 
         public MainWindow()
         {

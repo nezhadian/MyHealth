@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,21 +23,17 @@ namespace MyHealth
         {
             InitializeComponent();
         }
-
-        Style btnPreviusStyle;
-        Button btnHasCopyStyle = null;
-
-        private void CardButton_Click(object sender, RoutedEventArgs e)
+        private void OpenLinkCardButton_Click(object sender, RoutedEventArgs e)
         {
-            if(btnHasCopyStyle != null)
-            {
-                btnHasCopyStyle.Style = btnPreviusStyle;
-            }
             var button = (CardButton)sender;
-            btnPreviusStyle = button.Style;
-            btnHasCopyStyle = button;
-            button.Style = (Style)FindResource("AboutMe.Copied");
+            Process.Start(new ProcessStartInfo(button.ToolTip.ToString()) { UseShellExecute = true });
+        }
+
+        private void CopyGmailCardButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (CardButton)sender;
             Clipboard.SetText(button.ToolTip.ToString());
+            MainWindow.TaskBarIcon.ShowBalloonTip("Gmail", "Gmail Copied", Hardcodet.Wpf.TaskbarNotification.BalloonIcon.Info);
         }
     }
 }

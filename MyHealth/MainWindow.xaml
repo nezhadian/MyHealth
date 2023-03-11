@@ -51,7 +51,7 @@
             </Border.ContextMenu>
         </Border>
 
-        <tb:TaskbarIcon IconSource="/Images/icon.ico" ContextMenu="{Binding ContextMenu,ElementName=timerBorder}"
+        <tb:TaskbarIcon x:Name="tbNotify" IconSource="/Images/icon.ico" ContextMenu="{Binding ContextMenu,ElementName=timerBorder}"
                         LeftClickCommand="{x:Static SystemCommands.RestoreWindowCommand}">
         </tb:TaskbarIcon>
 
