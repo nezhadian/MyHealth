@@ -29,10 +29,9 @@ namespace MyHealth
             Process.Start(new ProcessStartInfo(button.ToolTip.ToString()) { UseShellExecute = true });
         }
 
-        private void CopyGmailCardButton_Click(object sender, RoutedEventArgs e)
+        private void CopyGmail_Click(object sender, RoutedEventArgs e)
         {
-            var button = (CardButton)sender;
-            Clipboard.SetText(button.ToolTip.ToString());
+            Clipboard.SetText("yasin.ebr.nezh@gmail.com");
             MainWindow.TaskBarIcon.ShowBalloonTip("Gmail", "Gmail Copied", Hardcodet.Wpf.TaskbarNotification.BalloonIcon.Info);
         }
     }
