@@ -20,7 +20,7 @@ namespace MyHealth
             DependencyProperty.Register("ItemPage", typeof(object), typeof(SettingListMenuItem), new PropertyMetadata());
 
         public SettingListMenuItem() { }
-        public SettingListMenuItem(string name,Page page)
+        public SettingListMenuItem(string name,object page)
         {
             Content = name;
             ItemPage = page;
