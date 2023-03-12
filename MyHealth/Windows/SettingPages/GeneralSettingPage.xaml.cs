@@ -16,9 +16,9 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for GlobalSettingPage.xaml
     /// </summary>
-    public partial class GlobalSettingPage : Page
+    public partial class GeneralSettingPage : Page
     {
-        public GlobalSettingPage()
+        public GeneralSettingPage()
         {
             InitializeComponent();
         }
