@@ -17,7 +17,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class StepEditorPage : Page
+    public partial class StepEditorPage : Page,ICanSaveSettingMenuItem
     {
 
         public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
@@ -38,16 +38,24 @@ namespace MyHealth
                 return effectiveSteps > 0;
             }
         }
-        bool isListesBinded = false;
 
+        public bool IsChanged { get; set ; }
+
+        public void Save()
+        {
+            StepData[] data = new StepData[StepList.Count];
+            StepList.CopyTo(data, 0);
+            DataAccess.StepDataList = data;
+        }
 
         #region Loading
+        bool isListesBinded = false;
         public StepEditorPage() => InitializeComponent();
         private void main_Loaded(object sender, RoutedEventArgs e)
         {
             if (isListesBinded)
                 return;
-
+            IsChanged = true;
             lstItems.Items.Clear();
             lstItems.ItemsSource = StepList;
 
@@ -62,7 +70,6 @@ namespace MyHealth
         {
             SetStepList(DataAccess.StepDataList);
         }
-
         private void LoadImageListes()
         {
             cboImageList.Items.Clear();
