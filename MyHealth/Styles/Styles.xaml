@@ -400,7 +400,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Restart Icon-->
     <Path x:Key="RestartIconStyle" Data="{StaticResource Restart}" 
           Fill="#333" 
@@ -478,8 +478,6 @@
         </Path.Data>
     </Path>
 
-
-
     <!--AboutMe Social Styles-->
 
     <Style x:Key="AboutMe.SocialShared" TargetType="local:CardButton" BasedOn="{StaticResource {x:Type local:CardButton}}">
@@ -511,5 +509,47 @@
         <Setter Property="UpperContent" Value="{StaticResource LinkedInIconStyle}" />
         <Setter Property="Background" Value="#FF0D53A8" />
     </Style>
+
+    <!--Settings ListboxItem-->
+    <Style TargetType="local:SettingListMenuItem">
+        <Setter Property="Background" Value="#fff" />
+        <Setter Property="MinWidth" Value="153" />
+        <Setter Property="Padding" Value="15,9" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SettingListMenuItem">
+                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#09f" />
+                <Setter Property="Foreground" Value="#fff" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="IsSelected" Value="False"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#eee" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="False"/>
+                    <Condition Property="IsSelected" Value="True"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="#bbb" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>
