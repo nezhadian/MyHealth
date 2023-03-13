@@ -24,10 +24,7 @@ namespace MyHealth
             new SettingListMenuItem("About Me",new AboutMePage()),
         };
 
-        public SettingsWindow()
-        {
-            InitializeComponent();
-        }
+        public SettingsWindow() => InitializeComponent();
 
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -37,7 +34,7 @@ namespace MyHealth
                 if(item.ItemPage is ICanSaveSettingMenuItem)
                 {
                     ICanSaveSettingMenuItem canSave = (ICanSaveSettingMenuItem)item.ItemPage;
-                    if (canSave.IsChanged &&!canSave.CanSave)
+                    if (canSave.IsChanged && !canSave.CanSave)
                         return;
                 }
             }
