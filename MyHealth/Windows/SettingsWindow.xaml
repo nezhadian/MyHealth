@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
         Title="SettingsWindow" Height="600" Width="800">
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static ApplicationCommands.Save}" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
@@ -19,10 +18,10 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="lstMenu" Grid.RowSpan="2" BorderThickness="0,0,1,0">
-            <local:SettingListMenuItem Content="General"/>
+        <ListBox x:Name="lstMenu" Grid.RowSpan="2" BorderThickness="0,0,1,0" ItemsSource="{x:Static local:SettingsWindow.MenuItems}">
+            <!--<local:SettingListMenuItem Content="General"/>
             <local:SettingListMenuItem Content="Step Editor"/>
-            <local:SettingListMenuItem Content="About Me"/>
+            <local:SettingListMenuItem Content="About Me"/>-->
         </ListBox>
         <Frame x:Name="frmMain" Grid.Column="1"  Content="{Binding ElementName=lstMenu,Path=SelectedItem.ItemPage}" NavigationUIVisibility="Hidden"/>
         
