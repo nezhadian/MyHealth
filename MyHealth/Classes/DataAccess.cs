@@ -87,5 +87,10 @@ namespace MyHealth
             }
         }
 
+        static DataAccess()
+        {
+            LoadData();
+        }
+
     }
 }
