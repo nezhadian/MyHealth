@@ -149,9 +149,5 @@ namespace MyHealth
         public string StepName { set; get; }
     }
 
-    public class TimerCommands
-    {
-        public static RoutedCommand RestartCommand = new RoutedCommand("RestartCommand",typeof(TimerCommands));
-        public static RoutedCommand PausePlayCommand = new RoutedCommand("PausePlayCommand", typeof(TimerCommands));
-    }
+
 }
