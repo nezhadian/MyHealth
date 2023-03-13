@@ -63,7 +63,7 @@ namespace MyHealth
 
         private void LoadSteps()
         {
-            Steps = StepDataCollection.GenerateSteps(DataAccess.StepDataList);
+            Steps = DataAccess.GenerateSteps();
             CurrentIndex = 0;
         }
 
@@ -94,7 +94,7 @@ namespace MyHealth
         }
         private void ContextMenu_Opened(object sender, RoutedEventArgs e)
         {
-            object[] items = StepDataCollection.GenerateMenuItem(DataAccess.StepDataList);
+            object[] items = DataAccess.GenerateMenuItem();
             int i = 0;
             foreach (var item in items)
             {

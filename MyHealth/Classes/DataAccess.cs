@@ -22,6 +22,28 @@ namespace MyHealth
             } 
         }
 
+        public static ITimerSlice[] GenerateSteps()
+        {
+            List<ITimerSlice> steps = new List<ITimerSlice>();
+            foreach (StepData item in StepDataList)
+            {
+                var step = item.ToStep();
+                if (step != null)
+                    steps.Add(step);
+            }
+            return steps.ToArray();
+        }
+
+        public static object[] GenerateMenuItem()
+        {
+            List<object> items = new List<object>();
+            foreach (StepData item in StepDataList)
+            {
+                items.Add(item.ToMenuItem());
+            }
+            return items.ToArray();
+        }
+
         public static void LoadData()
         {
             FileStream file = null;
