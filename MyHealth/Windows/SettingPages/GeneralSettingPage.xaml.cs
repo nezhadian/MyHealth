@@ -16,11 +16,35 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for GlobalSettingPage.xaml
     /// </summary>
-    public partial class GeneralSettingPage : Page
+    public partial class GeneralSettingPage : Page,ICanSaveSettingMenuItem
     {
+        public bool IsChanged { get; set; } = false;
+
         public GeneralSettingPage()
         {
             InitializeComponent();
+        }
+        public bool CanSave => true;
+        public void Save()
+        {
+            Properties.Settings.Default.StartAtStartup = chkStartAtStartup.IsChecked.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void chkStartAtStartup_Click(object sender, RoutedEventArgs e)
+        {
+            IsChanged = true;
+        }
+
+        bool isInitialized = false;
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (isInitialized)
+                return;
+
+            chkStartAtStartup.IsChecked = Properties.Settings.Default.StartAtStartup;
+
+            isInitialized = true;
         }
     }
 }
