@@ -38,5 +38,10 @@ namespace MyHealth
             InitializeComponent();
             Duration = duration;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Background = new SolidColorBrush(Properties.Settings.Default.ShortBreakBgColor);
+        }
     }
 }

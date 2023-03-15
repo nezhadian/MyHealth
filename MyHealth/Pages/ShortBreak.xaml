@@ -6,9 +6,11 @@
       xmlns:local="clr-namespace:MyHealth"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="Black"
+      Loaded="Page_Loaded"
       Title="ShortBreak">
 
-    <Grid Background="Black">
+    <Grid>
         <TextBlock x:Name="txtMessage" 
             VerticalAlignment="Center"
             HorizontalAlignment="Center" 
