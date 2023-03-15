@@ -11,14 +11,46 @@
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        
-        <CheckBox VerticalAlignment="Center" x:Name="chkStartAtStartup" Click="OnAnyChanged">Start at startup</CheckBox>
-        <local:ColorSelector x:Name="clrFreshStartBG" Grid.Row="1" Text="Fresh Start Background Color" ColorChanged="OnAnyChanged"/>
-        <local:ColorSelector x:Name="clrShortBreakBG" Grid.Row="2" Text="Short Break Background Color" ColorChanged="OnAnyChanged"/>
 
+        <Label FontWeight="Bold" Padding="0,5,5,5" >General</Label>
+
+        <CheckBox            x:Name="chkStartAtStartup" Grid.Row="1" Content="Start at startup"          Click="OnAnyChanged" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <local:ColorSelector x:Name="clrFreshStartBG"   Grid.Row="2" Text="Fresh Start Background Color  " ColorChanged="OnAnyChanged"/>
+        <local:ColorSelector x:Name="clrShortBreakBG"   Grid.Row="3" Text="Short Break Background Color" ColorChanged="OnAnyChanged"/>
+
+        <Label FontWeight="Bold"  Grid.Row="4" Padding="0,15,5,10">Image Slider</Label>
+
+        <StackPanel Grid.Row="5" HorizontalAlignment="Left" Orientation="Horizontal">
+            <Label >Image Slider Delay</Label>
+            <TextBox Width="35" Height="20" >20</TextBox>
+        </StackPanel>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Label >Eye Images</Label>
+            <Button Content="Open Folder" Grid.Column="2" VerticalAlignment="Center" Padding="3"/>
+
+            <Label Grid.Row="1" >Body Images</Label>
+            <Button Content="Open Folder" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Padding="3"/>
+
+        </Grid>
     </Grid>
 </Page>
