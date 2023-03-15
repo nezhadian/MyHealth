@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MyHealth.ColorSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyHealth"
+             mc:Ignorable="d" 
+             x:Name="main"
+             Cursor="Hand"
+             d:DesignHeight="30" d:DesignWidth="150">
+    <Grid MouseDown="Grid_MouseDown" Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Width="35" Height="20">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock Text="{Binding ElementName=main,Path=Text}" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+    </Grid>
+</UserControl>
