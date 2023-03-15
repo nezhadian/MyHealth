@@ -13,11 +13,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         
         <CheckBox VerticalAlignment="Center" x:Name="chkStartAtStartup" Click="OnAnyChanged">Start at startup</CheckBox>
         <local:ColorSelector x:Name="clrFreshStartBG" Grid.Row="1" Text="Fresh Start Background Color" ColorChanged="OnAnyChanged"/>
-
+        <local:ColorSelector x:Name="clrShortBreakBG" Grid.Row="2" Text="Short Break Background Color" ColorChanged="OnAnyChanged"/>
 
     </Grid>
 </Page>

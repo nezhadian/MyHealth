@@ -24,6 +24,7 @@ namespace MyHealth
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
             Properties.Settings.Default.FreshStartBgColor = clrFreshStartBG.Color;
+            Properties.Settings.Default.ShortBreakBgColor = clrShortBreakBG.Color;
             Properties.Settings.Default.Save();
         }
 
@@ -38,6 +39,7 @@ namespace MyHealth
                 return;
 
             clrFreshStartBG.Color = Properties.Settings.Default.FreshStartBgColor;
+            clrShortBreakBG.Color = Properties.Settings.Default.ShortBreakBgColor;
 
             isInitialized = true;
         }
