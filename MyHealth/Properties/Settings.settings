@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MyHealth.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="FreshStartBgColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Green</Value>
+    <Setting Name="FreshStartBgColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF008000</Value>
     </Setting>
-    <Setting Name="ShortBreakBgColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">51, 51, 51</Value>
+    <Setting Name="ShortBreakBgColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#00000000</Value>
     </Setting>
     <Setting Name="ImageSliderDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>

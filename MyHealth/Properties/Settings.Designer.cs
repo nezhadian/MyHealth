@@ -25,10 +25,10 @@ namespace MyHealth.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Green")]
-        public global::System.Drawing.Color FreshStartBgColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF008000")]
+        public global::System.Windows.Media.Color FreshStartBgColor {
             get {
-                return ((global::System.Drawing.Color)(this["FreshStartBgColor"]));
+                return ((global::System.Windows.Media.Color)(this["FreshStartBgColor"]));
             }
             set {
                 this["FreshStartBgColor"] = value;
@@ -37,10 +37,10 @@ namespace MyHealth.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("51, 51, 51")]
-        public global::System.Drawing.Color ShortBreakBgColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("#00000000")]
+        public global::System.Windows.Media.Color ShortBreakBgColor {
             get {
-                return ((global::System.Drawing.Color)(this["ShortBreakBgColor"]));
+                return ((global::System.Windows.Media.Color)(this["ShortBreakBgColor"]));
             }
             set {
                 this["ShortBreakBgColor"] = value;
