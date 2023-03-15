@@ -11,13 +11,15 @@
     <Grid MouseDown="Grid_MouseDown" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Width="35" Height="20">
+        <Label Content="{Binding ElementName=main,Path=Text}" Grid.Column="0" VerticalAlignment="Center"/>
+        <Rectangle Width="35" Height="20" Grid.Column="2">
             <Rectangle.Fill>
                 <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock Text="{Binding ElementName=main,Path=Text}" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
     </Grid>
 </UserControl>
