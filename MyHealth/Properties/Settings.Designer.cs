@@ -25,18 +25,6 @@ namespace MyHealth.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool StartAtStartup {
-            get {
-                return ((bool)(this["StartAtStartup"]));
-            }
-            set {
-                this["StartAtStartup"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Green")]
         public global::System.Drawing.Color FreshStartBgColor {
             get {

@@ -16,37 +16,24 @@ namespace MyHealth
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public static bool StartAtStartup
         {
-            base.OnStartup(e);
-            MyHealth.Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
-        }
-
-        private void Default_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == "StartAtStartup")
+            get => System.IO.File.Exists(GetStartupShortcutPath());
+            set
             {
-                bool StartAtStartup = MyHealth.Properties.Settings.Default.StartAtStartup;
-                if (StartAtStartup)
-                {
+                if (value)
                     CreateStartupFile();
-                }
                 else
-                {
                     RemoveStartupFile();
-                }
-
             }
-            
         }
-
-        private void RemoveStartupFile()
+        private static void RemoveStartupFile()
         {
             FileInfo startupFile = new FileInfo(GetStartupShortcutPath());
             if (startupFile.Exists)
                 startupFile.Delete();
         }
-        private void CreateStartupFile()
+        private static void CreateStartupFile()
         {
             WshShell shell = new WshShell();
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(GetStartupShortcutPath());
@@ -55,7 +42,7 @@ namespace MyHealth
             shortcut.Save();
 
         }
-        string GetStartupShortcutPath()
+        private static string GetStartupShortcutPath()
         {
             string directory = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             string filename = Assembly.GetExecutingAssembly().GetName().Name;

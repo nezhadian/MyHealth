@@ -27,8 +27,7 @@ namespace MyHealth
         public bool CanSave => true;
         public void Save()
         {
-            Properties.Settings.Default.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-            Properties.Settings.Default.Save();
+            App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
         }
 
         private void chkStartAtStartup_Click(object sender, RoutedEventArgs e)
@@ -39,10 +38,11 @@ namespace MyHealth
         bool isInitialized = false;
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            chkStartAtStartup.IsChecked = App.StartAtStartup;
+
             if (isInitialized)
                 return;
 
-            chkStartAtStartup.IsChecked = Properties.Settings.Default.StartAtStartup;
 
             isInitialized = true;
         }
