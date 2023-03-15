@@ -10,10 +10,6 @@
       Title="GlobalSettingPage">
 
     <Grid Margin="20">
-        <!--<StackPanel>
-            <CheckBox Margin="0,5" x:Name="chkStartAtStartup" Click="OnAnyChanged">Start at startup</CheckBox>
-            <local:ColorSelector x:Name="clrFreshStartBG" Text="Fresh Start Background Color" ColorChanged="OnAnyChanged"/>
-        </StackPanel>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>

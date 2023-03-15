@@ -8,8 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
       Unloaded="Page_Unloaded"
+      Background="Green"
       Title="FreshStart">
-    <Grid Background="Green">
+    <Grid >
         <Grid MaxWidth="400" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
