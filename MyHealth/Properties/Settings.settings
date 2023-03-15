@@ -6,7 +6,7 @@
       <Value Profile="(Default)">#FF008000</Value>
     </Setting>
     <Setting Name="ShortBreakBgColor" Type="System.Windows.Media.Color" Scope="User">
-      <Value Profile="(Default)">#00000000</Value>
+      <Value Profile="(Default)">#FF000000</Value>
     </Setting>
     <Setting Name="ImageSliderDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
