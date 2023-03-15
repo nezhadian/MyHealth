@@ -24,6 +24,7 @@ namespace MyHealth
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
             Properties.Settings.Default.FreshStartBgColor = clrFreshStartBG.Color;
+            Properties.Settings.Default.Save();
         }
 
         bool isInitialized = false;
