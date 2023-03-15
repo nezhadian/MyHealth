@@ -19,23 +19,16 @@ namespace MyHealth
     public partial class GeneralSettingPage : Page,ICanSaveSettingMenuItem
     {
         public bool IsChanged { get; set; } = false;
-
-        public GeneralSettingPage()
-        {
-            InitializeComponent();
-        }
         public bool CanSave => true;
         public void Save()
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-        }
-
-        private void chkStartAtStartup_Click(object sender, RoutedEventArgs e)
-        {
-            IsChanged = true;
+            Properties.Settings.Default.FreshStartBgColor = clrFreshStartBG.Color;
         }
 
         bool isInitialized = false;
+
+        public GeneralSettingPage() => InitializeComponent();
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             chkStartAtStartup.IsChecked = App.StartAtStartup;
@@ -43,8 +36,12 @@ namespace MyHealth
             if (isInitialized)
                 return;
 
+            clrFreshStartBG.Color = Properties.Settings.Default.FreshStartBgColor;
 
             isInitialized = true;
         }
+
+        private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
+
     }
 }
