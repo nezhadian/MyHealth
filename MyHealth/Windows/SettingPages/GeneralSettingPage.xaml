@@ -22,9 +22,9 @@
 
         <Label FontWeight="Bold" Padding="0,5,5,5" >General</Label>
 
-        <CheckBox            x:Name="chkStartAtStartup" Grid.Row="1" Content="Start at startup" Click="OnAnyChanged" VerticalAlignment="Center" Margin="5,0,0,0"/>
-        <local:ColorSelector x:Name="clrFreshStartBG"   Grid.Row="2" Text="Fresh Start Background Color  " ColorChanged="OnAnyChanged"/>
-        <local:ColorSelector x:Name="clrShortBreakBG"   Grid.Row="3" Text="Short Break Background Color"   ColorChanged="OnAnyChanged"/>
+        <CheckBox            x:Name="chkStartAtStartup" Grid.Row="1" Content="Start at startup" Click="OnAnyChanged" VerticalAlignment="Center" Margin="5,0,0,0" TabIndex="0"/>
+        <local:ColorSelector x:Name="clrFreshStartBG"   Grid.Row="2" Text="Fresh Start Background Color  " ColorChanged="OnAnyChanged" TabIndex="1"/>
+        <local:ColorSelector x:Name="clrShortBreakBG"   Grid.Row="3" Text="Short Break Background Color"   ColorChanged="OnAnyChanged" TabIndex="2"/>
 
         <Label FontWeight="Bold"  Grid.Row="5" Padding="0,5,5,5">Image Slider</Label>
 
@@ -43,13 +43,13 @@
             </Grid.RowDefinitions>
 
             <Label >Image Slider Delay</Label>
-            <local:TimeSpanControl x:Name="tscImageSliderDelay" Grid.Column="2" HourVisibility="Collapsed" TextChanged="OnAnyChanged" />
+            <local:TimeSpanControl x:Name="tscImageSliderDelay" Grid.Column="2" HourVisibility="Collapsed" TextChanged="OnAnyChanged" TabIndex="3"/>
 
             <Label Grid.Row="1" >Eye Images</Label>
-            <Button Content="Open Folder" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Padding="3"/>
+            <Button Content="Open Folder" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Padding="3" TabIndex="4"/>
 
             <Label Grid.Row="2" >Body Images</Label>
-            <Button Content="Open Folder" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Padding="3"/>
+            <Button Content="Open Folder" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Padding="3" TabIndex="5"/>
 
         </Grid>
     </Grid>
