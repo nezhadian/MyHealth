@@ -67,10 +67,19 @@ namespace MyHealth
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBoxOnlyNumbers_KeyDown(object sender, KeyEventArgs e)
+        {
+            int keyValue = (int)e.Key;
+            bool isInNumbpad = keyValue >= 74 && keyValue <= 83;
+            bool isInUpperNums = keyValue >= 34 && keyValue <= 43;
+            bool isBackSpace = e.Key == Key.Back;
+            e.Handled = !(isInNumbpad || isInUpperNums || isBackSpace);
+        }
+
+        private void TextBoxForwardFocus_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (Regex.IsMatch(textBox.Text, @"[0-9]{2}"))
+            if (textBox.Text.Length >= 2)
             {
                 textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next) { 
                     Wrapped = true
@@ -80,11 +89,16 @@ namespace MyHealth
 
         }
 
+        private void TextBoxFilterMinMaxNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBox.Text = int.TryParse(textBox.Text, out int n) ? Math.Max(Math.Min(n, 99), 1).ToString() : "1";
+        }
+
         private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             (sender as TextBox).SelectAll();
         }
-
         private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             TextBox tb = sender as TextBox;
@@ -94,5 +108,6 @@ namespace MyHealth
                 tb.Focus();
             }
         }
+
     }
 }

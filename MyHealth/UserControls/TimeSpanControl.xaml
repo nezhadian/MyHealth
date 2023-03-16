@@ -11,7 +11,9 @@
         <Style x:Key="TimeSpanControl.TextBoxStyle" TargetType="TextBox">
             <Setter Property="Width" Value="18" />
             <Setter Property="MaxLength" Value="2" />
-            <EventSetter Event="TextChanged" Handler="TextBox_TextChanged"/>
+            <EventSetter Event="KeyDown" Handler="TextBoxOnlyNumbers_KeyDown"/>
+            <EventSetter Event="TextChanged" Handler="TextBoxForwardFocus_TextChanged"/>
+            <EventSetter Event="LostKeyboardFocus" Handler="TextBoxFilterMinMaxNumber_LostFocus"/>
             <EventSetter Event="GotKeyboardFocus"  Handler="TextBox_GotKeyboardFocus"/>
             <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBox_PreviewMouseLeftButtonDown"/>
         </Style>
@@ -19,7 +21,7 @@
     <Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=main,Path=HourVisibility}">
-                <TextBox x:Name="txtHour" TabIndex="0" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
+                <TextBox x:Name="txtHour" TabIndex="0"  Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
                 <TextBlock Text=":" Padding="5,0" />
             </StackPanel>
             <TextBox x:Name="txtMin" TabIndex="1" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
