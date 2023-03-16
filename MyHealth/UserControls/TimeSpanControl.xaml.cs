@@ -46,6 +46,21 @@ namespace MyHealth
                 
             }
         }
+
+
+
+        public Visibility HourVisibility
+        {
+            get { return (Visibility)GetValue(HourVisibilityProperty); }
+            set { SetValue(HourVisibilityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HourVisibility.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HourVisibilityProperty =
+            DependencyProperty.Register("HourVisibility", typeof(Visibility), typeof(TimeSpanControl), new PropertyMetadata(Visibility.Visible));
+
+
+
         public event RoutedEventHandler TextChanged;
         public TimeSpanControl()
         {

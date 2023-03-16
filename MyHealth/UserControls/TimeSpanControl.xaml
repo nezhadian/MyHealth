@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyHealth"
              mc:Ignorable="d" 
+             x:Name="main"
              d:DesignHeight="50" d:DesignWidth="200">
     <UserControl.Resources>
         <Style x:Key="TimeSpanControl.TextBoxStyle" TargetType="TextBox">
@@ -17,8 +18,10 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBox x:Name="txtHour" TabIndex="0" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
-            <TextBlock Text=":" Padding="5,0" />
+            <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=main,Path=HourVisibility}">
+                <TextBox x:Name="txtHour" TabIndex="0" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
+                <TextBlock Text=":" Padding="5,0" />
+            </StackPanel>
             <TextBox x:Name="txtMin" TabIndex="1" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
             <TextBlock Text=":" Padding="5,0" />
             <TextBox x:Name="txtSecond" TabIndex="2" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
