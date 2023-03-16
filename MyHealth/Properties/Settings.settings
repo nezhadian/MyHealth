@@ -8,8 +8,8 @@
     <Setting Name="ShortBreakBgColor" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF000000</Value>
     </Setting>
-    <Setting Name="ImageSliderDelay" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
+    <Setting Name="ImageSliderDelay" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:00:20</Value>
     </Setting>
   </Settings>
 </SettingsFile>

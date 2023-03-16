@@ -49,10 +49,10 @@ namespace MyHealth.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int ImageSliderDelay {
+        [global::System.Configuration.DefaultSettingValueAttribute("00:00:20")]
+        public global::System.TimeSpan ImageSliderDelay {
             get {
-                return ((int)(this["ImageSliderDelay"]));
+                return ((global::System.TimeSpan)(this["ImageSliderDelay"]));
             }
             set {
                 this["ImageSliderDelay"] = value;
