@@ -124,17 +124,19 @@ namespace MyHealth
         {
             bool topmost = Topmost;
             Topmost = false;
-
             timer.IsPaused = true;
+
             var settingsWin = new SettingsWindow();
             if(true == settingsWin.ShowDialog())
             {
-                LoadSteps();
+                if (DataAccess.IsStepListChanged)
+                {
+                    LoadSteps();
+                    DataAccess.IsStepListChanged = false;
+                }
             }
-            else
-            {
-                timer.IsPaused = false;
-            }
+
+            timer.IsPaused = false;
             Topmost = topmost;
         }
         private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);

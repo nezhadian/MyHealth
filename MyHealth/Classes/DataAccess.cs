@@ -12,6 +12,7 @@ namespace MyHealth
     {
 
         const string DATA_FILE_NAME = "StepData.dat";
+        public static bool IsStepListChanged;
         private static StepData[] steps;
         public static StepData[] StepDataList { 
             get => steps;
@@ -19,6 +20,7 @@ namespace MyHealth
             {
                 steps = value;
                 SaveData();
+                IsStepListChanged = true;
             } 
         }
 
