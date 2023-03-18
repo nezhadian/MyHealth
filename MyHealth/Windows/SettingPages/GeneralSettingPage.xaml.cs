@@ -65,5 +65,13 @@ namespace MyHealth
             }
             
         }
+
+        private void ShowFolderPath_ToolTipOpening(object sender, ToolTipEventArgs e)
+        {
+            Button button = sender as Button;
+            string tag = button.Tag.ToString();
+            string directoryPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", tag);
+            button.ToolTip = directoryPath;
+        }
     }
 }

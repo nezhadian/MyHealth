@@ -46,10 +46,10 @@
             <local:TimeSpanControl x:Name="tscImageSliderDelay" Grid.Column="2" HourVisibility="Collapsed" TextChanged="OnAnyChanged" TabIndex="3"/>
 
             <Label Grid.Row="1" >Eye Images</Label>
-            <Button Content="Open Folder" Grid.Row="1" Grid.Column="2" Click="OpenImageSliderFolders_Click" Tag="eye" VerticalAlignment="Center" Padding="3" TabIndex="4"/>
+            <Button Content="Open Folder" Grid.Row="1" Grid.Column="2" ToolTip="..." ToolTipOpening="ShowFolderPath_ToolTipOpening" Click="OpenImageSliderFolders_Click" Tag="eye" VerticalAlignment="Center" Padding="3" TabIndex="4"/>
 
             <Label Grid.Row="2" >Body Images</Label>
-            <Button Content="Open Folder" Grid.Row="2" Grid.Column="2" Click="OpenImageSliderFolders_Click" Tag="body" VerticalAlignment="Center" Padding="3" TabIndex="5"/>
+            <Button Content="Open Folder" Grid.Row="2" Grid.Column="2" ToolTip="..." ToolTipOpening="ShowFolderPath_ToolTipOpening" Click="OpenImageSliderFolders_Click" Tag="body" VerticalAlignment="Center" Padding="3" TabIndex="5"/>
 
         </Grid>
     </Grid>
