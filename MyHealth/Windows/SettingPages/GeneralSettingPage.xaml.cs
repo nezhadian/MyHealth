@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -44,6 +45,7 @@ namespace MyHealth
             tscImageSliderDelay.TimeSpan = Properties.Settings.Default.ImageSliderDelay;
 
             isInitialized = true;
+            IsChanged = false;
         }
 
         private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
