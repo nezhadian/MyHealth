@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Content="{Binding ElementName=main,Path=Text}" Grid.Column="0" VerticalAlignment="Center"/>
-        <Rectangle Width="35" Height="20" Grid.Column="2">
+        <Rectangle Width="35" Height="20" Grid.Column="2" Stroke="#999" >
             <Rectangle.Fill>
                 <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
             </Rectangle.Fill>
