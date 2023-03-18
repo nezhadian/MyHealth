@@ -30,22 +30,22 @@ namespace MyHealth
             Properties.Settings.Default.Save();
         }
 
-        bool isInitialized = false;
-
-        public GeneralSettingPage() => InitializeComponent();
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public GeneralSettingPage()
         {
-            chkStartAtStartup.IsChecked = App.StartAtStartup;
+            InitializeComponent();
+            LoadSettingValues();
+        }
 
-            if (isInitialized)
-                return;
-
+        private void LoadSettingValues()
+        {
             clrFreshStartBG.Color = Properties.Settings.Default.FreshStartBgColor;
             clrShortBreakBG.Color = Properties.Settings.Default.ShortBreakBgColor;
             tscImageSliderDelay.TimeSpan = Properties.Settings.Default.ImageSliderDelay;
+        }
 
-            isInitialized = true;
-            IsChanged = false;
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            chkStartAtStartup.IsChecked = App.StartAtStartup;
         }
 
         private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
