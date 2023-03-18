@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyHealth"
         mc:Ignorable="d"
-        x:Name="main"
+        Loaded="main_Loaded"
         Title="Steps Editor" d:Height="400" d:Width="600">
 
     <Page.CommandBindings>

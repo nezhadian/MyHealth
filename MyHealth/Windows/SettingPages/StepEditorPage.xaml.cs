@@ -49,17 +49,23 @@ namespace MyHealth
         }
 
         #region Loading
-        public StepEditorPage()
+        bool isInitialized = false;
+        public StepEditorPage() => InitializeComponent();
+        private void main_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            if (isInitialized)
+                return;
             lstItems.Items.Clear();
             lstItems.ItemsSource = StepList;
 
             LoadStepTypes();
             LoadImageListes();
             LoadStepList();
+
             IsChanged = false;
+            isInitialized = true;
         }
+
         private void LoadStepList()
         {
             SetStepList(DataAccess.StepDataList);
@@ -230,5 +236,7 @@ namespace MyHealth
             if(isUserChangingValues)
                 IsChanged = true;
         }
+
+        
     }
 }
