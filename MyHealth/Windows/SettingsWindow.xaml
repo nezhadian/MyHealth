@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="lstMenu" Grid.RowSpan="2"  ItemsSource="{x:Static local:SettingsWindow.MenuItems}" BorderThickness="0,0,1,0" SelectedIndex="0"/>
+        <ListBox x:Name="lstMenu" Grid.RowSpan="2" BorderThickness="0,0,1,0" SelectedIndex="0"/>
         <Frame Grid.Column="1"  Content="{Binding ElementName=lstMenu,Path=SelectedItem.ItemPage}" NavigationUIVisibility="Hidden"/>
         
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="20">

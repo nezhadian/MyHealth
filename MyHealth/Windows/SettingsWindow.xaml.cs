@@ -17,15 +17,20 @@ namespace MyHealth
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        public static List<SettingListMenuItem> MenuItems = new List<SettingListMenuItem>()
+        public List<SettingListMenuItem> MenuItems = new List<SettingListMenuItem>()
         {
             new SettingListMenuItem("General",new GeneralSettingPage()),
             new SettingListMenuItem("Step Editor",new StepEditorPage()),
             new SettingListMenuItem("About Me",new AboutMePage()),
         };
 
-        public SettingsWindow() => InitializeComponent();
+        public SettingsWindow()
+        {
+            InitializeComponent();
 
+            lstMenu.Items.Clear();
+            lstMenu.ItemsSource = MenuItems;
+        }
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
