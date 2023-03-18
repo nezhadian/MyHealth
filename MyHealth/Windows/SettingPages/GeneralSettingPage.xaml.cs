@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -50,5 +51,19 @@ namespace MyHealth
 
         private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
 
+        private void OpenImageSliderFolders_Click(object sender, RoutedEventArgs e)
+        {
+            string tag = (sender as Button).Tag.ToString();
+            string directoryPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", tag);
+            try
+            {
+                Process.Start("explorer.exe", directoryPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Can`t Open Folder \r\n {ex.Message}");
+            }
+            
+        }
     }
 }
