@@ -48,5 +48,21 @@ namespace MyHealth
             string filename = Assembly.GetExecutingAssembly().GetName().Name;
             return Path.ChangeExtension(Path.Combine(directory, filename), ".lnk");
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            if (MyHealth.Properties.Settings.Default.IsFirstRun)
+            {
+                InitializeSettings();
+                MyHealth.Properties.Settings.Default.IsFirstRun = false;
+                MyHealth.Properties.Settings.Default.Save();
+            }
+        }
+        private void InitializeSettings()
+        {
+            MyHealth.Properties.Settings.Default.Reset();
+            StartAtStartup = true;
+        }
     }
 }
