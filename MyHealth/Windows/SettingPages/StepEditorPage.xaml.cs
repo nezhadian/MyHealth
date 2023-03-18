@@ -49,23 +49,17 @@ namespace MyHealth
         }
 
         #region Loading
-        bool isListesBinded = false;
-        public StepEditorPage() => InitializeComponent();
-        private void main_Loaded(object sender, RoutedEventArgs e)
+        public StepEditorPage()
         {
-            if (isListesBinded)
-                return;
-            IsChanged = true;
+            InitializeComponent();
             lstItems.Items.Clear();
             lstItems.ItemsSource = StepList;
 
             LoadStepTypes();
             LoadImageListes();
             LoadStepList();
-
-            isListesBinded = true;
+            IsChanged = false;
         }
-
         private void LoadStepList()
         {
             SetStepList(DataAccess.StepDataList);
@@ -134,9 +128,9 @@ namespace MyHealth
         private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedStep.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
-            lstItems.Items.Refresh();
-
             SwitchUI(SelectedStep.StepType);
+
+            OnAnyChanged();
         }
         private void SwitchUI(StepData.StepTypes stepType)
         {
@@ -161,19 +155,19 @@ namespace MyHealth
         private void txtStepName_TextChanged(object sender, TextChangedEventArgs e)
         {
             SelectedStep.StepName = txtStepName.Text;
-            lstItems.Items.Refresh();
+            OnAnyChanged();
         }
 
         private void tscDuration_TextChanged(object sender, RoutedEventArgs e)
         {
             SelectedStep.Duration = tscDuration.TimeSpan;
-            lstItems.Items.Refresh();
+            OnAnyChanged();
         }
 
         private void cboImageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
-            lstItems.Items.Refresh();
+            OnAnyChanged();
         }
 
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -195,6 +189,7 @@ namespace MyHealth
             if (Templates.TemplateDictionary.TryGetValue(tag, out StepData[] template))
             {
                 SetStepList(template);
+                OnAnyChanged();
             }
 
         }
@@ -207,7 +202,7 @@ namespace MyHealth
             }
         }
 
-
+        bool isUserChangingValues = true;
         private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!IsSelected)
@@ -217,8 +212,9 @@ namespace MyHealth
             }
 
             stckMain.Visibility = Visibility.Visible;
-
+            isUserChangingValues = false;
             SetStepDataValuesToUI(SelectedStep);
+            isUserChangingValues = true;
         }
         private void SetStepDataValuesToUI(StepData step)
         {
@@ -228,6 +224,11 @@ namespace MyHealth
             cboImageList.SelectedValue = step.ImageList;
         }
 
-
+        private void OnAnyChanged()
+        {
+            lstItems.Items.Refresh();
+            if(isUserChangingValues)
+                IsChanged = true;
+        }
     }
 }
