@@ -8,8 +8,8 @@
              x:Name="main"
              d:DesignHeight="50" d:DesignWidth="200">
     <UserControl.Resources>
-        <Style x:Key="TimeSpanControl.TextBoxStyle" TargetType="TextBox">
-            <Setter Property="Width" Value="18" />
+        <Style x:Key="TimeSpanControl.TextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource TimeSpanControl.Textbox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="MaxLength" Value="2" />
             <EventSetter Event="KeyDown" Handler="TextBoxOnlyNumbers_KeyDown"/>
             <EventSetter Event="TextChanged" Handler="TextBoxForwardFocus_TextChanged"/>
@@ -18,15 +18,17 @@
             <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBox_PreviewMouseLeftButtonDown"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Border BorderThickness="1" BorderBrush="#999" Padding="2" CornerRadius="5">
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=main,Path=HourVisibility}">
                 <TextBox x:Name="txtHour" TabIndex="0"  Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
-                <TextBlock Text=":" Padding="5,0" />
+                <TextBlock Text="h" Style="{StaticResource TimeSpanControl.TextBlockBetween}"/>
             </StackPanel>
             <TextBox x:Name="txtMin" TabIndex="1" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
-            <TextBlock Text=":" Padding="5,0" />
+            <TextBlock Text="m" Style="{StaticResource TimeSpanControl.TextBlockBetween}"/>
             <TextBox x:Name="txtSecond" TabIndex="2" Style="{StaticResource TimeSpanControl.TextBoxStyle}"/>
+            <TextBlock Text="s" Style="{StaticResource TimeSpanControl.TextBlockBetween}"/>
+
         </StackPanel>
-    </Grid>
+    </Border>
 </UserControl>
