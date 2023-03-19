@@ -9,8 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GlobalSettingPage">
     <Page.Resources>
-        <Style x:Key="OpenFolderButtonsStyle" TargetType="Button" BasedOn="{StaticResource Buttons.CTA}">
-            <Setter Property="Background" Value="#ccc" />
+        <Style x:Key="OpenFolderButtonsStyle" TargetType="Button" BasedOn="{StaticResource Buttons.Secondary}">
             <Setter Property="Content" Value="Open Folder" />
             <Setter Property="Padding" Value="7,4" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -67,6 +66,6 @@
 
         </Grid>
 
-        <Button Grid.Row="8" Content="Reset Settings" Click="ResetSettings" HorizontalAlignment="Left" Style="{StaticResource Buttons.CTA}" Foreground="#FF2E2E2E" Background="#FFECECEC"/>
+        <Button Grid.Row="8" Content="Reset Settings" Click="ResetSettings" HorizontalAlignment="Left" Style="{StaticResource Buttons.Tritary}"/>
     </Grid>
 </Page>
