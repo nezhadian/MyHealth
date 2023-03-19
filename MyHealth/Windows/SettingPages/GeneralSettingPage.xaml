@@ -54,7 +54,7 @@
             </Grid.RowDefinitions>
 
             <Label >Image Slider Delay</Label>
-            <local:TimeSpanControl x:Name="tscImageSliderDelay" Grid.Column="2" HourVisibility="Collapsed" TextChanged="OnAnyChanged" TabIndex="3"/>
+            <local:TimeSpanControl x:Name="tscImageSliderDelay" Grid.Column="2" HourVisibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Left" TextChanged="OnAnyChanged" TabIndex="3"/>
 
             <Label Grid.Row="1" >Eye Images</Label>
             <Button Grid.Row="1" Grid.Column="2" Tag="eye" TabIndex="4" Style="{StaticResource OpenFolderButtonsStyle}"/>

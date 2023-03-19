@@ -62,7 +62,7 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Duration" Grid.Row="0"/>
-                    <local:TimeSpanControl x:Name="tscDuration" Grid.Row="1" TextChanged="tscDuration_TextChanged"/>
+                    <local:TimeSpanControl x:Name="tscDuration" Grid.Row="1" HorizontalAlignment="Left" TextChanged="tscDuration_TextChanged"/>
                 </Grid>
                 <Grid x:Name="grdImageListes" Visibility="Collapsed">
                     <Grid.RowDefinitions>
