@@ -53,16 +53,15 @@ namespace MyHealth
         {
             base.OnStartup(e);
             if (MyHealth.Properties.Settings.Default.IsFirstRun)
-            {
-                InitializeSettings();
-                MyHealth.Properties.Settings.Default.IsFirstRun = false;
-                MyHealth.Properties.Settings.Default.Save();
-            }
+                ResetAllSettings();
         }
-        private void InitializeSettings()
+
+        internal static void ResetAllSettings()
         {
             MyHealth.Properties.Settings.Default.Reset();
             StartAtStartup = true;
+            MyHealth.Properties.Settings.Default.IsFirstRun = false;
+            MyHealth.Properties.Settings.Default.Save();
         }
     }
 }
