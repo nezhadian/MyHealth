@@ -89,10 +89,16 @@ namespace MyHealth
 
         }
 
-        private void TextBoxFilterMinMaxNumber_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBoxFilterMinMaxNumber59_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            textBox.Text = int.TryParse(textBox.Text, out int n) ? Math.Max(Math.Min(n, 99), 0).ToString() : "0";
+            textBox.Text = int.TryParse(textBox.Text, out int n) ? Math.Max(Math.Min(n, 59), 0).ToString() : "0";
+        }
+
+        private void TextBoxFilterMinMaxNumber12_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            textBox.Text = int.TryParse(textBox.Text, out int n) ? Math.Max(Math.Min(n, 12), 0).ToString() : "0";
         }
 
         private void TextBox_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
