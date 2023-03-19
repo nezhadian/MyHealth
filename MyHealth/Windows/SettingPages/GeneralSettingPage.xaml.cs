@@ -76,9 +76,12 @@ namespace MyHealth
 
         private void ResetSettings(object sender, RoutedEventArgs e)
         {
-            App.ResetAllSettings();
-            LoadSettingValues();
-            chkStartAtStartup.IsChecked = App.StartAtStartup;
+            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure?","Reset Settings",MessageBoxButton.YesNo))
+            {
+                App.ResetAllSettings();
+                LoadSettingValues();
+                chkStartAtStartup.IsChecked = App.StartAtStartup;
+            }
         }
     }
 }
