@@ -125,14 +125,10 @@
         </Setter>
     </Style>
 
-    <!--CTA Buttons-->
-    <Style x:Key="Buttons.CTA" TargetType="Button">
-        <Setter Property="Padding" Value="30,7" />
-        <Setter Property="Background" Value="#09f" />
-        <Setter Property="Foreground" Value="#fff" />
+    <!--Base Button-->
+    <Style x:Key="Buttons.Base" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
-        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -160,6 +156,27 @@
             </Setter.Value>
         </Setter>
 
+    </Style>
+
+    <!--CTA Button-->
+    <Style x:Key="Buttons.CTA" TargetType="Button" BasedOn="{StaticResource Buttons.Base}">
+        <Setter Property="Background" Value="#09f" />
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Padding" Value="30,7" />
+    </Style>
+
+    <!--Secondary Buttons-->
+    <Style x:Key="Buttons.Secondary" TargetType="Button" BasedOn="{StaticResource Buttons.Base}">
+        <Setter Property="Background" Value="#aaa" />
+        <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Padding" Value="20,7" />
+    </Style>
+
+    <!--Tritary Buttons-->
+    <Style x:Key="Buttons.Tritary" TargetType="Button" BasedOn="{StaticResource Buttons.Base}">
+        <Setter Property="Background" Value="#FFECECEC" />
+        <Setter Property="Foreground" Value="#FF2E2E2E" />
+        <Setter Property="Padding" Value="10,5" />
     </Style>
 
     <!-- ______________________ Menu Item Style ______________________ -->
