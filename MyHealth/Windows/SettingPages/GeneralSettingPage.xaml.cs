@@ -73,5 +73,12 @@ namespace MyHealth
             string directoryPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", tag);
             button.ToolTip = directoryPath;
         }
+
+        private void ResetSettings(object sender, RoutedEventArgs e)
+        {
+            App.ResetAllSettings();
+            LoadSettingValues();
+            chkStartAtStartup.IsChecked = App.StartAtStartup;
+        }
     }
 }

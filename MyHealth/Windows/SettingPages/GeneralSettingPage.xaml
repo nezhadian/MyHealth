@@ -9,9 +9,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GlobalSettingPage">
     <Page.Resources>
-        <Style x:Key="OpenFolderButtonsStyle" TargetType="Button">
+        <Style x:Key="OpenFolderButtonsStyle" TargetType="Button" BasedOn="{StaticResource Buttons.CTA}">
+            <Setter Property="Background" Value="#ccc" />
             <Setter Property="Content" Value="Open Folder" />
-            <Setter Property="Padding" Value="3" />
+            <Setter Property="Padding" Value="7,4" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="..." />
             <Setter Property="Cursor" Value="Hand" />
@@ -28,6 +29,8 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -63,5 +66,7 @@
             <Button Grid.Row="2" Grid.Column="2" Tag="body" TabIndex="5" Style="{StaticResource OpenFolderButtonsStyle}"/>
 
         </Grid>
+
+        <Button Grid.Row="8" Content="Reset Settings" Click="ResetSettings" HorizontalAlignment="Left" Style="{StaticResource Buttons.CTA}" Foreground="#FF2E2E2E" Background="#FFECECEC"/>
     </Grid>
 </Page>
