@@ -73,7 +73,8 @@ namespace MyHealth
             bool isInNumbpad = keyValue >= 74 && keyValue <= 83;
             bool isInUpperNums = keyValue >= 34 && keyValue <= 43;
             bool isBackSpace = e.Key == Key.Back;
-            e.Handled = !(isInNumbpad || isInUpperNums || isBackSpace);
+            bool isTab = e.Key == Key.Tab;
+            e.Handled = !(isInNumbpad || isInUpperNums || isBackSpace || isTab);
         }
 
         private void TextBoxForwardFocus_TextChanged(object sender, TextChangedEventArgs e)
