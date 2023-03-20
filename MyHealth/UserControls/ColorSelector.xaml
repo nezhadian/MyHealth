@@ -8,18 +8,12 @@
              x:Name="main"
              Cursor="Hand"
              d:DesignHeight="30" d:DesignWidth="150">
-    <Grid MouseDown="Grid_MouseDown" Background="Transparent">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Left" MouseDown="Grid_MouseDown">
         <Label Content="{Binding ElementName=main,Path=Text}" Grid.Column="0" VerticalAlignment="Center"/>
-        <Rectangle Width="35" Height="20" Grid.Column="2" Stroke="#999" >
+        <Rectangle Width="35" Height="20" Margin="10,0,0,0" Stroke="#999" >
             <Rectangle.Fill>
                 <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
             </Rectangle.Fill>
         </Rectangle>
-    </Grid>
+    </StackPanel>
 </UserControl>
