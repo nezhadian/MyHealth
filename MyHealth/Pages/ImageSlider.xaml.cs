@@ -80,7 +80,7 @@ namespace MyHealth
 
                 imageFilesDir = value;
                 imageFiles = files;
-                CurrentIndex = r.Next(0,imageFiles.Length);
+                CurrentIndex = 0;
             }
         }
 
@@ -100,7 +100,7 @@ namespace MyHealth
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             timer.Completed += (s,ev) => CurrentIndex++;
-            timer.IsPaused = false;
+            CurrentIndex = r.Next(0, imageFiles.Length);
             btnMoveRight.Focus();
         }
 
