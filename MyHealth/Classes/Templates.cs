@@ -7,15 +7,15 @@ namespace MyHealth
     {
         public static Dictionary<string, StepData[]> TemplateDictionary = new Dictionary<string, StepData[]>()
         {
-            {"pomo" , new StepData[]{
+            {"pomodoro" , new StepData[]{
                         new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "5min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,5,0)},
+                        new StepData(){StepName = "3min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,3,0)},
                         new StepData(){StepName = "Ready", StepType = StepData.StepTypes.FreshStart},
 
                         new StepData(){StepType = StepData.StepTypes.Seperator},
 
                         new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
-                        new StepData(){StepName = "5min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,5,0)},
+                        new StepData(){StepName = "4min Short Break", StepType = StepData.StepTypes.ImageSlider,ImageList =  StepData.ImageListes.Eye,Duration = new TimeSpan(0,4,0)},
                         new StepData(){StepName = "Ready", StepType = StepData.StepTypes.FreshStart},
 
                         new StepData(){StepType = StepData.StepTypes.Seperator},
@@ -28,7 +28,7 @@ namespace MyHealth
 
                         new StepData(){StepName = "25min Work", StepType = StepData.StepTypes.WorkTime,Duration = new TimeSpan(0,25,0)},
                         new StepData(){StepName = "20min Long Break", StepType = StepData.StepTypes.ShortBreak,Duration = new TimeSpan(0,20,0)},
-                        new StepData(){StepName = "Ready For New Pomoduro", StepType = StepData.StepTypes.FreshStart},
+                        new StepData(){StepName = "Ready For New Pomodoro", StepType = StepData.StepTypes.FreshStart},
             }},
 
             {"standard" , new StepData[]{
