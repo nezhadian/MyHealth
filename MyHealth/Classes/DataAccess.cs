@@ -35,12 +35,12 @@ namespace MyHealth
             }
             catch (FileNotFoundException)
             {
-                steps = Templates.TemplateDictionary["standard"];
+                steps = Templates.TemplateDictionary["pomodoro"];
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                steps = Templates.TemplateDictionary["standard"];
+                steps = Templates.TemplateDictionary["pomodoro"];
             }
             finally
             {
