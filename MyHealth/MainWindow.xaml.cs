@@ -38,6 +38,7 @@ namespace MyHealth
                     ITimerSlice page = CurrentPage;
                     frmMain.Content = page;
                     timer.Duration = page.RequireClick ? TimeSpan.Zero : page.Duration;
+                    Activate();
                 }
                 else
                 {
