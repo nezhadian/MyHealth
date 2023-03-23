@@ -54,6 +54,8 @@ namespace MyHealth
             base.OnStartup(e);
             if (MyHealth.Properties.Settings.Default.IsFirstRun)
                 ResetAllSettings();
+            
+            Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
         }
 
         internal static void ResetAllSettings()
