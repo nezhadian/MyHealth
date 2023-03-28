@@ -199,7 +199,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\1.ico" />
     <Resource Include="Images\icon.ico" />
     <Resource Include="Images\me.jpg" />
   </ItemGroup>
