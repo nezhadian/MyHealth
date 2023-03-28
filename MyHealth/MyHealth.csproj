@@ -4,9 +4,11 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\1.ico" />
     <None Remove="Images\body.jpg" />
     <None Remove="Images\Body\body_0000_Layer-26.png" />
     <None Remove="Images\Body\body_0001_Layer-25.png" />
@@ -197,6 +199,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\1.ico" />
     <Resource Include="Images\icon.ico" />
     <Resource Include="Images\me.jpg" />
   </ItemGroup>
