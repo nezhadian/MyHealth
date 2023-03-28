@@ -140,7 +140,11 @@ namespace MyHealth
             timer.IsPaused = false;
             Topmost = topmost;
         }
-        private void ExitBtn_Click(object sender, RoutedEventArgs e) => Environment.Exit(0);
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            tbNotify.Visibility = Visibility.Collapsed;
+            Environment.Exit(0);
+        }
 
         #endregion
     }
