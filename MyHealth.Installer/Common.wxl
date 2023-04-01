@@ -5,6 +5,10 @@
 	
 	<String Id="ProductName_x86">MyHealth (32bit)</String>
 	<String Id="ProductName_x64">MyHealth (64bit)</String>
-	
+
+	<String Id="Description">this is an app for pomodoro </String>
+	<String Id="Comments">no comments</String>
+	<String Id="Keywords">dotnetcore,core,dotnet,installer,myHealth,pomodoro</String>
+
 	<String Id="Company">Yasin Ebrahim Nezhadian</String>
 </WixLocalization>
