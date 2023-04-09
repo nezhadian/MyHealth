@@ -60,6 +60,8 @@ namespace MyHealth
             timer.Completed += (s, ev) => CurrentIndex++;
             LoadSteps();
             Bindings();
+            if (App.IsTestMode)
+                EndToEndTests.RunAll(this);
         }
 
         private void LoadSteps()

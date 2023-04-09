@@ -7,6 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using IWshRuntimeLibrary;
 
 namespace MyHealth
@@ -14,7 +16,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         public static bool StartAtStartup
         {
@@ -49,15 +51,19 @@ namespace MyHealth
             return Path.ChangeExtension(Path.Combine(directory, filename), ".lnk");
         }
 
+        public static bool IsTestMode;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
             if (MyHealth.Properties.Settings.Default.IsFirstRun)
                 ResetAllSettings();
             
             Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
-        }
 
+            IsTestMode = e.Args.Length == 1 && e.Args[0] == "test";
+        }
         internal static void ResetAllSettings()
         {
             MyHealth.Properties.Settings.Default.Reset();
@@ -65,5 +71,6 @@ namespace MyHealth
             MyHealth.Properties.Settings.Default.IsFirstRun = false;
             MyHealth.Properties.Settings.Default.Save();
         }
+
     }
 }
