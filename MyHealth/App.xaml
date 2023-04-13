@@ -1,14 +1,17 @@
-﻿<Application x:Class="MyHealth.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:MyHealth"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="MyHealth.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MyHealth"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Dimensions.xaml" />
+                <ResourceDictionary Source="/Styles/ColorSchemes/Light.xaml" />
                 <ResourceDictionary Source="/Styles/IconsData.xaml" />
                 <ResourceDictionary Source="/Styles/Styles.xaml" />
-                
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

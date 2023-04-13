@@ -10,7 +10,7 @@
              d:DesignHeight="30" d:DesignWidth="150">
     <StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Left" MouseDown="Grid_MouseDown">
         <Label Content="{Binding ElementName=main,Path=Text}" Grid.Column="0" VerticalAlignment="Center"/>
-        <Rectangle Width="35" Height="20" Margin="10,0,0,0" Stroke="#999" >
+        <Rectangle Width="35" Height="20" Margin="10,0,0,0" Stroke="{DynamicResource ColorHex-999}" >
             <Rectangle.Fill>
                 <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
             </Rectangle.Fill>

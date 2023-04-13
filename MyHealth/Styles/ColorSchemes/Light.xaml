@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="ColorHex-09f">#09f</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-111">#111</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-333">#333</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-555">#555</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-999">#999</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FFF">#FFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-aaa">#aaa</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-bbb">#bbb</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-ccc">#ccc</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-ddd">#ddd</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-eee">#eee</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-fff">#fff</SolidColorBrush>
+
+    <SolidColorBrush x:Key="ColorHex-B9B9B9">#B9B9B9</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-e7e7e7">#e7e7e7</SolidColorBrush>
+
+    <SolidColorBrush x:Key="ColorHex-1fffffff">#1fffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-2FFFFFFF">#2FFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-2f333333">#2f333333</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-3fFFFFFF">#3fFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-4fFFFFFF">#4fFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-55ffffff">#55ffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-330099ff">#330099ff</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FF0D53A8">#FF0D53A8</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FF2E2E2E">#FF2E2E2E</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FF2EAC2E">#FF2EAC2E</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FF34B02E">#FF34B02E</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FFC9C9C9">#FFC9C9C9</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FFECECEC">#FFECECEC</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FFEE4747">#FFEE4747</SolidColorBrush>
+    <SolidColorBrush x:Key="ColorHex-FFF1F1F1">#FFF1F1F1</SolidColorBrush>
+</ResourceDictionary>

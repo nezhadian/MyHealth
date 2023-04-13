@@ -83,13 +83,13 @@
                 <Button Command="{x:Static local:StepEditorPage.ArrowDown}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource ArrowDown}" 
                           Width="8"
-                          Fill="#333" 
+                          Fill="{DynamicResource ColorHex-333}" 
                           Stretch="Uniform" />
                 </Button>
                 <Button  Command="{x:Static local:StepEditorPage.ArrowUp}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource ArrowUp}" 
                           Width="8"
-                          Fill="#333" 
+                          Fill="{DynamicResource ColorHex-333}" 
                           Stretch="Uniform" />
                 </Button>
             </StackPanel>
@@ -98,13 +98,13 @@
                 <Button  Command="{x:Static ApplicationCommands.New}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource Add}" 
                           Width="17"
-                          Fill="#FF34B02E" 
+                          Fill="{DynamicResource ColorHex-FF34B02E}" 
                           Stretch="Uniform" />
                 </Button>
                 <Button Command="{x:Static ApplicationCommands.Delete}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource Delete}" 
                           Width="13"
-                          Fill="#555" 
+                          Fill="{DynamicResource ColorHex-555}" 
                           Stretch="Uniform" />
                 </Button>
             </StackPanel>

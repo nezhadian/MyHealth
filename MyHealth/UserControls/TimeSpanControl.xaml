@@ -18,7 +18,7 @@
             <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBox_PreviewMouseLeftButtonDown"/>
         </Style>
     </UserControl.Resources>
-    <Border BorderThickness="1" BorderBrush="#999" Padding="2" CornerRadius="5">
+    <Border BorderThickness="1" BorderBrush="{DynamicResource ColorHex-999}" Padding="2" CornerRadius="5">
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=main,Path=HourVisibility}">
                 <TextBox x:Name="txtHour" TabIndex="0"  Style="{StaticResource TimeSpanControl.TextBoxStyle}" LostKeyboardFocus="TextBoxFilterMinMaxNumber12_LostFocus"/>
