@@ -1,1 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <CornerRadius x:Key="ImageSlider.Navigation.CornerRadius">5</CornerRadius>
+    <CornerRadius x:Key="Menu.CornerRadius">5</CornerRadius>
+    <CornerRadius x:Key="CardButton.CornerRadius">3</CornerRadius>
+    <CornerRadius x:Key="Buttons.CornerRadius">5</CornerRadius>
+    <CornerRadius x:Key="Timer.CornerRadius">2,2,0,0</CornerRadius>
+
+</ResourceDictionary>

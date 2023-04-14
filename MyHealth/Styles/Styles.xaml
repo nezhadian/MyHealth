@@ -68,7 +68,7 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="3">
+                        CornerRadius="{DynamicResource Dimensions.CornerRadius}">
                         <Border
                             x:Name="mask"
                             Padding="{TemplateBinding Padding}"
@@ -115,7 +115,7 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="5">
+                        CornerRadius="{DynamicResource Buttons.CornerRadius}">
                         <Border
                             x:Name="mask"
                             Padding="{TemplateBinding Padding}"
@@ -193,7 +193,7 @@
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource Menu.Border}" />
-        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Menu.CornerRadius}" />
         <Setter Property="Padding" Value="0,5" />
 
     </Style>
@@ -508,7 +508,7 @@
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
-        <Setter Property="CornerRadius" Value="2,2,0,0" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Timer.CornerRadius}" />
         <Setter Property="Padding" Value="5,0" />
         <Setter Property="Height" Value="23" />
         <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />

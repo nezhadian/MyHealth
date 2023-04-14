@@ -43,7 +43,7 @@
                 Padding="0"
                 HorizontalAlignment="Center"
                 Background="{DynamicResource ImageSlider.Navigation.Background}"
-                CornerRadius="5">
+                CornerRadius="{DynamicResource ImageSlider.Navigation.CornerRadius}">
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{x:Static ComponentCommands.MoveLeft}" Style="{StaticResource Buttons.GlassButton}">
                         <Path

@@ -27,7 +27,7 @@
         Padding="2"
         BorderBrush="{DynamicResource Controls.Border}"
         BorderThickness="1"
-        CornerRadius="5">
+        CornerRadius="{DynamicResource CardButton.CornerRadius}">
         <StackPanel
             Grid.Row="1"
             VerticalAlignment="Center"
