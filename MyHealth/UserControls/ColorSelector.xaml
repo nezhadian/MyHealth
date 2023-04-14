@@ -1,18 +1,31 @@
-﻿<UserControl x:Class="MyHealth.ColorSelector"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MyHealth"
-             mc:Ignorable="d" 
-             x:Name="main"
-             Cursor="Hand"
-             d:DesignHeight="30" d:DesignWidth="150">
-    <StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Left" MouseDown="Grid_MouseDown">
-        <Label Content="{Binding ElementName=main,Path=Text}" Grid.Column="0" VerticalAlignment="Center"/>
-        <Rectangle Width="35" Height="20" Margin="10,0,0,0" Stroke="{DynamicResource ColorHex-999}" >
+﻿<UserControl
+    x:Class="MyHealth.ColorSelector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MyHealth"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="main"
+    d:DesignHeight="30"
+    d:DesignWidth="150"
+    Cursor="Hand"
+    mc:Ignorable="d">
+    <StackPanel
+        HorizontalAlignment="Left"
+        Background="Transparent"
+        MouseDown="Grid_MouseDown"
+        Orientation="Horizontal">
+        <Label
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{Binding ElementName=main, Path=Text}" />
+        <Rectangle
+            Width="35"
+            Height="20"
+            Margin="10,0,0,0"
+            Stroke="{DynamicResource Controls.Border}">
             <Rectangle.Fill>
-                <SolidColorBrush Color="{Binding ElementName=main,Path=Color}"/>
+                <SolidColorBrush Color="{Binding ElementName=main, Path=Color}" />
             </Rectangle.Fill>
         </Rectangle>
     </StackPanel>

@@ -1,57 +1,85 @@
-﻿<Window x:Class="MyHealth.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyHealth"
-        xmlns:tb="http://www.hardcodet.net/taskbar"
-        mc:Ignorable="d"
-        WindowState="Maximized"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        ResizeMode="NoResize"
-        Background="Transparent"
-        Topmost="True"
-        ShowInTaskbar="False"
-        Loaded="Window_Loaded"
-        x:Name="mainWin"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Window
+    x:Class="MyHealth.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MyHealth"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
+    x:Name="mainWin"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    AllowsTransparency="True"
+    Background="Transparent"
+    Loaded="Window_Loaded"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    Topmost="True"
+    WindowState="Maximized"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Window.CommandBindings>
-        <CommandBinding Command="{x:Static SystemCommands.RestoreWindowCommand}" CanExecute="RestoreWindow_CanExecute" Executed="RestoreWindow_Executed"/>
+        <CommandBinding
+            CanExecute="RestoreWindow_CanExecute"
+            Command="{x:Static SystemCommands.RestoreWindowCommand}"
+            Executed="RestoreWindow_Executed" />
     </Window.CommandBindings>
     <Grid>
         <Grid Background="Transparent" MouseDown="Window_MouseDown">
-            <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
         </Grid>
 
-        <Border x:Name="timerBorder" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{StaticResource Main.TimerBorder}">
-            <local:Timer x:Name="timer"/>
+        <Border
+            x:Name="timerBorder"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Style="{StaticResource Main.TimerBorder}">
+            <local:Timer x:Name="timer" />
             <Border.ContextMenu>
                 <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
                     <ContextMenu.CommandBindings>
-                        <CommandBinding Command="{x:Static local:TimerCommands.RestartCommand}" CanExecute="RestartCommand_CanExecute" Executed="RestartCommand_Executed"/>
-                        <CommandBinding Command="{x:Static local:TimerCommands.PausePlayCommand}" CanExecute="RestartCommand_CanExecute" Executed="PausePlayCommand_Executed"/>
+                        <CommandBinding
+                            CanExecute="RestartCommand_CanExecute"
+                            Command="{x:Static local:TimerCommands.RestartCommand}"
+                            Executed="RestartCommand_Executed" />
+                        <CommandBinding
+                            CanExecute="RestartCommand_CanExecute"
+                            Command="{x:Static local:TimerCommands.PausePlayCommand}"
+                            Executed="PausePlayCommand_Executed" />
                     </ContextMenu.CommandBindings>
-                    
-                    <MenuItem x:Name="lstSteps" Header="Go To Step"/>
-                    
-                    <Separator/>
-                    <MenuItem x:Name="mnuLockOnScreen" StaysOpenOnClick="True" Header="Luck On Screen" IsCheckable="True"/>
-                    
-                    <Separator x:Name="sepTimerControls"/>
-                    <MenuItem x:Name="mnuPlayPause" Style="{StaticResource PlayPauseMenuItem.Style}" Command="{x:Static local:TimerCommands.PausePlayCommand}"/>
-                    <MenuItem Header="Restart Timer" Icon="{StaticResource RestartIconStyle}" Command="{x:Static local:TimerCommands.RestartCommand}"/>
 
-                    <Separator/>
-                    <MenuItem Header="Settings" Click="Settings_Click"/>
-                    <MenuItem Header="Exit" Click="ExitBtn_Click"/>
+                    <MenuItem x:Name="lstSteps" Header="Go To Step" />
+
+                    <Separator />
+                    <MenuItem
+                        x:Name="mnuLockOnScreen"
+                        Header="Luck On Screen"
+                        IsCheckable="True"
+                        StaysOpenOnClick="True" />
+
+                    <Separator x:Name="sepTimerControls" />
+                    <MenuItem
+                        x:Name="mnuPlayPause"
+                        Command="{x:Static local:TimerCommands.PausePlayCommand}"
+                        Style="{StaticResource PlayPauseMenuItem.Style}" />
+                    <MenuItem
+                        Command="{x:Static local:TimerCommands.RestartCommand}"
+                        Header="Restart Timer"
+                        Icon="{StaticResource RestartIconStyle}" />
+
+                    <Separator />
+                    <MenuItem Click="Settings_Click" Header="Settings" />
+                    <MenuItem Click="ExitBtn_Click" Header="Exit" />
                 </ContextMenu>
             </Border.ContextMenu>
         </Border>
 
-        <tb:TaskbarIcon x:Name="tbNotify" IconSource="/Images/icon.ico" ContextMenu="{Binding ContextMenu,ElementName=timerBorder}"
-                        LeftClickCommand="{x:Static SystemCommands.RestoreWindowCommand}">
-        </tb:TaskbarIcon>
+        <tb:TaskbarIcon
+            x:Name="tbNotify"
+            ContextMenu="{Binding ContextMenu, ElementName=timerBorder}"
+            IconSource="/Images/icon.ico"
+            LeftClickCommand="{x:Static SystemCommands.RestoreWindowCommand}" />
 
     </Grid>
 </Window>
