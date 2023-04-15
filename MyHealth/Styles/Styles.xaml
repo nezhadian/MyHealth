@@ -68,7 +68,7 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{DynamicResource Dimensions.CornerRadius}">
+                        CornerRadius="{DynamicResource CardButton.CornerRadius}">
                         <Border
                             x:Name="mask"
                             Padding="{TemplateBinding Padding}"
