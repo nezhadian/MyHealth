@@ -20,89 +20,85 @@
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
-    <!--  ______________________ Buttons ______________________  -->
+    <!--  ____________________________________________ Icon Styles ______________________  -->
+    <!--  Restart Icon  -->
+    <Path
+        x:Key="RestartIcon"
+        Width="10"
+        Data="{StaticResource Restart}"
+        Fill="{DynamicResource Menu.Icons}"
+        Stretch="Uniform" />
 
-    <!--  Icon Buttons  -->
-    <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
-        <Setter Property="Width" Value="30" />
-        <Setter Property="Height" Value="30" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="Transparent" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}">
-                        <ContentPresenter />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource Buttons.OnlyIcon.Hover}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.3" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <!--  Pause and Play Icons  -->
+    <Path
+        x:Key="PlayPauseMenuItem.PlayIcon"
+        Width="8"
+        Data="{StaticResource Continue}"
+        Fill="{DynamicResource IconsColor.Play}"
+        Stretch="Uniform" />
+    <Path
+        x:Key="PlayPauseMenuItem.PauseIcon"
+        Width="8"
+        Data="{StaticResource Stop}"
+        Fill="{DynamicResource IconsColor.Pause}"
+        Stretch="Uniform" />
 
-    <!--  Card Button  -->
-    <Style TargetType="local:CardButton">
-        <Setter Property="MinWidth" Value="60" />
-        <Setter Property="Height" Value="80" />
-        <Setter Property="Padding" Value="10,10,10,5" />
+    <!--  About Me Social Icons  -->
+    <Path
+        x:Key="WebsiteIcon"
+        Width="32"
+        Fill="{DynamicResource Social.FillColor}"
+        Stretch="Uniform">
+        <Path.Data>
+            F1 M 13.75 10 C 13.75 10.867188 13.703125 11.703125 13.621094 12.5 L 6.378906 12.5 C 6.296875 11.703125 6.214844 10.867188 6.214844 10 C 6.214844 9.132812 6.296875 8.296875 6.378906 7.5 L 13.621094 7.5 C 13.703125 8.296875 13.75 9.132812 13.75 10 Z M 19.683594 7.5 C 19.890625 8.300781 20 9.136719 20 10 C 20 10.863281 19.890625 11.699219 19.683594 12.5 L 14.875 12.5 C 14.957031 11.695312 15 10.824219 15 10 C 15 9.140625 14.957031 8.304688 14.875 7.5 L 19.683594 7.5 Z M 19.273438 6.25 L 14.714844 6.25 C 14.324219 3.755469 13.550781 1.664844 12.554688 0.329765 C 15.617188 1.136328 18.101562 3.357031 19.273438 6.25 Z M 13.449219 6.25 L 6.550781 6.25 C 6.789062 4.828125 7.15625 3.569531 7.605469 2.552734 C 8.015625 1.630468 8.472656 0.961327 8.914062 0.539454 C 9.351562 0.124142 9.714844 0 10 0 C 10.285156 0 10.648438 0.124142 11.085938 0.539454 C 11.527344 0.961327 11.984375 1.630468 12.394531 2.552734 C 12.84375 3.569531 13.210938 4.828125 13.449219 6.25 L 13.449219 6.25 Z M 0.726953 6.25 C 1.898046 3.357031 4.382812 1.136328 7.445312 0.329765 C 6.449218 1.664844 5.675781 3.755469 5.285156 6.25 L 0.726953 6.25 Z M 5.124999 7.5 C 5.042968 8.304688 4.964843 9.140625 4.964843 10 C 4.964843 10.824219 5.042968 11.695312 5.124999 12.5 L 0.315039 12.5 C 0.109375 11.699219 -0.000001 10.863281 -0.000001 10 C -0.000001 9.136719 0.109375 8.300781 0.315039 7.5 L 5.124999 7.5 Z M 7.605468 17.445312 C 7.156249 16.429688 6.789062 15.171875 6.55078 13.75 L 13.449219 13.75 C 13.210938 15.171875 12.84375 16.429688 12.394531 17.445312 C 11.984375 18.371094 11.527343 19.039062 11.085938 19.460938 C 10.648437 19.875 10.285156 20 9.964844 20 C 9.714843 20 9.351562 19.875 8.914062 19.460938 C 8.472655 19.039062 8.015624 18.371094 7.605468 17.445312 L 7.605468 17.445312 Z M 7.445312 19.671875 C 4.382812 18.863281 1.898046 16.644531 0.726953 13.75 L 5.285156 13.75 C 5.675781 16.246094 6.449218 18.335938 7.445312 19.671875 L 7.445312 19.671875 Z M 12.554686 19.671875 C 13.550779 18.335938 14.324219 16.246094 14.714844 13.75 L 19.273436 13.75 C 18.101561 16.644531 15.617188 18.863281 12.554686 19.671875 L 12.554686 19.671875 Z
+        </Path.Data>
+    </Path>
+    <Path
+        x:Key="GmailIcon"
+        Width="32"
+        Fill="{DynamicResource Social.FillColor}"
+        Stretch="Uniform">
+        <Path.Data>
+            F1 M 10 13.75 C 9.354297 13.75 8.708593 13.538203 8.157812 13.108984 L 0 6.765625 L 0 15.625 C 0 16.660156 0.839453 17.5 1.875 17.5 L 18.125 17.5 C 19.160547 17.5 20 16.660547 20 15.625 L 20 6.765625 L 11.84375 13.113281 C 11.292969 13.539062 10.644531 13.75 10 13.75 Z M 0.636328 5.675781 L 8.92539 12.125001 C 9.557812 12.617188 10.443749 12.617188 11.076172 12.125001 L 19.365234 5.675782 C 19.730469 5.363281 20 4.882812 20 4.375 C 20 3.339453 19.160156 2.5 18.125 2.5 L 1.875 2.5 C 0.839453 2.5 0 3.339453 0 4.375 C 0 4.882812 0.234765 5.363281 0.636328 5.675781 Z
+        </Path.Data>
+    </Path>
+    <Path
+        x:Key="TelegramIcon"
+        Width="32"
+        Fill="{DynamicResource Social.FillColor}"
+        Stretch="Uniform">
+        <Path.Data>
+            F1 M 10 0.3125 C 4.649726 0.3125 0.312499 4.649726 0.312499 10 C 0.312499 15.350274 4.649726 19.6875 10 19.6875 C 15.350274 19.6875 19.6875 15.350274 19.6875 10 C 19.6875 4.649726 15.350274 0.3125 10 0.3125 Z M 14.490313 6.900782 C 14.344531 8.432617 13.713711 12.149923 13.392656 13.865625 C 13.256874 14.591562 12.989453 14.835001 12.730625 14.858789 C 12.168125 14.910585 11.740858 14.487032 11.195976 14.129844 C 10.34336 13.570937 9.86168 13.223008 9.034023 12.677617 C 8.077578 12.047343 8.697617 11.701055 9.242695 11.134648 C 9.385351 10.986485 11.864062 8.731915 11.912031 8.527383 C 11.918009 8.501797 11.92375 8.406288 11.866953 8.356133 C 11.810158 8.305977 11.726719 8.322968 11.666367 8.336601 C 11.580873 8.356029 10.21879 9.256314 7.580117 11.03746 C 7.193528 11.302929 6.843347 11.432278 6.52957 11.425507 C 6.183672 11.418046 5.51832 11.229959 5.023672 11.06914 C 4.416992 10.871953 3.934804 10.767694 3.976796 10.432773 C 3.998671 10.258293 4.238906 10.079908 4.6975 9.897616 C 7.521615 8.6672 9.404792 7.856002 10.347032 7.464023 C 13.037344 6.344999 13.596368 6.150625 13.960743 6.14414 C 14.040899 6.142812 14.220079 6.162655 14.336133 6.256836 C 14.413334 6.323924 14.462543 6.417546 14.474024 6.519179 C 14.49369 6.645372 14.499154 6.773372 14.490313 6.900782 Z
+        </Path.Data>
+    </Path>
+    <Path
+        x:Key="GithubIcon"
+        Width="32"
+        Fill="{DynamicResource Social.FillColor}"
+        Stretch="Uniform">
+        <Path.Data>
+            F1 M 6.792969 15.523438 C 6.792969 15.601562 6.703125 15.664062 6.589844 15.664062 C 6.460938 15.675781 6.371093 15.613281 6.371093 15.523438 C 6.371093 15.445312 6.460938 15.382812 6.574218 15.382812 C 6.691406 15.371094 6.792969 15.433593 6.792969 15.523438 Z M 5.578125 15.347656 C 5.550781 15.425781 5.628906 15.515624 5.746093 15.539062 C 5.847656 15.578125 5.964844 15.539062 5.988281 15.460938 C 6.011718 15.382812 5.9375 15.292969 5.820312 15.257812 C 5.718749 15.230467 5.605468 15.269529 5.578125 15.347654 Z M 7.304687 15.281249 C 7.191406 15.308594 7.113281 15.382812 7.124999 15.472655 C 7.136718 15.55078 7.23828 15.601561 7.355468 15.574218 C 7.468749 15.546874 7.546874 15.472655 7.535155 15.39453 C 7.523437 15.320312 7.417968 15.269529 7.304687 15.281249 Z M 9.875 0.3125 C 4.457031 0.3125 0.312499 4.425781 0.312499 9.84375 C 0.312499 14.175781 3.039062 17.882812 6.933593 19.1875 C 7.433593 19.277344 7.609375 18.96875 7.609375 18.714844 C 7.609375 18.472656 7.597656 17.136719 7.597656 16.316406 C 7.597656 16.316406 4.863281 16.902344 4.289062 15.152345 C 4.289062 15.152345 3.843749 14.015626 3.203124 13.722657 C 3.203124 13.722657 2.308592 13.109375 3.265624 13.121095 C 3.265624 13.121095 4.23828 13.19922 4.773436 14.128906 C 5.628905 15.63672 7.062498 15.203125 7.621093 14.945312 C 7.710937 14.320312 7.964843 13.886719 8.246093 13.628906 C 6.062499 13.386718 3.859374 13.070312 3.859374 9.3125 C 3.859374 8.238281 4.156249 7.699219 4.781249 7.011719 C 4.679687 6.757812 4.347655 5.710938 4.882812 4.359375 C 5.699217 4.105469 7.578124 5.414062 7.578124 5.414062 C 8.359374 5.195312 9.199218 5.082031 10.031249 5.082031 C 10.86328 5.082031 11.703124 5.195312 12.484374 5.414062 C 12.484374 5.414062 14.36328 4.101562 15.179687 4.359375 C 15.714844 5.714844 15.382812 6.757812 15.281249 7.011719 C 15.906249 7.703125 16.289062 8.242188 16.289062 9.3125 C 16.289062 13.082031 13.98828 13.382812 11.804687 13.628906 C 12.164062 13.9375 12.468749 14.523438 12.468749 15.441406 C 12.468749 16.757812 12.457031 18.386719 12.457031 18.707031 C 12.457031 18.960938 12.636719 19.269531 13.132812 19.179688 C 17.039062 17.882812 19.687498 14.175781 19.687498 9.84375 C 19.687498 4.425781 15.292968 0.3125 9.874999 0.3125 Z M 4.109374 13.785156 C 4.058592 13.824219 4.070311 13.914062 4.136717 13.988281 C 4.199218 14.050781 4.289062 14.078125 4.339843 14.027344 C 4.390624 13.988281 4.378905 13.898438 4.312499 13.824219 C 4.249999 13.761719 4.160155 13.734375 4.109374 13.785156 Z M 3.687499 13.46875 C 3.660155 13.51953 3.699217 13.58203 3.777342 13.621093 C 3.839843 13.660155 3.917968 13.648438 3.945312 13.593749 C 3.972656 13.542968 3.933593 13.480468 3.855468 13.441405 C 3.777343 13.417968 3.714843 13.429688 3.687499 13.46875 Z M 4.953124 14.859375 C 4.890624 14.910155 4.914062 15.027343 5.003905 15.101562 C 5.093749 15.191406 5.20703 15.203125 5.257812 15.140625 C 5.308593 15.089845 5.285155 14.972657 5.20703 14.898438 C 5.121093 14.808594 5.003905 14.796875 4.953124 14.859375 Z M 4.507811 14.285155 C 4.445311 14.324218 4.445311 14.425781 4.507811 14.515624 C 4.570312 14.605467 4.67578 14.644529 4.726562 14.605467 C 4.789062 14.554687 4.789062 14.453124 4.726562 14.363279 C 4.671874 14.273436 4.570312 14.234373 4.507811 14.285154 Z
+        </Path.Data>
+    </Path>
+    <Path
+        x:Key="LinkedInIcon"
+        Width="32"
+        Fill="{DynamicResource Social.FillColor}"
+        Stretch="Uniform">
+        <Path.Data>
+            F1 M 5.167188 17.5 L 1.539062 17.5 L 1.539062 5.816406 L 5.167188 5.816406 Z M 3.351171 4.222656 C 2.191015 4.222656 1.25 3.261719 1.25 2.101562 C 1.25 0.484079 3.000977 -0.526848 4.401758 0.281895 C 5.051863 0.657232 5.452344 1.350885 5.452344 2.101562 C 5.452344 3.261719 4.510937 4.222656 3.351171 4.222656 Z M 18.746092 17.5 L 15.12578 17.5 L 15.12578 11.8125 C 15.12578 10.45703 15.098436 8.71875 13.239452 8.71875 C 11.353123 8.71875 11.064061 10.191406 11.064061 11.714844 L 11.064061 17.5 L 7.439843 17.5 L 7.439843 5.816406 L 10.919531 5.816406 L 10.919531 7.410156 L 10.970312 7.410156 C 11.454687 6.492188 12.63789 5.523438 14.403124 5.523438 C 18.074999 5.523438 18.75 7.941406 18.75 11.082031 L 18.75 17.5 Z
+        </Path.Data>
+    </Path>
 
-        <Setter Property="Background" Value="Red" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="12" />
+    <!--  CheckMark Icon  -->
+    <Path
+        x:Key="CheckMarkIcon"
+        Width="10"
+        Data="{StaticResource CheckMark}"
+        Fill="{DynamicResource Menu.Icons}"
+        Stretch="Uniform" />
 
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:CardButton">
-                    <Border
-                        x:Name="bg"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{DynamicResource CardButton.CornerRadius}">
-                        <Border
-                            x:Name="mask"
-                            Padding="{TemplateBinding Padding}"
-                            Background="Transparent"
-                            CornerRadius="{Binding CornerRadius, ElementName=bg}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-                                <ContentPresenter Grid.Row="2" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                                <ContentPresenter Grid.Row="0" Content="{TemplateBinding UpperContent}" />
-                            </Grid>
-                        </Border>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Hover}" />
-                        </Trigger>
-
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Pressed}" />
-                        </Trigger>
-
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.3" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
+    <!--  ____________________________________________ Buttons ______________________  -->
     <!--  Base Button  -->
     <Style x:Key="Buttons.Base" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
@@ -111,7 +107,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border
-                        x:Name="bg"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
@@ -120,7 +115,7 @@
                             x:Name="mask"
                             Padding="{TemplateBinding Padding}"
                             Background="Transparent"
-                            CornerRadius="{Binding CornerRadius, ElementName=bg}">
+                            CornerRadius="{DynamicResource Buttons.CornerRadius}">
                             <ContentPresenter
                                 Grid.Row="2"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -188,14 +183,102 @@
         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
     </Style>
 
-    <!--  ______________________ Menu Item Style ______________________  -->
+    <!--  Card Button  -->
+    <Style BasedOn="{StaticResource Buttons.Base}" TargetType="local:CardButton">
+        <Setter Property="MinWidth" Value="60" />
+        <Setter Property="Height" Value="80" />
+        <Setter Property="Padding" Value="10,10,10,5" />
+
+        <Setter Property="Background" Value="Red" />
+        <Setter Property="Foreground" Value="{DynamicResource Buttons.Foreground}" />
+        <Setter Property="FontSize" Value="12" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CardButton">
+                    <!--  Bg Border  -->
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{DynamicResource CardButton.CornerRadius}">
+
+                        <!--  Masked Border  -->
+                        <Border
+                            x:Name="mask"
+                            Padding="{TemplateBinding Padding}"
+                            Background="Transparent"
+                            CornerRadius="{DynamicResource CardButton.CornerRadius}">
+                            <Grid>
+
+                                <!--  Rows  -->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Main Content  -->
+                                <ContentPresenter Grid.Row="2" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+
+                                <!--  Upper Content  -->
+                                <ContentPresenter Grid.Row="0" Content="{TemplateBinding UpperContent}" />
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Hover}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Pressed}" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Icon Buttons  -->
+    <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource Buttons.OnlyIcon.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  ____________________________________________ Menu Styles ______________________  -->
+    <!--  Context Menu  -->
     <Style x:Key="ContextMenu.BgBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{DynamicResource Menu.Border}" />
         <Setter Property="CornerRadius" Value="{DynamicResource Menu.CornerRadius}" />
         <Setter Property="Padding" Value="0,5" />
-
     </Style>
     <Style TargetType="ContextMenu">
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
@@ -212,6 +295,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  Menu Item  -->
     <Style TargetType="MenuItem">
         <Setter Property="MinWidth" Value="160" />
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
@@ -225,12 +310,14 @@
                 <ControlTemplate TargetType="MenuItem">
                     <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
                         <Grid>
+                            <!--  Columns  -->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="24" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="24" />
                             </Grid.ColumnDefinitions>
 
+                            <!--  Sub Menu Popup  -->
                             <Popup
                                 x:Name="Popup"
                                 AllowsTransparency="True"
@@ -244,27 +331,28 @@
                                 </Border>
                             </Popup>
 
+                            <!--  Menuitem Icon  -->
                             <ContentPresenter x:Name="icon" ContentSource="Icon" />
 
-                            <Path
+                            <!--  CheckMark if MenuItem isChackable  -->
+                            <ContentControl
                                 x:Name="checkMark"
-                                Width="10"
-                                Data="F1 M 18.382812 4.117188 C 18.871094 4.605469 18.871094 5.394531 18.382812 5.882812 L 8.382812 15.882812 C 7.894531 16.371094 7.105469 16.371094 6.617188 15.882812 L 1.616094 10.882812 C 1.127968 10.394531 1.127968 9.605469 1.616094 9.117188 C 2.104297 8.628906 2.895703 8.628906 3.383984 9.117188 L 7.464843 13.230469 L 16.617186 4.117188 C 17.105467 3.628125 17.894531 3.628125 18.382812 4.117188 L 18.382812 4.117188 Z "
-                                Fill="{DynamicResource Menu.Icons}"
-                                Stretch="Uniform"
+                                Content="{StaticResource CheckMarkIcon}"
                                 Visibility="Collapsed" />
 
+                            <!--  Main Content  -->
                             <ContentPresenter
                                 Grid.Column="1"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 ContentSource="Header" />
 
+                            <!--  Right Submenu arrow icon  -->
                             <Path
                                 x:Name="indicator"
                                 Grid.Column="2"
                                 Width="4.5"
-                                Data="F1 M 7.5 17.5 C 7.180156 17.5 6.860156 17.37793 6.616406 17.133789 C 6.128125 16.645508 6.128125 15.854492 6.616406 15.366211 L 11.984375 10 L 6.616406 4.632812 C 6.128125 4.144531 6.128125 3.353516 6.616406 2.865234 C 7.104688 2.376953 7.895703 2.376953 8.383985 2.865234 L 14.633985 9.115234 C 15.122266 9.603516 15.122266 10.394531 14.633985 10.882812 L 8.383985 17.132812 C 8.139843 17.378906 7.819921 17.5 7.5 17.5 Z "
+                                Data="{StaticResource ArrowRightIndicator}"
                                 Fill="{TemplateBinding Foreground}"
                                 Stretch="Uniform" />
 
@@ -272,19 +360,27 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <!--  Hover  -->
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" Value="{DynamicResource Menu.Hover}" />
                         </Trigger>
+
+                        <!--  Pressed  -->
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" Value="{DynamicResource Menu.Pressed}" />
                         </Trigger>
+
+                        <!--  Disabled  -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Visibility" Value="Collapsed" />
                         </Trigger>
+
+                        <!--  Has Submenu  -->
                         <Trigger Property="HasItems" Value="False">
                             <Setter TargetName="indicator" Property="Visibility" Value="Collapsed" />
                         </Trigger>
 
+                        <!--  Show Checkmark if isCheckble and no icon setted  -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsCheckable" Value="true" />
@@ -301,8 +397,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!--  Menu Seperator  -->
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="Separator">
-        <Setter Property="Padding" Value="0,5,0,5" />
+        <Setter Property="Padding" Value="0,5" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource Menu.Border}" />
         <Setter Property="Template">
@@ -316,39 +414,168 @@
         </Setter>
     </Style>
 
-    <!--  Play Pause Menuitem  -->
-    <Path
-        x:Key="PlayPauseMenuItem.PlayIcon"
-        Width="8"
-        Data="{StaticResource Continue}"
-        Fill="{DynamicResource IconsColor.Play}"
-        Stretch="Uniform" />
-    <Path
-        x:Key="PlayPauseMenuItem.PauseIcon"
-        Width="8"
-        Data="{StaticResource Stop}"
-        Fill="{DynamicResource IconsColor.Pause}"
-        Stretch="Uniform" />
-    <Style
-        x:Key="PlayPauseMenuItem.Style"
-        BasedOn="{StaticResource {x:Type MenuItem}}"
-        TargetType="MenuItem">
-        <Setter Property="IsCheckable" Value="True" />
-        <Setter Property="StaysOpenOnClick" Value="True" />
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
-                <Setter Property="Header" Value="Continue Timer" />
+    <!--  ____________________________________________ Custom Control Styles ______________________  -->
+    <!--  Step Data Style  -->
+    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
+    <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
+        <Border Background="{TemplateBinding Background}">
+            <Grid>
+                <!--  Columns  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3" />
+                    <ColumnDefinition Width="24" />
+                    <ColumnDefinition Width="3" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Selection Bar  -->
+                <Border
+                    x:Name="selBar"
+                    Background="{DynamicResource StepData.SelectionColor}"
+                    CornerRadius="0,3,3,0"
+                    Visibility="Collapsed" />
+
+                <!--  Icon  -->
+                <Path
+                    x:Name="icon"
+                    Grid.Column="1"
+                    Width="15"
+                    Data="{TemplateBinding Icon}"
+                    Fill="{DynamicResource StepData.IconColor}"
+                    Stretch="Uniform" />
+
+                <!--  Text  -->
+                <TextBlock
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    Text="{TemplateBinding StepName}" />
+
+                <!--  Duration TimeSpan  -->
+                <TextBlock
+                    x:Name="tsDuration"
+                    Grid.Column="4"
+                    VerticalAlignment="Center"
+                    Text="{TemplateBinding Duration,
+                                           Converter={StaticResource TimeSpanConverter}}"
+                    Visibility="Collapsed" />
+
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <!--  Hover  -->
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{DynamicResource StepData.Hover}" />
             </Trigger>
-
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
-                <Setter Property="Header" Value="Pause Timer" />
-
+            <!--  IsSelected  -->
+            <Trigger Property="IsSelected" Value="true">
+                <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
+                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
+            </Trigger>
+            <!--  Duration Visibility  -->
+            <Trigger Property="StepType" Value="WorkTime">
+                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="StepType" Value="ImageSlider">
+                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="StepType" Value="ShortBreak">
+                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="StepData.Seperator" TargetType="{x:Type local:StepData}">
+        <Grid Background="{TemplateBinding Background}">
+            <Rectangle
+                x:Name="bar"
+                Height="1"
+                Fill="{TemplateBinding Foreground}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="bar" Property="Height" Value="5" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter TargetName="bar" Property="Height" Value="5" />
+                <Setter TargetName="bar" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style TargetType="{x:Type local:StepData}">
+        <Setter Property="Height" Value="27" />
+        <Setter Property="Template" Value="{StaticResource StepData.Template}" />
+        <Style.Triggers>
+            <Trigger Property="StepType" Value="Seperator">
+                <Setter Property="Height" Value="15" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource StepData.SeperatorLineColor}" />
+                <Setter Property="Template" Value="{StaticResource StepData.Seperator}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
+    <!--  Timer Style  -->
+    <Style TargetType="{x:Type local:Timer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Timer}">
+                    <TextBlock
+                        FontSize="16"
+                        Foreground="{DynamicResource StatusTextColor}"
+                        Text="{TemplateBinding RemainedTime,
+                                               Converter={StaticResource TimeSpanConverter}}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Settings ListboxItem  -->
+    <Style TargetType="local:SettingListMenuItem">
+        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="MinWidth" Value="153" />
+        <Setter Property="Padding" Value="15,9" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SettingListMenuItem">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--  IsSelected  -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.FocusedColor}" />
+                <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
+            </Trigger>
+            <!--  Hover When NotSelected  -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsSelected" Value="False" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.Hover}" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <!--  Set Bg to Gray when selected and nofocus  -->
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsFocused" Value="False" />
+                    <Condition Property="IsSelected" Value="True" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.NoFocusColor}" />
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  ____________________________________________ Custom Styles ______________________  -->
     <!--  Step Data MenuItem  -->
     <Style
         x:Key="StepData.MenuItem"
@@ -404,107 +631,6 @@
         </Setter>
     </Style>
 
-    <!--  Step Data Style  -->
-    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
-
-    <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
-        <Border Background="{TemplateBinding Background}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3" />
-                    <ColumnDefinition Width="24" />
-                    <ColumnDefinition Width="3" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
-
-                <Border
-                    x:Name="selBar"
-                    Background="{DynamicResource StepData.SelectionColor}"
-                    CornerRadius="0,3,3,0"
-                    Visibility="Collapsed" />
-                <Path
-                    x:Name="icon"
-                    Grid.Column="1"
-                    Width="15"
-                    Data="{TemplateBinding Icon}"
-                    Fill="{DynamicResource StepData.IconColor}"
-                    Stretch="Uniform" />
-
-                <TextBlock
-                    Grid.Column="3"
-                    VerticalAlignment="Center"
-                    Text="{TemplateBinding StepName}" />
-                <TextBlock
-                    x:Name="timeSpan"
-                    Grid.Column="4"
-                    Margin="0,0,10,0"
-                    VerticalAlignment="Center"
-                    Text="{TemplateBinding Duration,
-                                           Converter={StaticResource TimeSpanConverter}}"
-                    Visibility="Collapsed" />
-
-            </Grid>
-        </Border>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{DynamicResource StepData.Hover}" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="true">
-                <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
-                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
-            </Trigger>
-            <Trigger Property="StepType" Value="WorkTime">
-                <Setter TargetName="timeSpan" Property="Visibility" Value="Visible" />
-            </Trigger>
-            <Trigger Property="StepType" Value="ImageSlider">
-                <Setter TargetName="timeSpan" Property="Visibility" Value="Visible" />
-            </Trigger>
-            <Trigger Property="StepType" Value="ShortBreak">
-                <Setter TargetName="timeSpan" Property="Visibility" Value="Visible" />
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-    <ControlTemplate x:Key="StepData.Seperator" TargetType="{x:Type local:StepData}">
-        <Grid Background="{TemplateBinding Background}">
-            <Rectangle
-                x:Name="bar"
-                Height="1"
-                Fill="{TemplateBinding Foreground}" />
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter TargetName="bar" Property="Height" Value="5" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="true">
-                <Setter TargetName="bar" Property="Height" Value="5" />
-                <Setter TargetName="bar" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-    <Style TargetType="{x:Type local:StepData}">
-        <Setter Property="Height" Value="27" />
-        <Setter Property="Template" Value="{StaticResource StepData.Template}" />
-        <Style.Triggers>
-            <Trigger Property="StepType" Value="Seperator">
-                <Setter Property="Height" Value="15" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="{DynamicResource StepData.SeperatorLineColor}" />
-                <Setter Property="Template" Value="{StaticResource StepData.Seperator}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <!--  Restart Icon  -->
-    <Path
-        x:Key="RestartIconStyle"
-        Width="10"
-        Data="{StaticResource Restart}"
-        Fill="{DynamicResource Menu.Icons}"
-        Stretch="Uniform" />
-
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
@@ -516,88 +642,40 @@
 
     </Style>
 
-    <!--  Timer Style  -->
-    <Style TargetType="{x:Type local:Timer}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Timer}">
-                    <TextBlock
-                        FontSize="16"
-                        Foreground="{DynamicResource StatusTextColor}"
-                        Text="{TemplateBinding RemainedTime,
-                                               Converter={StaticResource TimeSpanConverter}}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <!--  Play Pause Menuitem  -->
+    <Style
+        x:Key="PlayPauseMenuItem.Style"
+        BasedOn="{StaticResource {x:Type MenuItem}}"
+        TargetType="MenuItem">
+        <Setter Property="IsCheckable" Value="True" />
+        <Setter Property="StaysOpenOnClick" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
+                <Setter Property="Header" Value="Continue Timer" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
+                <Setter Property="Header" Value="Pause Timer" />
+
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
-    <!--  AboutMe Social Icons  -->
-
-    <Path
-        x:Key="WebsiteIconStyle"
-        Width="32"
-        Fill="{DynamicResource Social.FillColor}"
-        Stretch="Uniform">
-        <Path.Data>
-            F1 M 13.75 10 C 13.75 10.867188 13.703125 11.703125 13.621094 12.5 L 6.378906 12.5 C 6.296875 11.703125 6.214844 10.867188 6.214844 10 C 6.214844 9.132812 6.296875 8.296875 6.378906 7.5 L 13.621094 7.5 C 13.703125 8.296875 13.75 9.132812 13.75 10 Z M 19.683594 7.5 C 19.890625 8.300781 20 9.136719 20 10 C 20 10.863281 19.890625 11.699219 19.683594 12.5 L 14.875 12.5 C 14.957031 11.695312 15 10.824219 15 10 C 15 9.140625 14.957031 8.304688 14.875 7.5 L 19.683594 7.5 Z M 19.273438 6.25 L 14.714844 6.25 C 14.324219 3.755469 13.550781 1.664844 12.554688 0.329765 C 15.617188 1.136328 18.101562 3.357031 19.273438 6.25 Z M 13.449219 6.25 L 6.550781 6.25 C 6.789062 4.828125 7.15625 3.569531 7.605469 2.552734 C 8.015625 1.630468 8.472656 0.961327 8.914062 0.539454 C 9.351562 0.124142 9.714844 0 10 0 C 10.285156 0 10.648438 0.124142 11.085938 0.539454 C 11.527344 0.961327 11.984375 1.630468 12.394531 2.552734 C 12.84375 3.569531 13.210938 4.828125 13.449219 6.25 L 13.449219 6.25 Z M 0.726953 6.25 C 1.898046 3.357031 4.382812 1.136328 7.445312 0.329765 C 6.449218 1.664844 5.675781 3.755469 5.285156 6.25 L 0.726953 6.25 Z M 5.124999 7.5 C 5.042968 8.304688 4.964843 9.140625 4.964843 10 C 4.964843 10.824219 5.042968 11.695312 5.124999 12.5 L 0.315039 12.5 C 0.109375 11.699219 -0.000001 10.863281 -0.000001 10 C -0.000001 9.136719 0.109375 8.300781 0.315039 7.5 L 5.124999 7.5 Z M 7.605468 17.445312 C 7.156249 16.429688 6.789062 15.171875 6.55078 13.75 L 13.449219 13.75 C 13.210938 15.171875 12.84375 16.429688 12.394531 17.445312 C 11.984375 18.371094 11.527343 19.039062 11.085938 19.460938 C 10.648437 19.875 10.285156 20 9.964844 20 C 9.714843 20 9.351562 19.875 8.914062 19.460938 C 8.472655 19.039062 8.015624 18.371094 7.605468 17.445312 L 7.605468 17.445312 Z M 7.445312 19.671875 C 4.382812 18.863281 1.898046 16.644531 0.726953 13.75 L 5.285156 13.75 C 5.675781 16.246094 6.449218 18.335938 7.445312 19.671875 L 7.445312 19.671875 Z M 12.554686 19.671875 C 13.550779 18.335938 14.324219 16.246094 14.714844 13.75 L 19.273436 13.75 C 18.101561 16.644531 15.617188 18.863281 12.554686 19.671875 L 12.554686 19.671875 Z
-        </Path.Data>
-    </Path>
-
-    <Path
-        x:Key="GmailIconStyle"
-        Width="32"
-        Fill="{DynamicResource Social.FillColor}"
-        Stretch="Uniform">
-        <Path.Data>
-            F1 M 10 13.75 C 9.354297 13.75 8.708593 13.538203 8.157812 13.108984 L 0 6.765625 L 0 15.625 C 0 16.660156 0.839453 17.5 1.875 17.5 L 18.125 17.5 C 19.160547 17.5 20 16.660547 20 15.625 L 20 6.765625 L 11.84375 13.113281 C 11.292969 13.539062 10.644531 13.75 10 13.75 Z M 0.636328 5.675781 L 8.92539 12.125001 C 9.557812 12.617188 10.443749 12.617188 11.076172 12.125001 L 19.365234 5.675782 C 19.730469 5.363281 20 4.882812 20 4.375 C 20 3.339453 19.160156 2.5 18.125 2.5 L 1.875 2.5 C 0.839453 2.5 0 3.339453 0 4.375 C 0 4.882812 0.234765 5.363281 0.636328 5.675781 Z
-        </Path.Data>
-    </Path>
-
-    <Path
-        x:Key="TelegramIconStyle"
-        Width="32"
-        Fill="{DynamicResource Social.FillColor}"
-        Stretch="Uniform">
-        <Path.Data>
-            F1 M 10 0.3125 C 4.649726 0.3125 0.312499 4.649726 0.312499 10 C 0.312499 15.350274 4.649726 19.6875 10 19.6875 C 15.350274 19.6875 19.6875 15.350274 19.6875 10 C 19.6875 4.649726 15.350274 0.3125 10 0.3125 Z M 14.490313 6.900782 C 14.344531 8.432617 13.713711 12.149923 13.392656 13.865625 C 13.256874 14.591562 12.989453 14.835001 12.730625 14.858789 C 12.168125 14.910585 11.740858 14.487032 11.195976 14.129844 C 10.34336 13.570937 9.86168 13.223008 9.034023 12.677617 C 8.077578 12.047343 8.697617 11.701055 9.242695 11.134648 C 9.385351 10.986485 11.864062 8.731915 11.912031 8.527383 C 11.918009 8.501797 11.92375 8.406288 11.866953 8.356133 C 11.810158 8.305977 11.726719 8.322968 11.666367 8.336601 C 11.580873 8.356029 10.21879 9.256314 7.580117 11.03746 C 7.193528 11.302929 6.843347 11.432278 6.52957 11.425507 C 6.183672 11.418046 5.51832 11.229959 5.023672 11.06914 C 4.416992 10.871953 3.934804 10.767694 3.976796 10.432773 C 3.998671 10.258293 4.238906 10.079908 4.6975 9.897616 C 7.521615 8.6672 9.404792 7.856002 10.347032 7.464023 C 13.037344 6.344999 13.596368 6.150625 13.960743 6.14414 C 14.040899 6.142812 14.220079 6.162655 14.336133 6.256836 C 14.413334 6.323924 14.462543 6.417546 14.474024 6.519179 C 14.49369 6.645372 14.499154 6.773372 14.490313 6.900782 Z
-        </Path.Data>
-    </Path>
-
-    <Path
-        x:Key="GithubIconStyle"
-        Width="32"
-        Fill="{DynamicResource Social.FillColor}"
-        Stretch="Uniform">
-        <Path.Data>
-            F1 M 6.792969 15.523438 C 6.792969 15.601562 6.703125 15.664062 6.589844 15.664062 C 6.460938 15.675781 6.371093 15.613281 6.371093 15.523438 C 6.371093 15.445312 6.460938 15.382812 6.574218 15.382812 C 6.691406 15.371094 6.792969 15.433593 6.792969 15.523438 Z M 5.578125 15.347656 C 5.550781 15.425781 5.628906 15.515624 5.746093 15.539062 C 5.847656 15.578125 5.964844 15.539062 5.988281 15.460938 C 6.011718 15.382812 5.9375 15.292969 5.820312 15.257812 C 5.718749 15.230467 5.605468 15.269529 5.578125 15.347654 Z M 7.304687 15.281249 C 7.191406 15.308594 7.113281 15.382812 7.124999 15.472655 C 7.136718 15.55078 7.23828 15.601561 7.355468 15.574218 C 7.468749 15.546874 7.546874 15.472655 7.535155 15.39453 C 7.523437 15.320312 7.417968 15.269529 7.304687 15.281249 Z M 9.875 0.3125 C 4.457031 0.3125 0.312499 4.425781 0.312499 9.84375 C 0.312499 14.175781 3.039062 17.882812 6.933593 19.1875 C 7.433593 19.277344 7.609375 18.96875 7.609375 18.714844 C 7.609375 18.472656 7.597656 17.136719 7.597656 16.316406 C 7.597656 16.316406 4.863281 16.902344 4.289062 15.152345 C 4.289062 15.152345 3.843749 14.015626 3.203124 13.722657 C 3.203124 13.722657 2.308592 13.109375 3.265624 13.121095 C 3.265624 13.121095 4.23828 13.19922 4.773436 14.128906 C 5.628905 15.63672 7.062498 15.203125 7.621093 14.945312 C 7.710937 14.320312 7.964843 13.886719 8.246093 13.628906 C 6.062499 13.386718 3.859374 13.070312 3.859374 9.3125 C 3.859374 8.238281 4.156249 7.699219 4.781249 7.011719 C 4.679687 6.757812 4.347655 5.710938 4.882812 4.359375 C 5.699217 4.105469 7.578124 5.414062 7.578124 5.414062 C 8.359374 5.195312 9.199218 5.082031 10.031249 5.082031 C 10.86328 5.082031 11.703124 5.195312 12.484374 5.414062 C 12.484374 5.414062 14.36328 4.101562 15.179687 4.359375 C 15.714844 5.714844 15.382812 6.757812 15.281249 7.011719 C 15.906249 7.703125 16.289062 8.242188 16.289062 9.3125 C 16.289062 13.082031 13.98828 13.382812 11.804687 13.628906 C 12.164062 13.9375 12.468749 14.523438 12.468749 15.441406 C 12.468749 16.757812 12.457031 18.386719 12.457031 18.707031 C 12.457031 18.960938 12.636719 19.269531 13.132812 19.179688 C 17.039062 17.882812 19.687498 14.175781 19.687498 9.84375 C 19.687498 4.425781 15.292968 0.3125 9.874999 0.3125 Z M 4.109374 13.785156 C 4.058592 13.824219 4.070311 13.914062 4.136717 13.988281 C 4.199218 14.050781 4.289062 14.078125 4.339843 14.027344 C 4.390624 13.988281 4.378905 13.898438 4.312499 13.824219 C 4.249999 13.761719 4.160155 13.734375 4.109374 13.785156 Z M 3.687499 13.46875 C 3.660155 13.51953 3.699217 13.58203 3.777342 13.621093 C 3.839843 13.660155 3.917968 13.648438 3.945312 13.593749 C 3.972656 13.542968 3.933593 13.480468 3.855468 13.441405 C 3.777343 13.417968 3.714843 13.429688 3.687499 13.46875 Z M 4.953124 14.859375 C 4.890624 14.910155 4.914062 15.027343 5.003905 15.101562 C 5.093749 15.191406 5.20703 15.203125 5.257812 15.140625 C 5.308593 15.089845 5.285155 14.972657 5.20703 14.898438 C 5.121093 14.808594 5.003905 14.796875 4.953124 14.859375 Z M 4.507811 14.285155 C 4.445311 14.324218 4.445311 14.425781 4.507811 14.515624 C 4.570312 14.605467 4.67578 14.644529 4.726562 14.605467 C 4.789062 14.554687 4.789062 14.453124 4.726562 14.363279 C 4.671874 14.273436 4.570312 14.234373 4.507811 14.285154 Z
-        </Path.Data>
-    </Path>
-
-    <Path
-        x:Key="LinkedInIconStyle"
-        Width="32"
-        Fill="{DynamicResource Social.FillColor}"
-        Stretch="Uniform">
-        <Path.Data>
-            F1 M 5.167188 17.5 L 1.539062 17.5 L 1.539062 5.816406 L 5.167188 5.816406 Z M 3.351171 4.222656 C 2.191015 4.222656 1.25 3.261719 1.25 2.101562 C 1.25 0.484079 3.000977 -0.526848 4.401758 0.281895 C 5.051863 0.657232 5.452344 1.350885 5.452344 2.101562 C 5.452344 3.261719 4.510937 4.222656 3.351171 4.222656 Z M 18.746092 17.5 L 15.12578 17.5 L 15.12578 11.8125 C 15.12578 10.45703 15.098436 8.71875 13.239452 8.71875 C 11.353123 8.71875 11.064061 10.191406 11.064061 11.714844 L 11.064061 17.5 L 7.439843 17.5 L 7.439843 5.816406 L 10.919531 5.816406 L 10.919531 7.410156 L 10.970312 7.410156 C 11.454687 6.492188 12.63789 5.523438 14.403124 5.523438 C 18.074999 5.523438 18.75 7.941406 18.75 11.082031 L 18.75 17.5 Z
-        </Path.Data>
-    </Path>
-
     <!--  AboutMe Social Styles  -->
-
     <Style
         x:Key="AboutMe.SocialShared"
         BasedOn="{StaticResource {x:Type local:CardButton}}"
         TargetType="local:CardButton">
         <Setter Property="Foreground" Value="{DynamicResource Social.TextColor}" />
     </Style>
-
     <Style
         x:Key="AboutMe.Website"
         BasedOn="{StaticResource AboutMe.SocialShared}"
         TargetType="local:CardButton">
         <Setter Property="Content" Value="Website" />
-        <Setter Property="UpperContent" Value="{StaticResource WebsiteIconStyle}" />
+        <Setter Property="UpperContent" Value="{StaticResource WebsiteIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.WebsiteColor}" />
     </Style>
     <Style
@@ -605,7 +683,7 @@
         BasedOn="{StaticResource AboutMe.SocialShared}"
         TargetType="local:CardButton">
         <Setter Property="Content" Value="Gmail" />
-        <Setter Property="UpperContent" Value="{StaticResource GmailIconStyle}" />
+        <Setter Property="UpperContent" Value="{StaticResource GmailIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.GmailColor}" />
     </Style>
     <Style
@@ -613,7 +691,7 @@
         BasedOn="{StaticResource AboutMe.SocialShared}"
         TargetType="local:CardButton">
         <Setter Property="Content" Value="Telegram" />
-        <Setter Property="UpperContent" Value="{StaticResource TelegramIconStyle}" />
+        <Setter Property="UpperContent" Value="{StaticResource TelegramIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.TelegramColor}" />
     </Style>
     <Style
@@ -621,7 +699,7 @@
         BasedOn="{StaticResource AboutMe.SocialShared}"
         TargetType="local:CardButton">
         <Setter Property="Content" Value="GitHub" />
-        <Setter Property="UpperContent" Value="{StaticResource GithubIconStyle}" />
+        <Setter Property="UpperContent" Value="{StaticResource GithubIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.GithubColor}" />
     </Style>
     <Style
@@ -629,54 +707,12 @@
         BasedOn="{StaticResource AboutMe.SocialShared}"
         TargetType="local:CardButton">
         <Setter Property="Content" Value="LinkedIn" />
-        <Setter Property="UpperContent" Value="{StaticResource LinkedInIconStyle}" />
+        <Setter Property="UpperContent" Value="{StaticResource LinkedInIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.LinkedInColor}" />
-    </Style>
-
-    <!--  Settings ListboxItem  -->
-    <Style TargetType="local:SettingListMenuItem">
-        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
-        <Setter Property="MinWidth" Value="153" />
-        <Setter Property="Padding" Value="15,9" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:SettingListMenuItem">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.FocusedColor}" />
-                <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
-            </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="IsSelected" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.Hover}" />
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsFocused" Value="False" />
-                    <Condition Property="IsSelected" Value="True" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.NoFocusColor}" />
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-        </Style.Triggers>
     </Style>
 
     <!--  Time Span Control  -->
     <Style x:Key="TimeSpanControl.Textbox" TargetType="TextBox">
-        <Setter Property="MinWidth" Value="0" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="12" />
@@ -686,7 +722,6 @@
         <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.Text}" />
 
     </Style>
-
     <Style x:Key="TimeSpanControl.TextBlockBetween" TargetType="TextBlock">
         <Setter Property="Padding" Value="0,0,3,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
