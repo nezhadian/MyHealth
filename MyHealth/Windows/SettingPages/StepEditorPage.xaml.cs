@@ -190,8 +190,8 @@ namespace MyHealth
                     return;
                 }
             }
-
-            string tag = ((ComboBoxItem)cboTemplates.SelectedItem).Tag.ToString();
+            
+            string tag = (((ComboBoxItem)cboTemplates.SelectedItem).Tag ?? "").ToString();
             if (Templates.TemplateDictionary.TryGetValue(tag, out StepData[] template))
             {
                 SetStepList(template);
