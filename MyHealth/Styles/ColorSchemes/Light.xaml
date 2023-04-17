@@ -48,8 +48,10 @@
     <SolidColorBrush x:Key="Controls.Border">#999</SolidColorBrush>
 
     <!--  StepData  -->
+    <SolidColorBrush x:Key="StepData.MenuItem.IconColor">#aaa</SolidColorBrush>
+    <SolidColorBrush x:Key="StepData.MenuItem.SelectedIconColor">#555</SolidColorBrush>
+
     <SolidColorBrush x:Key="StepData.IconColor">#999</SolidColorBrush>
-    <SolidColorBrush x:Key="StepData.MenuItemIconColor">#aaa</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.SeperatorLineColor">#ccc</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.Hover">#330099ff</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.SelectionColor">#09f</SolidColorBrush>

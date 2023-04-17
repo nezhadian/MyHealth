@@ -161,12 +161,19 @@ namespace MyHealth
                 case StepTypes.Seperator:
                     return new Separator();
                 default:
-                    return new MenuItem()
+                    Path itemIcon = new Path()
+                    {
+                        Data = Icon,
+                        Style = (Style)TryFindResource("StepData.MenuItemIcon"),
+                    };
+                    MenuItem item = new MenuItem()
                     {
                         Header = ToString(),
                         Style = (Style)TryFindResource("StepData.MenuItem"),
-                        Icon = this.Icon
+                        Icon = itemIcon
                     };
+                    itemIcon.SetBinding(Shape.FillProperty, new Binding("BorderBrush") { Source = item });
+                    return item;
             }
         }
     }

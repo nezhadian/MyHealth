@@ -577,58 +577,23 @@
 
     <!--  ____________________________________________ Custom Styles ______________________  -->
     <!--  Step Data MenuItem  -->
+    <Style x:Key="StepData.MenuItemIcon" TargetType="Path">
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="Width" Value="14" />
+    </Style>
     <Style
         x:Key="StepData.MenuItem"
         BasedOn="{StaticResource {x:Type MenuItem}}"
         TargetType="MenuItem">
         <Setter Property="IsCheckable" Value="True" />
+        <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.IconColor}" />
         <Setter Property="Padding" Value="3,0,10,0" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="MenuItem">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="24" />
-                                <ColumnDefinition Width="3" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Path
-                                x:Name="icon"
-                                Grid.Column="0"
-                                Width="14"
-                                Data="{TemplateBinding Icon}"
-                                Fill="{DynamicResource StepData.MenuItemIconColor}"
-                                Stretch="Uniform" />
-
-                            <ContentPresenter
-                                Grid.Column="2"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                ContentSource="Header" />
-
-
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" Value="{DynamicResource Menu.Hover}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" Value="{DynamicResource Menu.Pressed}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </Trigger>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="icon" Property="Fill" Value="{DynamicResource IconsColor.BoldColor}" />
-                            <Setter Property="FontWeight" Value="Bold" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.SelectedIconColor}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--  Timer Border  -->
