@@ -14,7 +14,7 @@
         <TextBlock x:Name="txtMessage" 
             VerticalAlignment="Center"
             HorizontalAlignment="Center" 
-                   Style="{StaticResource Pages.MessageText.Dark}"
+                   Style="{StaticResource Texts.PageTitle.Negative}"
                   />
     </Grid>
 </Page>

@@ -32,7 +32,7 @@
             <TextBlock
                 x:Name="txtMessage"
                 HorizontalAlignment="Center"
-                Style="{StaticResource Pages.MessageText}" />
+                Style="{StaticResource Texts.PageTitle}" />
             <Image
                 x:Name="mainImage"
                 Grid.Row="1"

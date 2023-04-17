@@ -3,22 +3,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MyHealth">
 
-    <!--  Message Text  -->
-    <Style x:Key="Pages.MessageText" TargetType="TextBlock">
+
+    <!--  ____________________________________________ TextBlocks ______________________  -->
+    <!--  Page Title  -->
+    <Style x:Key="Texts.PageTitle" TargetType="TextBlock">
         <Setter Property="Text" Value="This is sample text" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Padding" Value="10" />
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
     </Style>
-
     <Style
-        x:Key="Pages.MessageText.Dark"
-        BasedOn="{StaticResource Pages.MessageText}"
+        x:Key="Texts.PageTitle.Negative"
+        BasedOn="{StaticResource Texts.PageTitle}"
         TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
+
+
 
     <!--  ____________________________________________ Icon Styles ______________________  -->
     <!--  Restart Icon  -->

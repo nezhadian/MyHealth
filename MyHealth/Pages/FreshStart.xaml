@@ -20,7 +20,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="txtMessage" Style="{StaticResource Pages.MessageText.Dark}" />
+            <TextBlock x:Name="txtMessage" Style="{StaticResource Texts.PageTitle.Negative}" />
             <Button
                 x:Name="btnMute"
                 Grid.Row="2"
