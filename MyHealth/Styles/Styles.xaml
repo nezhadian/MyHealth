@@ -21,7 +21,32 @@
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
+    <!--  NormalText  -->
+    <Style x:Key="Texts.NormalText" TargetType="TextBlock">
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
 
+    <Style
+        x:Key="Texts.SmallTitle"
+        BasedOn="{StaticResource Texts.NormalText}"
+        TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style
+        x:Key="Texts.BigTitle"
+        BasedOn="{StaticResource Texts.NormalText}"
+        TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24" />
+    </Style>
+
+    <!--  Hyperlink  -->
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="{DynamicResource HyperlinkColor}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
 
     <!--  ____________________________________________ Icon Styles ______________________  -->
     <!--  Restart Icon  -->
@@ -517,6 +542,7 @@
     </ControlTemplate>
     <Style TargetType="{x:Type local:StepData}">
         <Setter Property="Height" Value="27" />
+        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
         <Setter Property="Template" Value="{StaticResource StepData.Template}" />
         <Style.Triggers>
             <Trigger Property="StepType" Value="Seperator">

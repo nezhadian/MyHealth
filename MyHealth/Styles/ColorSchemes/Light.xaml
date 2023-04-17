@@ -6,6 +6,7 @@
     <!--  Texts  -->
     <SolidColorBrush x:Key="StatusTextColor">#111</SolidColorBrush>
     <SolidColorBrush x:Key="NormalTextColor">#333</SolidColorBrush>
+    <SolidColorBrush x:Key="HyperlinkColor">#0563E1</SolidColorBrush>
 
     <!--  Buttons  -->
     <SolidColorBrush x:Key="Buttons.CTA.Background">#09f</SolidColorBrush>
@@ -54,6 +55,7 @@
     <SolidColorBrush x:Key="StepData.SeperatorLineColor">#ccc</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.Hover">#330099ff</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.SelectionColor">#09f</SolidColorBrush>
+    <SolidColorBrush x:Key="StepData.TextColor">#333</SolidColorBrush>
 
     <!--  Image Slider  -->
     <SolidColorBrush x:Key="ImageSlider.Navigation.Background">#aaa</SolidColorBrush>

@@ -23,10 +23,11 @@
         </Grid.ColumnDefinitions>
 
         <!--  Text  -->
-        <Label
+        <TextBlock
             Grid.Column="0"
             VerticalAlignment="Center"
-            Content="{Binding Text, ElementName=main}" />
+            Style="{StaticResource Texts.NormalText}"
+            Text="{Binding Text, ElementName=main}" />
 
         <!--  Color Box  -->
         <Border Grid.Column="2" Style="{StaticResource ColorSelector.ColorBoxBorder}">
