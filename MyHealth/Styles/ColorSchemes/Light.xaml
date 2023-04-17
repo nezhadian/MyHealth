@@ -8,7 +8,6 @@
     <SolidColorBrush x:Key="NormalTextColor">#333</SolidColorBrush>
 
     <!--  Buttons  -->
-
     <SolidColorBrush x:Key="Buttons.CTA.Background">#09f</SolidColorBrush>
 
     <SolidColorBrush x:Key="Buttons.Foreground">#fff</SolidColorBrush>

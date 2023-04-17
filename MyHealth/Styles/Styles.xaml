@@ -98,6 +98,14 @@
         Fill="{DynamicResource Menu.Icons}"
         Stretch="Uniform" />
 
+    <!--  Mute Icon  -->
+    <Path
+        x:Key="MuteIcon"
+        Width="25"
+        Data="{StaticResource Mute}"
+        Fill="{DynamicResource BackgroundColor}"
+        Stretch="Uniform" />
+
     <!--  ____________________________________________ Buttons ______________________  -->
     <!--  Base Button  -->
     <Style x:Key="Buttons.Base" TargetType="Button">
