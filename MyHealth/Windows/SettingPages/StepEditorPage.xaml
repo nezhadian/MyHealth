@@ -104,7 +104,7 @@
                 <Button Command="{x:Static ApplicationCommands.Delete}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path Data="{StaticResource Delete}" 
                           Width="13"
-                          Fill="{DynamicResource IconsColor.BoldColor}" 
+                          Fill="{DynamicResource IconsColor.Delete}" 
                           Stretch="Uniform" />
                 </Button>
             </StackPanel>

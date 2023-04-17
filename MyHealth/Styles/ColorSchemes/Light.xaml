@@ -72,6 +72,6 @@
     <SolidColorBrush x:Key="IconsColor.Play">#FF2EAC2E</SolidColorBrush>
     <SolidColorBrush x:Key="IconsColor.Pause">#FFEE4747</SolidColorBrush>
     <SolidColorBrush x:Key="IconsColor.Add">#FF34B02E</SolidColorBrush>
-    <SolidColorBrush x:Key="IconsColor.BoldColor">#555</SolidColorBrush>
+    <SolidColorBrush x:Key="IconsColor.Delete">#555</SolidColorBrush>
 
 </ResourceDictionary>
