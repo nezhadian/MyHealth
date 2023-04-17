@@ -705,4 +705,14 @@
 
     </Style>
 
+    <!--  Color Selector  -->
+    <Style x:Key="ColorSelector.ColorBoxBorder" TargetType="Border">
+        <Setter Property="Width" Value="35" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Controls.Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource ColorSelector.CornerRadius}" />
+    </Style>
+
+
 </ResourceDictionary>

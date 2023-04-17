@@ -5,5 +5,6 @@
     <CornerRadius x:Key="CardButton.CornerRadius">3</CornerRadius>
     <CornerRadius x:Key="Buttons.CornerRadius">5</CornerRadius>
     <CornerRadius x:Key="Timer.CornerRadius">2,2,0,0</CornerRadius>
+    <CornerRadius x:Key="ColorSelector.CornerRadius">2</CornerRadius>
 
 </ResourceDictionary>
