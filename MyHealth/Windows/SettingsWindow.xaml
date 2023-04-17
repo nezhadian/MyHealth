@@ -8,6 +8,7 @@
     Title="SettingsWindow"
     Width="800"
     Height="600"
+    Background="{DynamicResource BackgroundColor}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.CommandBindings>
@@ -29,6 +30,7 @@
         <ListBox
             x:Name="lstMenu"
             Grid.RowSpan="2"
+            Background="{DynamicResource BackgroundColor}"
             BorderThickness="0,0,1,0"
             SelectedIndex="0" />
         <Frame
