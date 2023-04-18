@@ -36,6 +36,8 @@
     <!--  TimeSpan Control  -->
     <SolidColorBrush x:Key="TimeSpanControl.Text">#333</SolidColorBrush>
     <SolidColorBrush x:Key="TimeSpanControl.BlockBetweenColor">#999</SolidColorBrush>
+    <SolidColorBrush x:Key="TimeSpanControl.Background">#fff</SolidColorBrush>
+    <SolidColorBrush x:Key="TimeSpanControl.Border">#999</SolidColorBrush>
 
     <!--  Menu  -->
     <SolidColorBrush x:Key="Menu.Icons">#333</SolidColorBrush>
@@ -44,8 +46,8 @@
     <SolidColorBrush x:Key="Menu.Hover">#FFF1F1F1</SolidColorBrush>
 
 
-    <!--  CustomControls  -->
-    <SolidColorBrush x:Key="Controls.Border">#999</SolidColorBrush>
+    <!--  Color Selector  -->
+    <SolidColorBrush x:Key="ColorSelector.Border">#999</SolidColorBrush>
 
     <!--  StepData  -->
     <SolidColorBrush x:Key="StepData.MenuItem.IconColor">#aaa</SolidColorBrush>

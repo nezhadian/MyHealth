@@ -572,6 +572,7 @@
     <!--  Settings ListboxItem  -->
     <Style TargetType="local:SettingListMenuItem">
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
         <Setter Property="MinWidth" Value="153" />
         <Setter Property="Padding" Value="15,9" />
         <Setter Property="Template">
@@ -722,6 +723,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.Text}" />
+        <Setter Property="Background" Value="{DynamicResource TimeSpanControl.Background}" />
 
     </Style>
     <Style x:Key="TimeSpanControl.TextBlockBetween" TargetType="TextBlock">
@@ -735,7 +737,7 @@
     <Style x:Key="ColorSelector.ColorBoxBorder" TargetType="Border">
         <Setter Property="Width" Value="35" />
         <Setter Property="Height" Value="20" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Controls.Border}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ColorSelector.Border}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource ColorSelector.CornerRadius}" />
     </Style>

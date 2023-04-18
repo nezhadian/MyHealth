@@ -9,6 +9,7 @@
     d:DesignHeight="50"
     d:DesignWidth="200"
     mc:Ignorable="d">
+
     <UserControl.Resources>
         <Style
             x:Key="TimeSpanControl.TextBoxStyle"
@@ -25,7 +26,8 @@
     </UserControl.Resources>
     <Border
         Padding="2"
-        BorderBrush="{DynamicResource Controls.Border}"
+        Background="{DynamicResource TimeSpanControl.Background}"
+        BorderBrush="{DynamicResource TimeSpanControl.Border}"
         BorderThickness="1"
         CornerRadius="{DynamicResource TimeSpanControl.CornerRadius}">
         <StackPanel
