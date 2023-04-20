@@ -1,4 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
+
+    <CornerRadius x:Key="{x:Static adonis:Dimensions.CornerRadius}">5</CornerRadius>
 
     <CornerRadius x:Key="ImageSlider.Navigation.CornerRadius">5</CornerRadius>
     <CornerRadius x:Key="Menu.CornerRadius">5</CornerRadius>
