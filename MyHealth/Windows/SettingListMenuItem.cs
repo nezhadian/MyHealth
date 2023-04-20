@@ -19,8 +19,11 @@ namespace MyHealth
         public static readonly DependencyProperty ItemPageProperty =
             DependencyProperty.Register("ItemPage", typeof(object), typeof(SettingListMenuItem), new PropertyMetadata());
 
-        public SettingListMenuItem() { }
-        public SettingListMenuItem(string name,object page)
+        public SettingListMenuItem()
+        {
+            Style = (Style)TryFindResource("SettingWindow.ListMenuItem");
+        }
+        public SettingListMenuItem(string name,object page) : this()
         {
             Content = name;
             ItemPage = page;

@@ -580,47 +580,14 @@
     </Style>
 
     <!--  Settings ListboxItem  -->
-    <Style TargetType="local:SettingListMenuItem">
-        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
-        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
-        <Setter Property="MinWidth" Value="153" />
-        <Setter Property="Padding" Value="15,9" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:SettingListMenuItem">
-                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Style.Triggers>
-            <!--  IsSelected  -->
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.FocusedColor}" />
-                <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
-            </Trigger>
-            <!--  Hover When NotSelected  -->
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                    <Condition Property="IsSelected" Value="False" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.Hover}" />
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-            <!--  Set Bg to Gray when selected and nofocus  -->
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsFocused" Value="False" />
-                    <Condition Property="IsSelected" Value="True" />
-                </MultiTrigger.Conditions>
-                <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="{DynamicResource SettingsListBoxItem.NoFocusColor}" />
-                </MultiTrigger.Setters>
-            </MultiTrigger>
-        </Style.Triggers>
+    <Style
+        x:Key="SettingWindow.ListMenuItem"
+        BasedOn="{StaticResource {x:Type ListBoxItem}}"
+        TargetType="local:SettingListMenuItem">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="0" />
+        <Setter Property="MinWidth" Value="{adonis:Space 20}" />
+        <Setter Property="Padding" Value="{adonis:Space 2, 1, 2, 1}" />
     </Style>
 
     <!--  ____________________________________________ Custom Styles ______________________  -->
