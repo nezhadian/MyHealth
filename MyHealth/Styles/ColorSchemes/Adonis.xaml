@@ -47,7 +47,10 @@
     <SolidColorBrush x:Key="StepData.MenuItem.IconColor">#aaa</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.MenuItem.SelectedIconColor">#555</SolidColorBrush>
 
-    <SolidColorBrush x:Key="StepData.IconColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
+    <SolidColorBrush
+        x:Key="StepData.IconColor"
+        Opacity="0.5"
+        Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
     <SolidColorBrush x:Key="StepData.SeperatorLineColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush
         x:Key="StepData.Hover"
