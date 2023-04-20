@@ -606,7 +606,8 @@
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.SelectedIconColor}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.SelectionColor}" />
+                <Setter Property="Foreground" Value="{DynamicResource StepData.MenuItem.SelectionColor}" />
             </Trigger>
         </Style.Triggers>
     </Style>
