@@ -63,8 +63,11 @@
     <SolidColorBrush x:Key="ImageSlider.Navigation.Background">#aaa</SolidColorBrush>
 
     <!--  Timer  -->
-    <SolidColorBrush x:Key="Timer.Border">#B9B9B9</SolidColorBrush>
-    <SolidColorBrush x:Key="Timer.Background">#55ffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="Timer.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
+    <SolidColorBrush
+        x:Key="Timer.Background"
+        Opacity="0.5"
+        Color="{DynamicResource {x:Static adonis:Colors.Layer1BackgroundColor}}" />
 
     <!--  Icons  -->
     <SolidColorBrush x:Key="IconsColor.Play">#FF2EAC2E</SolidColorBrush>
