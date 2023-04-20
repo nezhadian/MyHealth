@@ -9,20 +9,9 @@
     <SolidColorBrush x:Key="HyperlinkColor">#0563E1</SolidColorBrush>
 
     <!--  Buttons  -->
-    <SolidColorBrush x:Key="Buttons.CTA.Background">#09f</SolidColorBrush>
-
-    <SolidColorBrush x:Key="Buttons.Foreground">#fff</SolidColorBrush>
-    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor">#333</SolidColorBrush>
-    <SolidColorBrush x:Key="Buttons.OnlyIcon.Hover">#e7e7e7</SolidColorBrush>
-
-    <SolidColorBrush x:Key="Buttons.Secondary.Background">#aaa</SolidColorBrush>
-
     <SolidColorBrush x:Key="Buttons.Masked.Hover">#1fffffff</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Masked.Pressed">#2f333333</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Glass.Background">#2FFFFFFF</SolidColorBrush>
-
-    <SolidColorBrush x:Key="Buttons.Tritary.Foreground">#FF2E2E2E</SolidColorBrush>
-    <SolidColorBrush x:Key="Buttons.Tritary.Background">#FFECECEC</SolidColorBrush>
 
     <!--  Social Media Icons  -->
     <SolidColorBrush x:Key="Social.WebsiteColor">#aaa</SolidColorBrush>
