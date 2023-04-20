@@ -59,11 +59,6 @@
     <!--  Image Slider  -->
     <SolidColorBrush x:Key="ImageSlider.Navigation.Background">#aaa</SolidColorBrush>
 
-    <!--  Settings ListBoxItem  -->
-    <SolidColorBrush x:Key="SettingsListBoxItem.FocusedColor">#09f</SolidColorBrush>
-    <SolidColorBrush x:Key="SettingsListBoxItem.NoFocusColor">#bbb</SolidColorBrush>
-    <SolidColorBrush x:Key="SettingsListBoxItem.Hover">#eee</SolidColorBrush>
-
     <!--  Timer  -->
     <SolidColorBrush x:Key="Timer.Border">#B9B9B9</SolidColorBrush>
     <SolidColorBrush x:Key="Timer.Background">#55ffffff</SolidColorBrush>
