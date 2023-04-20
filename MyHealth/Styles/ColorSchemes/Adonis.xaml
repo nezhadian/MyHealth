@@ -28,10 +28,10 @@
     <SolidColorBrush x:Key="Social.TextColor">#fff</SolidColorBrush>
 
     <!--  TimeSpan Control  -->
-    <SolidColorBrush x:Key="TimeSpanControl.Text">#333</SolidColorBrush>
-    <SolidColorBrush x:Key="TimeSpanControl.BlockBetweenColor">#999</SolidColorBrush>
-    <SolidColorBrush x:Key="TimeSpanControl.Background">#fff</SolidColorBrush>
-    <SolidColorBrush x:Key="TimeSpanControl.Border">#999</SolidColorBrush>
+    <SolidColorBrush x:Key="TimeSpanControl.Text" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush x:Key="TimeSpanControl.BlockBetweenColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
+    <SolidColorBrush x:Key="TimeSpanControl.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
+    <SolidColorBrush x:Key="TimeSpanControl.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
 
     <!--  Menu  -->
     <SolidColorBrush x:Key="Menu.Icons">#333</SolidColorBrush>
