@@ -1,4 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
 
     <!--  Primary  -->
     <SolidColorBrush x:Key="BackgroundColor">#fff</SolidColorBrush>
@@ -9,6 +12,8 @@
     <SolidColorBrush x:Key="HyperlinkColor">#0563E1</SolidColorBrush>
 
     <!--  Buttons  -->
+    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor">#333</SolidColorBrush>
+    <SolidColorBrush x:Key="Buttons.OnlyIcon.Hover">#e7e7e7</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Masked.Hover">#1fffffff</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Masked.Pressed">#2f333333</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Glass.Background">#2FFFFFFF</SolidColorBrush>
@@ -42,11 +47,14 @@
     <SolidColorBrush x:Key="StepData.MenuItem.IconColor">#aaa</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.MenuItem.SelectedIconColor">#555</SolidColorBrush>
 
-    <SolidColorBrush x:Key="StepData.IconColor">#999</SolidColorBrush>
-    <SolidColorBrush x:Key="StepData.SeperatorLineColor">#ccc</SolidColorBrush>
-    <SolidColorBrush x:Key="StepData.Hover">#330099ff</SolidColorBrush>
-    <SolidColorBrush x:Key="StepData.SelectionColor">#09f</SolidColorBrush>
-    <SolidColorBrush x:Key="StepData.TextColor">#333</SolidColorBrush>
+    <SolidColorBrush x:Key="StepData.IconColor" Color="{DynamicResource {x:Static adonis:Colors.Layer2BorderColor}}" />
+    <SolidColorBrush x:Key="StepData.SeperatorLineColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
+    <SolidColorBrush
+        x:Key="StepData.Hover"
+        Opacity="0.215"
+        Color="{DynamicResource {x:Static adonis:Colors.AccentHighlightColor}}" />
+    <SolidColorBrush x:Key="StepData.SelectionColor" Color="{DynamicResource {x:Static adonis:Colors.AccentColor}}" />
+    <SolidColorBrush x:Key="StepData.TextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
 
     <!--  Image Slider  -->
     <SolidColorBrush x:Key="ImageSlider.Navigation.Background">#aaa</SolidColorBrush>
