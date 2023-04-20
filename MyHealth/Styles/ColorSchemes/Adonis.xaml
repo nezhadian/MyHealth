@@ -7,9 +7,9 @@
     <SolidColorBrush x:Key="BackgroundColor" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
     <!--  Texts  -->
-    <SolidColorBrush x:Key="StatusTextColor">#111</SolidColorBrush>
-    <SolidColorBrush x:Key="NormalTextColor">#333</SolidColorBrush>
-    <SolidColorBrush x:Key="HyperlinkColor">#0563E1</SolidColorBrush>
+    <SolidColorBrush x:Key="StatusTextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush x:Key="NormalTextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush x:Key="HyperlinkColor" Color="{DynamicResource {x:Static adonis:Colors.HyperlinkColor}}" />
 
     <!--  Buttons  -->
     <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor">#333</SolidColorBrush>
