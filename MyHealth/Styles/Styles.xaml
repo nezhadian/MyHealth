@@ -156,7 +156,7 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="{StaticResource Buttons.CornerRadius}" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Padding" Value="30,7" />
+        <Setter Property="Padding" Value="{adonis:Space 4, 0.75}" />
     </Style>
 
     <!--  Secondary Buttons  -->
@@ -164,7 +164,7 @@
         x:Key="Buttons.Secondary"
         BasedOn="{StaticResource Buttons.Base}"
         TargetType="Button">
-        <Setter Property="Padding" Value="20,7" />
+        <Setter Property="Padding" Value="{adonis:Space 3, 0.75}" />
     </Style>
 
     <!--  Tritary Buttons  -->
@@ -172,7 +172,7 @@
         x:Key="Buttons.Tritary"
         BasedOn="{StaticResource Buttons.Base}"
         TargetType="Button">
-        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="Padding" Value="{adonis:Space 2, 0.75}" />
     </Style>
 
     <!--  ____________________________________________ My Buttons ______________________  -->
