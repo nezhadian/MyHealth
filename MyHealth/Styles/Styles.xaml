@@ -571,7 +571,7 @@
                 <ControlTemplate TargetType="{x:Type local:Timer}">
                     <TextBlock
                         FontSize="16"
-                        Foreground="{DynamicResource StatusTextColor}"
+                        Foreground="{DynamicResource NormalTextColor}"
                         Text="{TemplateBinding RemainedTime,
                                                Converter={StaticResource TimeSpanConverter}}" />
                 </ControlTemplate>

@@ -57,7 +57,7 @@
                         <TextBlock
                             x:Name="txtIndex"
                             HorizontalAlignment="Center"
-                            Foreground="{DynamicResource StatusTextColor}"
+                            Foreground="{DynamicResource NormalTextColor}"
                             Text="20/10" />
                     </StackPanel>
                     <Button
