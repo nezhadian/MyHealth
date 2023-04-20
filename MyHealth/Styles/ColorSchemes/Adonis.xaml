@@ -60,13 +60,13 @@
     <SolidColorBrush x:Key="StepData.TextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
 
     <!--  Image Slider  -->
-    <SolidColorBrush x:Key="ImageSlider.Navigation.Background">#aaa</SolidColorBrush>
+    <SolidColorBrush x:Key="ImageSlider.Navigation.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer1BackgroundColor}}" />
 
     <!--  Timer  -->
     <SolidColorBrush x:Key="Timer.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush
         x:Key="Timer.Background"
-        Opacity="0.5"
+        Opacity="0.6"
         Color="{DynamicResource {x:Static adonis:Colors.Layer1BackgroundColor}}" />
 
     <!--  Icons  -->
