@@ -36,10 +36,18 @@
     <SolidColorBrush x:Key="TimeSpanControl.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
 
     <!--  Menu  -->
-    <SolidColorBrush x:Key="Menu.Icons">#333</SolidColorBrush>
-    <SolidColorBrush x:Key="Menu.Border">#ddd</SolidColorBrush>
-    <SolidColorBrush x:Key="Menu.Pressed">#FFC9C9C9</SolidColorBrush>
-    <SolidColorBrush x:Key="Menu.Hover">#FFF1F1F1</SolidColorBrush>
+    <SolidColorBrush
+        x:Key="Menu.Icons"
+        Opacity="0.9"
+        Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush x:Key="Menu.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
+    <SolidColorBrush x:Key="Menu.Pressed" Color="{StaticResource {x:Static adonis:Colors.Layer1InteractionColor}}" />
+    <SolidColorBrush x:Key="Menu.Hover" Color="{DynamicResource {x:Static adonis:Colors.Layer1HighlightColor}}" />
+    <SolidColorBrush
+        x:Key="Menu.TextColor"
+        Opacity="0.9"
+        Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush x:Key="Menu.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
 
     <!--  Color Selector  -->

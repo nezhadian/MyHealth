@@ -345,8 +345,8 @@
     <!--  Menu Item  -->
     <Style TargetType="MenuItem">
         <Setter Property="MinWidth" Value="160" />
-        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
-        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
+        <Setter Property="Background" Value="{DynamicResource Menu.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Menu.TextColor}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
