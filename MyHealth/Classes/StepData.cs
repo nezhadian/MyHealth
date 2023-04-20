@@ -68,6 +68,7 @@ namespace MyHealth
 
         public StepData()
         {
+            Style = (Style)TryFindResource("StepData.DefaultStyle");
             BindIcon();
         }
         private void BindIcon()

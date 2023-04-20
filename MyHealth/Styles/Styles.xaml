@@ -175,7 +175,7 @@
         <Setter Property="Padding" Value="10,5" />
     </Style>
 
-    <!--  ____________________________________________ Buttons ______________________  -->
+    <!--  ____________________________________________ My Buttons ______________________  -->
     <!--  Masked Button  -->
     <Style x:Key="Buttons.MaskedButtonBase" TargetType="Button">
         <Setter Property="BorderThickness" Value="0" />
@@ -550,7 +550,7 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style TargetType="{x:Type local:StepData}">
+    <Style x:Key="StepData.DefaultStyle" TargetType="{x:Type local:StepData}">
         <Setter Property="Height" Value="27" />
         <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
         <Setter Property="Template" Value="{StaticResource StepData.Template}" />
