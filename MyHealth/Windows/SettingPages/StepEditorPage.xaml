@@ -153,7 +153,7 @@
                     <Path
                         Width="13"
                         Data="{StaticResource Delete}"
-                        Fill="{DynamicResource IconsColor.Delete}"
+                        Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
                         Stretch="Uniform" />
                 </Button>
             </StackPanel>

@@ -12,7 +12,10 @@
     <SolidColorBrush x:Key="HyperlinkColor" Color="{DynamicResource {x:Static adonis:Colors.HyperlinkColor}}" />
 
     <!--  Buttons  -->
-    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush
+        x:Key="Buttons.OnlyIcon.IconColor"
+        Opacity="0.4"
+        Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
     <SolidColorBrush x:Key="Buttons.OnlyIcon.Hover" Color="{DynamicResource {x:Static adonis:Colors.Layer1HighlightColor}}" />
     <SolidColorBrush x:Key="Buttons.Masked.Hover">#1fffffff</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Masked.Pressed">#2f333333</SolidColorBrush>
@@ -73,6 +76,5 @@
     <SolidColorBrush x:Key="IconsColor.Play">#FF2EAC2E</SolidColorBrush>
     <SolidColorBrush x:Key="IconsColor.Pause">#FFEE4747</SolidColorBrush>
     <SolidColorBrush x:Key="IconsColor.Add">#FF34B02E</SolidColorBrush>
-    <SolidColorBrush x:Key="IconsColor.Delete">#555</SolidColorBrush>
 
 </ResourceDictionary>
