@@ -4,7 +4,7 @@
     xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
 
     <!--  Primary  -->
-    <SolidColorBrush x:Key="BackgroundColor">#fff</SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundColor" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
     <!--  Texts  -->
     <SolidColorBrush x:Key="StatusTextColor">#111</SolidColorBrush>
@@ -47,7 +47,7 @@
     <SolidColorBrush x:Key="StepData.MenuItem.IconColor">#aaa</SolidColorBrush>
     <SolidColorBrush x:Key="StepData.MenuItem.SelectedIconColor">#555</SolidColorBrush>
 
-    <SolidColorBrush x:Key="StepData.IconColor" Color="{DynamicResource {x:Static adonis:Colors.Layer2BorderColor}}" />
+    <SolidColorBrush x:Key="StepData.IconColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush x:Key="StepData.SeperatorLineColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush
         x:Key="StepData.Hover"
