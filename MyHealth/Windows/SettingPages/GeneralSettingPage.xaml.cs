@@ -76,7 +76,8 @@ namespace MyHealth
 
         private void ResetSettings(object sender, RoutedEventArgs e)
         {
-            if (MessageBoxResult.Yes == MessageBox.Show("Are you sure?","Reset Settings",MessageBoxButton.YesNo))
+            
+            if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?","Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
             {
                 App.ResetAllSettings();
                 LoadSettingValues();
