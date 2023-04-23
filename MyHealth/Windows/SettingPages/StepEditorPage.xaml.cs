@@ -184,7 +184,7 @@ namespace MyHealth
 
             if (isPreviousCustom && hasItems)
             {
-                if(MessageBoxResult.No == MessageBox.Show("Clear Changes ?", "Clear", MessageBoxButton.YesNo))
+                if(AdonisUI.Controls.MessageBoxResult.No == AdonisUI.Controls.MessageBox.Show("Clear Changes ?", "Clear", AdonisUI.Controls.MessageBoxButton.YesNo))
                 {
                     cboTemplates.SelectedItem = e.RemovedItems[0];
                     return;
