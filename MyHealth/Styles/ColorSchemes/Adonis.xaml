@@ -3,6 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
 
+    <!--  Customized Adonis Colors  -->
+    <Color x:Key="{x:Static adonis:Colors.AccentColor}">#0099ff</Color>
+    <Color x:Key="{x:Static adonis:Colors.AccentHighlightColor}">#1aa3ff</Color>
+
     <!--  Primary  -->
     <SolidColorBrush x:Key="BackgroundColor" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
@@ -43,8 +47,8 @@
     <SolidColorBrush x:Key="Menu.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush
         x:Key="Menu.Pressed"
-        Opacity="0.6"
-        Color="{StaticResource {x:Static adonis:Colors.Layer1InteractionColor}}" />
+        Opacity="0.215"
+        Color="{StaticResource {x:Static adonis:Colors.AccentHighlightColor}}" />
     <SolidColorBrush x:Key="Menu.Hover" Color="{DynamicResource {x:Static adonis:Colors.Layer1HighlightColor}}" />
     <SolidColorBrush
         x:Key="Menu.TextColor"
