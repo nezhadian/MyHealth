@@ -12,39 +12,39 @@ namespace MyHealth
     {
         //Props
         public static MyHealthSettings Data = new MyHealthSettings();
-        public static readonly MyHealthSettings DEFAULT_DATA_VALUES = new MyHealthSettings()
+
+        static readonly MyHealthSettings DEFAULT_DATA_VALUES = new MyHealthSettings()
         {
             ImageSliderDelay = new TimeSpan(0, 0, 20),
             FreshStartBgColor = Color.FromRgb(0x00, 0x80, 0x00),
             ShortBreakBgColor = Color.FromRgb(0x00, 0x00, 0x00),
             IsFirstRun = true,
+            StepDataList = Templates.TemplateDictionary["pomodoro"]
         };
+        static string DataFilePath => Path.Combine(Environment.CurrentDirectory, "Settings.xml");
 
         //ctor
         static AppSettings()
         {
-            try
-            {
-                Task.Run(Load);
-            }
-            catch
-            {
-                Reset();
-            }
+            Load();
         }
 
         //Methods
         public static void Save()
         {
-            Task.Run(() =>
+            FileStream stream = null;
+            XmlSerializer xml = new XmlSerializer(Data.GetType());
+            try
             {
-                XmlSerializer xml = new XmlSerializer(Data.GetType());
-                FileStream stream = File.OpenWrite("G:\\MyHealth.Data");
-
+                stream = File.OpenWrite(DataFilePath);
                 stream.SetLength(0);
                 xml.Serialize(stream, Data);
-                stream.Close();
-            });
+
+            }
+            finally
+            {
+                stream?.Close();
+            }
         }
         public static void Reset()
         {
@@ -52,11 +52,22 @@ namespace MyHealth
         }
         static void Load()
         {
-            XmlSerializer xml = new XmlSerializer(Data.GetType());
-            FileStream stream = File.OpenRead("G:\\MyHealth.Data");
+            FileStream stream = null ;
+            try
+            {
+                stream = File.OpenRead(DataFilePath);
+                XmlSerializer xml = new XmlSerializer(Data.GetType());
 
-            Data = (MyHealthSettings)xml.Deserialize(stream);
-            stream.Close();
+                Data = (MyHealthSettings)xml.Deserialize(stream);
+            }
+            catch
+            {
+                Reset();
+            }
+            finally
+            {
+                stream?.Close();
+            }
         }
     }
 
@@ -68,6 +79,8 @@ namespace MyHealth
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
 
+        public StepData[] StepDataList { get; set; }
+
         //Methods
         public MyHealthSettings Clone()
         {
@@ -76,7 +89,8 @@ namespace MyHealth
                 FreshStartBgColor = FreshStartBgColor,
                 ShortBreakBgColor = ShortBreakBgColor,
                 ImageSliderDelay = ImageSliderDelay,
-                IsFirstRun = IsFirstRun
+                IsFirstRun = IsFirstRun,
+                StepDataList = StepDataList
             };
         }
 
