@@ -45,7 +45,7 @@ namespace MyHealth
                 sp.PlayLooping();
                 btnMute.Visibility = Visibility.Visible;
             }catch { }
-            Background = new SolidColorBrush(AppSettings.Default.FreshStartBgColor);
+            Background = new SolidColorBrush(AppSettings.Data.FreshStartBgColor);
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e) => sp?.Stop();

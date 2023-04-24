@@ -41,7 +41,7 @@ namespace MyHealth
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Background = new SolidColorBrush(AppSettings.Default.ShortBreakBgColor);
+            Background = new SolidColorBrush(AppSettings.Data.ShortBreakBgColor);
         }
     }
 }
