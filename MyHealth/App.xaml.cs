@@ -52,7 +52,7 @@ namespace MyHealth
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            if (MyHealth.Properties.Settings.Default.IsFirstRun)
+            if (AppSettings.Default.IsFirstRun)
                 ResetAllSettings();
             
             Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
@@ -60,10 +60,10 @@ namespace MyHealth
 
         internal static void ResetAllSettings()
         {
-            MyHealth.Properties.Settings.Default.Reset();
+            AppSettings.Reset();
             StartAtStartup = true;
-            MyHealth.Properties.Settings.Default.IsFirstRun = false;
-            MyHealth.Properties.Settings.Default.Save();
+            AppSettings.Default.IsFirstRun = false;
+            AppSettings.Save();
         }
     }
 }

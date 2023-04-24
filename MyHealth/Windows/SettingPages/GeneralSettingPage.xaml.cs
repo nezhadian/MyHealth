@@ -25,10 +25,10 @@ namespace MyHealth
         public void Save()
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-            Properties.Settings.Default.FreshStartBgColor = clrFreshStartBG.Color;
-            Properties.Settings.Default.ShortBreakBgColor = clrShortBreakBG.Color;
-            Properties.Settings.Default.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
-            Properties.Settings.Default.Save();
+            AppSettings.Default.FreshStartBgColor = clrFreshStartBG.Color;
+            AppSettings.Default.ShortBreakBgColor = clrShortBreakBG.Color;
+            AppSettings.Default.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
+            AppSettings.Save();
         }
 
         public GeneralSettingPage()
@@ -39,9 +39,9 @@ namespace MyHealth
 
         private void LoadSettingValues()
         {
-            clrFreshStartBG.Color = Properties.Settings.Default.FreshStartBgColor;
-            clrShortBreakBG.Color = Properties.Settings.Default.ShortBreakBgColor;
-            tscImageSliderDelay.TimeSpan = Properties.Settings.Default.ImageSliderDelay;
+            clrFreshStartBG.Color = AppSettings.Default.FreshStartBgColor;
+            clrShortBreakBG.Color = AppSettings.Default.ShortBreakBgColor;
+            tscImageSliderDelay.TimeSpan = AppSettings.Default.ImageSliderDelay;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

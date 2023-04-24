@@ -55,7 +55,7 @@ namespace MyHealth
                     {
                         MessageBox.Show($"Error in loading image \r\n {ex.Message}");
                     }
-                    timer.Duration = Properties.Settings.Default.ImageSliderDelay;
+                    timer.Duration = AppSettings.Default.ImageSliderDelay;
                 }
                 else
                 {
