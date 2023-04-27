@@ -582,12 +582,18 @@
     <!--  Settings ListboxItem  -->
     <Style
         x:Key="SettingWindow.ListMenuItem"
-        BasedOn="{StaticResource {x:Type ListBoxItem}}"
-        TargetType="local:SettingListMenuItem">
+        BasedOn="{StaticResource {x:Static adonis:Styles.RippleListBoxItem}}"
+        TargetType="ListBoxItem">
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="0" />
         <Setter Property="MinWidth" Value="{adonis:Space 20}" />
         <Setter Property="Padding" Value="{adonis:Space 2, 1, 2, 1}" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource SettingListMenuItem.SelectionColor}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!--  ____________________________________________ Custom Styles ______________________  -->

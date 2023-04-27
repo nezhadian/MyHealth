@@ -32,7 +32,16 @@
             Grid.RowSpan="2"
             Background="{DynamicResource BackgroundColor}"
             BorderThickness="0,0,1,0"
-            SelectedIndex="0" />
+            ItemContainerStyle="{StaticResource SettingWindow.ListMenuItem}"
+            ItemsSource="{Binding MenuItems}"
+            SelectedIndex="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ItemPage.Title}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
         <Frame
             Grid.Column="1"
             Content="{Binding ElementName=lstMenu, Path=SelectedItem.ItemPage}"

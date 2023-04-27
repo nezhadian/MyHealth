@@ -6,29 +6,22 @@ using System.Windows.Controls;
 
 namespace MyHealth
 {
-    public class SettingListMenuItem : ListBoxItem
+    public class SettingListMenuItem : DependencyObject
     {
 
 
-        public object ItemPage
+        public Page ItemPage
         {
-            get { return (object)GetValue(ItemPageProperty); }
-            set { SetValue(ItemPageProperty, value); }
+            get => (Page)GetValue(ItemPageProperty);
+            set => SetValue(ItemPageProperty, value);
         }
 
         public static readonly DependencyProperty ItemPageProperty =
-            DependencyProperty.Register("ItemPage", typeof(object), typeof(SettingListMenuItem), new PropertyMetadata());
+            DependencyProperty.Register("ItemPage", typeof(Page), typeof(SettingListMenuItem), new PropertyMetadata());
 
-        public SettingListMenuItem()
+        public SettingListMenuItem(Page itemPage)
         {
-            Style = (Style)TryFindResource("SettingWindow.ListMenuItem");
+            ItemPage = itemPage;
         }
-        public SettingListMenuItem(string name,object page) : this()
-        {
-            Content = name;
-            ItemPage = page;
-        }
-
-
     }
 }

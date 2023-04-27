@@ -59,6 +59,9 @@
         Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
     <SolidColorBrush x:Key="Menu.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
+    <!--  SettingListMenuItem  -->
+    <SolidColorBrush x:Key="SettingListMenuItem.SelectionColor" Color="{DynamicResource {x:Static adonis:Colors.AccentColor}}" />
+
 
     <!--  Color Selector  -->
     <SolidColorBrush x:Key="ColorSelector.Border">#999</SolidColorBrush>
