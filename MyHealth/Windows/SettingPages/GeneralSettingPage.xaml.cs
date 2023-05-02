@@ -18,7 +18,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for GlobalSettingPage.xaml
     /// </summary>
-    public partial class GeneralSettingPage : Page,ICanSaveSettingMenuItem
+    public partial class GeneralSettingPage : Page,ISavebleSettingItem
     {
         public bool IsChanged { get; set; } = false;
         public bool CanSave => tscImageSliderDelay.TimeSpan != TimeSpan.Zero;

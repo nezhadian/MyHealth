@@ -15,9 +15,9 @@ using System.Linq;
 
 namespace MyHealth
 {
-    public partial class StepEditorPage : Page,ICanSaveSettingMenuItem
+    public partial class StepEditorPage : Page,ISavebleSettingItem
     {
-        //ICanSaveSettingMenuItem Implementation
+        //ISavebleSettingItem Implementation
         public bool CanSave
         {
             get

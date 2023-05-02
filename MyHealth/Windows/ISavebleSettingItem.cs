@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyHealth
 {
-    public interface ICanSaveSettingMenuItem
+    public interface ISavebleSettingItem
     {
         public bool CanSave { get; }
         public bool IsChanged { get; set; }

@@ -37,7 +37,7 @@ namespace MyHealth
         {
             foreach (var item in MenuItems)
             {
-                if(item.ItemPage is ICanSaveSettingMenuItem canSave)
+                if(item.ItemPage is ISavebleSettingItem canSave)
                 {
                     if (canSave.IsChanged && !canSave.CanSave)
                         return;
@@ -49,7 +49,7 @@ namespace MyHealth
         {
             foreach (var item in MenuItems)
             {
-                if (item.ItemPage is ICanSaveSettingMenuItem canSave)
+                if (item.ItemPage is ISavebleSettingItem canSave)
                 {
                     if (canSave.IsChanged)
                         canSave.Save();
