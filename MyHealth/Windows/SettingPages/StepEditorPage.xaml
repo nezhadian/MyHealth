@@ -8,7 +8,6 @@
     Title="Step Editor"
     d:Height="400"
     d:Width="600"
-    Loaded="main_Loaded"
     mc:Ignorable="d">
 
     <Page.CommandBindings>
@@ -32,91 +31,80 @@
     </Page.CommandBindings>
 
     <Grid Margin="20">
-
+        <!--  rows  -->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+
+        <!--  columns  -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" MinWidth="250" />
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
+        <!--  templates  Selection  -->
         <ComboBox x:Name="cboTemplates" SelectionChanged="cboTemplates_SelectionChanged">
             <ComboBoxItem Content="Pomodoro" Tag="pomodoro" />
             <ComboBoxItem Content="52/17 Standard" Tag="standard" />
-            <ComboBoxItem
-                Content="Custom"
-                IsSelected="True"
-                Tag="" />
+            <ComboBoxItem Content="Custom" IsSelected="True" />
         </ComboBox>
+
+        <!--  StepList ListBox  -->
         <ListBox
             x:Name="lstItems"
             Grid.Row="2"
-            SelectionChanged="lstItems_SelectionChanged">
-            <local:StepData
-                StepName="52min Work"
-                StepType="WorkTime"
-                Duration="00:52:00" />
-            <local:StepData
-                ImageList="Body"
-                StepName="Resting"
-                StepType="ImageSlider"
-                Duration="00:17:00" />
-            <local:StepData StepName="Ready" StepType="FreshStart" />
-            <local:StepData StepName="Ready" StepType="Seperator" />
-        </ListBox>
+            ItemsSource="{Binding StepList, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedStep, Mode=TwoWay}"
+            SelectionChanged="lstItems_SelectionChanged" />
 
+        <!--  controllers  -->
         <Grid
             Grid.Row="0"
             Grid.RowSpan="3"
             Grid.Column="2">
-            <StackPanel x:Name="stckMain" Visibility="Collapsed">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
-                    <ComboBox x:Name="cboStepType" SelectionChanged="cboStepType_SelectionChanged">
-                        <ComboBoxItem Content="Work Time" />
-                        <ComboBoxItem Content="Image Slider" />
-                        <ComboBoxItem Content="Fresh Start" />
-                    </ComboBox>
+            <StackPanel x:Name="cnrMain" Visibility="Hidden">
+                <!--  Step Type ComboBox  -->
+                <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
+                <ComboBox
+                    x:Name="cboStepType"
+                    ItemsSource="{Binding StepTypesArray}"
+                    KeyDown="UserPressKeyboardButtons"
+                    PreviewMouseDown="UserClickControls"
+                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionChanged="cboStepType_SelectionChanged" />
 
+                <!--  StepName Textbox  -->
+                <StackPanel x:Name="cnrStepName">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox x:Name="txtStepName" TextChanged="txtStepName_TextChanged" />
-
+                    <TextBox
+                        x:Name="txtStepName"
+                        KeyDown="UserPressKeyboardButtons"
+                        PreviewMouseDown="UserClickControls"
+                        Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
-                <Grid x:Name="grdDuration" Visibility="Collapsed">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Grid.Row="0"
-                        Style="{StaticResource Texts.NormalText}"
-                        Text="Duration" />
+
+                <!--  Duration TimeSpanControl  -->
+                <StackPanel x:Name="cnrDuration">
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="Duration" />
                     <local:TimeSpanControl
                         x:Name="tscDuration"
-                        Grid.Row="1"
                         HorizontalAlignment="Left"
                         TextChanged="tscDuration_TextChanged" />
-                </Grid>
-                <Grid x:Name="grdImageListes" Visibility="Collapsed">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Style="{StaticResource Texts.NormalText}"
-                        Text="Image List Selection" />
+                </StackPanel>
+                <!--  ImageList ComboBox  -->
+                <StackPanel x:Name="cnrImageListSelection">
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
                     <ComboBox
                         x:Name="cboImageList"
-                        Grid.Row="1"
-                        SelectionChanged="cboImageList_SelectionChanged" />
-                </Grid>
+                        ItemsSource="{Binding ImageListesArray}"
+                        KeyDown="UserPressKeyboardButtons"
+                        PreviewMouseDown="UserClickControls"
+                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
 
 
 

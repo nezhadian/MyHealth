@@ -11,76 +11,70 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace MyHealth
 {
-    /// <summary>
-    /// Interaction logic for SettingsWindow.xaml
-    /// </summary>
     public partial class StepEditorPage : Page,ICanSaveSettingMenuItem
     {
-
-        public ObservableCollection<StepData> StepList = new ObservableCollection<StepData>();
-
-        public bool IsSelected => lstItems.SelectedIndex != -1;
-        public StepData SelectedStep => StepList[lstItems.SelectedIndex];
-
+        //ICanSaveSettingMenuItem Implementation
         public bool CanSave
         {
             get
             {
-                int effectiveSteps = 0;
-                foreach (var item in StepList)
-                    if (item.StepType != StepData.StepTypes.FreshStart &&
-                        item.StepType != StepData.StepTypes.Seperator)
-                        effectiveSteps++;
+                int effectiveSteps = StepList.Count((item) => 
+                        item.StepType != StepData.StepTypes.FreshStart &&
+                        item.StepType != StepData.StepTypes.Seperator);
 
                 return effectiveSteps > 0;
             }
         }
-
         public bool IsChanged { get; set ; }
-
         public void Save()
         {
             StepData[] data = new StepData[StepList.Count];
             StepList.CopyTo(data, 0);
-            DataAccess.StepDataList = data;
+            AppSettings.Data.StepDataList = data;
+            AppSettings.Save();
         }
 
-        #region Loading
-        bool isInitialized = false;
-        public StepEditorPage() => InitializeComponent();
-        private void main_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (isInitialized)
-                return;
-            lstItems.Items.Clear();
-            lstItems.ItemsSource = StepList;
-
-            LoadStepTypes();
-            LoadImageListes();
-            LoadStepList();
-
-            IsChanged = false;
-            isInitialized = true;
-        }
-
-        private void LoadStepList()
-        {
-            SetStepList(DataAccess.StepDataList);
-        }
-        private void LoadImageListes()
-        {
-            cboImageList.Items.Clear();
-            cboImageList.ItemsSource = Enum.GetValues(typeof(StepData.ImageListes));
-        }
-        private void LoadStepTypes()
-        {
-            cboStepType.Items.Clear();
-            cboStepType.ItemsSource = Enum.GetValues(typeof(StepData.StepTypes));
-        }
+        //Props
+        #region Dependency Properties
+        public static readonly DependencyProperty StepListProperty =
+            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(StepEditorPage), new PropertyMetadata());
+        public static readonly DependencyProperty SelectedStepProperty =
+            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(StepEditorPage), new PropertyMetadata());
         #endregion
+        public ObservableCollection<StepData> StepList
+        {
+            get { return (ObservableCollection<StepData>)GetValue(StepListProperty); }
+            set { SetValue(StepListProperty, value); }
+        }
+        public StepData SelectedStep
+        {
+            get { return (StepData)GetValue(SelectedStepProperty); }
+            set { SetValue(SelectedStepProperty, value); }
+        }
+        public bool IsSelected => SelectedStep != null;
+
+        //Arrays
+        public Array StepTypesArray { get; set; }
+        public Array ImageListesArray { get; set; }
+
+        //ctor
+        public StepEditorPage()
+        {
+            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
+            StepTypesArray = Enum.GetValues(typeof(StepData.StepTypes));
+            ImageListesArray = Enum.GetValues(typeof(StepData.ImageListes));
+
+            StepList.CollectionChanged += StepList_CollectionChanged; ;
+            
+            DataContext = this;
+            InitializeComponent();
+        }
+
+        //commands
         #region Commands
         private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
         private void New_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -90,7 +84,7 @@ namespace MyHealth
             {
                 int index = lstItems.SelectedIndex + 1;
                 StepList.Insert(index, step);
-                lstItems.SelectedIndex = index;
+                SelectedStep = step;
             }
             else
                 StepList.Add(step);
@@ -109,7 +103,7 @@ namespace MyHealth
         public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditorPage));
         public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(StepEditorPage));
 
-        private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex > 0;
+        private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = lstItems.SelectedIndex > 0;
         private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
         
         private void ArrowCommands_Execute(object sender, ExecutedRoutedEventArgs e)
@@ -128,115 +122,116 @@ namespace MyHealth
 
             lstItems.SelectedIndex = targetIndex;
             lstItems.Focus();
+
         }
         #endregion
 
+        //Hide UnRelated Controls
         private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedStep.StepType = (StepData.StepTypes)cboStepType.SelectedValue;
-            SwitchUI(SelectedStep.StepType);
-
-            OnAnyChanged();
+            if (IsSelected)
+                SwitchUI(SelectedStep.StepType);
         }
-        private void SwitchUI(StepData.StepTypes stepType)
+        
+        UIElement[] Controls;
+        Dictionary<Enum, short[]> SwitchUIMap;
+        private void SetUIMapValues()
         {
-            grdDuration.Visibility =
-                grdImageListes.Visibility =
-                Visibility.Collapsed;
-
-            switch (stepType)
+            Controls ??= new UIElement[]
             {
-                case StepData.StepTypes.WorkTime:
-                case StepData.StepTypes.ShortBreak:
-                    grdDuration.Visibility = Visibility.Visible;
-                    break;
-                case StepData.StepTypes.ImageSlider:
-                    grdDuration.Visibility = Visibility.Visible;
-                    grdImageListes.Visibility = Visibility.Visible;
-                    break;
+                cnrMain,
+                cnrStepName,
+                cnrDuration,
+                cnrImageListSelection
+            };
+            SwitchUIMap ??= new Dictionary<Enum, short[]>()
+            {
+                { StepData.StepTypes.WorkTime,new short[]{0,1,2} },
+                { StepData.StepTypes.ShortBreak,new short[]{0,1,2} },
+                { StepData.StepTypes.Seperator,new short[]{0} },
+                { StepData.StepTypes.ImageSlider,new short[]{0,1,2,3} },
+                { StepData.StepTypes.FreshStart,new short[]{0,1} },
+            };
+        }
+        private void SwitchUI(Enum stepType)
+        {
+            SetUIMapValues();
 
+            Array.ForEach(Controls, (element) => element.Visibility = Visibility.Collapsed);
+            if(SwitchUIMap.TryGetValue(stepType,out short[] indexes))
+            {
+                Array.ForEach(indexes, (i) => Controls[i].Visibility = Visibility.Visible);
             }
         }
 
-        private void txtStepName_TextChanged(object sender, TextChangedEventArgs e)
+
+        //Templates
+        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedStep.StepName = txtStepName.Text;
-            OnAnyChanged();
+            if (e.RemovedItems.Count == 0)
+                return;
+
+            bool IsPreviousItemCustom = ((ComboBoxItem)e.RemovedItems[0]).Tag == null;
+            bool hasItems = StepList.Count != 0;
+
+            if (IsPreviousItemCustom && hasItems)
+            {
+                if (YesNoMessageBox("Clear","Clear Changes?"))
+                {
+                    string tag = ((ComboBoxItem)cboTemplates.SelectedItem).Tag as string;
+                    SetTemplateForStepDataList(tag);
+                }
+                else
+                {
+                    cboTemplates.SelectedItem = e.RemovedItems[0];
+                }
+            }
+        }
+        private void SetTemplateForStepDataList(string key)
+        {
+            if (Templates.TemplateDictionary.TryGetValue(key, out StepData[] template))
+            {
+                StepList.Clear();
+                AddArrayToList(StepList, template);
+            }
+        }
+        private void AddArrayToList(IList list,Array template)
+        {
+            foreach (var item in template)
+            {
+                list.Add(item);
+            }
+        }
+        private static bool YesNoMessageBox(string caption,string message)
+        {
+            return AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show(message, caption, AdonisUI.Controls.MessageBoxButton.YesNo);
         }
 
+        //Duration TimeSpanControl Changing
         private void tscDuration_TextChanged(object sender, RoutedEventArgs e)
         {
             SelectedStep.Duration = tscDuration.TimeSpan;
-            OnAnyChanged();
+            UserChangeValues();
         }
-
-        private void cboImageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            SelectedStep.ImageList = (StepData.ImageListes)cboImageList.SelectedValue;
-            OnAnyChanged();
-        }
-
-        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string prevTag = e.RemovedItems.Count == 0 ? "" : ((ComboBoxItem)e.RemovedItems[0]).Tag.ToString();
-            bool isPreviousCustom = prevTag == "";
-            bool hasItems = StepList.Count != 0;
-
-            if (isPreviousCustom && hasItems)
-            {
-                if(AdonisUI.Controls.MessageBoxResult.No == AdonisUI.Controls.MessageBox.Show("Clear Changes ?", "Clear", AdonisUI.Controls.MessageBoxButton.YesNo))
-                {
-                    cboTemplates.SelectedItem = e.RemovedItems[0];
-                    return;
-                }
-            }
-            
-            string tag = (((ComboBoxItem)cboTemplates.SelectedItem).Tag ?? "").ToString();
-            if (Templates.TemplateDictionary.TryGetValue(tag, out StepData[] template))
-            {
-                SetStepList(template);
-                OnAnyChanged();
-            }
-
-        }
-        private void SetStepList(StepData[] steps)
-        {
-            StepList.Clear();
-            foreach (StepData item in steps)
-            {
-                StepList.Add(item);
-            }
-        }
-
-        bool isUserChangingValues = true;
         private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!IsSelected)
-            {
-                stckMain.Visibility = Visibility.Hidden;
-                return;
-            }
-
-            stckMain.Visibility = Visibility.Visible;
-            isUserChangingValues = false;
-            SetStepDataValuesToUI(SelectedStep);
-            isUserChangingValues = true;
+            cnrMain.Visibility = IsSelected ? Visibility.Visible : Visibility.Collapsed;
+            if(IsSelected )
+                tscDuration.TimeSpan = SelectedStep.Duration;
         }
-        private void SetStepDataValuesToUI(StepData step)
+
+        //Changes Detection
+        private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            cboStepType.SelectedValue = step.StepType;
-            txtStepName.Text = step.StepName;
-            tscDuration.TimeSpan = step.Duration;
-            cboImageList.SelectedValue = step.ImageList;
+            IsChanged = true;
         }
 
-        private void OnAnyChanged()
+        private void UserChangeValues()
         {
-            lstItems.Items.Refresh();
-            if(isUserChangingValues)
-                IsChanged = true;
+            cboTemplates.SelectedIndex = 2;
+            IsChanged = true;
         }
-
-        
+        private void UserClickControls(object sender, MouseButtonEventArgs e) => UserChangeValues();
+        private void UserPressKeyboardButtons(object sender, KeyEventArgs e) => UserChangeValues();
     }
 }
