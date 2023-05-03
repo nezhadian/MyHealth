@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Controls;
+using System.Linq;
+using System.Windows;
 
 namespace MyHealth
 {
@@ -22,12 +25,12 @@ namespace MyHealth
 
         public static object[] GenerateMenuItem(StepData[] stepDataList)
         {
-            List<object> items = new List<object>();
-            foreach (StepData item in stepDataList)
-            {
-                items.Add(item.ToMenuItem());
-            }
-            return items.ToArray();
+            return stepDataList.Select<StepData, object>((item) => { 
+                if (item.StepType == StepData.StepTypes.Seperator)  
+                    return new Separator();  
+                else  
+                    return item;  
+            }).ToArray();
         }
     }
 }

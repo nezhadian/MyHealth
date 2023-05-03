@@ -10,21 +10,8 @@ using System.Xml.Serialization;
 
 namespace MyHealth
 {
-    public class StepData : DependencyObject,IXmlSerializable
+    public class StepData : DependencyObject
     {
-        public enum StepTypes
-        {
-            WorkTime,
-            ImageSlider,
-            ShortBreak,
-            FreshStart,
-            Seperator
-        }
-        public enum ImageListes
-        {
-            Body,Eye
-        }
-
         #region Dependency Properites
         public static readonly DependencyProperty StepTypeProperty =
             DependencyProperty.Register("StepType", typeof(StepTypes), typeof(StepData), new PropertyMetadata());
@@ -39,10 +26,17 @@ namespace MyHealth
 
         #endregion
 
-        public Geometry Icon
+        public enum StepTypes
         {
-            get { return (Geometry)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
+            WorkTime,
+            ImageSlider,
+            ShortBreak,
+            FreshStart,
+            Seperator
+        }
+        public enum ImageListes
+        {
+            Body,Eye
         }
 
         public StepTypes StepType
@@ -66,66 +60,15 @@ namespace MyHealth
             set { SetValue(ImageListProperty, value); }
         }
 
-        public StepData()
-        {
-            //Style = (Style)TryFindResource("StepData.DefaultStyle");
-            BindIcon();
-        }
-        private void BindIcon()
-        {
-            //MultiBinding multiBinding = new MultiBinding();
-            //multiBinding.Bindings.Add(new Binding("StepType")
-            //{
-            //    Source = this,
-            //    Mode = BindingMode.TwoWay
-            //});
-
-            //multiBinding.Bindings.Add(new Binding("ImageList")
-            //{
-            //    Source = this,
-            //    Mode = BindingMode.TwoWay
-            //});
-            //multiBinding.Converter = new StepDataIconConverter();
-            //SetBinding(IconProperty, multiBinding);
-        }
-
-        public XmlSchema GetSchema() => null;
-        public void ReadXml(XmlReader reader)
-        {
-            reader.Read();
-
-            StepType = (StepTypes)reader.ReadElementContentAsInt();
-            StepName = reader.ReadElementContentAsString();
-            Duration = TimeSpan.FromSeconds(reader.ReadElementContentAsInt());
-            ImageList = (ImageListes)reader.ReadElementContentAsInt();
-
-            reader.ReadEndElement();
-        }
-        public void WriteXml(XmlWriter writer)
-        {
-            void Write(string name,object value)
-            {
-                writer.WriteStartElement(name);
-                writer.WriteValue(value ?? "");
-                writer.WriteEndElement();
-            }
-
-            Write(nameof(StepType), (int)StepType);
-            Write(nameof(StepName), StepName);
-            Write(nameof(Duration), Duration.TotalSeconds);
-            Write(nameof(ImageList), (int)ImageList);
-
-        }
-
         public override string ToString()
         {
             switch (StepType)
             {
                 case StepTypes.WorkTime:
                 case StepTypes.ShortBreak:
-                    return $"{StepName} | {Duration.ToString("hh':'mm':'ss")}";
+                    return $"{StepName} | {Duration:hh':'mm':'ss}";
                 case StepTypes.ImageSlider:
-                    return $"{StepName} | ({ImageList}) {Duration.ToString("hh':'mm':'ss")}";
+                    return $"{StepName} | ({ImageList}) {Duration:hh':'mm':'ss}";
                 case StepTypes.FreshStart:
                     return $"{StepName}";
                 default:
@@ -154,29 +97,6 @@ namespace MyHealth
                 default:
                     return null;
             }
-        }
-        public object ToMenuItem()
-        {
-            //switch (StepType)
-            //{
-            //    case StepTypes.Seperator:
-            //        return new Separator();
-            //    default:
-            //        Path itemIcon = new Path()
-            //        {
-            //            Data = Icon,
-            //            Style = (Style)TryFindResource("StepData.MenuItemIcon"),
-            //        };
-            //        MenuItem item = new MenuItem()
-            //        {
-            //            Header = ToString(),
-            //            Style = (Style)TryFindResource("StepData.MenuItem"),
-            //            Icon = itemIcon
-            //        };
-            //        itemIcon.SetBinding(Shape.FillProperty, new Binding("BorderBrush") { Source = item });
-            //        return item;
-            //}
-            return null;
         }
     }
 }
