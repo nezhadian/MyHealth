@@ -57,6 +57,7 @@
         <ListBox
             x:Name="lstItems"
             Grid.Row="2"
+            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList, Mode=TwoWay}"
             SelectedItem="{Binding SelectedStep, Mode=TwoWay}"
             SelectionChanged="lstItems_SelectionChanged" />

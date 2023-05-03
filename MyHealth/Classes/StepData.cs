@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace MyHealth
 {
-    public class StepData : ListBoxItem,IXmlSerializable
+    public class StepData : DependencyObject,IXmlSerializable
     {
         public enum StepTypes
         {
@@ -68,25 +68,25 @@ namespace MyHealth
 
         public StepData()
         {
-            Style = (Style)TryFindResource("StepData.DefaultStyle");
+            //Style = (Style)TryFindResource("StepData.DefaultStyle");
             BindIcon();
         }
         private void BindIcon()
         {
-            MultiBinding multiBinding = new MultiBinding();
-            multiBinding.Bindings.Add(new Binding("StepType")
-            {
-                Source = this,
-                Mode = BindingMode.TwoWay
-            });
+            //MultiBinding multiBinding = new MultiBinding();
+            //multiBinding.Bindings.Add(new Binding("StepType")
+            //{
+            //    Source = this,
+            //    Mode = BindingMode.TwoWay
+            //});
 
-            multiBinding.Bindings.Add(new Binding("ImageList")
-            {
-                Source = this,
-                Mode = BindingMode.TwoWay
-            });
-            multiBinding.Converter = new StepDataIconConverter();
-            SetBinding(IconProperty, multiBinding);
+            //multiBinding.Bindings.Add(new Binding("ImageList")
+            //{
+            //    Source = this,
+            //    Mode = BindingMode.TwoWay
+            //});
+            //multiBinding.Converter = new StepDataIconConverter();
+            //SetBinding(IconProperty, multiBinding);
         }
 
         public XmlSchema GetSchema() => null;
@@ -157,25 +157,26 @@ namespace MyHealth
         }
         public object ToMenuItem()
         {
-            switch (StepType)
-            {
-                case StepTypes.Seperator:
-                    return new Separator();
-                default:
-                    Path itemIcon = new Path()
-                    {
-                        Data = Icon,
-                        Style = (Style)TryFindResource("StepData.MenuItemIcon"),
-                    };
-                    MenuItem item = new MenuItem()
-                    {
-                        Header = ToString(),
-                        Style = (Style)TryFindResource("StepData.MenuItem"),
-                        Icon = itemIcon
-                    };
-                    itemIcon.SetBinding(Shape.FillProperty, new Binding("BorderBrush") { Source = item });
-                    return item;
-            }
+            //switch (StepType)
+            //{
+            //    case StepTypes.Seperator:
+            //        return new Separator();
+            //    default:
+            //        Path itemIcon = new Path()
+            //        {
+            //            Data = Icon,
+            //            Style = (Style)TryFindResource("StepData.MenuItemIcon"),
+            //        };
+            //        MenuItem item = new MenuItem()
+            //        {
+            //            Header = ToString(),
+            //            Style = (Style)TryFindResource("StepData.MenuItem"),
+            //            Icon = itemIcon
+            //        };
+            //        itemIcon.SetBinding(Shape.FillProperty, new Binding("BorderBrush") { Source = item });
+            //        return item;
+            //}
+            return null;
         }
     }
 }

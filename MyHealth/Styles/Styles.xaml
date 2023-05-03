@@ -463,106 +463,112 @@
     <!--  ____________________________________________ Custom Control Styles ______________________  -->
     <!--  Step Data Style  -->
     <local:TimeSpanConverter x:Key="TimeSpanConverter" />
-    <ControlTemplate x:Key="StepData.Template" TargetType="{x:Type local:StepData}">
-        <Border Background="{TemplateBinding Background}">
-            <Grid>
-                <!--  Columns  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3" />
-                    <ColumnDefinition Width="24" />
-                    <ColumnDefinition Width="3" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="10" />
-                </Grid.ColumnDefinitions>
+    <local:StepDataIconConverter x:Key="IconConverter" />
 
-                <!--  Selection Bar  -->
-                <Border
-                    x:Name="selBar"
-                    Background="{DynamicResource StepData.SelectionColor}"
-                    CornerRadius="0,3,3,0"
-                    Visibility="Collapsed" />
+    <Style x:Key="StepData.ListBoxItemContainer" TargetType="ListBoxItem">
+        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource StepData.Hover}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-                <!--  Icon  -->
-                <Path
-                    x:Name="icon"
-                    Grid.Column="1"
-                    Width="15"
-                    Data="{TemplateBinding Icon}"
-                    Fill="{DynamicResource StepData.IconColor}"
-                    Stretch="Uniform" />
+    <ControlTemplate x:Key="StepData.DefaultTemplate">
+        <Grid Height="27">
+            <!--  Columns  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <!--  Selection Bar  -->
+            <Border
+                x:Name="selBar"
+                Background="{DynamicResource StepData.SelectionColor}"
+                CornerRadius="0,3,3,0"
+                Visibility="Collapsed" />
+            <!--  Icon  -->
+            <Path
+                x:Name="icon"
+                Grid.Column="1"
+                Width="15"
+                Fill="{DynamicResource StepData.IconColor}"
+                Stretch="Uniform">
+                <Path.Data>
+                    <MultiBinding Converter="{StaticResource IconConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Mode="TwoWay" Path="StepType" />
+                            <Binding Mode="TwoWay" Path="ImageList" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Path.Data>
+            </Path>
+            <!--  Text  -->
+            <TextBlock
+                Grid.Column="3"
+                VerticalAlignment="Center"
+                Text="{Binding StepName}" />
 
-                <!--  Text  -->
-                <TextBlock
-                    Grid.Column="3"
-                    VerticalAlignment="Center"
-                    Text="{TemplateBinding StepName}" />
+            <!--  Duration TimeSpan  -->
+            <TextBlock
+                x:Name="tsDuration"
+                Grid.Column="4"
+                VerticalAlignment="Center"
+                Text="{Binding Duration, Converter={StaticResource TimeSpanConverter}}"
+                Visibility="Collapsed" />
 
-                <!--  Duration TimeSpan  -->
-                <TextBlock
-                    x:Name="tsDuration"
-                    Grid.Column="4"
-                    VerticalAlignment="Center"
-                    Text="{TemplateBinding Duration,
-                                           Converter={StaticResource TimeSpanConverter}}"
-                    Visibility="Collapsed" />
-
-            </Grid>
-        </Border>
+        </Grid>
         <ControlTemplate.Triggers>
-            <!--  Hover  -->
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{DynamicResource StepData.Hover}" />
-            </Trigger>
-            <!--  IsSelected  -->
-            <Trigger Property="IsSelected" Value="true">
+            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
                 <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
-                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
-                <Setter Property="FontWeight" Value="Bold" />
                 <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
-            </Trigger>
-            <!--  Duration Visibility  -->
-            <Trigger Property="StepType" Value="WorkTime">
-                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
-            </Trigger>
-            <Trigger Property="StepType" Value="ImageSlider">
-                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
-            </Trigger>
-            <Trigger Property="StepType" Value="ShortBreak">
-                <Setter TargetName="tsDuration" Property="Visibility" Value="Visible" />
-            </Trigger>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <ControlTemplate x:Key="StepData.Seperator" TargetType="{x:Type local:StepData}">
-        <Grid Background="{TemplateBinding Background}">
+    <ControlTemplate x:Key="StepData.Seperator">
+        <Grid Height="15" Background="{DynamicResource BackgroundColor}">
             <Rectangle
                 x:Name="bar"
                 Height="1"
-                Fill="{TemplateBinding Foreground}" />
+                Fill="{DynamicResource StepData.SeperatorLineColor}" />
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
+            <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
                 <Setter TargetName="bar" Property="Height" Value="5" />
-            </Trigger>
-            <Trigger Property="IsSelected" Value="true">
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
                 <Setter TargetName="bar" Property="Height" Value="5" />
                 <Setter TargetName="bar" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
-            </Trigger>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style x:Key="StepData.DefaultStyle" TargetType="{x:Type local:StepData}">
-        <Setter Property="Height" Value="27" />
-        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
-        <Setter Property="Template" Value="{StaticResource StepData.Template}" />
-        <Style.Triggers>
-            <Trigger Property="StepType" Value="Seperator">
-                <Setter Property="Height" Value="15" />
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="Foreground" Value="{DynamicResource StepData.SeperatorLineColor}" />
-                <Setter Property="Template" Value="{StaticResource StepData.Seperator}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+    <DataTemplate DataType="{x:Type local:StepData}">
+        <Control x:Name="control" Template="{StaticResource StepData.DefaultTemplate}" />
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding StepType}" Value="Seperator">
+                <Setter TargetName="control" Property="Template" Value="{StaticResource StepData.Seperator}" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+
+    </DataTemplate>
 
     <!--  Timer Style  -->
     <Style TargetType="{x:Type local:Timer}">
