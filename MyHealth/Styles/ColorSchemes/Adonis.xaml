@@ -90,10 +90,7 @@
 
     <!--  Timer  -->
     <SolidColorBrush x:Key="Timer.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
-    <SolidColorBrush
-        x:Key="Timer.Background"
-        Opacity="0.3"
-        Color="{DynamicResource {x:Static adonis:Colors.Layer1BackgroundColor}}" />
+    <SolidColorBrush x:Key="Timer.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
 
     <!--  Icons  -->
