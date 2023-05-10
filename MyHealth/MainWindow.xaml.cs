@@ -105,7 +105,12 @@ namespace MyHealth
 
         }
 
-        private void Open_Click(object sender, RoutedEventArgs e) => Activate();
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            Activate();
+            MouseEnterAnimation.Storyboard.Begin();
+        }
+
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             //bool topmost = Topmost;
