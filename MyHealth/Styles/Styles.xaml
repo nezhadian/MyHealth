@@ -587,6 +587,8 @@
 
     <!--  ____________________________________________ Task View Style ______________________  -->
 
+    <local:Bool2EnumConverter x:Key="EnumConverter" />
+
     <Style x:Key="TaskView.StarToggleButton" TargetType="ToggleButton">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
@@ -620,7 +622,10 @@
             </Grid.ColumnDefinitions>
 
             <!--  IsCompleted CheckBox  -->
-            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsCompleted}" />
+            <CheckBox
+                x:Name="chkIsCompleted"
+                HorizontalAlignment="Center"
+                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter=Completed}" />
             <!--  Text  -->
             <TextBox
                 x:Name="text"
@@ -641,11 +646,10 @@
 
             <!--  Star Icon - IsImporant ToggleButton  -->
             <ToggleButton
+                x:Name="tglIsImporant"
                 Grid.Column="2"
-                IsChecked="{Binding IsImportant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter=Importants}"
                 Style="{StaticResource TaskView.StarToggleButton}" />
-
-
         </Grid>
     </DataTemplate>
     <Style
