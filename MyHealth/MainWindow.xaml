@@ -27,13 +27,14 @@
     </Window.CommandBindings>
     <Grid>
         <!--  Pages Content  -->
-        <Grid Background="Transparent">
+        <Grid
+            Background="Transparent">
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
         </Grid>
 
         <!--  Container  -->
         <Border
-            x:Name="timerBorder"
+            x:Name="bdrMainMenu"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Style="{StaticResource Main.TimerBorder}">
@@ -60,7 +61,7 @@
 
                     <!--  Task List  -->
                     <ListBox
-                        x:Name="lstStepData"
+                        x:Name="lstTasks"
                         dragdrop:DragDrop.IsDragSource="True"
                         dragdrop:DragDrop.IsDropTarget="True"
                         ItemsSource="{Binding TaskList}"
@@ -104,80 +105,7 @@
                 </Grid>
             </Grid>
 
-            <!--  Expand and Collapse Animation  -->
-            <Border.Triggers>
-                <!--  Mouse Enter Border  -->
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <!--  Expander Height Anim  -->
-                            <DoubleAnimation
-                                Storyboard.TargetName="grdExpanderScale"
-                                Storyboard.TargetProperty="ScaleY"
-                                To="1"
-                                Duration="0:00:0.15" />
-                            <!--  Expander Width Anim  -->
-                            <DoubleAnimation
-                                Storyboard.TargetName="grdExpanderScale"
-                                Storyboard.TargetProperty="ScaleX"
-                                To="1"
-                                Duration="0:00:0.15" />
-                            <!--  Expander Opacity Anim  -->
-                            <DoubleAnimation
-                                Storyboard.TargetName="grdExpander"
-                                Storyboard.TargetProperty="Opacity"
-                                To="1"
-                                Duration="0:0:0.15" />
-                            <!--  Timer Border Opacity  -->
-                            <DoubleAnimation
-                                Storyboard.TargetName="timerBorder"
-                                Storyboard.TargetProperty="Background.Opacity"
-                                To="1"
-                                Duration="0:0:0.15" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
 
-                <!--  Mouse Leaves Border  -->
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard x:Name="MouseLeaveAnimation">
-                        <Storyboard>
-                            <!--  Expander Height Anim  -->
-                            <DoubleAnimation
-                                BeginTime="0:0:1.5"
-                                Storyboard.TargetName="grdExpanderScale"
-                                Storyboard.TargetProperty="ScaleY"
-                                To="0"
-                                Duration="0:00:0.2" />
-                            <!--  Expander Width Anim  -->
-                            <DoubleAnimation
-                                BeginTime="0:0:1.5"
-                                Storyboard.TargetName="grdExpanderScale"
-                                Storyboard.TargetProperty="ScaleX"
-                                To="0"
-                                Duration="0:00:0.2" />
-                            <!--  Expander Opacity Anim  -->
-                            <DoubleAnimation
-                                BeginTime="0:0:1.5"
-                                Storyboard.TargetName="grdExpander"
-                                Storyboard.TargetProperty="Opacity"
-                                To="0"
-                                Duration="0:0:0.2" />
-                            <!--  Timer Border Opacity  -->
-                            <DoubleAnimation
-                                BeginTime="0:0:1.5"
-                                Storyboard.TargetName="timerBorder"
-                                Storyboard.TargetProperty="Background.Opacity"
-                                To="0.3"
-                                Duration="0:0:0.2" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <!--  Border Loaded Animation Binded To Leave Animation  -->
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard Storyboard="{Binding ElementName=MouseLeaveAnimation, Path=Storyboard, Mode=OneTime}" />
-                </EventTrigger>
-            </Border.Triggers>
         </Border>
 
         <!--  TaskBar Icon  -->
@@ -200,6 +128,90 @@
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
+
+        <!--  Expand and Collapse Animation  -->
+        <Grid.Triggers>
+            <!--  Mouse Enter Menu Border  -->
+            <EventTrigger RoutedEvent="MouseEnter" SourceName="bdrMainMenu">
+                <BeginStoryboard x:Name="MouseEnterAnimation">
+                    <Storyboard>
+                        <!--  Expander Height Anim  -->
+                        <DoubleAnimation
+                            Storyboard.TargetName="grdExpanderScale"
+                            Storyboard.TargetProperty="ScaleY"
+                            To="1"
+                            Duration="0:00:0.15" />
+                        <!--  Expander Width Anim  -->
+                        <DoubleAnimation
+                            Storyboard.TargetName="grdExpanderScale"
+                            Storyboard.TargetProperty="ScaleX"
+                            To="1"
+                            Duration="0:00:0.15" />
+                        <!--  Expander Opacity Anim  -->
+                        <DoubleAnimation
+                            Storyboard.TargetName="grdExpander"
+                            Storyboard.TargetProperty="Opacity"
+                            To="1"
+                            Duration="0:0:0.15" />
+                        <!--  Timer Border Opacity  -->
+                        <DoubleAnimation
+                            Storyboard.TargetName="bdrMainMenu"
+                            Storyboard.TargetProperty="Background.Opacity"
+                            To="1"
+                            Duration="0:0:0.15" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+            <!--  Mouse Leaves Menu Border  -->
+            <EventTrigger RoutedEvent="MouseLeave" SourceName="bdrMainMenu">
+                <BeginStoryboard Name="MouseLeaveAnimation">
+                    <Storyboard>
+                        <!--  Expander Height Anim  -->
+                        <DoubleAnimation
+                            BeginTime="0:0:1.5"
+                            Storyboard.TargetName="grdExpanderScale"
+                            Storyboard.TargetProperty="ScaleY"
+                            To="0"
+                            Duration="0:00:0.2" />
+                        <!--  Expander Width Anim  -->
+                        <DoubleAnimation
+                            BeginTime="0:0:1.5"
+                            Storyboard.TargetName="grdExpanderScale"
+                            Storyboard.TargetProperty="ScaleX"
+                            To="0"
+                            Duration="0:00:0.2" />
+                        <!--  Expander Opacity Anim  -->
+                        <DoubleAnimation
+                            BeginTime="0:0:1.5"
+                            Storyboard.TargetName="grdExpander"
+                            Storyboard.TargetProperty="Opacity"
+                            To="0"
+                            Duration="0:0:0.2" />
+                        <!--  Timer Border Opacity  -->
+                        <DoubleAnimation
+                            BeginTime="0:0:1.5"
+                            Storyboard.TargetName="bdrMainMenu"
+                            Storyboard.TargetProperty="Background.Opacity"
+                            To="0.3"
+                            Duration="0:0:0.2" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <!--  App Loaded Animation Binded To Leave Animation  -->
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseLeaveAnimation, Mode=OneTime}" />
+            </EventTrigger>
+
+            <!--  Keep Menu Open when dragging  -->
+            <EventTrigger RoutedEvent="PreviewDragOver">
+                <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseEnterAnimation}" />
+            </EventTrigger>
+
+
+
+
+        </Grid.Triggers>
 
     </Grid>
 </Window>
