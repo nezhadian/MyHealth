@@ -27,8 +27,9 @@
     </Window.CommandBindings>
 
     <Window.Resources>
+        <!--  Tasklist Collection Viewing and Grouping  -->
         <CollectionViewSource
-            x:Key="TaskList"
+            x:Key="TaskListCollectionView"
             IsLiveGroupingRequested="True"
             Source="{Binding TaskList}">
             <CollectionViewSource.GroupDescriptions>
@@ -68,13 +69,17 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
 
-                    <!--  Task List  -->
+                    <!--  Task ListBox  -->
                     <ListBox
                         x:Name="lstTasks"
                         dragdrop:DragDrop.IsDragSource="True"
                         dragdrop:DragDrop.IsDropTarget="True"
-                        ItemsSource="{Binding Source={StaticResource TaskList}}"
+                        ItemsSource="{Binding Source={StaticResource TaskListCollectionView}}"
                         SelectedItem="{Binding SelectedTask}"
                         Style="{StaticResource TaskView.ListBox}">
                         <ListBox.GroupStyle>
@@ -83,7 +88,7 @@
                     </ListBox>
 
                     <!--  Add Textbox  -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
                         <!--  Columns  -->
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -111,6 +116,16 @@
                                 Stretch="Uniform" />
                         </Button>
                     </Grid>
+
+                    <!--  Step List  -->
+                    <Expander
+                        Grid.Column="1"
+                        Margin="10,5,0,0"
+                        Header="Steps"
+                        IsExpanded="True">
+                        <ListBox ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}" ItemsSource="{Binding StepList}" />
+                    </Expander>
+
 
 
                     <!--  Expander Scaler  -->

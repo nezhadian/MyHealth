@@ -44,9 +44,23 @@ namespace MyHealth
         }
 
 
+
+        public ObservableCollection<StepData> StepList
+        {
+            get { return (ObservableCollection<StepData>)GetValue(StepListProperty); }
+            set { SetValue(StepListProperty, value); }
+        }
+
+        public static readonly DependencyProperty StepListProperty =
+            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(MainWindow), new PropertyMetadata());
+
+
+
+
         public MainWindow()
         {
             TaskList = new ObservableCollection<TaskView>();
+            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
 
 
             DataContext = this;
