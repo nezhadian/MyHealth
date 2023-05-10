@@ -751,7 +751,7 @@
         TargetType="ListBox">
         <Setter Property="MinWidth" Value="400" />
         <Setter Property="MinHeight" Value="500" />
-        <Setter Property="MaxHeight" Value="800" />
+        <Setter Property="MaxHeight" Value="600" />
 
         <Setter Property="Padding" Value="0,5" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
@@ -809,6 +809,114 @@
                 <Setter Property="Foreground" Value="{DynamicResource StepData.MenuItem.SelectionColor}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <!--  Expander Style  -->
+    <Style x:Key="Expander.ToggleButton" TargetType="ToggleButton">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer0BackgroundBrush}}" />
+        <Setter Property="Padding" Value="5,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <!--  columns  -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Content  -->
+                            <ContentPresenter />
+
+                            <!--  Indicator  -->
+                            <Path
+                                x:Name="arrow"
+                                Grid.Column="1"
+                                Width="5"
+                                VerticalAlignment="Center"
+                                Data="{StaticResource ArrowRightIndicator}"
+                                Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
+                                Stretch="Uniform" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer1HighlightBrush}}" />
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="arrow" Property="Data" Value="{StaticResource ArrowDown}" />
+                            <Setter TargetName="arrow" Property="Width" Value="9" />
+
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Expander">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static adonis:Brushes.ForegroundBrush}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Expander">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <!--  rows  -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Expand and collapse Toggle Button  -->
+                            <ToggleButton IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource Expander.ToggleButton}">
+
+                                <!--  Header  -->
+                                <TextBlock Style="{StaticResource Texts.NormalText}" Text="{TemplateBinding Header}" />
+                            </ToggleButton>
+
+                            <!--  Content  -->
+
+                            <ContentPresenter x:Name="content" Grid.Row="1" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--  Hide Content When IsExpanded Set to false  -->
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter TargetName="content" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Main Window Task List Group Items Style  -->
+    <Style x:Key="MainWindow.TaskListGroupItem" TargetType="GroupItem">
+        <Setter Property="Padding" Value="10,5,0,10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupItem">
+                    <Expander x:Name="expander" IsExpanded="true">
+                        <ItemsPresenter Margin="{TemplateBinding Padding}" />
+                    </Expander>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Name}" Value="True">
+                            <Setter TargetName="expander" Property="Header" Value="Completed" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Name}" Value="False">
+                            <Setter TargetName="expander" Property="Header" Value="Tasks" />
+                        </DataTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!--  Timer Border  -->
