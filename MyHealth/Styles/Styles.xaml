@@ -668,14 +668,24 @@
             <!--  IsCompleted CheckBox  -->
             <CheckBox
                 Grid.Column="1"
-                Width="15"
+                HorizontalAlignment="Center"
                 IsChecked="{Binding IsCompleted}" />
             <!--  Text  -->
-            <TextBlock
+            <TextBox
                 x:Name="text"
                 Grid.Column="3"
+                MinWidth="100"
+                Padding="0"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Text="{Binding Title}" />
+                BorderThickness="0"
+                Text="{Binding Title}">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
 
             <!--  Duration TimeSpan  -->
             <TextBlock
