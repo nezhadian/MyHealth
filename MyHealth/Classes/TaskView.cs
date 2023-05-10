@@ -10,13 +10,14 @@ namespace MyHealth
         #region DependencyProperties
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(TaskView), new PropertyMetadata());
-        public static readonly DependencyProperty InProgressProperty =
-            DependencyProperty.Register("InProgress", typeof(bool), typeof(TaskView), new PropertyMetadata(false));
-        public static readonly DependencyProperty IsCompletedProperty =
-            DependencyProperty.Register("IsCompleted", typeof(bool), typeof(TaskView), new PropertyMetadata(false));
-        public static readonly DependencyProperty IsImportantProperty =
-            DependencyProperty.Register("IsImportant", typeof(bool), typeof(TaskView), new PropertyMetadata(false));
+        public static readonly DependencyProperty GroupingProperty =
+                    DependencyProperty.Register("Grouping", typeof(TaskGroups), typeof(TaskView), new PropertyMetadata(TaskGroups.Tasks));
         #endregion
+
+        public enum TaskGroups
+        {
+            Importants, Tasks, Completed
+        }
 
         public string Title
         {
@@ -24,17 +25,13 @@ namespace MyHealth
             set { SetValue(TitleProperty, value); }
         }
 
-        public bool IsCompleted
+        public TaskGroups Grouping
         {
-            get { return (bool)GetValue(IsCompletedProperty); }
-            set { SetValue(IsCompletedProperty, value); }
+            get { return (TaskGroups)GetValue(GroupingProperty); }
+            set { SetValue(GroupingProperty, value); }
         }
 
-        public bool IsImportant
-        {
-            get { return (bool)GetValue(IsImportantProperty); }
-            set { SetValue(IsImportantProperty, value); }
-        }
+        
 
     }
 }
