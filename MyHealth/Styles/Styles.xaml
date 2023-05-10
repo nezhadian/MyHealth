@@ -587,6 +587,29 @@
 
     <!--  ____________________________________________ Task View Style ______________________  -->
 
+    <Style x:Key="TaskView.StarToggleButton" TargetType="ToggleButton">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid Background="Transparent">
+                        <Path
+                            x:Name="icon"
+                            Width="15"
+                            Data="{StaticResource UnStar}"
+                            Fill="{DynamicResource StepData.IconColor}"
+                            Stretch="Uniform" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Data" Value="{StaticResource Star}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <DataTemplate DataType="{x:Type local:TaskView}">
         <Grid Height="27" Margin="7,0,10,0">
             <!--  Columns  -->
@@ -617,14 +640,11 @@
             </TextBox>
 
             <!--  Star Icon - IsImporant ToggleButton  -->
-            <Path
-                x:Name="starIcon"
+            <ToggleButton
                 Grid.Column="2"
-                Width="15"
-                Data="{StaticResource Star}"
-                Fill="{DynamicResource StepData.IconColor}"
-                Stretch="Uniform"
-                Visibility="Collapsed" />
+                IsChecked="{Binding IsImportant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource TaskView.StarToggleButton}" />
+
 
         </Grid>
     </DataTemplate>
