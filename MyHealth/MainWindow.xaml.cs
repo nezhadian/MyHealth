@@ -43,13 +43,40 @@ namespace MyHealth
             set { SetValue(SelectedTaskProperty, value); }
         }
 
+
         public MainWindow()
         {
             TaskList = new ObservableCollection<TaskView>();
 
+
             DataContext = this;
             InitializeComponent();
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (ApplicationCommands.New.CanExecute(null, null))
+                    ApplicationCommands.New.Execute(null, null);
+            }
+        }
+
+        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !string.IsNullOrWhiteSpace(txtCommand.Text);
+
+        }
+        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TaskList.Add(new TaskView()
+            {
+                StepType = StepData.StepTypes.WorkTime,
+                Title = txtCommand.Text
+            });
+            txtCommand.Text = "";
+        }
+
 
         #region TaskBar Icon Menu
         private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => Bindings();
@@ -91,31 +118,6 @@ namespace MyHealth
         }
 
         #endregion
-
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.Key == Key.Enter)
-            {
-                if (ApplicationCommands.New.CanExecute(null, null))
-                    ApplicationCommands.New.Execute(null, null);
-            }
-        }
-
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = !string.IsNullOrWhiteSpace(txtCommand.Text);
-
-        }
-
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            TaskList.Add(new TaskView()
-            {
-                StepType = StepData.StepTypes.WorkTime,
-                Title = txtCommand.Text
-            });
-            txtCommand.Text = "";
-        }
     }
 
     public interface ITimerSlice 

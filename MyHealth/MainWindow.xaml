@@ -25,10 +25,20 @@
             Command="{x:Static ApplicationCommands.New}"
             Executed="NewCommand_Executed" />
     </Window.CommandBindings>
+
+    <Window.Resources>
+        <CollectionViewSource
+            x:Key="TaskList"
+            IsLiveGroupingRequested="True"
+            Source="{Binding TaskList}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="IsCompleted" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
     <Grid>
         <!--  Pages Content  -->
-        <Grid
-            Background="Transparent">
+        <Grid Background="Transparent">
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
         </Grid>
 
@@ -64,10 +74,13 @@
                         x:Name="lstTasks"
                         dragdrop:DragDrop.IsDragSource="True"
                         dragdrop:DragDrop.IsDropTarget="True"
-                        ItemsSource="{Binding TaskList}"
+                        ItemsSource="{Binding Source={StaticResource TaskList}}"
                         SelectedItem="{Binding SelectedTask}"
-                        SelectionMode="Extended"
-                        Style="{StaticResource TaskView.ListBox}" />
+                        Style="{StaticResource TaskView.ListBox}">
+                        <ListBox.GroupStyle>
+                            <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskListGroupItem}" />
+                        </ListBox.GroupStyle>
+                    </ListBox>
 
                     <!--  Add Textbox  -->
                     <Grid Grid.Row="1">
@@ -98,6 +111,8 @@
                                 Stretch="Uniform" />
                         </Button>
                     </Grid>
+
+
                     <!--  Expander Scaler  -->
                     <Grid.LayoutTransform>
                         <ScaleTransform x:Name="grdExpanderScale" ScaleX="1" ScaleY="1" />
@@ -207,10 +222,6 @@
             <EventTrigger RoutedEvent="PreviewDragOver">
                 <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseEnterAnimation}" />
             </EventTrigger>
-
-
-
-
         </Grid.Triggers>
 
     </Grid>
