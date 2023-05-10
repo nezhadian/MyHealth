@@ -15,6 +15,8 @@ namespace MyHealth
         #region Dependency Properites
         public static readonly DependencyProperty StepTypeProperty =
             DependencyProperty.Register("StepType", typeof(StepTypes), typeof(StepData), new PropertyMetadata());
+        public static readonly DependencyProperty StepNameProperty =
+            DependencyProperty.Register("StepName", typeof(string), typeof(StepData), new PropertyMetadata());
         public static readonly DependencyProperty DurationProperty =
             DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(StepData), new PropertyMetadata());
         public static readonly DependencyProperty ImageListProperty =
@@ -41,6 +43,11 @@ namespace MyHealth
         {
             get { return (StepTypes)GetValue(StepTypeProperty); }
             set { SetValue(StepTypeProperty, value); }
+        }
+        public string StepName
+        {
+            get { return (string)GetValue(StepNameProperty); }
+            set { SetValue(StepNameProperty, value); }
         }
         public TimeSpan Duration
         {

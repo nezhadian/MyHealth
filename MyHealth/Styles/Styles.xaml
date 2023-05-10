@@ -537,7 +537,7 @@
             <TextBlock
                 Grid.Column="3"
                 VerticalAlignment="Center"
-                Text="{Binding StepType, Converter={StaticResource TextConverter}}" />
+                Text="{Binding StepName}" />
 
             <!--  Duration TimeSpan  -->
             <TextBlock
@@ -545,7 +545,7 @@
                 Grid.Column="4"
                 VerticalAlignment="Center"
                 Text="{Binding Duration, Converter={StaticResource TimeSpanConverter}}"
-                Visibility="Collapsed" />
+                Visibility="Visible" />
 
         </Grid>
         <ControlTemplate.Triggers>
