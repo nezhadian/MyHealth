@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace MyHealth
 {
-    public class TaskView : StepData
+    public class TaskView : DependencyObject
     {
         #region DependencyProperties
         public static readonly DependencyProperty TitleProperty =

@@ -85,7 +85,6 @@ namespace MyHealth
         {
             TaskList.Add(new TaskView()
             {
-                StepType = StepData.StepTypes.WorkTime,
                 Title = txtCommand.Text
             });
             txtCommand.Text = "";
