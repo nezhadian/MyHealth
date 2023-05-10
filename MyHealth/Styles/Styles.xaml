@@ -460,10 +460,10 @@
         </Setter>
     </Style>
 
-    <!--  ____________________________________________ Custom Control Styles ______________________  -->
-    <!--  Step Data Style  -->
+    <!--  ____________________________________________ Step Data Style ______________________  -->
     <local:TimeSpanConverter x:Key="TimeSpanConverter" />
     <local:StepDataIconConverter x:Key="IconConverter" />
+    <local:JoinedTextConverter x:Key="TextConverter" />
 
     <Style x:Key="StepData.ListBoxItemContainer" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
@@ -525,7 +525,7 @@
             <TextBlock
                 Grid.Column="3"
                 VerticalAlignment="Center"
-                Text="{Binding StepName}" />
+                Text="{Binding StepType, Converter={StaticResource TextConverter}}" />
 
             <!--  Duration TimeSpan  -->
             <TextBlock
@@ -537,6 +537,9 @@
 
         </Grid>
         <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding StepType}" Value="FreshStart">
+                <Setter TargetName="tsDuration" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
             <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
                 <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
                 <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
@@ -563,13 +566,175 @@
     <DataTemplate DataType="{x:Type local:StepData}">
         <Control x:Name="control" Template="{StaticResource StepData.DefaultTemplate}" />
         <DataTemplate.Triggers>
+
             <DataTrigger Binding="{Binding StepType}" Value="Seperator">
                 <Setter TargetName="control" Property="Template" Value="{StaticResource StepData.Seperator}" />
             </DataTrigger>
         </DataTemplate.Triggers>
-
     </DataTemplate>
 
+    <!--  ____________________________________________ Task View Style ______________________  -->
+
+    <ControlTemplate x:Key="TaskView.DefaultTemplate">
+        <Grid Height="20">
+            <!--  Columns  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <!--  Selection Bar  -->
+            <Border
+                x:Name="selBar"
+                Background="{DynamicResource StepData.SelectionColor}"
+                CornerRadius="0,3,3,0"
+                Visibility="Collapsed" />
+            <!--  Icon  -->
+            <Path
+                x:Name="icon"
+                Grid.Column="1"
+                Width="15"
+                Fill="{DynamicResource StepData.IconColor}"
+                Stretch="Uniform">
+                <Path.Data>
+                    <MultiBinding Converter="{StaticResource IconConverter}">
+                        <MultiBinding.Bindings>
+                            <Binding Mode="TwoWay" Path="StepType" />
+                            <Binding Mode="TwoWay" Path="ImageList" />
+                        </MultiBinding.Bindings>
+                    </MultiBinding>
+                </Path.Data>
+            </Path>
+            <!--  Text  -->
+            <TextBlock
+                x:Name="text"
+                Grid.Column="3"
+                VerticalAlignment="Center"
+                Text="{Binding StepType, Converter={StaticResource TextConverter}}" />
+
+            <!--  Duration TimeSpan  -->
+            <TextBlock
+                x:Name="tsDuration"
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{Binding Duration, Converter={StaticResource TimeSpanConverter}}" />
+
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding StepType}" Value="FreshStart">
+                <Setter TargetName="tsDuration" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
+                <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
+                <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="TaskView.WorkTimeTemplate">
+        <Grid Height="27">
+            <!--  Columns  -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <!--  Selection Bar  -->
+            <Border
+                x:Name="selBar"
+                Background="{DynamicResource StepData.SelectionColor}"
+                CornerRadius="0,3,3,0"
+                Visibility="Collapsed" />
+
+            <!--  IsCompleted CheckBox  -->
+            <CheckBox
+                Grid.Column="1"
+                Width="15"
+                IsChecked="{Binding IsCompleted}" />
+            <!--  Text  -->
+            <TextBlock
+                x:Name="text"
+                Grid.Column="3"
+                VerticalAlignment="Center"
+                Text="{Binding Title}" />
+
+            <!--  Duration TimeSpan  -->
+            <TextBlock
+                x:Name="tsDuration"
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text="{Binding Duration, Converter={StaticResource TimeSpanConverter}}" />
+
+            <!--  Star Icon  -->
+            <Path
+                x:Name="starIcon"
+                Grid.Column="4"
+                Width="15"
+                Data="{StaticResource Star}"
+                Fill="{DynamicResource StepData.IconColor}"
+                Stretch="Uniform"
+                Visibility="Collapsed" />
+
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
+                <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <DataTemplate DataType="{x:Type local:TaskView}">
+        <Grid>
+            <Control x:Name="control" Template="{StaticResource TaskView.DefaultTemplate}" />
+        </Grid>
+        <DataTemplate.Triggers>
+
+            <DataTrigger Binding="{Binding StepType}" Value="Seperator">
+                <Setter TargetName="control" Property="Template" Value="{x:Null}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding StepType}" Value="WorkTime">
+                <Setter TargetName="control" Property="Template" Value="{StaticResource TaskView.TaskTemplate}" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <Style
+        x:Key="TaskView.ListBoxItemContainer"
+        BasedOn="{StaticResource {x:Type ListBoxItem}}"
+        TargetType="ListBoxItem">
+        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="2" />
+        <Setter Property="Padding" Value="0,7" />
+        <Setter Property="Margin" Value="0,0.5" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style
+        x:Key="TaskView.ListBox"
+        BasedOn="{StaticResource {x:Type ListBox}}"
+        TargetType="ListBox">
+        <Setter Property="MinWidth" Value="400" />
+        <Setter Property="MinHeight" Value="500" />
+        <Setter Property="MaxHeight" Value="800" />
+
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
+    </Style>
+    <!--  ____________________________________________ Custom Control Styles ______________________  -->
     <!--  Timer Style  -->
     <Style TargetType="{x:Type local:Timer}">
         <Setter Property="Template">
@@ -629,7 +794,6 @@
         <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
         <Setter Property="CornerRadius" Value="{DynamicResource Timer.CornerRadius}" />
         <Setter Property="Padding" Value="5,0" />
-        <Setter Property="Height" Value="23" />
         <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
         <Setter Property="BorderThickness" Value="1,1,1,0" />
 
