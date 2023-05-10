@@ -658,12 +658,6 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="10" />
             </Grid.ColumnDefinitions>
-            <!--  Selection Bar  -->
-            <Border
-                x:Name="selBar"
-                Background="{DynamicResource StepData.SelectionColor}"
-                CornerRadius="0,3,3,0"
-                Visibility="Collapsed" />
 
             <!--  IsCompleted CheckBox  -->
             <CheckBox
@@ -679,6 +673,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 BorderThickness="0"
+                Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
                 Text="{Binding Title}">
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
@@ -706,11 +701,7 @@
                 Visibility="Collapsed" />
 
         </Grid>
-        <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}}" Value="true">
-                <Setter TargetName="selBar" Property="Visibility" Value="Visible" />
-            </DataTrigger>
-        </ControlTemplate.Triggers>
+        <ControlTemplate.Triggers />
     </ControlTemplate>
 
     <DataTemplate DataType="{x:Type local:TaskView}">
@@ -897,7 +888,6 @@
 
     <!--  Main Window Task List Group Items Style  -->
     <Style x:Key="MainWindow.TaskListGroupItem" TargetType="GroupItem">
-        <Setter Property="Padding" Value="10,5,0,10" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupItem">
