@@ -2,6 +2,8 @@
     x:Class="MyHealth.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:adonisEx="[adonisEx ]clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,6 +20,12 @@
     WindowState="Maximized"
     WindowStyle="None"
     mc:Ignorable="d">
+    <Window.CommandBindings>
+        <CommandBinding
+            CanExecute="NewCommand_CanExecute"
+            Command="{x:Static ApplicationCommands.New}"
+            Executed="NewCommand_Executed" />
+    </Window.CommandBindings>
     <Grid>
         <!--  Pages Content  -->
         <Grid Background="Transparent">
@@ -44,13 +52,49 @@
 
                 <!--  Expander  -->
                 <Grid x:Name="grdExpander">
+                    <!--  rows  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
                     <!--  Task List  -->
-                    <ListBox x:Name="lstStepData" Style="{StaticResource TaskView.ListBox}">
+                    <ListBox
+                        x:Name="lstStepData"
+                        ItemsSource="{Binding TaskList}"
+                        SelectedItem="{Binding SelectedTask}"
+                        Style="{StaticResource TaskView.ListBox}" />
 
-                    </ListBox>
+                    <!--  Add Textbox  -->
+                    <Grid Grid.Row="1">
+                        <!--  Columns  -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
 
+                        <!--  Input TextBox  -->
+                        <TextBox
+                            x:Name="txtCommand"
+                            Padding="5,10"
+                            KeyDown="TextBox_KeyDown" />
 
+                        <!--  Add Icon Button  -->
+                        <Button
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Command="{x:Static ApplicationCommands.New}"
+                            Style="{StaticResource Buttons.CTAIconButton}">
+
+                            <!--  Add Icon  -->
+                            <Path
+                                Width="17"
+                                Data="{StaticResource Add}"
+                                Fill="{Binding RelativeSource={RelativeSource AncestorType=Button, Mode=FindAncestor}, Path=Foreground}"
+                                Stretch="Uniform" />
+                        </Button>
+                    </Grid>
                     <!--  Expander Scaler  -->
                     <Grid.LayoutTransform>
                         <ScaleTransform x:Name="grdExpanderScale" ScaleX="1" ScaleY="1" />

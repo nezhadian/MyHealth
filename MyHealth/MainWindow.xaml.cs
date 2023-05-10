@@ -1,6 +1,7 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,63 +23,36 @@ namespace MyHealth
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public ITimerSlice[] Steps;
-
-        int curIndex;
-        public int CurrentIndex
-        {
-            get => curIndex;
-            set
-            {
-                curIndex = value >= Steps.Length ? 0 : value;
-
-                if (curIndex < Steps.Length)
-                {
-                    ITimerSlice page = CurrentPage;
-                    frmMain.Content = page;
-                    timer.Duration = page.RequireClick ? TimeSpan.Zero : page.Duration;
-                    Activate();
-                }
-                else
-                {
-                    timer.Duration = TimeSpan.Zero;
-                }
-            }
-        }
-        public ITimerSlice CurrentPage => Steps?[CurrentIndex];
-
         public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
+
+        #region Dp
+        public static readonly DependencyProperty TaskListProperty =
+            DependencyProperty.Register("TaskList", typeof(ObservableCollection<TaskView>), typeof(MainWindow), new PropertyMetadata());
+        public static readonly DependencyProperty SelectedTaskProperty =
+            DependencyProperty.Register("SelectedTask", typeof(TaskView), typeof(MainWindow), new PropertyMetadata());
+        #endregion
+
+        public ObservableCollection<TaskView> TaskList
+        {
+            get { return (ObservableCollection<TaskView>)GetValue(TaskListProperty); }
+            set { SetValue(TaskListProperty, value); }
+        }
+        public TaskView SelectedTask
+        {
+            get { return (TaskView)GetValue(SelectedTaskProperty); }
+            set { SetValue(SelectedTaskProperty, value); }
+        }
 
         public MainWindow()
         {
+            TaskList = new ObservableCollection<TaskView>();
+
+            DataContext = this;
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            timer.Completed += (s, ev) => CurrentIndex++;
-            LoadSteps();
-            Bindings();
-        }
-
-        private void LoadSteps()
-        {
-            Steps = StepDataCollection.GenerateSteps(DataAccess.StepDataList);
-            CurrentIndex = 0;
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (CurrentPage.RequireClick)
-            {
-                CurrentIndex++;
-            }
-        }
-
-
-        #region Context Menu
-
+        #region TaskBar Icon Menu
+        private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => Bindings();
         private void Bindings()
         {
             mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
@@ -87,58 +61,28 @@ namespace MyHealth
                 Mode = BindingMode.TwoWay
             });
 
-            sepTimerControls.SetBinding(MenuItem.VisibilityProperty, new Binding("Visibility")
-            {
-                Source = mnuPlayPause,
-                Mode = BindingMode.OneWay
-            });
-        }
-        private void ContextMenu_Opened(object sender, RoutedEventArgs e)
-        {
-            object[] items = StepDataCollection.GenerateMenuItem(DataAccess.StepDataList);
-            int i = 0;
-            foreach (var item in items)
-            {
-                if(item is MenuItem)
-                {
-                    MenuItem menuItem = (MenuItem)item;
-                    menuItem.Tag = i;
-                    menuItem.IsChecked = i == CurrentIndex;
-                    menuItem.Click += (s,ev) => CurrentIndex = (int)(s as MenuItem).Tag;
-                    i++;
-                }
-            }
-            lstSteps.ItemsSource = items;
+
         }
 
-        private void RestoreWindow_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
-        private void RestoreWindow_Executed(object sender, ExecutedRoutedEventArgs e) => Activate();
-
-        private void RestartCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = CurrentPage != null ? !CurrentPage.RequireClick : false;
-        }
-        private void RestartCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex = CurrentIndex;
-        private void PausePlayCommand_Executed(object sender, ExecutedRoutedEventArgs e) => timer.IsPaused = !timer.IsPaused;
-
+        private void Open_Click(object sender, RoutedEventArgs e) => Activate();
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            bool topmost = Topmost;
-            Topmost = false;
-            timer.IsPaused = true;
+            //bool topmost = Topmost;
+            //Topmost = false;
+            //timer.IsPaused = true;
 
-            var settingsWin = new SettingsWindow();
-            if(true == settingsWin.ShowDialog())
-            {
-                if (DataAccess.IsStepListChanged)
-                {
-                    LoadSteps();
-                    DataAccess.IsStepListChanged = false;
-                }
-            }
+            //var settingsWin = new SettingsWindow();
+            //if(true == settingsWin.ShowDialog())
+            //{
+            //    if (DataAccess.IsStepListChanged)
+            //    {
+            //        LoadSteps();
+            //        DataAccess.IsStepListChanged = false;
+            //    }
+            //}
 
-            timer.IsPaused = false;
-            Topmost = topmost;
+            //timer.IsPaused = false;
+            //Topmost = topmost;
         }
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -147,6 +91,31 @@ namespace MyHealth
         }
 
         #endregion
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if (ApplicationCommands.New.CanExecute(null, null))
+                    ApplicationCommands.New.Execute(null, null);
+            }
+        }
+
+        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !string.IsNullOrWhiteSpace(txtCommand.Text);
+
+        }
+
+        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TaskList.Add(new TaskView()
+            {
+                StepType = StepData.StepTypes.WorkTime,
+                Title = txtCommand.Text
+            });
+            txtCommand.Text = "";
+        }
     }
 
     public interface ITimerSlice 
