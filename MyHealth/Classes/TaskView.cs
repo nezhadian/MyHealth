@@ -24,12 +24,6 @@ namespace MyHealth
             set { SetValue(TitleProperty, value); }
         }
 
-        public bool InProgress
-        {
-            get { return (bool)GetValue(InProgressProperty); }
-            set { SetValue(InProgressProperty, value); }
-        }
-
         public bool IsCompleted
         {
             get { return (bool)GetValue(IsCompletedProperty); }
