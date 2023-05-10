@@ -12,74 +12,148 @@
     Height="450"
     AllowsTransparency="True"
     Background="Transparent"
-    Loaded="Window_Loaded"
     ResizeMode="NoResize"
     ShowInTaskbar="False"
     Topmost="True"
     WindowState="Maximized"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Window.CommandBindings>
-        <CommandBinding
-            CanExecute="RestoreWindow_CanExecute"
-            Command="{x:Static SystemCommands.RestoreWindowCommand}"
-            Executed="RestoreWindow_Executed" />
-    </Window.CommandBindings>
     <Grid>
-        <Grid Background="Transparent" MouseDown="Window_MouseDown">
+        <!--  Pages Content  -->
+        <Grid Background="Transparent">
             <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
         </Grid>
 
+        <!--  Container  -->
         <Border
             x:Name="timerBorder"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Style="{StaticResource Main.TimerBorder}">
-            <local:Timer x:Name="timer" />
-            <Border.ContextMenu>
-                <ContextMenu Opened="ContextMenu_Opened" Placement="Top">
-                    <ContextMenu.CommandBindings>
-                        <CommandBinding
-                            CanExecute="RestartCommand_CanExecute"
-                            Command="{x:Static local:TimerCommands.RestartCommand}"
-                            Executed="RestartCommand_Executed" />
-                        <CommandBinding
-                            CanExecute="RestartCommand_CanExecute"
-                            Command="{x:Static local:TimerCommands.PausePlayCommand}"
-                            Executed="PausePlayCommand_Executed" />
-                    </ContextMenu.CommandBindings>
+            <Grid>
+                <!--  Rows  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="23" />
+                </Grid.RowDefinitions>
 
-                    <MenuItem x:Name="lstSteps" Header="Go To Step" />
+                <!--  Caption  -->
+                <Grid Grid.Row="1" HorizontalAlignment="Center">
+                    <local:Timer x:Name="timer" Grid.Row="1" />
+                </Grid>
 
-                    <Separator />
+                <!--  Expander  -->
+                <Grid x:Name="grdExpander">
+
+                    <!--  Task List  -->
+                    <ListBox x:Name="lstStepData" Style="{StaticResource TaskView.ListBox}">
+
+                    </ListBox>
+
+
+                    <!--  Expander Scaler  -->
+                    <Grid.LayoutTransform>
+                        <ScaleTransform x:Name="grdExpanderScale" ScaleX="1" ScaleY="1" />
+                    </Grid.LayoutTransform>
+                </Grid>
+            </Grid>
+
+            <!--  Expand and Collapse Animation  -->
+            <Border.Triggers>
+                <!--  Mouse Enter Border  -->
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!--  Expander Height Anim  -->
+                            <DoubleAnimation
+                                Storyboard.TargetName="grdExpanderScale"
+                                Storyboard.TargetProperty="ScaleY"
+                                To="1"
+                                Duration="0:00:0.15" />
+                            <!--  Expander Width Anim  -->
+                            <DoubleAnimation
+                                Storyboard.TargetName="grdExpanderScale"
+                                Storyboard.TargetProperty="ScaleX"
+                                To="1"
+                                Duration="0:00:0.15" />
+                            <!--  Expander Opacity Anim  -->
+                            <DoubleAnimation
+                                Storyboard.TargetName="grdExpander"
+                                Storyboard.TargetProperty="Opacity"
+                                To="1"
+                                Duration="0:0:0.15" />
+                            <!--  Timer Border Opacity  -->
+                            <DoubleAnimation
+                                Storyboard.TargetName="timerBorder"
+                                Storyboard.TargetProperty="Background.Opacity"
+                                To="1"
+                                Duration="0:0:0.15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <!--  Mouse Leaves Border  -->
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard x:Name="MouseLeaveAnimation">
+                        <Storyboard>
+                            <!--  Expander Height Anim  -->
+                            <DoubleAnimation
+                                BeginTime="0:0:1.5"
+                                Storyboard.TargetName="grdExpanderScale"
+                                Storyboard.TargetProperty="ScaleY"
+                                To="0"
+                                Duration="0:00:0.2" />
+                            <!--  Expander Width Anim  -->
+                            <DoubleAnimation
+                                BeginTime="0:0:1.5"
+                                Storyboard.TargetName="grdExpanderScale"
+                                Storyboard.TargetProperty="ScaleX"
+                                To="0"
+                                Duration="0:00:0.2" />
+                            <!--  Expander Opacity Anim  -->
+                            <DoubleAnimation
+                                BeginTime="0:0:1.5"
+                                Storyboard.TargetName="grdExpander"
+                                Storyboard.TargetProperty="Opacity"
+                                To="0"
+                                Duration="0:0:0.2" />
+                            <!--  Timer Border Opacity  -->
+                            <DoubleAnimation
+                                BeginTime="0:0:1.5"
+                                Storyboard.TargetName="timerBorder"
+                                Storyboard.TargetProperty="Background.Opacity"
+                                To="0.3"
+                                Duration="0:0:0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <!--  Border Loaded Animation Binded To Leave Animation  -->
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard Storyboard="{Binding ElementName=MouseLeaveAnimation, Path=Storyboard, Mode=OneTime}" />
+                </EventTrigger>
+            </Border.Triggers>
+        </Border>
+
+        <!--  TaskBar Icon  -->
+        <tb:TaskbarIcon
+            x:Name="tbNotify"
+            IconSource="/Images/icon.ico"
+            TrayLeftMouseDown="Open_Click">
+            <!--  Left Click Menu  -->
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu Loaded="ContextMenu_Loaded">
+                    <MenuItem Click="Open_Click" Header="Open" />
                     <MenuItem
                         x:Name="mnuLockOnScreen"
                         Header="Luck On Screen"
                         IsCheckable="True"
                         StaysOpenOnClick="True" />
-
-                    <Separator x:Name="sepTimerControls" />
-                    <MenuItem
-                        x:Name="mnuPlayPause"
-                        Command="{x:Static local:TimerCommands.PausePlayCommand}"
-                        Style="{StaticResource PlayPauseMenuItem.Style}" />
-                    <MenuItem
-                        Command="{x:Static local:TimerCommands.RestartCommand}"
-                        Header="Restart Timer"
-                        Icon="{StaticResource RestartIcon}" />
-
                     <Separator />
                     <MenuItem Click="Settings_Click" Header="Settings" />
                     <MenuItem Click="ExitBtn_Click" Header="Exit" />
                 </ContextMenu>
-            </Border.ContextMenu>
-        </Border>
-
-        <tb:TaskbarIcon
-            x:Name="tbNotify"
-            ContextMenu="{Binding ContextMenu, ElementName=timerBorder}"
-            IconSource="/Images/icon.ico"
-            LeftClickCommand="{x:Static SystemCommands.RestoreWindowCommand}" />
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
 
     </Grid>
 </Window>
