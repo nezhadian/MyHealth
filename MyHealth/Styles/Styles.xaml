@@ -585,6 +585,24 @@
         </DataTemplate.Triggers>
     </DataTemplate>
 
+    <DataTemplate x:Key="MainWindow.StepListTemplate" DataType="{x:Type local:StepData}">
+        <Control x:Name="control" Template="{StaticResource StepData.DefaultTemplate}" />
+        <DataTemplate.Triggers>
+
+            <DataTrigger Binding="{Binding StepType}" Value="Seperator">
+                <Setter TargetName="control" Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid Background="{DynamicResource BackgroundColor}">
+                                <Separator Style="{StaticResource {x:Static MenuItem.SeparatorStyleKey}}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
     <!--  ____________________________________________ Task View Style ______________________  -->
 
     <local:Bool2EnumConverter x:Key="EnumConverter" />

@@ -129,7 +129,10 @@
                         Margin="10,5,0,0"
                         Header="Steps"
                         IsExpanded="True">
-                        <ListBox ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}" ItemsSource="{Binding StepList}" />
+                        <ListBox
+                            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
+                            ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
+                            ItemsSource="{Binding StepList}" />
                     </Expander>
 
 
