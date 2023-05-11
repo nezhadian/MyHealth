@@ -625,7 +625,7 @@
             <CheckBox
                 x:Name="chkIsCompleted"
                 HorizontalAlignment="Center"
-                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter=Completed}" />
+                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Completed,Tasks'}" />
             <!--  Text  -->
             <TextBox
                 x:Name="text"
@@ -648,7 +648,7 @@
             <ToggleButton
                 x:Name="tglIsImporant"
                 Grid.Column="2"
-                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter=Importants}"
+                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Importants,Tasks'}"
                 Style="{StaticResource TaskView.StarToggleButton}" />
         </Grid>
     </DataTemplate>

@@ -10,18 +10,35 @@ namespace MyHealth
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value.ToString() == parameter.ToString();
+            return value.ToString() == SplitParameterValues(parameter.ToString()).TrueValue;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(Enum.TryParse(targetType,parameter.ToString(),out object resault))
+            var param = SplitParameterValues(parameter.ToString());
+
+            if (value is bool boolValue)
             {
-                return resault;
+                return Enum.Parse(targetType, boolValue ? param.TrueValue : param.DefaultValue);
             }
             else
             {
                 return Binding.DoNothing;
+            }
+
+
+        }
+
+        (string TrueValue,string DefaultValue) SplitParameterValues(string parameter)
+        {
+            string[] splited = parameter.Split(',');
+            if(splited.Length == 2)
+            {
+                return (splited[0], splited[1]);
+            }
+            else
+            {
+                throw new ArgumentException();
             }
         }
     }
