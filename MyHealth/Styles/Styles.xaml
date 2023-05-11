@@ -740,7 +740,7 @@
     <Style x:Key="Expander.ToggleButton" TargetType="ToggleButton">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{DynamicResource {x:Static adonis:Brushes.Layer0BackgroundBrush}}" />
-        <Setter Property="Padding" Value="5,0,10,0" />
+        <Setter Property="Padding" Value="10,5,10,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
@@ -799,9 +799,8 @@
 
                             <!--  Expand and collapse Toggle Button  -->
                             <ToggleButton IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource Expander.ToggleButton}">
-
                                 <!--  Header  -->
-                                <TextBlock Style="{StaticResource Texts.NormalText}" Text="{TemplateBinding Header}" />
+                                <ContentPresenter Content="{TemplateBinding Header}" />
                             </ToggleButton>
 
                             <!--  Content  -->
@@ -820,28 +819,19 @@
         </Setter>
     </Style>
 
-    <!--  Main Window Task List Group Items Style  -->
-    <Style x:Key="MainWindow.TaskListGroupItem" TargetType="GroupItem">
+    <!--  Main Window Task List Group  Style  -->
+    <Style x:Key="MainWindow.TaskList.GroupItem" TargetType="GroupItem">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupItem">
-                    <Expander x:Name="expander" IsExpanded="true">
-                        <ItemsPresenter Margin="{TemplateBinding Padding}" />
+                    <Expander Header="{Binding Name}" IsExpanded="True">
+                        <ItemsPresenter />
                     </Expander>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Name}" Value="True">
-                            <Setter TargetName="expander" Property="Header" Value="Completed" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding Name}" Value="False">
-                            <Setter TargetName="expander" Property="Header" Value="Tasks" />
-                        </DataTrigger>
-
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
 
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">

@@ -35,11 +35,8 @@
             IsLiveSortingRequested="True"
             Source="{Binding TaskList}">
             <CollectionViewSource.GroupDescriptions>
-                <PropertyGroupDescription PropertyName="IsCompleted" />
+                <PropertyGroupDescription PropertyName="Grouping" />
             </CollectionViewSource.GroupDescriptions>
-            <CollectionViewSource.SortDescriptions>
-                <csm:SortDescription Direction="Descending" PropertyName="IsImportant" />
-            </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Window.Resources>
     <Grid>
@@ -88,7 +85,7 @@
                         SelectedItem="{Binding SelectedTask}"
                         Style="{StaticResource TaskView.ListBox}">
                         <ListBox.GroupStyle>
-                            <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskListGroupItem}" />
+                            <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
                         </ListBox.GroupStyle>
                     </ListBox>
 
