@@ -35,7 +35,11 @@
             IsLiveSortingRequested="True"
             Source="{Binding TaskList}">
             <CollectionViewSource.GroupDescriptions>
-                <PropertyGroupDescription PropertyName="Grouping" />
+                <PropertyGroupDescription PropertyName="Grouping">
+                    <PropertyGroupDescription.SortDescriptions>
+                        <csm:SortDescription PropertyName="Name" />
+                    </PropertyGroupDescription.SortDescriptions>
+                </PropertyGroupDescription>
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
     </Window.Resources>
