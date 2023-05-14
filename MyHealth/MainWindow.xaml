@@ -72,6 +72,7 @@
                     Margin="3,3,3,5"
                     HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
+                        <!--  Timer  -->
                         <TextBlock
                             Margin="0,0,10,0"
                             FontWeight="DemiBold"
@@ -79,6 +80,7 @@
                             Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}"
                             Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
 
+                        <!--  Title  -->
                         <TextBlock Style="{StaticResource Texts.CaptionText}">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource CaptionTextConverter}" UpdateSourceTrigger="PropertyChanged">
@@ -158,6 +160,7 @@
                             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
                             ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
                             ItemsSource="{Binding StepList}"
+                            SelectedIndex="0"
                             SelectedItem="{Binding SelectedStep}" />
                     </Expander>
 
