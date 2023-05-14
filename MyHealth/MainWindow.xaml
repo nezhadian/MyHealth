@@ -59,22 +59,12 @@
                 <!--  Rows  -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="23" />
                 </Grid.RowDefinitions>
 
                 <!--  Caption  -->
-                <Grid
-                    Grid.Row="1"
-                    Margin="5,5,5,8"
-                    HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}" />
-                        <TextBlock
-                            Margin="10,0,0,0"
-                            Style="{StaticResource Texts.CaptionText}"
-                            Text="{Binding SelectedTask.Title}" />
-                    </StackPanel>
-
+                <Grid Grid.Row="1" HorizontalAlignment="Center">
+                    <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}" />
                 </Grid>
 
                 <!--  Expander  -->

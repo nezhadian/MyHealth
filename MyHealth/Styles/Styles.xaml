@@ -628,14 +628,12 @@
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="icon" Property="Data" Value="{StaticResource Star}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
     <DataTemplate DataType="{x:Type local:TaskView}">
         <Grid Height="27" Margin="7,0,10,0">
             <!--  Columns  -->
@@ -650,19 +648,20 @@
                 x:Name="chkIsCompleted"
                 HorizontalAlignment="Center"
                 IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Completed,Tasks'}" />
-
             <!--  Text  -->
             <TextBox
                 x:Name="text"
                 Grid.Column="1"
-                MinWidth="200"
+                MinWidth="100"
+                Padding="0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
+                BorderThickness="0"
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
-                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}">
+                Text="{Binding Title}">
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
-                        <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" />
+                        <ScrollViewer x:Name="PART_ContentHost" />
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
@@ -671,12 +670,10 @@
             <ToggleButton
                 x:Name="tglIsImporant"
                 Grid.Column="2"
-                Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
                 IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Importants,Tasks'}"
                 Style="{StaticResource TaskView.StarToggleButton}" />
         </Grid>
     </DataTemplate>
-
     <Style
         x:Key="TaskView.ListBoxItemContainer"
         BasedOn="{StaticResource {x:Type ListBoxItem}}"
