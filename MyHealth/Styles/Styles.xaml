@@ -627,6 +627,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter TargetName="icon" Property="Data" Value="{StaticResource Star}" />
+                            <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="icon" Property="Fill" Value="{DynamicResource StepData.SelectionColor}" />

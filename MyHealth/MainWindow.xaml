@@ -42,6 +42,10 @@
                 </PropertyGroupDescription>
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
+
+        <!--  Converters  -->
+        <local:CaptionTextSwitchConverter x:Key="CaptionTextConverter" />
+        <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
     </Window.Resources>
     <Grid>
         <!--  Pages Content  -->
@@ -59,12 +63,32 @@
                 <!--  Rows  -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="23" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
                 <!--  Caption  -->
-                <Grid Grid.Row="1" HorizontalAlignment="Center">
-                    <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}" />
+                <Grid
+                    Grid.Row="1"
+                    Margin="3,3,3,5"
+                    HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,10,0"
+                            FontWeight="DemiBold"
+                            Style="{StaticResource Texts.CaptionText}"
+                            Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}"
+                            Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
+
+                        <TextBlock Style="{StaticResource Texts.CaptionText}">
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource CaptionTextConverter}" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="SelectedStep" />
+                                    <Binding Path="SelectedTask.Title" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </StackPanel>
+
                 </Grid>
 
                 <!--  Expander  -->
