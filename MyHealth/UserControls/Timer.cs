@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,85 +15,104 @@ using System.Windows.Threading;
 
 namespace MyHealth
 {
-    public class Timer : Control
+    public class Timer : DependencyObject
     {
-        #region DependencyProperties
+        #region Dp
         public static readonly DependencyProperty DurationProperty =
-            DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(Timer), new PropertyMetadata());
-        public static readonly DependencyProperty ElapsedTimeProperty =
-            DependencyProperty.Register("ElapsedTime", typeof(TimeSpan), typeof(Timer), new PropertyMetadata());
-        public static readonly DependencyProperty RemainedTimeProperty =
-            DependencyProperty.Register("RemainedTime", typeof(TimeSpan), typeof(Timer), new PropertyMetadata());
+            DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(Timer), new PropertyMetadata(new TimeSpan(0,0,10),OnDurationChanged));
         public static readonly DependencyProperty IsPausedProperty =
-            DependencyProperty.Register("IsPaused", typeof(bool), typeof(Timer), new PropertyMetadata());
+            DependencyProperty.Register("IsPaused", typeof(bool), typeof(Timer), new PropertyMetadata(false, OnIsPausedChanged));
+
+        public static readonly DependencyProperty RemainedProperty =
+            DependencyProperty.Register("Remained", typeof(TimeSpan), typeof(Timer), new PropertyMetadata(TimeSpan.Zero));
+        public static readonly DependencyProperty ElapsedProperty =
+            DependencyProperty.Register("Elapsed", typeof(TimeSpan), typeof(Timer), new PropertyMetadata(TimeSpan.Zero));
         #endregion
-
-        DispatcherTimer updater = new DispatcherTimer();
-        DateTime LastStartTime;
-        TimeSpan? StopedTime;
-
         public TimeSpan Duration
         {
             get { return (TimeSpan)GetValue(DurationProperty); }
-            set { 
-                SetValue(DurationProperty, value);
-                StopedTime = TimeSpan.Zero;
-                ElapsedTime = TimeSpan.Zero;
-                RemainedTime = value;
-                IsPaused = value == TimeSpan.Zero;
-            }
+            set { SetValue(DurationProperty, value);}
         }
-        public TimeSpan ElapsedTime
-        {
-            get { return (TimeSpan)GetValue(ElapsedTimeProperty); }
-            set { SetValue(ElapsedTimeProperty, value); }
-        }
-        public TimeSpan RemainedTime
-        {
-            get { return (TimeSpan)GetValue(RemainedTimeProperty); }
-            set { SetValue(RemainedTimeProperty, value); }
-        }
-        
         public bool IsPaused
         {
             get { return (bool)GetValue(IsPausedProperty); }
-            set { 
-                SetValue(IsPausedProperty, value);
-                updater.IsEnabled = !value;
-                if (value)
-                    StopedTime = ElapsedTime;
-                else
-                    LastStartTime = DateTime.Now - StopedTime.Value;
+            set { SetValue(IsPausedProperty, value); }
+        }
+        public TimeSpan Remained
+        {
+            get { return (TimeSpan)GetValue(RemainedProperty); }
+            set { SetValue(RemainedProperty, value); }
+        }
+        public TimeSpan Elapsed
+        {
+            get { return (TimeSpan)GetValue(ElapsedProperty); }
+            set { SetValue(ElapsedProperty, value); }
+        }
+
+        //Private Fields
+        DispatcherTimer timerBase;
+        DateTime offsetTime;
+
+        //Events
+        public event RoutedEventHandler Completed;
+
+        //ctor
+        public Timer()
+        {
+            InitializeTimer();
+        }
+
+        //private Methods
+        void InitializeTimer()
+        {
+            timerBase = new DispatcherTimer()
+            {
+                Interval = new TimeSpan(10000),
+                IsEnabled = true
+            };
+            timerBase.Tick += Updater_Tick;
+        }
+        void Updater_Tick(object sender, EventArgs e)
+        {
+            if (IsPaused)
+                return;
+
+            Elapsed = DateTime.Now - offsetTime;
+            Remained = Duration - Elapsed;
+            if (Remained <= TimeSpan.Zero)
+            {
+                Completed?.Invoke(this, null);
+                IsPaused = true;
             }
         }
 
-
-        public event RoutedEventHandler Completed;
-
-        public Timer()
+        //Public Methods
+        public void Reset()
         {
-            updater = new DispatcherTimer()
+            offsetTime = DateTime.Now;
+            Elapsed = TimeSpan.Zero;
+            Remained = TimeSpan.Zero;
+            IsPaused = Duration == TimeSpan.Zero;
+        }
+
+        //Static Property Change Methods
+        private static void OnIsPausedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Timer timer = (Timer)d;
+            if (timer.IsPaused)
             {
-                Interval = new TimeSpan(0, 0, 0, 0, 50)
-            };
-            updater.Tick += Updater_Tick;
+                timer.timerBase.IsEnabled = false;
+            }
+            else
+            {
+                timer.timerBase.IsEnabled = true;
+                timer.offsetTime = DateTime.Now - timer.Elapsed;
+            }
         }
-
-        private void Updater_Tick(object sender, EventArgs e)
+        private static void OnDurationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ElapsedTime = DateTime.Now - LastStartTime;
-            RemainedTime = Duration - ElapsedTime;
-
-            if (RemainedTime <= TimeSpan.Zero)
-                Completed?.Invoke(this, null);
+            Timer timer = (Timer)d;
+            timer.Reset();
         }
-
-
-    }
-
-    public class TimerCommands
-    {
-        public static RoutedCommand RestartCommand = new RoutedCommand("RestartCommand", typeof(TimerCommands));
-        public static RoutedCommand PausePlayCommand = new RoutedCommand("PausePlayCommand", typeof(TimerCommands));
     }
 }
