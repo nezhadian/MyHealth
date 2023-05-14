@@ -99,7 +99,11 @@ namespace MyHealth
             lstSteps.SelectedIndex = curIndex;
         }
 
-        
+        private void lstSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SelectedStep.StepType == StepData.StepTypes.Seperator)
+                GoToNextStep();
+        }
 
         #region Add TextBox
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -168,6 +172,7 @@ namespace MyHealth
             tbNotify.Visibility = Visibility.Collapsed;
             Environment.Exit(0);
         }
+
 
         #endregion
 

@@ -161,7 +161,8 @@
                             ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
                             ItemsSource="{Binding StepList}"
                             SelectedIndex="0"
-                            SelectedItem="{Binding SelectedStep}" />
+                            SelectedItem="{Binding SelectedStep}"
+                            SelectionChanged="lstSteps_SelectionChanged" />
                     </Expander>
 
 
