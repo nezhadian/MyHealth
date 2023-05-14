@@ -30,6 +30,11 @@
         <Setter Property="FontSize" Value="12" />
     </Style>
 
+    <Style x:Key="Texts.CaptionText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
     <Style
         x:Key="Texts.SmallTitle"
         BasedOn="{StaticResource Texts.NormalText}"
@@ -588,7 +593,6 @@
     <DataTemplate x:Key="MainWindow.StepListTemplate" DataType="{x:Type local:StepData}">
         <Control x:Name="control" Template="{StaticResource StepData.DefaultTemplate}" />
         <DataTemplate.Triggers>
-
             <DataTrigger Binding="{Binding StepType}" Value="Seperator">
                 <Setter TargetName="control" Property="Template">
                     <Setter.Value>
@@ -699,22 +703,13 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
     </Style>
 
-    <!--  ____________________________________________ Custom Control Styles ______________________  -->
+    <!--  ____________________________________________ Data Templates ______________________  -->
     <!--  Timer Style  -->
-    <Style TargetType="{x:Type local:Timer}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Timer}">
-                    <TextBlock
-                        FontSize="16"
-                        Foreground="{DynamicResource NormalTextColor}"
-                        Text="{TemplateBinding RemainedTime,
-                                               Converter={StaticResource TimeSpanConverter}}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <DataTemplate DataType="{x:Type local:Timer}">
+        <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Remained, Converter={StaticResource TimeSpanConverter}}" />
+    </DataTemplate>
 
+    <!--  ____________________________________________ Custom Control Styles ______________________  -->
     <!--  Settings ListboxItem  -->
     <Style
         x:Key="SettingWindow.ListMenuItem"
