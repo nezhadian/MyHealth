@@ -64,7 +64,7 @@
 
                 <!--  Caption  -->
                 <Grid Grid.Row="1" HorizontalAlignment="Center">
-                    <local:Timer x:Name="timer" Grid.Row="1" />
+                    <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}" />
                 </Grid>
 
                 <!--  Expander  -->
@@ -130,9 +130,11 @@
                         Header="Steps"
                         IsExpanded="True">
                         <ListBox
+                            x:Name="lstSteps"
                             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
                             ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
-                            ItemsSource="{Binding StepList}" />
+                            ItemsSource="{Binding StepList}"
+                            SelectedItem="{Binding SelectedStep}" />
                     </Expander>
 
 

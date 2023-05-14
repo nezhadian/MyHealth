@@ -30,6 +30,14 @@ namespace MyHealth
             DependencyProperty.Register("TaskList", typeof(ObservableCollection<TaskView>), typeof(MainWindow), new PropertyMetadata());
         public static readonly DependencyProperty SelectedTaskProperty =
             DependencyProperty.Register("SelectedTask", typeof(TaskView), typeof(MainWindow), new PropertyMetadata());
+
+        public static readonly DependencyProperty StepListProperty =
+            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(MainWindow), new PropertyMetadata());
+        public static readonly DependencyProperty SelectedStepProperty =
+            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(MainWindow), new PropertyMetadata());
+
+        public static readonly DependencyProperty TimerProperty =
+            DependencyProperty.Register("Timer", typeof(Timer), typeof(MainWindow), new PropertyMetadata());
         #endregion
 
         public ObservableCollection<TaskView> TaskList
@@ -43,30 +51,57 @@ namespace MyHealth
             set { SetValue(SelectedTaskProperty, value); }
         }
 
-
-
         public ObservableCollection<StepData> StepList
         {
             get { return (ObservableCollection<StepData>)GetValue(StepListProperty); }
             set { SetValue(StepListProperty, value); }
         }
+        public StepData SelectedStep
+        {
+            get { return (StepData)GetValue(SelectedStepProperty); }
+            set { SetValue(SelectedStepProperty, value); }
+        }
 
-        public static readonly DependencyProperty StepListProperty =
-            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(MainWindow), new PropertyMetadata());
-
-
+        public Timer Timer
+        {
+            get { return (Timer)GetValue(TimerProperty); }
+            set { SetValue(TimerProperty, value); }
+        }
 
 
         public MainWindow()
         {
             TaskList = new ObservableCollection<TaskView>();
-            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-
-
+            StepList = new ObservableCollection<StepData>(Templates.TemplateDictionary["pomodoro"]);
+            InitalizeTimer();
+            
             DataContext = this;
             InitializeComponent();
+            
         }
 
+
+        private void InitalizeTimer()
+        {
+            Timer = new Timer();
+            Timer.Completed += Timer_Completed;
+            BindingOperations.SetBinding(Timer, Timer.DurationProperty, new Binding("SelectedStep.Duration") { Source = this });
+        }
+        private void Timer_Completed(object sender, RoutedEventArgs e)
+        {
+            GoToNextStep();
+        }
+        private void GoToNextStep()
+        {
+            int curIndex = lstSteps.SelectedIndex;
+            curIndex++;
+            curIndex %= StepList.Count;
+            lstSteps.SelectedIndex = curIndex;
+        }
+
+        
+
+        #region Add TextBox
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -89,11 +124,10 @@ namespace MyHealth
             });
             txtCommand.Text = "";
         }
-
-
+        #endregion
         #region TaskBar Icon Menu
-        private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => Bindings();
-        private void Bindings()
+        private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => ContextMenuBindings();
+        private void ContextMenuBindings()
         {
             mnuLockOnScreen.SetBinding(MenuItem.IsCheckedProperty, new Binding("Topmost")
             {
@@ -136,6 +170,8 @@ namespace MyHealth
         }
 
         #endregion
+
+
     }
 
     public interface ITimerSlice 
