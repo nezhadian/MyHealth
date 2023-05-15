@@ -178,13 +178,4 @@ namespace MyHealth
 
 
     }
-
-    public interface ITimerSlice 
-    {
-        public TimeSpan Duration { set; get; }
-        public bool RequireClick { set; get; }
-        public string StepName { set; get; }
-    }
-
-
 }

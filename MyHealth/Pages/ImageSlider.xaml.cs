@@ -18,16 +18,8 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for ShortBreak.xaml
     /// </summary>
-    public partial class ImageSlider : Page,ITimerSlice
+    public partial class ImageSlider : Page
     {
-        public TimeSpan Duration { get; set; }
-        public bool RequireClick { get; set; }
-        public string StepName
-        {
-            get => txtMessage.Text;
-            set => txtMessage.Text = value;
-        }
-
         public FileInfo[] imageFiles;
         
 
@@ -89,12 +81,18 @@ namespace MyHealth
         {
             InitializeComponent();
         }
-        public ImageSlider(TimeSpan duration,string path)
+        public ImageSlider(StepData step)
+            :this()
         {
-            InitializeComponent();
-            Duration = duration;
-            ImagesFileDirectory = new DirectoryInfo(path);
-            timer.IsPaused = true;
+            switch (step.ImageList)
+            {
+                case StepData.ImageListes.Body:
+                    ImagesFileDirectory = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body"));
+                    break;
+                case StepData.ImageListes.Eye:
+                    ImagesFileDirectory = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye"));
+                    break;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

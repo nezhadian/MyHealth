@@ -19,7 +19,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for ShortBreak.xaml
     /// </summary>
-    public partial class ShortBreak : Page,ITimerSlice
+    public partial class ShortBreak : Page
     {
         public TimeSpan Duration { get ; set ; }
         public bool RequireClick { get; set; }
@@ -37,6 +37,10 @@ namespace MyHealth
         {
             InitializeComponent();
             Duration = duration;
+        }
+
+        public ShortBreak(StepData step)
+        {
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

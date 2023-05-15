@@ -19,7 +19,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for FreshStart.xaml
     /// </summary>
-    public partial class FreshStart : Page,ITimerSlice
+    public partial class FreshStart : Page
     {
         public TimeSpan Duration { get; set; }
         public bool RequireClick { get; set; }
@@ -32,6 +32,10 @@ namespace MyHealth
         {
             InitializeComponent();
             RequireClick = true;
+        }
+
+        public FreshStart(StepData step)
+        {
         }
 
         SoundPlayer sp;
