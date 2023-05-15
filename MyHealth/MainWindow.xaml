@@ -46,11 +46,12 @@
         <!--  Converters  -->
         <local:CaptionTextSwitchConverter x:Key="CaptionTextConverter" />
         <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
+        <local:StepData2PageConverter x:Key="PageConverter" />
     </Window.Resources>
     <Grid>
         <!--  Pages Content  -->
         <Grid Background="Transparent">
-            <Frame x:Name="frmMain" NavigationUIVisibility="Hidden" />
+            <Frame Content="{Binding SelectedStep, Converter={StaticResource PageConverter}}" NavigationUIVisibility="Hidden" />
         </Grid>
 
         <!--  Container  -->
