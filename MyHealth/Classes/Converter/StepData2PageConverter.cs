@@ -17,7 +17,7 @@ namespace MyHealth
                     case StepData.StepTypes.ImageSlider:
                         return new ImageSlider(step);
                     case StepData.StepTypes.FreshStart:
-                        return new FreshStart(step) ;
+                        return new FreshStart() ;
                     case StepData.StepTypes.ShortBreak:
                         return new ShortBreak(step);
                     default:
