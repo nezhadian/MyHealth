@@ -21,31 +21,16 @@ namespace MyHealth
     /// </summary>
     public partial class ShortBreak : Page
     {
-        public TimeSpan Duration { get ; set ; }
-        public bool RequireClick { get; set; }
-        public string StepName
-        {
-            set => txtMessage.Text = value;
-            get => txtMessage.Text;
-        }
-
         public ShortBreak()
         {
+            DataContext = this;
             InitializeComponent();
-        }
-        public ShortBreak(TimeSpan duration)
-        {
-            InitializeComponent();
-            Duration = duration;
         }
 
         public ShortBreak(StepData step)
+            :this()
         {
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Background = new SolidColorBrush(AppSettings.Data.ShortBreakBgColor);
+            Title = step.StepName;
         }
     }
 }
