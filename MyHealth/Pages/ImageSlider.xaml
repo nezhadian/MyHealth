@@ -8,43 +8,61 @@
     Title="ShortBreak"
     d:DesignHeight="728"
     d:DesignWidth="1366"
+    FocusManager.FocusedElement="{Binding ElementName=btnMoveRight}"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
 
     <Page.CommandBindings>
         <CommandBinding
-            CanExecute="LeftRightCommand_CanExecute"
+            CanExecute="Always_CanExecute"
             Command="{x:Static ComponentCommands.MoveRight}"
-            Executed="RightCommand_Executed" />
+            Executed="NextCommand_Executed" />
         <CommandBinding
-            CanExecute="LeftRightCommand_CanExecute"
+            CanExecute="Always_CanExecute"
             Command="{x:Static ComponentCommands.MoveLeft}"
-            Executed="LeftCommand_Executed" />
+            Executed="PreviousCommand_Executed" />
     </Page.CommandBindings>
-
+    <Page.Resources>
+        <local:ListIndexPlusOneConverter x:Key="PlusOneConverter" />
+    </Page.Resources>
     <Grid Background="White">
         <Grid Margin="40">
+            <!--  rows  -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+            <!--  Caption Text  -->
             <TextBlock
                 x:Name="txtMessage"
                 HorizontalAlignment="Center"
-                Style="{StaticResource Texts.PageTitle}" />
+                Style="{StaticResource Texts.PageTitle}"
+                Text="{Binding Title}" />
+
+            <!--  Images List View  -->
+            <ListView
+                x:Name="lstImages"
+                ItemsSource="{Binding ImageList}"
+                SelectedItem="{Binding SelectedImage}"
+                Visibility="Collapsed" />
+
+            <!--  Image SlideShow  -->
             <Image
-                x:Name="mainImage"
                 Grid.Row="1"
                 Width="600"
-                Height="400" />
+                Height="400"
+                Source="{Binding SelectedImage}" />
+            <!--  Controller  -->
             <Border
                 Grid.Row="2"
-                Padding="0"
+                Padding="10"
                 HorizontalAlignment="Center"
                 Background="{DynamicResource ImageSlider.Navigation.Background}"
                 CornerRadius="{DynamicResource ImageSlider.Navigation.CornerRadius}">
+
                 <StackPanel Orientation="Horizontal">
+                    <!--  Move Left Button  -->
                     <Button Command="{x:Static ComponentCommands.MoveLeft}" Style="{StaticResource Buttons.GlassButton}">
                         <Path
                             Width="30"
@@ -52,14 +70,17 @@
                             Fill="White"
                             Stretch="Uniform" />
                     </Button>
+
+                    <!--  Current Index Location  -->
                     <StackPanel Margin="15,0" VerticalAlignment="Center">
-                        <local:Timer x:Name="timer" />
-                        <TextBlock
-                            x:Name="txtIndex"
-                            HorizontalAlignment="Center"
-                            Foreground="{DynamicResource NormalTextColor}"
-                            Text="20/10" />
+                        <TextBlock Style="{StaticResource Texts.BigTitle}">
+                            <Run FontWeight="DemiBold" Text="{Binding ElementName=lstImages, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource PlusOneConverter}}" />
+                            <Run>of</Run>
+                            <Run Text="{Binding ElementName=lstImages, Path=Items.Count, Mode=OneWay}" />
+                        </TextBlock>
                     </StackPanel>
+
+                    <!--  Move Right Button  -->
                     <Button
                         x:Name="btnMoveRight"
                         Command="{x:Static ComponentCommands.MoveRight}"

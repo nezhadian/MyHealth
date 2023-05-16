@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,92 +22,123 @@ namespace MyHealth
     /// </summary>
     public partial class ImageSlider : Page
     {
-        public FileInfo[] imageFiles;
-        
+        #region Dp
+        public static readonly DependencyProperty ImageListProperty =
+            DependencyProperty.Register("ImageList", typeof(ObservableCollection<BitmapImage>), typeof(ImageSlider), new PropertyMetadata(new ObservableCollection<BitmapImage>()));
+        public static readonly DependencyProperty SelectedImageProperty =
+            DependencyProperty.Register("SelectedImage", typeof(BitmapImage), typeof(ImageSlider), new PropertyMetadata());
+        #endregion
 
-        int curIndex;
-        public int CurrentIndex
+        public ObservableCollection<BitmapImage> ImageList
         {
-            get => curIndex;
-            set
-            {
-                if (value >= imageFiles.Length)
-                    curIndex = 0;
-                else if (value < 0)
-                    curIndex = imageFiles.Length - 1;
-                else
-                    curIndex = value;
+            get { return (ObservableCollection<BitmapImage>)GetValue(ImageListProperty); }
+            set { SetValue(ImageListProperty, value); }
+        }
+        public BitmapImage SelectedImage
+        {
+            get { return (BitmapImage)GetValue(SelectedImageProperty); }
+            set { SetValue(SelectedImageProperty, value); }
+        }
 
-                if (curIndex < imageFiles.Length)
-                {
-                    try
-                    {
-                        mainImage.Source = new BitmapImage(new Uri(imageFiles[curIndex].FullName));
-                        txtIndex.Text = $"{curIndex + 1}/{imageFiles.Length}";
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show($"Error in loading image \r\n {ex.Message}");
-                    }
-                    timer.Duration = AppSettings.Data.ImageSliderDelay;
-                }
-                else
-                {
-                    timer.IsPaused = true;
-                }
+        private string imgDir;
+        public string ImagesDirectory
+        {
+            get { return imgDir; }
+            set { 
+                imgDir = value;
+                //Dirrectory Info
+                DirectoryInfo dirInfo = new DirectoryInfo(value);
+
+                //Check if exists
+                if (!dirInfo.Exists)
+                    throw new DirectoryNotFoundException();
+
+                //Get Images In Directory
+                ImageList = new ObservableCollection<BitmapImage>(
+                    dirInfo.EnumerateFiles().Select((i) => new BitmapImage(new Uri(i.FullName))));
+
+                //Set Properties
+                lstImages.SelectedIndex = FindRandomIndex();
             }
         }
 
+        DispatcherTimer timer;
         Random r = new Random();
-        private DirectoryInfo imageFilesDir;
-        public DirectoryInfo ImagesFileDirectory
-        {
-            get => imageFilesDir;
-            set
-            {
-                if (!value.Exists)
-                    return;
-
-                var files = value.GetFiles();
-                if (files.Length == 0)
-                    return;
-
-                imageFilesDir = value;
-                imageFiles = files;
-                CurrentIndex = 0;
-            }
-        }
-
 
         public ImageSlider()
         {
+            timer = new DispatcherTimer
+            {
+                Interval = AppSettings.Data.ImageSliderDelay
+            };
+            timer.Tick += SlideShow_Tick;
+            
+            
+            DataContext = this;
             InitializeComponent();
         }
-        public ImageSlider(StepData step)
-            :this()
+
+        private void SlideShow_Tick(object sender, EventArgs e)
         {
+            ComponentCommands.MoveRight.Execute(null,null);
+        }
+        
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+        }
+
+        private int FindNextIndex()
+        {
+            int selIndex = lstImages.SelectedIndex;
+            selIndex++;
+            if (selIndex >= ImageList.Count)
+                return 0;
+            else
+                return selIndex;
+        }
+        private int FindRandomIndex()
+        {
+            return r.Next(0, ImageList.Count);
+        }
+        private int FindPreviousIndex()
+        {
+            int selIndex = lstImages.SelectedIndex;
+            selIndex--;
+            if (selIndex < 0)
+                return ImageList.Count - 1;
+            else
+                return selIndex;
+        }
+
+        private void Always_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void NextCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            lstImages.SelectedIndex = FindNextIndex();
+        }
+        private void PreviousCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            lstImages.SelectedIndex = FindPreviousIndex();
+
+        }
+        
+        public ImageSlider(StepData step)
+            : this()
+        {
+            Title = step.StepName;
             switch (step.ImageList)
             {
                 case StepData.ImageListes.Body:
-                    ImagesFileDirectory = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body"));
+                    ImagesDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body");
                     break;
                 case StepData.ImageListes.Eye:
-                    ImagesFileDirectory = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye"));
+                    ImagesDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye");
                     break;
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            timer.Completed += (s,ev) => CurrentIndex++;
-            CurrentIndex = r.Next(0, imageFiles.Length);
-            btnMoveRight.Focus();
-        }
-
-        private void LeftRightCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
-
-        private void RightCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex++;
-
-        private void LeftCommand_Executed(object sender, ExecutedRoutedEventArgs e) => CurrentIndex--;
     }
 }
