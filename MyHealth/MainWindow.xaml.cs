@@ -68,7 +68,6 @@ namespace MyHealth
             set { SetValue(TimerProperty, value); }
         }
 
-
         public MainWindow()
         {
             TaskList = new ObservableCollection<TaskView>();
@@ -79,7 +78,6 @@ namespace MyHealth
             InitializeComponent();
             
         }
-
 
         private void InitalizeTimer()
         {
@@ -102,6 +100,11 @@ namespace MyHealth
         private void lstSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SelectedStep.StepType == StepData.StepTypes.Seperator)
+                GoToNextStep();
+        }
+        private void StepContent_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (SelectedStep.StepType == StepData.StepTypes.FreshStart)
                 GoToNextStep();
         }
 
@@ -172,6 +175,7 @@ namespace MyHealth
             tbNotify.Visibility = Visibility.Collapsed;
             Environment.Exit(0);
         }
+
 
 
         #endregion

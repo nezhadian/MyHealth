@@ -50,7 +50,7 @@
     </Window.Resources>
     <Grid>
         <!--  Pages Content  -->
-        <Grid Background="Transparent">
+        <Grid Background="Transparent" MouseDown="StepContent_MouseDown">
             <Frame Content="{Binding SelectedStep, Converter={StaticResource PageConverter}}" NavigationUIVisibility="Hidden" />
         </Grid>
 
