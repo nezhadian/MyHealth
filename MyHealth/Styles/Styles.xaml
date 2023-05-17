@@ -712,6 +712,15 @@
 
 
     <!--  ____________________________________________ MainWindow Menu Style ______________________  -->
+
+    <!--  Setting Icon  -->
+    <Path
+        x:Key="SettingIcon"
+        Width="32"
+        Data="{StaticResource Setting}"
+        Fill="{DynamicResource IconsColor.Settings}"
+        Stretch="Uniform" />
+
     <!--  Restart Icon  -->
     <Path
         x:Key="RestartIcon"
@@ -733,6 +742,7 @@
         Data="{StaticResource Stop}"
         Fill="{DynamicResource IconsColor.Pause}"
         Stretch="Uniform" />
+
     <!--  MenuItems Style  -->
     <Style x:Key="MainWindow.Menu.MenuItemStyle" TargetType="MenuItem">
         <Setter Property="MinWidth" Value="64" />
