@@ -10,15 +10,18 @@ namespace MyHealth
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if(values[0] is StepData step)
+            if(values[0] is string stepName)
             {
                 if(values[1] is string taskTitle)
                 {
-                    return step.StepType == StepData.StepTypes.WorkTime ? taskTitle : step.StepName;
+                    if (values[2] is StepData.StepTypes stepType)
+                        return stepType == StepData.StepTypes.WorkTime ? taskTitle : stepName;
+                    else
+                        return taskTitle;
                 }
                 else
                 {
-                    return step.StepName;
+                    return stepName;
                 }
             }
             return Binding.DoNothing;

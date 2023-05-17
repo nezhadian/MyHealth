@@ -86,8 +86,9 @@
                         <TextBlock Style="{StaticResource Texts.CaptionText}">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource CaptionTextConverter}" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding Path="SelectedStep" />
+                                    <Binding Path="SelectedStep.StepName" />
                                     <Binding Path="SelectedTask.Title" />
+                                    <Binding Path="SelectedStep.StepType" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -179,10 +180,14 @@
                                 Style="{StaticResource PlayPauseMenuItem.Style}"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
                             <MenuItem
+                                Click="mnuReset_Click"
                                 Header="Reset"
                                 Icon="{StaticResource RestartIcon}"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
-                            <MenuItem Header="Settings" Icon="{StaticResource SettingIcon}" />
+                            <MenuItem
+                                Click="mnuSettings_Click"
+                                Header="Settings"
+                                Icon="{StaticResource SettingIcon}" />
                         </Menu>
                     </StackPanel>
 
@@ -214,7 +219,7 @@
                         IsCheckable="True"
                         StaysOpenOnClick="True" />
                     <Separator />
-                    <MenuItem Click="Settings_Click" Header="Settings" />
+                    <MenuItem Click="mnuSettings_Click" Header="Settings" />
                     <MenuItem Click="ExitBtn_Click" Header="Exit" />
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
@@ -252,6 +257,10 @@
                             Duration="0:0:0.15" />
                     </Storyboard>
                 </BeginStoryboard>
+            </EventTrigger>
+            <!--  Keep Menu Open when dragging  -->
+            <EventTrigger RoutedEvent="PreviewDragOver">
+                <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseEnterAnimation}" />
             </EventTrigger>
 
             <!--  Mouse Leaves Menu Border  -->
@@ -292,11 +301,6 @@
             <!--  App Loaded Animation Binded To Leave Animation  -->
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseLeaveAnimation, Mode=OneTime}" />
-            </EventTrigger>
-
-            <!--  Keep Menu Open when dragging  -->
-            <EventTrigger RoutedEvent="PreviewDragOver">
-                <BeginStoryboard Storyboard="{Binding Storyboard, ElementName=MouseEnterAnimation}" />
             </EventTrigger>
         </Grid.Triggers>
 
