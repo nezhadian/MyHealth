@@ -71,12 +71,21 @@ namespace MyHealth
         public MainWindow()
         {
             TaskList = new ObservableCollection<TaskView>();
-            StepList = new ObservableCollection<StepData>(Templates.TemplateDictionary["pomodoro"]);
+            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
+
+            AppSettings.Data.StepDataListChanged += StepDataListChanged; ;
+
             InitalizeTimer();
             
             DataContext = this;
             InitializeComponent();
             
+        }
+
+        private void StepDataListChanged(object sender, RoutedEventArgs e)
+        {
+            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
+            lstSteps.SelectedIndex = 0;
         }
 
         private void InitalizeTimer()
@@ -107,7 +116,17 @@ namespace MyHealth
             if (SelectedStep.StepType == StepData.StepTypes.FreshStart)
                 GoToNextStep();
         }
-
+        
+        private void mnuReset_Click(object sender, RoutedEventArgs e)
+        {
+            Timer.Reset();
+        }
+        private void mnuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow win = new SettingsWindow();
+            win.ShowDialog();
+        }
+        
         #region Add TextBox
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -141,8 +160,6 @@ namespace MyHealth
                 Source = this,
                 Mode = BindingMode.TwoWay
             });
-
-
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
@@ -150,36 +167,13 @@ namespace MyHealth
             Activate();
             MouseEnterAnimation.Storyboard.Begin();
         }
-
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            //bool topmost = Topmost;
-            //Topmost = false;
-            //timer.IsPaused = true;
-
-            //var settingsWin = new SettingsWindow();
-            //if(true == settingsWin.ShowDialog())
-            //{
-            //    if (DataAccess.IsStepListChanged)
-            //    {
-            //        LoadSteps();
-            //        DataAccess.IsStepListChanged = false;
-            //    }
-            //}
-
-            //timer.IsPaused = false;
-            //Topmost = topmost;
-        }
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             tbNotify.Visibility = Visibility.Collapsed;
             Environment.Exit(0);
         }
-
-
-
         #endregion
 
-
+        
     }
 }
