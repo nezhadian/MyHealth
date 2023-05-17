@@ -78,10 +78,7 @@
         Opacity="0.5"
         Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
     <SolidColorBrush x:Key="StepData.SeperatorLineColor" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
-    <SolidColorBrush
-        x:Key="StepData.Hover"
-        Opacity="0.215"
-        Color="{DynamicResource {x:Static adonis:Colors.AccentHighlightColor}}" />
+    <SolidColorBrush x:Key="StepData.Hover" Color="{DynamicResource {x:Static adonis:Colors.Layer1HighlightColor}}" />
     <SolidColorBrush x:Key="StepData.SelectionColor" Color="{DynamicResource {x:Static adonis:Colors.AccentColor}}" />
     <SolidColorBrush x:Key="StepData.TextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
 
@@ -92,6 +89,8 @@
     <SolidColorBrush x:Key="Timer.Border" Color="{DynamicResource {x:Static adonis:Colors.Layer1BorderColor}}" />
     <SolidColorBrush x:Key="Timer.Background" Color="{DynamicResource {x:Static adonis:Colors.Layer0BackgroundColor}}" />
 
+    <!--  Expander  -->
+    <SolidColorBrush x:Key="Expander.TextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
 
     <!--  Icons  -->
     <SolidColorBrush x:Key="IconsColor.Play">#FF2EAC2E</SolidColorBrush>
