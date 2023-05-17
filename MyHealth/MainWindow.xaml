@@ -169,29 +169,36 @@
                     </Grid>
 
                     <!--  Menu  -->
-                    <StackPanel
-                        Grid.Row="2"
-                        Grid.ColumnSpan="2"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                        <Menu ItemContainerStyle="{StaticResource MainWindow.Menu.MenuItemStyle}">
+                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                        <Menu HorizontalAlignment="Center" ItemContainerStyle="{StaticResource MainWindow.Menu.MenuItemStyle}">
+                            <!--  Reset btn  -->
                             <MenuItem
                                 Click="mnuReset_Click"
                                 Header="Reset"
                                 Icon="{StaticResource RestartIcon}"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
 
+                            <!--  Play and Pause btn  -->
                             <MenuItem
                                 IsChecked="{Binding Timer.IsPaused}"
                                 Style="{StaticResource PlayPauseMenuItem.Style}"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
 
+                            <!--  Settings btn  -->
                             <MenuItem
                                 Click="mnuSettings_Click"
                                 Header="Settings"
                                 Icon="{StaticResource SettingIcon}" />
                         </Menu>
-                    </StackPanel>
+                        <!--  Exit btn  -->
+                        <MenuItem
+                            HorizontalAlignment="Right"
+                            Click="ExitBtn_Click"
+                            Header="Exit"
+                            Icon="{StaticResource CloseIcon}"
+                            Style="{StaticResource MainWindow.Menu.MenuItemStyle}" />
+                    </Grid>
+
 
 
 

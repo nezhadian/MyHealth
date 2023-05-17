@@ -743,6 +743,16 @@
         Fill="{DynamicResource IconsColor.Pause}"
         Stretch="Uniform" />
 
+    <!--  Close Icon  -->
+    <Path
+        x:Key="CloseIcon"
+        Width="24"
+        Data="{StaticResource Close}"
+        Fill="{DynamicResource IconsColor.Settings}"
+        Stretch="Uniform" />
+
+
+
     <!--  MenuItems Style  -->
     <Style x:Key="MainWindow.Menu.MenuItemStyle" TargetType="MenuItem">
         <Setter Property="MinWidth" Value="64" />
