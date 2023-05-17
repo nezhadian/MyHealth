@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Xml.Serialization;
 
@@ -79,7 +80,20 @@ namespace MyHealth
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
 
-        public StepData[] StepDataList { get; set; }
+
+        public event RoutedEventHandler StepDataListChanged;
+        
+        private StepData[] _stepDataList;
+        public StepData[] StepDataList
+        {
+            get { return _stepDataList; }
+            set { 
+                _stepDataList = value;
+                StepDataListChanged?.Invoke(this, null);
+            }
+        }
+
+        
 
         //Methods
         public MyHealthSettings Clone()
