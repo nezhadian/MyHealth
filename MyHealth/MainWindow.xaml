@@ -176,14 +176,16 @@
                         Orientation="Horizontal">
                         <Menu ItemContainerStyle="{StaticResource MainWindow.Menu.MenuItemStyle}">
                             <MenuItem
-                                IsChecked="{Binding Timer.IsPaused}"
-                                Style="{StaticResource PlayPauseMenuItem.Style}"
-                                Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
-                            <MenuItem
                                 Click="mnuReset_Click"
                                 Header="Reset"
                                 Icon="{StaticResource RestartIcon}"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
+
+                            <MenuItem
+                                IsChecked="{Binding Timer.IsPaused}"
+                                Style="{StaticResource PlayPauseMenuItem.Style}"
+                                Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
+
                             <MenuItem
                                 Click="mnuSettings_Click"
                                 Header="Settings"
