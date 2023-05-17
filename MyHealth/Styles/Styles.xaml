@@ -56,27 +56,7 @@
     </Style>
 
     <!--  ____________________________________________ Icon Styles ______________________  -->
-    <!--  Restart Icon  -->
-    <Path
-        x:Key="RestartIcon"
-        Width="10"
-        Data="{StaticResource Restart}"
-        Fill="{DynamicResource Menu.Icons}"
-        Stretch="Uniform" />
 
-    <!--  Pause and Play Icons  -->
-    <Path
-        x:Key="PlayPauseMenuItem.PlayIcon"
-        Width="8"
-        Data="{StaticResource Continue}"
-        Fill="{DynamicResource IconsColor.Play}"
-        Stretch="Uniform" />
-    <Path
-        x:Key="PlayPauseMenuItem.PauseIcon"
-        Width="8"
-        Data="{StaticResource Stop}"
-        Fill="{DynamicResource IconsColor.Pause}"
-        Stretch="Uniform" />
 
     <!--  About Me Social Icons  -->
     <Path
@@ -730,6 +710,123 @@
         </Style.Triggers>
     </Style>
 
+
+    <!--  ____________________________________________ MainWindow Menu Style ______________________  -->
+    <!--  Restart Icon  -->
+    <Path
+        x:Key="RestartIcon"
+        Width="32"
+        Data="{StaticResource Restart}"
+        Fill="{DynamicResource Menu.Icons}"
+        Stretch="Uniform" />
+
+    <!--  Pause and Play Icons  -->
+    <Path
+        x:Key="PlayPauseMenuItem.PlayIcon"
+        Width="32"
+        Data="{StaticResource Continue}"
+        Fill="{DynamicResource IconsColor.Play}"
+        Stretch="Uniform" />
+    <Path
+        x:Key="PlayPauseMenuItem.PauseIcon"
+        Width="32"
+        Data="{StaticResource Stop}"
+        Fill="{DynamicResource IconsColor.Pause}"
+        Stretch="Uniform" />
+    <!--  MenuItems Style  -->
+    <Style x:Key="MainWindow.Menu.MenuItemStyle" TargetType="MenuItem">
+        <Setter Property="MinWidth" Value="64" />
+        <Setter Property="MinHeight" Value="64" />
+        <Setter Property="Background" Value="{DynamicResource Menu.Background}" />
+        <Setter Property="Foreground" Value="{DynamicResource Menu.TextColor}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="10" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <Grid>
+                            <!--  Rows  -->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Sub Menu Popup  -->
+                            <Popup
+                                x:Name="Popup"
+                                AllowsTransparency="True"
+                                IsOpen="{TemplateBinding IsSubmenuOpen}"
+                                Placement="Right">
+                                <Border Margin="3,0,0,0" Style="{StaticResource ContextMenu.BgBorder}">
+                                    <StackPanel
+                                        ClipToBounds="True"
+                                        IsItemsHost="True"
+                                        Orientation="Vertical" />
+                                </Border>
+                            </Popup>
+
+                            <!--  Menuitem Icon  -->
+                            <ContentPresenter
+                                x:Name="icon"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                ContentSource="Icon" />
+
+                            <!--  Main Content  -->
+                            <ContentPresenter
+                                Grid.Row="1"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                ContentSource="Header" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--  Hover  -->
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource Menu.Hover}" />
+                        </Trigger>
+
+                        <!--  Pressed  -->
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="{DynamicResource Menu.Pressed}" />
+                        </Trigger>
+
+                        <!--  Disabled  -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  Play Pause Menuitem  -->
+    <Style
+        x:Key="PlayPauseMenuItem.Style"
+        BasedOn="{StaticResource MainWindow.Menu.MenuItemStyle}"
+        TargetType="MenuItem">
+        <Setter Property="IsCheckable" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
+                <Setter Property="Header" Value="Continue" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
+                <Setter Property="Header" Value="Pause" />
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
     <!--  ____________________________________________ Custom Styles ______________________  -->
     <!--  Step Data MenuItem  -->
     <Style x:Key="StepData.MenuItemIcon" TargetType="Path">
@@ -799,7 +896,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <Style TargetType="Expander">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static adonis:Brushes.ForegroundBrush}}" />
         <Setter Property="Template">
@@ -848,7 +944,6 @@
         </Setter>
     </Style>
 
-
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
@@ -857,27 +952,6 @@
         <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
         <Setter Property="BorderThickness" Value="1,1,1,0" />
 
-    </Style>
-
-    <!--  Play Pause Menuitem  -->
-    <Style
-        x:Key="PlayPauseMenuItem.Style"
-        BasedOn="{StaticResource {x:Type MenuItem}}"
-        TargetType="MenuItem">
-        <Setter Property="IsCheckable" Value="True" />
-        <Setter Property="StaysOpenOnClick" Value="True" />
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
-                <Setter Property="Header" Value="Continue Timer" />
-            </Trigger>
-
-            <Trigger Property="IsChecked" Value="False">
-                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
-                <Setter Property="Header" Value="Pause Timer" />
-
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <!--  AboutMe Social Styles  -->
