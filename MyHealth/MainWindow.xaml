@@ -10,8 +10,8 @@
     xmlns:tb="http://www.hardcodet.net/taskbar"
     x:Name="mainWin"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    d:Height="768"
+    d:Width="1366"
     AllowsTransparency="True"
     Background="Transparent"
     ResizeMode="NoResize"
@@ -75,6 +75,7 @@
                     <StackPanel Orientation="Horizontal">
                         <!--  Timer  -->
                         <TextBlock
+                            x:Name="txtTimer"
                             Margin="0,0,10,0"
                             FontWeight="DemiBold"
                             Style="{StaticResource Texts.CaptionText}"
@@ -120,6 +121,22 @@
                         </ListBox.GroupStyle>
                     </ListBox>
 
+                    <!--  Step List  -->
+                    <Expander
+                        Grid.Column="1"
+                        Margin="10,5,0,0"
+                        Header="Steps"
+                        IsExpanded="True">
+                        <ListBox
+                            x:Name="lstSteps"
+                            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
+                            ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
+                            ItemsSource="{Binding StepList}"
+                            SelectedIndex="0"
+                            SelectedItem="{Binding SelectedStep}"
+                            SelectionChanged="lstSteps_SelectionChanged" />
+                    </Expander>
+
                     <!--  Add Textbox  -->
                     <Grid Grid.Row="1" Grid.ColumnSpan="2">
                         <!--  Columns  -->
@@ -150,21 +167,25 @@
                         </Button>
                     </Grid>
 
-                    <!--  Step List  -->
-                    <Expander
-                        Grid.Column="1"
-                        Margin="10,5,0,0"
-                        Header="Steps"
-                        IsExpanded="True">
-                        <ListBox
-                            x:Name="lstSteps"
-                            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
-                            ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
-                            ItemsSource="{Binding StepList}"
-                            SelectedIndex="0"
-                            SelectedItem="{Binding SelectedStep}"
-                            SelectionChanged="lstSteps_SelectionChanged" />
-                    </Expander>
+                    <!--  Menu  -->
+                    <StackPanel
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Menu ItemContainerStyle="{StaticResource MainWindow.Menu.MenuItemStyle}">
+                            <MenuItem
+                                IsChecked="{Binding Timer.IsPaused}"
+                                Style="{StaticResource PlayPauseMenuItem.Style}"
+                                Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
+                            <MenuItem
+                                Header="Reset"
+                                Icon="{StaticResource RestartIcon}"
+                                Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
+                            <MenuItem Header="Settings" Icon="{StaticResource SettingIcon}" />
+                        </Menu>
+                    </StackPanel>
+
 
 
 
