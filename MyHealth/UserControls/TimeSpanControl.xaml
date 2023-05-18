@@ -24,33 +24,37 @@
             <EventSetter Event="PreviewMouseLeftButtonDown" Handler="TextBox_PreviewMouseLeftButtonDown" />
         </Style>
     </UserControl.Resources>
+    <!--  Border  -->
     <Border
         Padding="2"
         Background="{DynamicResource TimeSpanControl.Background}"
         BorderBrush="{DynamicResource TimeSpanControl.Border}"
         BorderThickness="1"
         CornerRadius="{DynamicResource TimeSpanControl.CornerRadius}">
-        <StackPanel
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal" Visibility="{Binding ElementName=main, Path=HourVisibility}">
-                <TextBox
-                    x:Name="txtHour"
-                    LostKeyboardFocus="TextBoxFilterMinMaxNumber12_LostFocus"
-                    Style="{StaticResource TimeSpanControl.TextBoxStyle}"
-                    TabIndex="0" />
-                <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="h" />
-            </StackPanel>
+
+        <!--  Controls  -->
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+
+            <!--  Hour Textbox  -->
             <TextBox
-                x:Name="txtMin"
+                x:Name="txtHour"
+                LostKeyboardFocus="TextBoxFilterMinMaxNumber12_LostFocus"
                 Style="{StaticResource TimeSpanControl.TextBoxStyle}"
-                TabIndex="1" />
+                Visibility="{Binding HourVisibility}" />
+            <!--  h Sign  -->
+            <TextBlock
+                Style="{StaticResource TimeSpanControl.TextBlockBetween}"
+                Text="h"
+                Visibility="{Binding HourVisibility}" />
+
+            <!--  Minutes Textbox  -->
+            <TextBox x:Name="txtMin" Style="{StaticResource TimeSpanControl.TextBoxStyle}" />
+            <!--  m Sign  -->
             <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="m" />
-            <TextBox
-                x:Name="txtSecond"
-                Style="{StaticResource TimeSpanControl.TextBoxStyle}"
-                TabIndex="2" />
+
+            <!--  Seconds Textbox  -->
+            <TextBox x:Name="txtSecond" Style="{StaticResource TimeSpanControl.TextBoxStyle}" />
+            <!--  s Sign  -->
             <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="s" />
 
         </StackPanel>
