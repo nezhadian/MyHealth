@@ -13,8 +13,7 @@ namespace MyHealth
     {
         //Props
         public static MyHealthSettings Data = new MyHealthSettings();
-
-        static readonly MyHealthSettings DEFAULT_DATA_VALUES = new MyHealthSettings()
+        public static readonly MyHealthSettings DEFAULT_DATA_VALUES = new MyHealthSettings()
         {
             ImageSliderDelay = new TimeSpan(0, 0, 20),
             FreshStartBgColor = Color.FromRgb(0x00, 0x80, 0x00),
@@ -22,6 +21,7 @@ namespace MyHealth
             IsFirstRun = true,
             StepDataList = Templates.TemplateDictionary["pomodoro"]
         };
+
         static string DataFilePath => Path.Combine(Environment.CurrentDirectory, "Settings.xml");
 
         //ctor
