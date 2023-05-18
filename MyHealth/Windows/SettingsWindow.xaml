@@ -9,6 +9,7 @@
     Width="800"
     Height="600"
     Background="{DynamicResource BackgroundColor}"
+    Topmost="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.CommandBindings>
