@@ -67,13 +67,13 @@
                 <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
                 <ComboBox
                     ItemsSource="{Binding StepTypesArray}"
-                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
                     SourceUpdated="OnPropertiesChanged" />
 
                 <!--  StepName Textbox  -->
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
+                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" />
                 </StackPanel>
 
                 <!--  Duration TimeSpanControl  -->
@@ -82,7 +82,7 @@
                     <local:TimeSpanControl
                         HorizontalAlignment="Left"
                         SourceUpdated="OnPropertiesChanged"
-                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
+                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
                 </StackPanel>
 
                 <!--  ImageList ComboBox  -->
@@ -90,7 +90,7 @@
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
                     <ComboBox
                         ItemsSource="{Binding ImageListesArray}"
-                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
                         SourceUpdated="OnPropertiesChanged" />
                 </StackPanel>
 
