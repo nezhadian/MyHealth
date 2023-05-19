@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dragdrop="urn:gong-wpf-dragdrop"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Step Editor"
@@ -11,15 +12,6 @@
     mc:Ignorable="d">
 
     <Page.CommandBindings>
-        <CommandBinding
-            CanExecute="ArrowUp_CanExecute"
-            Command="{x:Static local:StepEditorPage.ArrowUp}"
-            Executed="ArrowCommands_Execute" />
-        <CommandBinding
-            CanExecute="ArrowDown_CanExecute"
-            Command="{x:Static local:StepEditorPage.ArrowDown}"
-            Executed="ArrowCommands_Execute" />
-
         <CommandBinding
             CanExecute="New_CanExecute"
             Command="{x:Static ApplicationCommands.New}"
@@ -57,6 +49,8 @@
         <ListBox
             x:Name="lstItems"
             Grid.Row="2"
+            dragdrop:DragDrop.IsDragSource="True"
+            dragdrop:DragDrop.IsDropTarget="True"
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList}"
             SelectedItem="{Binding SelectedStep}" />
@@ -93,7 +87,7 @@
                     <local:TimeSpanControl
                         x:Name="tscDuration"
                         HorizontalAlignment="Left"
-                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration,Mode=TwoWay}" />
+                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay}" />
                 </StackPanel>
                 <!--  ImageList ComboBox  -->
                 <StackPanel x:Name="cnrImageListSelection">
@@ -112,23 +106,6 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Command="{x:Static local:StepEditorPage.ArrowDown}" Style="{StaticResource Buttons.OnlyIcon}">
-                    <Path
-                        Width="8"
-                        Data="{StaticResource ArrowDown}"
-                        Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
-                        Stretch="Uniform" />
-                </Button>
-                <Button Command="{x:Static local:StepEditorPage.ArrowUp}" Style="{StaticResource Buttons.OnlyIcon}">
-                    <Path
-                        Width="8"
-                        Data="{StaticResource ArrowUp}"
-                        Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
-                        Stretch="Uniform" />
-                </Button>
-            </StackPanel>
-
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Command="{x:Static ApplicationCommands.New}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path

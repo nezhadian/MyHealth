@@ -99,32 +99,6 @@ namespace MyHealth
             lstItems.Focus();
         }
         #endregion
-        #region Arrow Commands
-        public static RoutedCommand ArrowUp = new RoutedCommand("ArrowUp",typeof(StepEditorPage));
-        public static RoutedCommand ArrowDown = new RoutedCommand("ArrowDown",typeof(StepEditorPage));
-
-        private void ArrowUp_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = lstItems.SelectedIndex > 0;
-        private void ArrowDown_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected && lstItems.SelectedIndex < StepList.Count - 1;
-        
-        private void ArrowCommands_Execute(object sender, ExecutedRoutedEventArgs e)
-        {
-            bool isArrowUp = e.Command == ArrowUp;
-            bool isArrowDown = e.Command == ArrowDown;
-            if (!(isArrowUp || isArrowDown))
-                return;
-
-            int selectionIndex = lstItems.SelectedIndex;
-            int targetIndex = isArrowUp ? selectionIndex - 1 : selectionIndex + 1;
-
-            StepData selection = SelectedStep;
-            StepList.RemoveAt(selectionIndex);
-            StepList.Insert(targetIndex, selection);
-
-            lstItems.SelectedIndex = targetIndex;
-            lstItems.Focus();
-
-        }
-        #endregion
 
         //Hide UnRelated Controls
         private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
