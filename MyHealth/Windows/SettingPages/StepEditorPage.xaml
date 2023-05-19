@@ -73,7 +73,7 @@
                 <!--  StepName Textbox  -->
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" />
+                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MaxLength="25" />
                 </StackPanel>
 
                 <!--  Duration TimeSpanControl  -->
