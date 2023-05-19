@@ -108,7 +108,7 @@ namespace MyHealth
 
         private void lstSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SelectedStep.StepType == StepData.StepTypes.Seperator)
+            if (SelectedStep != null && SelectedStep.StepType == StepData.StepTypes.Seperator)
                 GoToNextStep();
         }
         private void StepContent_MouseDown(object sender, MouseButtonEventArgs e)
