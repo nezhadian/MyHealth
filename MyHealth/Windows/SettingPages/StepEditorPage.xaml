@@ -30,7 +30,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-
         <!--  columns  -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" MinWidth="250" />
@@ -55,49 +54,33 @@
             ItemsSource="{Binding StepList}"
             SelectedItem="{Binding SelectedStep}" />
 
-        <!--  controllers  -->
+        <!--  Properties  -->
         <Grid
             Grid.Row="0"
             Grid.RowSpan="3"
             Grid.Column="2">
-            <StackPanel x:Name="cnrMain" Visibility="Hidden">
+
+            <StackPanel>
                 <!--  Step Type ComboBox  -->
                 <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
-                <ComboBox
-                    x:Name="cboStepType"
-                    ItemsSource="{Binding StepTypesArray}"
-                    KeyDown="UserPressKeyboardButtons"
-                    PreviewMouseDown="UserClickControls"
-                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged}"
-                    SelectionChanged="cboStepType_SelectionChanged" />
+                <ComboBox ItemsSource="{Binding StepTypesArray}" SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged}" />
 
                 <!--  StepName Textbox  -->
-                <StackPanel x:Name="cnrStepName">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox
-                        x:Name="txtStepName"
-                        KeyDown="UserPressKeyboardButtons"
-                        PreviewMouseDown="UserClickControls"
-                        Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!--  Duration TimeSpanControl  -->
-                <StackPanel x:Name="cnrDuration">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Duration" />
-                    <local:TimeSpanControl
-                        x:Name="tscDuration"
-                        HorizontalAlignment="Left"
-                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay}" />
+                    <local:TimeSpanControl HorizontalAlignment="Left" TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay}" />
                 </StackPanel>
+
                 <!--  ImageList ComboBox  -->
-                <StackPanel x:Name="cnrImageListSelection">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='ImageSlider', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
-                    <ComboBox
-                        x:Name="cboImageList"
-                        ItemsSource="{Binding ImageListesArray}"
-                        KeyDown="UserPressKeyboardButtons"
-                        PreviewMouseDown="UserClickControls"
-                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox ItemsSource="{Binding ImageListesArray}" SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
 
@@ -105,6 +88,7 @@
             </StackPanel>
         </Grid>
 
+        <!--  New And Delete Buttons  -->
         <Grid Grid.Row="3">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                 <Button Command="{x:Static ApplicationCommands.New}" Style="{StaticResource Buttons.OnlyIcon}">
@@ -122,7 +106,6 @@
                         Stretch="Uniform" />
                 </Button>
             </StackPanel>
-
 
         </Grid>
 

@@ -100,44 +100,6 @@ namespace MyHealth
         }
         #endregion
 
-        //Hide UnRelated Controls
-        private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (IsSelected)
-                SwitchUI(SelectedStep.StepType);
-        }
-        
-        UIElement[] Controls;
-        Dictionary<Enum, short[]> SwitchUIMap;
-        private void SetUIMapValues()
-        {
-            Controls ??= new UIElement[]
-            {
-                cnrMain,
-                cnrStepName,
-                cnrDuration,
-                cnrImageListSelection
-            };
-            SwitchUIMap ??= new Dictionary<Enum, short[]>()
-            {
-                { StepData.StepTypes.WorkTime,new short[]{0,1,2} },
-                { StepData.StepTypes.ShortBreak,new short[]{0,1,2} },
-                { StepData.StepTypes.Seperator,new short[]{0} },
-                { StepData.StepTypes.ImageSlider,new short[]{0,1,2,3} },
-                { StepData.StepTypes.FreshStart,new short[]{0,1} },
-            };
-        }
-        private void SwitchUI(Enum stepType)
-        {
-            SetUIMapValues();
-
-            Array.ForEach(Controls, (element) => element.Visibility = Visibility.Collapsed);
-            if(SwitchUIMap.TryGetValue(stepType,out short[] indexes))
-            {
-                Array.ForEach(indexes, (i) => Controls[i].Visibility = Visibility.Visible);
-            }
-        }
-
 
         //Templates
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
