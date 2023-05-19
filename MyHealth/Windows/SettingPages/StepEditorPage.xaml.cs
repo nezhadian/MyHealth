@@ -32,9 +32,7 @@ namespace MyHealth
         public bool IsChanged { get; set ; }
         public void Save()
         {
-            StepData[] data = new StepData[StepList.Count];
-            StepList.CopyTo(data, 0);
-            AppSettings.Data.StepDataList = data;
+            AppSettings.Data.StepDataList = StepList.ToArray();
             AppSettings.Save();
         }
 
@@ -77,7 +75,7 @@ namespace MyHealth
 
         private void SetCloneOfStepDataArray(StepData[] stepDataList)
         {
-            StepList = new ObservableCollection<StepData>(stepDataList);
+            StepList = new ObservableCollection<StepData>(stepDataList.Select((i) =>(StepData)i.Clone()));
         }
 
 
@@ -108,6 +106,7 @@ namespace MyHealth
                 }
 
                 SetCloneOfStepDataArray(template);
+                IsChanged = true;
                 isChangedFromLastTemplateChange = false;
             }
         }

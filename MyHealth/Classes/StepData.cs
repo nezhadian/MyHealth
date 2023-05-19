@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace MyHealth
 {
-    public class StepData : DependencyObject
+    public class StepData : DependencyObject,ICloneable
     {
         #region Dependency Properites
         public static readonly DependencyProperty StepTypeProperty =
@@ -58,6 +58,17 @@ namespace MyHealth
         {
             get { return (ImageListes)GetValue(ImageListProperty); }
             set { SetValue(ImageListProperty, value); }
+        }
+
+        public object Clone()
+        {
+            return new StepData()
+            {
+                StepType = StepType,
+                StepName = StepName,
+                Duration = Duration,
+                ImageList = ImageList
+            };
         }
     }
 }
