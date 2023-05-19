@@ -64,15 +64,74 @@ namespace MyHealth
         //ctor
         public StepEditorPage()
         {
-            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
             StepTypesArray = Enum.GetValues(typeof(StepData.StepTypes));
             ImageListesArray = Enum.GetValues(typeof(StepData.ImageListes));
-            
-            StepList.CollectionChanged += StepList_CollectionChanged; ;
+
+            SetCloneOfStepDataArray(AppSettings.Data.StepDataList);
+
+            StepList.CollectionChanged += StepList_CollectionChanged;
             
             DataContext = this;
             InitializeComponent();
         }
+
+        private void SetCloneOfStepDataArray(StepData[] stepDataList)
+        {
+            StepList = new ObservableCollection<StepData>(stepDataList);
+        }
+
+
+
+
+
+        //Templates
+        bool isChangedFromLastTemplateChange = false;
+        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboTemplates.SelectedItem == null)
+                return;
+
+            object tag = ((ComboBoxItem)cboTemplates.SelectedItem).Tag;
+
+            if (tag == null)
+                return;
+
+            if (Templates.TemplateDictionary.TryGetValue(tag.ToString(), out StepData[] template))
+            {
+                if (isChangedFromLastTemplateChange)
+                {
+                    if(!YesNoMessageBox("Changes","Are You Sure Clear Changes?"))
+                    {
+                        cboTemplates.SelectedItem = e.RemovedItems[0];
+                        return;
+                    }
+                }
+
+                SetCloneOfStepDataArray(template);
+                isChangedFromLastTemplateChange = false;
+            }
+        }
+        private static bool YesNoMessageBox(string caption,string message)
+        {
+            return AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show(message, caption, AdonisUI.Controls.MessageBoxButton.YesNo);
+        }
+
+        //Changes Detection
+        private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            IsChanged = true;
+            isChangedFromLastTemplateChange = true;
+        }
+
+        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
+        private void lstItems_Drop(object sender, DragEventArgs e) => UserChangeValues();
+        private void UserChangeValues()
+        {
+            cboTemplates.SelectedIndex = 2;
+            IsChanged = true;
+            isChangedFromLastTemplateChange = true;
+        }
+
 
         //commands
         #region Commands
@@ -95,70 +154,10 @@ namespace MyHealth
         {
             int selIndex = lstItems.SelectedIndex;
             StepList.RemoveAt(selIndex);
-            lstItems.SelectedIndex = Math.Min(selIndex,lstItems.Items.Count - 1);
+            lstItems.SelectedIndex = Math.Min(selIndex, lstItems.Items.Count - 1);
             lstItems.Focus();
         }
         #endregion
-
-
-        //Templates
-        private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.RemovedItems.Count == 0)
-                return;
-
-            bool IsPreviousItemCustom = ((ComboBoxItem)e.RemovedItems[0]).Tag == null;
-            bool hasItems = StepList.Count != 0;
-
-            if (IsPreviousItemCustom && hasItems)
-            {
-                if (YesNoMessageBox("Clear","Clear Changes?"))
-                {
-                    string tag = ((ComboBoxItem)cboTemplates.SelectedItem).Tag as string;
-                    SetTemplateForStepDataList(tag);
-                }
-                else
-                {
-                    cboTemplates.SelectedItem = e.RemovedItems[0];
-                }
-            }
-        }
-        private void SetTemplateForStepDataList(string key)
-        {
-            if (Templates.TemplateDictionary.TryGetValue(key, out StepData[] template))
-            {
-                StepList.Clear();
-                AddArrayToList(StepList, template);
-            }
-        }
-        private void AddArrayToList(IList list,Array template)
-        {
-            foreach (var item in template)
-            {
-                list.Add(item);
-            }
-        }
-        private static bool YesNoMessageBox(string caption,string message)
-        {
-            return AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show(message, caption, AdonisUI.Controls.MessageBoxButton.YesNo);
-        }
-
-        //Changes Detection
-        private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            IsChanged = true;
-        }
-
-        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
-        private void lstItems_Drop(object sender, DragEventArgs e) => UserChangeValues();
-        private void UserChangeValues()
-        {
-            cboTemplates.SelectedIndex = 2;
-            IsChanged = true;
-        }
-
-        
-
 
     }
 }
