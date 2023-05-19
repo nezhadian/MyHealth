@@ -22,38 +22,23 @@ namespace MyHealth
             StepDataList = Templates.TemplateDictionary["pomodoro"]
         };
 
-        static string DataFilePath => Path.Combine(Environment.CurrentDirectory, "Settings.xml");
-
-        //ctor
-        static AppSettings()
-        {
-            Load();
-        }
+        static string DataFilePath;
+        static bool isInitialized = false;
 
         //Methods
-        public static void Save()
+        public static void Init()
         {
-            FileStream stream = null;
-            XmlSerializer xml = new XmlSerializer(Data.GetType());
-            try
-            {
-                stream = File.OpenWrite(DataFilePath);
-                stream.SetLength(0);
-                xml.Serialize(stream, Data);
+            if (isInitialized)
+                return;
 
-            }
-            finally
-            {
-                stream?.Close();
-            }
-        }
-        public static void Reset()
-        {
-            Data = DEFAULT_DATA_VALUES.Clone();
+            DataFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+            Load();
+
+            isInitialized = true;
         }
         static void Load()
         {
-            FileStream stream = null ;
+            FileStream stream = null;
             try
             {
                 stream = File.OpenRead(DataFilePath);
@@ -70,6 +55,27 @@ namespace MyHealth
                 stream?.Close();
             }
         }
+        public static void Reset()
+        {
+            Data = DEFAULT_DATA_VALUES.Clone();
+        }
+        public static void Save()
+        {
+            FileStream stream = null;
+            XmlSerializer xml = new XmlSerializer(Data.GetType());
+            try
+            {
+                stream = File.OpenWrite(DataFilePath);
+                stream.SetLength(0);
+                xml.Serialize(stream, Data);
+
+            }
+            finally
+            {
+                stream?.Close();
+            }
+        }
+        
     }
 
     public class MyHealthSettings 

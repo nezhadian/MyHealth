@@ -56,6 +56,7 @@ namespace MyHealth
                 ResetAllSettings();
             
             Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            AppSettings.Init();
         }
 
         internal static void ResetAllSettings()
