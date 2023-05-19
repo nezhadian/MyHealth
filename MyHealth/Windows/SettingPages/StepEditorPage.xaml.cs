@@ -83,7 +83,7 @@ namespace MyHealth
 
 
         //Templates
-        bool isChangedFromLastTemplateChange = false;
+        bool isChangedFromLastTemplateChange = true;
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboTemplates.SelectedItem == null)
