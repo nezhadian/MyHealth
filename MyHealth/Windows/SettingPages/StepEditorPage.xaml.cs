@@ -207,19 +207,6 @@ namespace MyHealth
             return AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show(message, caption, AdonisUI.Controls.MessageBoxButton.YesNo);
         }
 
-        //Duration TimeSpanControl Changing
-        private void tscDuration_TextChanged(object sender, RoutedEventArgs e)
-        {
-            SelectedStep.Duration = tscDuration.TimeSpan;
-            UserChangeValues();
-        }
-        private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            cnrMain.Visibility = IsSelected ? Visibility.Visible : Visibility.Collapsed;
-            if(IsSelected )
-                tscDuration.TimeSpan = SelectedStep.Duration;
-        }
-
         //Changes Detection
         private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
