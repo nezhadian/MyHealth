@@ -50,6 +50,7 @@
             Grid.Row="2"
             dragdrop:DragDrop.IsDragSource="True"
             dragdrop:DragDrop.IsDropTarget="True"
+            dragdrop:DragDrop.SelectDroppedItems="True"
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList}"
             SelectedItem="{Binding SelectedStep}" />
