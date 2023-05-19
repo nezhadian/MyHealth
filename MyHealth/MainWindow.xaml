@@ -45,7 +45,6 @@
 
         <!--  Converters  -->
         <local:CaptionTextSwitchConverter x:Key="CaptionTextConverter" />
-        <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
         <local:StepData2PageConverter x:Key="PageConverter" />
     </Window.Resources>
     <Grid>

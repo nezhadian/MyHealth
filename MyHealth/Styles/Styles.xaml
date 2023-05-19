@@ -5,6 +5,10 @@
     xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:local="clr-namespace:MyHealth">
 
+    <!--  Converters  -->
+    <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
+    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
+    <local:StepDataIconConverter x:Key="IconConverter" />
 
     <!--  ____________________________________________ TextBlocks ______________________  -->
     <!--  Page Title  -->
@@ -458,9 +462,6 @@
     </Style>
 
     <!--  ____________________________________________ Step Data Style ______________________  -->
-    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
-    <local:StepDataIconConverter x:Key="IconConverter" />
-
     <Style x:Key="StepData.ListBoxItemContainer" TargetType="ListBoxItem">
         <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
