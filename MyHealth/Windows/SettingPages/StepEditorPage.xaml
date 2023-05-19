@@ -51,6 +51,7 @@
             dragdrop:DragDrop.IsDragSource="True"
             dragdrop:DragDrop.IsDropTarget="True"
             dragdrop:DragDrop.SelectDroppedItems="True"
+            Drop="lstItems_Drop"
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList}"
             SelectedItem="{Binding SelectedStep}" />
@@ -64,24 +65,33 @@
             <StackPanel>
                 <!--  Step Type ComboBox  -->
                 <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
-                <ComboBox ItemsSource="{Binding StepTypesArray}" SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox
+                    ItemsSource="{Binding StepTypesArray}"
+                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                    SourceUpdated="OnPropertiesChanged" />
 
                 <!--  StepName Textbox  -->
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
                 </StackPanel>
 
                 <!--  Duration TimeSpanControl  -->
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Duration" />
-                    <local:TimeSpanControl HorizontalAlignment="Left" TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay}" />
+                    <local:TimeSpanControl
+                        HorizontalAlignment="Left"
+                        SourceUpdated="OnPropertiesChanged"
+                        TimeSpan="{Binding ElementName=lstItems, Path=SelectedItem.Duration, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
                 </StackPanel>
 
                 <!--  ImageList ComboBox  -->
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='ImageSlider', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
-                    <ComboBox ItemsSource="{Binding ImageListesArray}" SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox
+                        ItemsSource="{Binding ImageListesArray}"
+                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"
+                        SourceUpdated="OnPropertiesChanged" />
                 </StackPanel>
 
 

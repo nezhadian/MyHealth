@@ -67,7 +67,7 @@ namespace MyHealth
             StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
             StepTypesArray = Enum.GetValues(typeof(StepData.StepTypes));
             ImageListesArray = Enum.GetValues(typeof(StepData.ImageListes));
-
+            
             StepList.CollectionChanged += StepList_CollectionChanged; ;
             
             DataContext = this;
@@ -149,12 +149,16 @@ namespace MyHealth
             IsChanged = true;
         }
 
+        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
+        private void lstItems_Drop(object sender, DragEventArgs e) => UserChangeValues();
         private void UserChangeValues()
         {
             cboTemplates.SelectedIndex = 2;
             IsChanged = true;
         }
-        private void UserClickControls(object sender, MouseButtonEventArgs e) => UserChangeValues();
-        private void UserPressKeyboardButtons(object sender, KeyEventArgs e) => UserChangeValues();
+
+        
+
+
     }
 }
