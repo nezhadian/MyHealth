@@ -110,7 +110,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="3*" MinWidth="250" />
                     </Grid.ColumnDefinitions>
 
                     <!--  Task ListBox  -->
@@ -155,7 +155,8 @@
                             adonisEx:CornerRadiusExtension.CornerRadius="18"
                             adonisEx:WatermarkExtension.IsWatermarkVisible="True"
                             adonisEx:WatermarkExtension.Watermark="Add New Task"
-                            KeyDown="TextBox_KeyDown" />
+                            KeyDown="TextBox_KeyDown"
+                            MaxLength="{StaticResource TaskView.MaxLength}" />
                     </Grid>
 
                     <!--  Menu  -->

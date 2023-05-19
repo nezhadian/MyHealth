@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
     xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
-    xmlns:local="clr-namespace:MyHealth">
+    xmlns:local="clr-namespace:MyHealth"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!--  Converters  -->
     <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
@@ -591,6 +592,9 @@
 
     <local:Bool2EnumConverter x:Key="EnumConverter" />
 
+    <sys:Int32 x:Key="TaskView.MaxLength">100</sys:Int32>
+
+
     <Style x:Key="TaskView.StarToggleButton" TargetType="ToggleButton">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
@@ -636,10 +640,11 @@
             <TextBox
                 x:Name="text"
                 Grid.Column="1"
-                MinWidth="200"
+                MinWidth="150"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
+                MaxLength="{StaticResource TaskView.MaxLength}"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Template>
                     <ControlTemplate TargetType="TextBox">
