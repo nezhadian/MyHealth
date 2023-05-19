@@ -11,6 +11,7 @@
     Loaded="Page_Loaded"
     mc:Ignorable="d">
     <Page.Resources>
+        <!--  Open Folder Buttons Style  -->
         <Style
             x:Key="OpenFolderButtonsStyle"
             BasedOn="{StaticResource Buttons.Secondary}"
@@ -25,98 +26,91 @@
         </Style>
     </Page.Resources>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+    <StackPanel Margin="20">
+        <!--  General Settings  -->
+        <GroupBox Header="General">
+            <Grid>
+                <!--  Rows  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource Texts.SmallTitle}">
-            General
-        </TextBlock>
+                <!--  Start At Startup CheckBox  -->
+                <CheckBox x:Name="chkStartAtStartup" Click="OnAnyChanged">Start At Startup</CheckBox>
 
-        <CheckBox
-            x:Name="chkStartAtStartup"
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            Click="OnAnyChanged"
-            Content="Start at startup"
-            Foreground="{StaticResource NormalTextColor}"
-            TabIndex="0" />
-        <local:ColorSelector
-            x:Name="clrFreshStartBG"
-            Grid.Row="2"
-            ColorChanged="OnAnyChanged"
-            TabIndex="1"
-            Text="Fresh Start Background Color  " />
-        <local:ColorSelector
-            x:Name="clrShortBreakBG"
-            Grid.Row="3"
-            ColorChanged="OnAnyChanged"
-            TabIndex="2"
-            Text="Short Break Background Color" />
+                <!--  Fresh Start Color Selector  -->
+                <local:ColorSelector
+                    x:Name="cselFreshStart"
+                    Grid.Row="2"
+                    ColorChanged="OnAnyChanged"
+                    Text="Fresh Start Background Color" />
 
-        <TextBlock
-            Grid.Row="5"
-            FontWeight="Bold"
-            Style="{StaticResource Texts.SmallTitle}">
-            Image Slider
-        </TextBlock>
+                <!--  Short Break Color Selector  -->
+                <local:ColorSelector
+                    x:Name="cselShortBreak"
+                    Grid.Row="4"
+                    ColorChanged="OnAnyChanged"
+                    Text="Short Break Background Color" />
+            </Grid>
+        </GroupBox>
 
-        <Grid Grid.Row="6">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" MinWidth="110" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <!--  Image Slider Settings  -->
+        <GroupBox Margin="0,10,0,0" Header="Image Slider">
+            <Grid>
+                <!--  Columns  -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
+                <!--  Rows  -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-            <TextBlock Style="{StaticResource Texts.NormalText}">Image Slider Delay</TextBlock>
-            <local:TimeSpanControl
-                x:Name="tscImageSliderDelay"
-                Grid.Column="2"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                HourVisibility="Collapsed"
-                TabIndex="3"
-                TextChanged="OnAnyChanged" />
+                <!--  Image Slider Sliding Delay Control  -->
+                <TextBlock Style="{StaticResource Texts.NormalText}">Image Slider Sliding Delay</TextBlock>
+                <local:TimeSpanControl
+                    x:Name="tscImageSliderDelay"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HourVisibility="Collapsed"
+                    TextChanged="OnAnyChanged" />
 
-            <TextBlock Grid.Row="1" Style="{StaticResource Texts.NormalText}">Eye Images</TextBlock>
-            <Button
-                Grid.Row="1"
-                Grid.Column="2"
-                Style="{StaticResource OpenFolderButtonsStyle}"
-                TabIndex="4"
-                Tag="eye" />
+                <!--  Eye Folder Open Control  -->
+                <TextBlock Grid.Row="2" Style="{StaticResource Texts.NormalText}">Eye Images Folder</TextBlock>
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Style="{StaticResource OpenFolderButtonsStyle}"
+                    Tag="eye" />
 
-            <TextBlock Grid.Row="2" Style="{StaticResource Texts.NormalText}">Body Images</TextBlock>
-            <Button
-                Grid.Row="2"
-                Grid.Column="2"
-                Style="{StaticResource OpenFolderButtonsStyle}"
-                TabIndex="5"
-                Tag="body" />
+                <!--  Body Folder Open Control  -->
+                <TextBlock Grid.Row="4" Style="{StaticResource Texts.NormalText}">Body Images Folder</TextBlock>
+                <Button
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Style="{StaticResource OpenFolderButtonsStyle}"
+                    Tag="body" />
 
-        </Grid>
+            </Grid>
+        </GroupBox>
 
+        <!--  Reset Settings Button  -->
         <Button
-            Grid.Row="8"
+            Margin="0,10,0,0"
             HorizontalAlignment="Left"
-            Click="ResetSettings"
+            Click="btnResetSettings_Click"
             Content="Reset Settings"
-            Style="{StaticResource Buttons.Tritary}" />
-    </Grid>
+            Style="{StaticResource Buttons.Secondary}" />
+    </StackPanel>
 </Page>

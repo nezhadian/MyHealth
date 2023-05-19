@@ -20,37 +20,41 @@ namespace MyHealth
     /// </summary>
     public partial class GeneralSettingPage : Page,ISavebleSettingItem
     {
+        //Implement ISavebleSettingItem
         public bool IsChanged { get; set; } = false;
         public bool CanSave => tscImageSliderDelay.TimeSpan != TimeSpan.Zero;
         public void Save()
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-            AppSettings.Data.FreshStartBgColor = clrFreshStartBG.Color;
-            AppSettings.Data.ShortBreakBgColor = clrShortBreakBG.Color;
+            AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
+            AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
             AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
             AppSettings.Save();
         }
 
+        //ctor
         public GeneralSettingPage()
         {
             InitializeComponent();
-            LoadSettingValuesFrom(AppSettings.Data);
         }
 
+        //Loading
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadSettingValuesFrom(AppSettings.Data);
+            chkStartAtStartup.IsChecked = App.StartAtStartup;
+        }
         private void LoadSettingValuesFrom(MyHealthSettings settings)
         {
-            clrFreshStartBG.Color = settings.FreshStartBgColor;
-            clrShortBreakBG.Color = settings.ShortBreakBgColor;
+            cselFreshStart.Color = settings.FreshStartBgColor;
+            cselShortBreak.Color = settings.ShortBreakBgColor;
             tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            chkStartAtStartup.IsChecked = App.StartAtStartup;
-        }
-
+        //Detect Changes
         private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
 
+        //Open Folder Buttons
         private void OpenImageSliderFolders_Click(object sender, RoutedEventArgs e)
         {
             string tag = (sender as Button).Tag.ToString();
@@ -65,7 +69,6 @@ namespace MyHealth
             }
             
         }
-
         private void ShowFolderPath_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
             Button button = sender as Button;
@@ -74,9 +77,9 @@ namespace MyHealth
             button.ToolTip = directoryPath;
         }
 
-        private void ResetSettings(object sender, RoutedEventArgs e)
+        //Reset Settings Button
+        private void btnResetSettings_Click(object sender, RoutedEventArgs e)
         {
-            
             if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?","Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
             {
                 LoadSettingValuesFrom(AppSettings.DEFAULT_DATA_VALUES);
