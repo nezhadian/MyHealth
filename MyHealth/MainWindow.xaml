@@ -97,7 +97,11 @@
                 </Grid>
 
                 <!--  Expander  -->
-                <Grid x:Name="grdExpander">
+                <Grid
+                    x:Name="grdExpander"
+                    MinWidth="700"
+                    MinHeight="550"
+                    MaxHeight="630">
                     <!--  rows  -->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -105,8 +109,8 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
 
                     <!--  Task ListBox  -->

@@ -679,9 +679,6 @@
         x:Key="TaskView.ListBox"
         BasedOn="{StaticResource {x:Type ListBox}}"
         TargetType="ListBox">
-        <Setter Property="MinWidth" Value="400" />
-        <Setter Property="MinHeight" Value="500" />
-        <Setter Property="MaxHeight" Value="600" />
 
         <Setter Property="Padding" Value="0,5" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
