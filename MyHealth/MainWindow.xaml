@@ -120,8 +120,10 @@
                         dragdrop:DragDrop.IsDropTarget="True"
                         dragdrop:DragDrop.SelectDroppedItems="True"
                         ItemsSource="{Binding Source={StaticResource TaskListCollectionView}}"
+                        LostFocus="lstTasks_LostFocus"
                         ScrollViewer.VerticalScrollBarVisibility="Visible"
                         SelectedItem="{Binding SelectedTask}"
+                        SelectionChanged="lstTasks_SelectionChanged"
                         Style="{StaticResource TaskView.ListBox}">
                         <ListBox.GroupStyle>
                             <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
