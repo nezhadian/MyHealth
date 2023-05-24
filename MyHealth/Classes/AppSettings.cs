@@ -19,7 +19,8 @@ namespace MyHealth
             FreshStartBgColor = Color.FromRgb(0x00, 0x80, 0x00),
             ShortBreakBgColor = Color.FromRgb(0x00, 0x00, 0x00),
             IsFirstRun = true,
-            StepDataList = Templates.TemplateDictionary["pomodoro"]
+            StepDataList = Templates.TemplateDictionary["pomodoro"],
+            TaskList = new TaskView[0]
         };
 
         static string DataFilePath;
@@ -86,7 +87,6 @@ namespace MyHealth
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
 
-
         public event RoutedEventHandler StepDataListChanged;
         
         private StepData[] _stepDataList;
@@ -99,6 +99,7 @@ namespace MyHealth
             }
         }
 
+        public TaskView[] TaskList { set; get; }
         
 
         //Methods
@@ -110,7 +111,8 @@ namespace MyHealth
                 ShortBreakBgColor = ShortBreakBgColor,
                 ImageSliderDelay = ImageSliderDelay,
                 IsFirstRun = IsFirstRun,
-                StepDataList = StepDataList
+                StepDataList = StepDataList,
+                TaskList = TaskList
             };
         }
 
