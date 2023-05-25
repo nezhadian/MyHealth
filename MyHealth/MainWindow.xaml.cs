@@ -41,7 +41,7 @@ namespace MyHealth
         public static readonly DependencyProperty TimerProperty =
             DependencyProperty.Register("Timer", typeof(Timer), typeof(MainWindow), new PropertyMetadata());
         #endregion
-
+        #region Properties
         //Task List
         public ObservableCollection<TaskView> TaskList
         {
@@ -72,6 +72,7 @@ namespace MyHealth
             get { return (Timer)GetValue(TimerProperty); }
             set { SetValue(TimerProperty, value); }
         }
+        #endregion
 
         //Ctor
         public MainWindow()
@@ -86,10 +87,9 @@ namespace MyHealth
             
             DataContext = this;
             InitializeComponent();
-            
         }
 
-        
+        #region StepList
         //Update StepList When Changed In Settings
         private void StepDataListChanged(object sender, RoutedEventArgs e)
         {
@@ -108,8 +108,8 @@ namespace MyHealth
             if (SelectedStep.StepType == StepData.StepTypes.FreshStart)
                 GoToNextStep();
         }
-
-        //Timer Initialization
+        #endregion
+        #region Timer Initialization
         private void InitalizeTimer()
         {
             Timer = new Timer();
@@ -127,8 +127,8 @@ namespace MyHealth
             curIndex %= StepList.Count;
             lstSteps.SelectedIndex = curIndex;
         }
-
-        //Menu Events
+        #endregion
+        #region Menu Events
         private void mnuReset_Click(object sender, RoutedEventArgs e)
         {
             Timer.Reset();
@@ -138,7 +138,13 @@ namespace MyHealth
             SettingsWindow win = new SettingsWindow();
             win.ShowDialog();
         }
-
+        private void mnuExit_Click(object sender, RoutedEventArgs e)
+        {
+            tbNotify.Visibility = Visibility.Collapsed;
+            Environment.Exit(0);
+        }
+        #endregion
+        #region New Task 
         //Add New Task When Enter Pressed        
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -166,7 +172,8 @@ namespace MyHealth
 
             SaveTaskList();
         }
-
+        #endregion
+        #region TaskList Saving
         //Save Task List
         bool NeedSave = false;
         //Need Save an Item Changed
@@ -198,7 +205,7 @@ namespace MyHealth
             AppSettings.Data.TaskList = TaskList.ToArray();
             AppSettings.Save();
         }
-
+        #endregion
         #region TaskBar Icon ContextMenu
         //ContetMenu Init
         private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => ContextMenuBindings();
@@ -217,11 +224,7 @@ namespace MyHealth
             Activate();
             MouseEnterAnimation.Storyboard.Begin();
         }
-        private void ExitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            tbNotify.Visibility = Visibility.Collapsed;
-            Environment.Exit(0);
-        }
+
 
         #endregion
     }

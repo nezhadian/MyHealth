@@ -186,7 +186,7 @@
                         <!--  Exit btn  -->
                         <MenuItem
                             HorizontalAlignment="Right"
-                            Click="ExitBtn_Click"
+                            Click="mnuExit_Click"
                             Header="Exit"
                             Icon="{StaticResource CloseIcon}"
                             Style="{StaticResource MainWindow.Menu.MenuItemStyle}" />
@@ -218,7 +218,7 @@
                         StaysOpenOnClick="True" />
                     <Separator />
                     <MenuItem Click="mnuSettings_Click" Header="Settings" />
-                    <MenuItem Click="ExitBtn_Click" Header="Exit" />
+                    <MenuItem Click="mnuExit_Click" Header="Exit" />
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
