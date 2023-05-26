@@ -754,6 +754,19 @@
         Fill="{DynamicResource IconsColor.Settings}"
         Stretch="Uniform" />
 
+    <!--  Lock And Unlock Icons  -->
+    <Path
+        x:Key="LockMenuItem.LockIcon"
+        Width="32"
+        Data="{StaticResource Lock}"
+        Fill="{DynamicResource IconsColor.Lock}"
+        Stretch="Uniform" />
+    <Path
+        x:Key="LockMenuItem.UnLockIcon"
+        Width="32"
+        Data="{StaticResource UnLock}"
+        Fill="{DynamicResource IconsColor.Lock}"
+        Stretch="Uniform" />
 
 
     <!--  MenuItems Style  -->
@@ -845,6 +858,25 @@
                 <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
                 <Setter Property="Header" Value="Pause" />
 
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  Lock Menuitem  -->
+    <Style
+        x:Key="LockMenuItem.Style"
+        BasedOn="{StaticResource MainWindow.Menu.MenuItemStyle}"
+        TargetType="MenuItem">
+        <Setter Property="IsCheckable" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource LockMenuItem.LockIcon}" />
+                <Setter Property="Header" Value="Locked" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource LockMenuItem.UnLockIcon}" />
+                <Setter Property="Header" Value="UnLocked" />
             </Trigger>
         </Style.Triggers>
     </Style>
