@@ -255,7 +255,16 @@
                                 Click="mnuSettings_Click"
                                 Header="Settings"
                                 Icon="{StaticResource SettingIcon}" />
+
+
                         </Menu>
+
+                        <!--  Always On Top btn  -->
+                        <MenuItem
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding Topmost}"
+                            Style="{StaticResource LockMenuItem.Style}" />
+
                         <!--  Exit btn  -->
                         <MenuItem
                             HorizontalAlignment="Right"
