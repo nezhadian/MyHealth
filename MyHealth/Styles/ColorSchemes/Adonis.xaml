@@ -99,6 +99,10 @@
         x:Key="IconsColor.Settings"
         Opacity="0.75"
         Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
+    <SolidColorBrush
+        x:Key="IconsColor.Lock"
+        Opacity="0.75"
+        Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
     <SolidColorBrush x:Key="IconsColor.Add">#FF34B02E</SolidColorBrush>
 
 </ResourceDictionary>
