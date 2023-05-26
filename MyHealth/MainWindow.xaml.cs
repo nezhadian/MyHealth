@@ -222,7 +222,7 @@ namespace MyHealth
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Activate();
-            MouseEnterAnimation.Storyboard.Begin();
+            ExpandBeginStroyboard.Storyboard.Begin();
         }
 
 
