@@ -242,19 +242,22 @@
                                 Click="mnuReset_Click"
                                 Header="Reset"
                                 Icon="{StaticResource RestartIcon}"
+                                ToolTip="Reset timer to zero"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
 
                             <!--  Play and Pause btn  -->
                             <MenuItem
                                 IsChecked="{Binding Timer.IsPaused}"
                                 Style="{StaticResource PlayPauseMenuItem.Style}"
+                                ToolTip="Pause/Continue Timer"
                                 Visibility="{Binding ElementName=txtTimer, Path=Visibility}" />
 
                             <!--  Settings btn  -->
                             <MenuItem
                                 Click="mnuSettings_Click"
                                 Header="Settings"
-                                Icon="{StaticResource SettingIcon}" />
+                                Icon="{StaticResource SettingIcon}"
+                                ToolTip="Open Settings Window" />
 
 
                         </Menu>
@@ -263,7 +266,8 @@
                         <MenuItem
                             HorizontalAlignment="Left"
                             IsChecked="{Binding Topmost}"
-                            Style="{StaticResource LockMenuItem.Style}" />
+                            Style="{StaticResource LockMenuItem.Style}"
+                            ToolTip="Lock on Screen" />
 
                         <!--  Exit btn  -->
                         <MenuItem
@@ -271,7 +275,8 @@
                             Click="mnuExit_Click"
                             Header="Exit"
                             Icon="{StaticResource CloseIcon}"
-                            Style="{StaticResource MainWindow.Menu.MenuItemStyle}" />
+                            Style="{StaticResource MainWindow.Menu.MenuItemStyle}"
+                            ToolTip="Exit application" />
                     </Grid>
 
                     <!--  Expander Scaler  -->
