@@ -144,7 +144,8 @@ namespace MyHealth
             Environment.Exit(0);
         }
         #endregion
-        #region New Task 
+
+        #region New Task Command And Textbox
         //Add New Task When Enter Pressed        
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -170,6 +171,18 @@ namespace MyHealth
             TaskList.Add(newTask);
             txtCommand.Text = "";
 
+            SaveTaskList();
+        }
+        #endregion
+        #region Delete Task Command
+        private void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = SelectedTask != null;
+        }
+
+        private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TaskList.Remove(SelectedTask);
             SaveTaskList();
         }
         #endregion
@@ -206,6 +219,7 @@ namespace MyHealth
             AppSettings.Save();
         }
         #endregion
+
         #region TaskBar Icon ContextMenu
         //ContetMenu Init
         private void ContextMenu_Loaded(object sender, RoutedEventArgs e) => ContextMenuBindings();
@@ -227,5 +241,6 @@ namespace MyHealth
 
 
         #endregion
+        
     }
 }

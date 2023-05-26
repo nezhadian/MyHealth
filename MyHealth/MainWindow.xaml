@@ -26,6 +26,10 @@
             CanExecute="NewCommand_CanExecute"
             Command="{x:Static ApplicationCommands.New}"
             Executed="NewCommand_Executed" />
+        <CommandBinding
+            CanExecute="DeleteCommand_CanExecute"
+            Command="{x:Static ApplicationCommands.Delete}"
+            Executed="DeleteCommand_Executed" />
     </Window.CommandBindings>
 
     <Window.Resources>
@@ -186,6 +190,17 @@
                         <ListBox.GroupStyle>
                             <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
                         </ListBox.GroupStyle>
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <ContextMenu.CommandBindings>
+                                    <CommandBinding
+                                        CanExecute="DeleteCommand_CanExecute"
+                                        Command="{x:Static ApplicationCommands.Delete}"
+                                        Executed="DeleteCommand_Executed" />
+                                </ContextMenu.CommandBindings>
+                                <MenuItem Command="{x:Static ApplicationCommands.Delete}" Header="Delete" />
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
                     </ListBox>
 
                     <!--  Step List  -->
