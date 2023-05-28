@@ -178,6 +178,7 @@
                     <!--  Task ListBox  -->
                     <ListBox
                         x:Name="lstTasks"
+                        dragdrop:DragDrop.DropHandler="{Binding TaskListDropHandler}"
                         dragdrop:DragDrop.IsDragSource="True"
                         dragdrop:DragDrop.IsDropTarget="True"
                         dragdrop:DragDrop.SelectDroppedItems="True"

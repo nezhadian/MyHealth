@@ -1,4 +1,5 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+﻿using GongSolutions.Wpf.DragDrop;
+using Hardcodet.Wpf.TaskbarNotification;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,6 +25,8 @@ namespace MyHealth
     public partial class MainWindow : Window
     {
         public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
+        public TaskListDropHandler TaskListDropHandler { get; set; } = new TaskListDropHandler();
+
 
         #region Dp
         public static readonly DependencyProperty TaskListProperty =
@@ -80,6 +83,8 @@ namespace MyHealth
             TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList ?? new TaskView[0]);
             StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
             
+
+
             AppSettings.Data.StepDataListChanged += StepDataListChanged; ;
             Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += Task_PropertyChanged);
 
