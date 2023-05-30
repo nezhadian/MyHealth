@@ -212,7 +212,7 @@
                         <ListBox
                             x:Name="lstSteps"
                             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
-                            ItemTemplate="{StaticResource MainWindow.StepListTemplate}"
+                            ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
                             ItemsSource="{Binding StepList}"
                             SelectedIndex="0"
                             SelectedItem="{Binding SelectedStep}"
