@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace MyHealth
 {
-    public partial class StepEditorPage : Page,ISavebleSettingItem
+    public partial class StepsEditorSettingPage : UserControl,ISavebleSettingItem
     {
         //ISavebleSettingItem Implementation
         public bool CanSave
@@ -39,9 +39,9 @@ namespace MyHealth
         //Props
         #region Dependency Properties
         public static readonly DependencyProperty StepListProperty =
-            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(StepEditorPage), new PropertyMetadata());
+            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(StepsEditorSettingPage), new PropertyMetadata());
         public static readonly DependencyProperty SelectedStepProperty =
-            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(StepEditorPage), new PropertyMetadata());
+            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(StepsEditorSettingPage), new PropertyMetadata());
         #endregion
         public ObservableCollection<StepData> StepList
         {
@@ -60,7 +60,7 @@ namespace MyHealth
         public Array ImageListesArray { get; set; }
 
         //ctor
-        public StepEditorPage()
+        public StepsEditorSettingPage()
         {
             StepTypesArray = Enum.GetValues(typeof(StepData.StepTypes));
             ImageListesArray = Enum.GetValues(typeof(StepData.ImageListes));

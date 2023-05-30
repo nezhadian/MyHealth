@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,10 +14,7 @@ using System.Windows.Shapes;
 
 namespace MyHealth
 {
-    /// <summary>
-    /// Interaction logic for GlobalSettingPage.xaml
-    /// </summary>
-    public partial class GeneralSettingPage : Page,ISavebleSettingItem
+    public partial class GeneralSettingPage : UserControl, ISavebleSettingItem
     {
         //Implement ISavebleSettingItem
         public bool IsChanged { get; set; } = false;
@@ -67,7 +63,7 @@ namespace MyHealth
             {
                 MessageBox.Show($"Can`t Open Folder \r\n {ex.Message}");
             }
-            
+
         }
         private void ShowFolderPath_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
@@ -80,7 +76,7 @@ namespace MyHealth
         //Reset Settings Button
         private void btnResetSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?","Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
+            if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?", "Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
             {
                 LoadSettingValuesFrom(AppSettings.DEFAULT_DATA_VALUES);
                 chkStartAtStartup.IsChecked = App.StartAtStartup;
