@@ -19,13 +19,15 @@ namespace MyHealth
         private string _title;
         public string Title
         {
-            get { return _title; }
-            set { _title = value;
+            get => _title;
+            set
+            {
+                _title = value;
                 OnPropertyChanged();
             }
         }
 
-        private TaskGroups _grouping;
+        private TaskGroups _grouping = TaskGroups.Tasks;
         public TaskGroups Grouping
         {
             get { return _grouping; }
