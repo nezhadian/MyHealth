@@ -42,8 +42,7 @@ namespace MyHealth
                 int i = 0;
                 foreach (var item in sortedList)
                 {
-                    if (sortedList[i] != item)
-                        Move(sourceList, sourceList.IndexOf(item), i);
+                    Move(sourceList, sourceList.IndexOf(item), i);
                     i++;
                 }
 
