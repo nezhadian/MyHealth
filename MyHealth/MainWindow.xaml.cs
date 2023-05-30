@@ -83,8 +83,6 @@ namespace MyHealth
             TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList ?? new TaskView[0]);
             StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
             
-
-
             AppSettings.Data.StepDataListChanged += StepDataListChanged; ;
             Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += Task_PropertyChanged);
 
@@ -202,6 +200,23 @@ namespace MyHealth
         //Save If Needed When TaskList Selection Change Or Focus Changed
         private void lstTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //always select one of items
+            if(e.AddedItems.Count == 0)
+            {
+                if(sender is ListBox listbox)
+                {
+                    if (e.RemovedItems.Count > 0)
+                    {
+                        listbox.SelectedItem = e.RemovedItems[0];
+                    }
+                    else if (listbox.Items.Count > 0)
+                    {
+                        listbox.SelectedIndex = 0;
+                    }
+                }
+            }
+
+            //save if needed
             SaveTaskListIfNeeded();
 
         }
