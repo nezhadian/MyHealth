@@ -519,25 +519,6 @@
         <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Remained, Converter={StaticResource TimeSpanConverter}}" />
     </DataTemplate>
 
-    <!--  ____________________________________________ Custom Control Styles ______________________  -->
-    <!--  Settings ListboxItem  -->
-    <Style
-        x:Key="SettingWindow.ListMenuItem"
-        BasedOn="{StaticResource {x:Static adonis:Styles.RippleListBoxItem}}"
-        TargetType="ListBoxItem">
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="0" />
-        <Setter Property="MinWidth" Value="{adonis:Space 20}" />
-        <Setter Property="Padding" Value="{adonis:Space 2, 1, 2, 1}" />
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource SettingListMenuItem.SelectionColor}" />
-                <Setter Property="FontWeight" Value="Bold" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-
     <!--  ____________________________________________ MainWindow Menu Style ______________________  -->
 
     <!--  Setting Icon  -->
@@ -879,6 +860,60 @@
         <Setter Property="Content" Value="LinkedIn" />
         <Setter Property="UpperContent" Value="{StaticResource LinkedInIcon}" />
         <Setter Property="Background" Value="{DynamicResource Social.LinkedInColor}" />
+    </Style>
+
+    <!--  Settings Window TabControl  -->
+    <Style x:Key="SettingWindow.TabControl.ItemStyle" TargetType="TabItem">
+        <Setter Property="Padding" Value="20,10" />
+        <Setter Property="MinWidth" Value="140" />
+
+        <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Header}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource SettingWindow.TabItem.Hover}" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="IsFocused" Value="false" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Foreground" Value="{DynamicResource SettingWindow.TabItem.SelectionColor}" />
+                                <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="IsFocused" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
+                                <Setter Property="Background" Value="{DynamicResource SettingWindow.TabItem.SelectionColor}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    <Style x:Key="SettingWindow.TabControlStyle" TargetType="TabControl">
+        <Setter Property="TabStripPlacement" Value="left" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource SettingWindow.TabControl.ItemStyle}" />
     </Style>
 
     <!--  Time Span Control  -->

@@ -19,38 +19,28 @@
             Executed="Save_Executed" />
     </Window.CommandBindings>
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <ListBox
-            x:Name="lstMenu"
-            Grid.RowSpan="2"
-            Background="{DynamicResource BackgroundColor}"
-            BorderThickness="0,0,1,0"
-            ItemContainerStyle="{StaticResource SettingWindow.ListMenuItem}"
-            ItemsSource="{Binding MenuItems}"
-            SelectedIndex="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding ItemPage.Title}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <TabControl x:Name="tbcPages" Style="{StaticResource SettingWindow.TabControlStyle}">
+            <TabItem Header="General">
+                <local:GeneralSettingPage />
+            </TabItem>
 
-        <Frame
-            Grid.Column="1"
-            Content="{Binding ElementName=lstMenu, Path=SelectedItem.ItemPage}"
-            NavigationUIVisibility="Hidden" />
+            <TabItem Header="Steps Editor">
+                <local:StepsEditorSettingPage />
+            </TabItem>
+
+            <TabItem Header="About Me">
+                <local:AboutMeSettingPage />
+            </TabItem>
+        </TabControl>
 
         <StackPanel
             Grid.Row="1"
-            Grid.ColumnSpan="2"
             Margin="20"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
