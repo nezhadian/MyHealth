@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 
 namespace MyHealth
 {
-    public partial class GeneralSettingPage : UserControl, ISavebleSettingItem
+    public partial class GeneralSettingPage : UserControl, ISavebleSettingPage
     {
         //Implement ISavebleSettingItem
         public bool IsChanged { get; set; } = false;

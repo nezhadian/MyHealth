@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace MyHealth
 {
-    public partial class StepsEditorSettingPage : UserControl,ISavebleSettingItem
+    public partial class StepsEditorSettingPage : UserControl,ISavebleSettingPage
     {
         //ISavebleSettingItem Implementation
         public bool CanSave
