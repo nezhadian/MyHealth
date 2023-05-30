@@ -12,11 +12,14 @@
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI.ClassicTheme;component/Resources.xaml" />
 
+                <ResourceDictionary Source="/Converters/Converters.xaml" />
+
                 <ResourceDictionary Source="/Styles/Dimensions.xaml" />
                 <ResourceDictionary Source="/Styles/ColorSchemes/Adonis.xaml" />
                 <ResourceDictionary Source="/Styles/IconsData.xaml" />
-                <ResourceDictionary Source="/Converters/Converters.xaml" />
                 <ResourceDictionary Source="/Styles/Styles.xaml" />
+
+                <ResourceDictionary Source="/Views/Views.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
