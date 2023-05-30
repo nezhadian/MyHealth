@@ -49,8 +49,7 @@
         </CollectionViewSource>
 
         <!--  Converters  -->
-        <local:CaptionTextSwitchConverter x:Key="CaptionTextConverter" />
-        <local:StepData2PageConverter x:Key="PageConverter" />
+
 
         <!--  Storyboards  -->
         <Storyboard x:Key="DelayedCollapseStoryboard">
@@ -113,7 +112,7 @@
     <Grid>
         <!--  Pages Content  -->
         <Grid Background="Transparent" MouseDown="StepContent_MouseDown">
-            <Frame Content="{Binding SelectedStep, Converter={StaticResource PageConverter}}" NavigationUIVisibility="Hidden" />
+            <Frame Content="{Binding SelectedStep, Converter={StaticResource StepData2PageConverter}}" NavigationUIVisibility="Hidden" />
         </Grid>
 
         <!--  Container  -->
@@ -142,12 +141,12 @@
                             FontWeight="DemiBold"
                             Style="{StaticResource Texts.CaptionText}"
                             Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}"
-                            Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
+                            Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
 
                         <!--  Title  -->
                         <TextBlock Style="{StaticResource Texts.CaptionText}">
                             <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource CaptionTextConverter}" UpdateSourceTrigger="PropertyChanged">
+                                <MultiBinding Converter="{StaticResource CaptionTextSwitchConverter}" UpdateSourceTrigger="PropertyChanged">
                                     <Binding Path="SelectedStep.StepName" />
                                     <Binding Path="SelectedTask.Title" />
                                     <Binding Path="SelectedStep.StepType" />

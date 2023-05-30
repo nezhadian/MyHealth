@@ -71,13 +71,16 @@
                     SourceUpdated="OnPropertiesChanged" />
 
                 <!--  StepName Textbox  -->
-                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,FreshStart,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
-                    <TextBox SourceUpdated="OnPropertiesChanged" Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" MaxLength="25" />
+                    <TextBox
+                        MaxLength="25"
+                        SourceUpdated="OnPropertiesChanged"
+                        Text="{Binding SelectedStep.StepName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" />
                 </StackPanel>
 
                 <!--  Duration TimeSpanControl  -->
-                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Duration" />
                     <local:TimeSpanControl
                         HorizontalAlignment="Left"
@@ -86,7 +89,7 @@
                 </StackPanel>
 
                 <!--  ImageList ComboBox  -->
-                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource EnumVisibilityConverter}, ConverterParameter='ImageSlider', UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='ImageSlider', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
                     <ComboBox
                         ItemsSource="{Binding ImageListesArray}"

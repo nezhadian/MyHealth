@@ -5,12 +5,7 @@
     xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
-    <!--  Converters  -->
-    <local:Enum2VisibilityConverter x:Key="EnumVisibilityConverter" />
-    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
-    <local:StepDataIconConverter x:Key="IconConverter" />
-
+    
     <!--  ____________________________________________ TextBlocks ______________________  -->
     <!--  Page Title  -->
     <Style x:Key="Texts.PageTitle" TargetType="TextBlock">
@@ -511,7 +506,7 @@
                 Fill="{DynamicResource StepData.IconColor}"
                 Stretch="Uniform">
                 <Path.Data>
-                    <MultiBinding Converter="{StaticResource IconConverter}">
+                    <MultiBinding Converter="{StaticResource StepDataIconConverter}">
                         <MultiBinding.Bindings>
                             <Binding Mode="TwoWay" Path="StepType" />
                             <Binding Mode="TwoWay" Path="ImageList" />
@@ -590,7 +585,7 @@
 
     <!--  ____________________________________________ Task View Style ______________________  -->
 
-    <local:Bool2EnumConverter x:Key="EnumConverter" />
+
 
     <sys:Int32 x:Key="TaskView.MaxLength">100</sys:Int32>
 
@@ -634,7 +629,7 @@
             <CheckBox
                 x:Name="chkIsCompleted"
                 HorizontalAlignment="Center"
-                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Completed,Tasks'}" />
+                IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Completed,Tasks'}" />
 
             <!--  Text  -->
             <TextBox
@@ -658,7 +653,7 @@
                 x:Name="tglIsImporant"
                 Grid.Column="2"
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
-                IsChecked="{Binding Grouping, Converter={StaticResource EnumConverter}, ConverterParameter='Importants,Tasks'}"
+                IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Importants,Tasks'}"
                 Style="{StaticResource TaskView.StarToggleButton}" />
         </Grid>
     </DataTemplate>

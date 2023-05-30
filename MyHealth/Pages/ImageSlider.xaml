@@ -22,9 +22,6 @@
             Command="{x:Static ComponentCommands.MoveLeft}"
             Executed="PreviousCommand_Executed" />
     </Page.CommandBindings>
-    <Page.Resources>
-        <local:ListIndexPlusOneConverter x:Key="PlusOneConverter" />
-    </Page.Resources>
     <Grid Background="White">
         <Grid Margin="40">
             <!--  rows  -->
@@ -74,7 +71,7 @@
                     <!--  Current Index Location  -->
                     <StackPanel Margin="15,0" VerticalAlignment="Center">
                         <TextBlock Style="{StaticResource Texts.BigTitle}">
-                            <Run FontWeight="DemiBold" Text="{Binding ElementName=lstImages, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource PlusOneConverter}}" />
+                            <Run FontWeight="DemiBold" Text="{Binding ElementName=lstImages, Path=SelectedIndex, Mode=OneWay, Converter={StaticResource ListIndexPlusOneConverter}}" />
                             <Run>of</Run>
                             <Run Text="{Binding ElementName=lstImages, Path=Items.Count, Mode=OneWay}" />
                         </TextBlock>
