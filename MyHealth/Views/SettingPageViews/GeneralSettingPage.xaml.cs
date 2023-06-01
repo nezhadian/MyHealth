@@ -16,7 +16,7 @@ namespace MyHealth
 {
     public partial class GeneralSettingPage : UserControl, ISavebleSettingPage
     {
-        //Implement ISavebleSettingItem
+        //Implement ISavebleSettingPage
         public bool IsChanged { get; set; } = false;
         public bool CanSave => tscImageSliderDelay.TimeSpan != TimeSpan.Zero;
         public void Save()
@@ -35,10 +35,11 @@ namespace MyHealth
         }
 
         //Loading
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void OnInitialized(object sender, EventArgs e)
         {
             LoadSettingValuesFrom(AppSettings.Data);
             chkStartAtStartup.IsChecked = App.StartAtStartup;
+            IsChanged = false;
         }
         private void LoadSettingValuesFrom(MyHealthSettings settings)
         {
@@ -82,5 +83,7 @@ namespace MyHealth
                 chkStartAtStartup.IsChecked = App.StartAtStartup;
             }
         }
+
+
     }
 }
