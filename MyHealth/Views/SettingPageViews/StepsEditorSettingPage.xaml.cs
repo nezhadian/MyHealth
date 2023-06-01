@@ -94,7 +94,8 @@ namespace MyHealth
             if (tag == null)
                 return;
 
-            if (Templates.TemplateDictionary.TryGetValue(tag.ToString(), out StepData[] template))
+            StepData[] template = (StepData[])App.Current.TryFindResource(tag);
+            if (template != null)
             {
                 if (isChangedFromLastTemplateChange)
                 {

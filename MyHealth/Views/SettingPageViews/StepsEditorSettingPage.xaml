@@ -38,8 +38,8 @@
 
         <!--  templates  Selection  -->
         <ComboBox x:Name="cboTemplates" SelectionChanged="cboTemplates_SelectionChanged">
-            <ComboBoxItem Content="Pomodoro" Tag="pomodoro" />
-            <ComboBoxItem Content="52/17 Standard" Tag="standard" />
+            <ComboBoxItem Content="Pomodoro" Tag="StepData.PomodoroTemplate" />
+            <ComboBoxItem Content="52/17 Standard" Tag="StepData.Standard52/17Template" />
             <ComboBoxItem Content="Custom" IsSelected="True" />
         </ComboBox>
 

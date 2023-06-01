@@ -19,7 +19,7 @@ namespace MyHealth
             FreshStartBgColor = Color.FromRgb(0x00, 0x80, 0x00),
             ShortBreakBgColor = Color.FromRgb(0x00, 0x00, 0x00),
             IsFirstRun = true,
-            StepDataList = Templates.TemplateDictionary["pomodoro"],
+            StepDataList = (StepData[])App.Current.Resources["StepData.PomodoroTemplate"],
             TaskList = new TaskView[0]
         };
 

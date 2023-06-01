@@ -21,6 +21,8 @@
 
                 <ResourceDictionary Source="/Views/Views.xaml" />
 
+                <ResourceDictionary Source="/ViewModels/StepDataTemplates.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
