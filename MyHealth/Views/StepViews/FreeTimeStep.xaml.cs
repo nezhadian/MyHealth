@@ -19,15 +19,15 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for ShortBreak.xaml
     /// </summary>
-    public partial class ShortBreak : Page
+    public partial class FreeTimeStep : Page
     {
-        public ShortBreak()
+        public FreeTimeStep()
         {
             DataContext = this;
             InitializeComponent();
         }
 
-        public ShortBreak(StepData step)
+        public FreeTimeStep(StepData step)
             :this()
         {
             Title = step.StepName;

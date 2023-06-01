@@ -19,9 +19,9 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for FreshStart.xaml
     /// </summary>
-    public partial class FreshStart : Page
+    public partial class PreparitionStep : Page
     {
-        public FreshStart()
+        public PreparitionStep()
         {
             DataContext = this;
             InitializeComponent();

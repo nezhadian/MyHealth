@@ -15,11 +15,11 @@ namespace MyHealth
                 switch (step.StepType)
                 {
                     case StepData.StepTypes.ImageSlider:
-                        return new ImageSlider(step);
+                        return new PictureSlideShowStep(step);
                     case StepData.StepTypes.FreshStart:
-                        return new FreshStart() ;
+                        return new PreparitionStep() ;
                     case StepData.StepTypes.ShortBreak:
-                        return new ShortBreak(step);
+                        return new FreeTimeStep(step);
                     default:
                         return null;
                 }

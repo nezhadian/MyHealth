@@ -20,13 +20,13 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for ShortBreak.xaml
     /// </summary>
-    public partial class ImageSlider : Page
+    public partial class PictureSlideShowStep : Page
     {
         #region Dp
         public static readonly DependencyProperty ImageListProperty =
-            DependencyProperty.Register("ImageList", typeof(ObservableCollection<BitmapImage>), typeof(ImageSlider), new PropertyMetadata(new ObservableCollection<BitmapImage>()));
+            DependencyProperty.Register("ImageList", typeof(ObservableCollection<BitmapImage>), typeof(PictureSlideShowStep), new PropertyMetadata(new ObservableCollection<BitmapImage>()));
         public static readonly DependencyProperty SelectedImageProperty =
-            DependencyProperty.Register("SelectedImage", typeof(BitmapImage), typeof(ImageSlider), new PropertyMetadata());
+            DependencyProperty.Register("SelectedImage", typeof(BitmapImage), typeof(PictureSlideShowStep), new PropertyMetadata());
         #endregion
 
         public ObservableCollection<BitmapImage> ImageList
@@ -65,7 +65,7 @@ namespace MyHealth
         DispatcherTimer timer;
         Random r = new Random();
 
-        public ImageSlider()
+        public PictureSlideShowStep()
         {
             timer = new DispatcherTimer
             {
@@ -125,7 +125,7 @@ namespace MyHealth
 
         }
         
-        public ImageSlider(StepData step)
+        public PictureSlideShowStep(StepData step)
             : this()
         {
             Title = step.StepName;
