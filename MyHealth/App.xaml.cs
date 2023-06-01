@@ -66,5 +66,14 @@ namespace MyHealth
             AppSettings.Data.IsFirstRun = false;
             AppSettings.Save();
         }
+
+        public static string GetAssetsPath(string path)
+        {
+            return Path.Combine(Environment.CurrentDirectory, "Assets", path);
+        }
+        public static string GetAssetsPath(params string[] path)
+        {
+            return Path.Combine(new string[] { Environment.CurrentDirectory, "Assets" }.Concat(path).ToArray());
+        }
     }
 }

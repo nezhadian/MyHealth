@@ -33,7 +33,7 @@ namespace MyHealth
         {
             try
             {
-                sp = new SoundPlayer($"{Environment.CurrentDirectory}\\Songs\\alarm.wav");
+                sp = new SoundPlayer(App.GetAssetsPath("Songs","alarm.wav"));
                 sp.Load();
                 sp.PlayLooping();
             }catch { }

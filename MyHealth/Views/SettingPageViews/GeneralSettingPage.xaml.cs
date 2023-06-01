@@ -55,7 +55,7 @@ namespace MyHealth
         private void OpenImageSliderFolders_Click(object sender, RoutedEventArgs e)
         {
             string tag = (sender as Button).Tag.ToString();
-            string directoryPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", tag);
+            string directoryPath = App.GetAssetsPath("Images",tag);
             try
             {
                 Process.Start("explorer.exe", directoryPath);

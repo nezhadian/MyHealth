@@ -292,7 +292,7 @@
         <!--  TaskBar Icon  -->
         <tb:TaskbarIcon
             x:Name="tbNotify"
-            IconSource="/Images/icon.ico"
+            IconSource="Assets/Images/icon.ico"
             TrayLeftMouseDown="Open_Click">
             <!--  Left Click Menu  -->
             <tb:TaskbarIcon.ContextMenu>

@@ -132,10 +132,10 @@ namespace MyHealth
             switch (step.ImageList)
             {
                 case StepData.ImageListes.Body:
-                    ImagesDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "body");
+                    ImagesDirectory = App.GetAssetsPath("Images","body");
                     break;
                 case StepData.ImageListes.Eye:
-                    ImagesDirectory = System.IO.Path.Combine(Environment.CurrentDirectory, "Images", "eye");
+                    ImagesDirectory = App.GetAssetsPath("Images","eye");
                     break;
             }
         }

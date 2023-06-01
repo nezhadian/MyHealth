@@ -24,7 +24,7 @@
                 Stroke="Green"
                 StrokeThickness="9">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="pack://application:,,,/Images/me.jpg" />
+                    <ImageBrush ImageSource="pack://application:,,,/Assets/Images/me.jpg" />
                 </Ellipse.Fill>
             </Ellipse>
             <TextBlock
