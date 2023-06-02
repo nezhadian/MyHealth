@@ -7,16 +7,8 @@ using System.Text;
 
 namespace MyHealth
 {
-    public class TaskListViewModel : INotifyPropertyChanged
+    public class TaskListViewModel : ViewModelBase
     {
-        #region INotifyPropertyChanged Implamentation
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
         //Private Fields
         private TaskView _selTask;
 
