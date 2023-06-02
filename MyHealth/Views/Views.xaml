@@ -2,5 +2,6 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Views/TaskModelView.xaml" />
         <ResourceDictionary Source="/Views/StepDataView.xaml" />
+        <ResourceDictionary Source="/Views/TaskListView.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

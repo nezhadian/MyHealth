@@ -1,0 +1,93 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:csm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    xmlns:dragdrop="urn:gong-wpf-dragdrop"
+    xmlns:local="clr-namespace:MyHealth">
+    <!--  List Box Items Container Style  -->
+    <Style
+        x:Key="TaskView.ListBoxItemContainer"
+        BasedOn="{StaticResource {x:Type ListBoxItem}}"
+        TargetType="ListBoxItem">
+        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="2" />
+        <Setter Property="Padding" Value="0,7" />
+        <Setter Property="Margin" Value="0,0.5" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--  List Box Style  -->
+    <Style
+        x:Key="TaskView.ListBox"
+        BasedOn="{StaticResource {x:Type ListBox}}"
+        TargetType="ListBox">
+
+        <Setter Property="Padding" Value="0,5" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
+    </Style>
+    <!--  List Box Group Item Style  -->
+    <Style x:Key="MainWindow.TaskList.GroupItem" TargetType="GroupItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupItem">
+                    <Expander Header="{Binding Name}" IsExpanded="True">
+                        <ItemsPresenter />
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--  Main Template  -->
+    <DataTemplate DataType="{x:Type local:TaskListViewModel}">
+        <Grid>
+            <Grid.Resources>
+                <!--  Collection Sorting and Grouping  -->
+                <CollectionViewSource
+                    x:Key="TaskListCollectionView"
+                    IsLiveGroupingRequested="True"
+                    IsLiveSortingRequested="True"
+                    Source="{Binding TaskList}">
+                    <CollectionViewSource.GroupDescriptions>
+                        <PropertyGroupDescription PropertyName="Grouping">
+                            <PropertyGroupDescription.SortDescriptions>
+                                <csm:SortDescription PropertyName="Name" />
+                            </PropertyGroupDescription.SortDescriptions>
+                        </PropertyGroupDescription>
+                    </CollectionViewSource.GroupDescriptions>
+                </CollectionViewSource>
+            </Grid.Resources>
+
+            <ListBox
+                dragdrop:DragDrop.DropHandler="{Binding TaskListDropHandler}"
+                dragdrop:DragDrop.IsDragSource="True"
+                dragdrop:DragDrop.IsDropTarget="True"
+                dragdrop:DragDrop.SelectDroppedItems="True"
+                ItemsSource="{Binding Source={StaticResource TaskListCollectionView}}"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                SelectedItem="{Binding SelectedTask}"
+                Style="{StaticResource TaskView.ListBox}">
+                <ListBox.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
+                </ListBox.GroupStyle>
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" />
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+
+        </Grid>
+
+
+    </DataTemplate>
+</ResourceDictionary>

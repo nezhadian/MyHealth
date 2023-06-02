@@ -25,17 +25,8 @@ namespace MyHealth
     public partial class MainWindow : Window
     {
         public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
-        public TaskListDropHandler TaskListDropHandler { get; set; } = new TaskListDropHandler();
-
 
         #region Dp
-        public static readonly DependencyProperty TaskListProperty =
-            DependencyProperty.Register("TaskList", typeof(ObservableCollection<TaskView>), typeof(MainWindow), new PropertyMetadata());
-        public static readonly DependencyProperty SelectedTaskProperty =
-            DependencyProperty.Register("SelectedTask", typeof(TaskView), typeof(MainWindow), new PropertyMetadata());
-
-
-
         public static readonly DependencyProperty StepListProperty =
             DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(MainWindow), new PropertyMetadata());
         public static readonly DependencyProperty SelectedStepProperty =
@@ -46,16 +37,7 @@ namespace MyHealth
         #endregion
         #region Properties
         //Task List
-        public ObservableCollection<TaskView> TaskList
-        {
-            get { return (ObservableCollection<TaskView>)GetValue(TaskListProperty); }
-            set { SetValue(TaskListProperty, value); }
-        }
-        public TaskView SelectedTask
-        {
-            get { return (TaskView)GetValue(SelectedTaskProperty); }
-            set { SetValue(SelectedTaskProperty, value); }
-        }
+        public TaskListViewModel TaskListViewModel { get; set; }
 
         //Step List
         public ObservableCollection<StepData> StepList
@@ -80,11 +62,10 @@ namespace MyHealth
         //Ctor
         public MainWindow()
         {
-            TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList ?? new TaskView[0]);
+            TaskListViewModel = new TaskListViewModel();
             StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
             
-            AppSettings.Data.StepDataListChanged += StepDataListChanged; ;
-            Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += Task_PropertyChanged);
+            AppSettings.Data.StepDataListChanged += StepDataListChanged;
 
             InitalizeTimer();
             
@@ -154,89 +135,12 @@ namespace MyHealth
         {
             if (e.Key == Key.Enter)
             {
-                if (ApplicationCommands.New.CanExecute(null, null))
-                    ApplicationCommands.New.Execute(null, null);
-            }
-        }
-
-        //New Command
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = !string.IsNullOrWhiteSpace(txtCommand.Text);
-
-        }
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            TaskView newTask = new TaskView()
-                {Title = txtCommand.Text };
-            newTask.PropertyChanged += Task_PropertyChanged;
-
-            TaskList.Add(newTask);
-            txtCommand.Text = "";
-
-            SaveTaskList();
-        }
-        #endregion
-        #region Delete Task Command
-        private void DeleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = SelectedTask != null;
-        }
-
-        private void DeleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            TaskList.Remove(SelectedTask);
-            SaveTaskList();
-        }
-        #endregion
-        #region TaskList Saving
-        //Save Task List
-        bool NeedSave = false;
-        //Need Save an Item Changed
-        private void Task_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            NeedSave = true;
-        }
-        //Save If Needed When TaskList Selection Change Or Focus Changed
-        private void lstTasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //always select one of items
-            if(e.AddedItems.Count == 0)
-            {
-                if(sender is ListBox listbox)
+                if (TaskListViewModel.AddTaskCommand.CanExecute(txtCommand.Text))
                 {
-                    if (e.RemovedItems.Count > 0)
-                    {
-                        listbox.SelectedItem = e.RemovedItems[0];
-                    }
-                    else if (listbox.Items.Count > 0)
-                    {
-                        listbox.SelectedIndex = 0;
-                    }
+                    TaskListViewModel.AddTaskCommand.Execute(txtCommand.Text);
+                    txtCommand.Text = "";
                 }
             }
-
-            //save if needed
-            SaveTaskListIfNeeded();
-
-        }
-        private void lstTasks_LostFocus(object sender, RoutedEventArgs e)
-        {
-            SaveTaskListIfNeeded();
-        }
-        //Saving Methods
-        private void SaveTaskListIfNeeded()
-        {
-            if (NeedSave)
-            {
-                SaveTaskList();
-                NeedSave = false;
-            }
-        }
-        private void SaveTaskList()
-        {
-            AppSettings.Data.TaskList = TaskList.ToArray();
-            AppSettings.Save();
         }
         #endregion
 

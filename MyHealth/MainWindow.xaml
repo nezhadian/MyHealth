@@ -21,36 +21,8 @@
     WindowState="Maximized"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Window.CommandBindings>
-        <CommandBinding
-            CanExecute="NewCommand_CanExecute"
-            Command="{x:Static ApplicationCommands.New}"
-            Executed="NewCommand_Executed" />
-        <CommandBinding
-            CanExecute="DeleteCommand_CanExecute"
-            Command="{x:Static ApplicationCommands.Delete}"
-            Executed="DeleteCommand_Executed" />
-    </Window.CommandBindings>
 
     <Window.Resources>
-        <!--  Tasklist Collection Viewing and Grouping  -->
-        <CollectionViewSource
-            x:Key="TaskListCollectionView"
-            IsLiveGroupingRequested="True"
-            IsLiveSortingRequested="True"
-            Source="{Binding TaskList}">
-            <CollectionViewSource.GroupDescriptions>
-                <PropertyGroupDescription PropertyName="Grouping">
-                    <PropertyGroupDescription.SortDescriptions>
-                        <csm:SortDescription PropertyName="Name" />
-                    </PropertyGroupDescription.SortDescriptions>
-                </PropertyGroupDescription>
-            </CollectionViewSource.GroupDescriptions>
-        </CollectionViewSource>
-
-        <!--  Converters  -->
-
-
         <!--  Storyboards  -->
         <Storyboard x:Key="DelayedCollapseStoryboard">
             <!--  Expander Height Anim  -->
@@ -175,33 +147,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--  Task ListBox  -->
-                    <ListBox
-                        x:Name="lstTasks"
-                        dragdrop:DragDrop.DropHandler="{Binding TaskListDropHandler}"
-                        dragdrop:DragDrop.IsDragSource="True"
-                        dragdrop:DragDrop.IsDropTarget="True"
-                        dragdrop:DragDrop.SelectDroppedItems="True"
-                        ItemsSource="{Binding Source={StaticResource TaskListCollectionView}}"
-                        LostFocus="lstTasks_LostFocus"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible"
-                        SelectedItem="{Binding SelectedTask}"
-                        SelectionChanged="lstTasks_SelectionChanged"
-                        Style="{StaticResource TaskView.ListBox}">
-                        <ListBox.GroupStyle>
-                            <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
-                        </ListBox.GroupStyle>
-                        <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <ContextMenu.CommandBindings>
-                                    <CommandBinding
-                                        CanExecute="DeleteCommand_CanExecute"
-                                        Command="{x:Static ApplicationCommands.Delete}"
-                                        Executed="DeleteCommand_Executed" />
-                                </ContextMenu.CommandBindings>
-                                <MenuItem Command="{x:Static ApplicationCommands.Delete}" Header="Delete" />
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
+                    <ContentControl Content="{Binding TaskListViewModel}" />
 
                     <!--  Step List  -->
                     <Expander

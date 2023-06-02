@@ -487,31 +487,7 @@
 
 
 
-    <Style
-        x:Key="TaskView.ListBoxItemContainer"
-        BasedOn="{StaticResource {x:Type ListBoxItem}}"
-        TargetType="ListBoxItem">
-        <Setter Property="Foreground" Value="{DynamicResource StepData.TextColor}" />
-        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="2" />
-        <Setter Property="Padding" Value="0,7" />
-        <Setter Property="Margin" Value="0,0.5" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource StepData.SelectionColor}" />
-                <Setter Property="Background" Value="Transparent" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    <Style
-        x:Key="TaskView.ListBox"
-        BasedOn="{StaticResource {x:Type ListBox}}"
-        TargetType="ListBox">
-
-        <Setter Property="Padding" Value="0,5" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource TaskView.ListBoxItemContainer}" />
-    </Style>
 
     <!--  ____________________________________________ Data Templates ______________________  -->
     <!--  Timer Style  -->
@@ -792,17 +768,7 @@
     </Style>
 
     <!--  Main Window Task List Group  Style  -->
-    <Style x:Key="MainWindow.TaskList.GroupItem" TargetType="GroupItem">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="GroupItem">
-                    <Expander Header="{Binding Name}" IsExpanded="True">
-                        <ItemsPresenter />
-                    </Expander>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+
 
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">
