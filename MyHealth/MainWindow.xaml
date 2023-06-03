@@ -6,6 +6,7 @@
     xmlns:csm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dragdrop="urn:gong-wpf-dragdrop"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tb="http://www.hardcodet.net/taskbar"
@@ -83,8 +84,13 @@
     </Window.Resources>
     <Grid>
         <!--  Pages Content  -->
-        <Grid Background="Transparent" MouseDown="StepContent_MouseDown">
-            <Frame Content="{Binding SelectedStep, Converter={StaticResource StepData2PageConverter}}" NavigationUIVisibility="Hidden" />
+        <Grid Background="Transparent">
+            <Frame Content="{Binding StepListViewModel.SelectedStep, Converter={StaticResource StepData2PageConverter}}" NavigationUIVisibility="Hidden" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction Command="{Binding StepListViewModel.ClickCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </Grid>
 
         <!--  Container  -->
@@ -113,15 +119,15 @@
                             FontWeight="DemiBold"
                             Style="{StaticResource Texts.CaptionText}"
                             Text="{Binding Timer.Remained, Converter={StaticResource TimeSpanConverter}}"
-                            Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
+                            Visibility="{Binding StepListViewModel.SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}" />
 
                         <!--  Title  -->
                         <TextBlock Style="{StaticResource Texts.CaptionText}">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource CaptionTextSwitchConverter}" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding Path="SelectedStep.StepName" />
-                                    <Binding Path="SelectedTask.Title" />
-                                    <Binding Path="SelectedStep.StepType" />
+                                    <Binding Path="StepListViewModel.SelectedStep.StepName" />
+                                    <Binding Path="TaskListViewModel.SelectedTask.Title" />
+                                    <Binding Path="StepListViewModel.SelectedStep.StepType" />
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
@@ -155,14 +161,7 @@
                         Margin="10,5,0,0"
                         Header="Steps"
                         IsExpanded="True">
-                        <ListBox
-                            x:Name="lstSteps"
-                            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
-                            ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
-                            ItemsSource="{Binding StepList}"
-                            SelectedIndex="0"
-                            SelectedItem="{Binding SelectedStep}"
-                            SelectionChanged="lstSteps_SelectionChanged" />
+                        <ContentControl Content="{Binding StepListViewModel}" />
                     </Expander>
 
                     <!--  Add Textbox  -->

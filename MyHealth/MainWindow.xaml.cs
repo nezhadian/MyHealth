@@ -27,11 +27,6 @@ namespace MyHealth
         public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
 
         #region Dp
-        public static readonly DependencyProperty StepListProperty =
-            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(MainWindow), new PropertyMetadata());
-        public static readonly DependencyProperty SelectedStepProperty =
-            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(MainWindow), new PropertyMetadata());
-
         public static readonly DependencyProperty TimerProperty =
             DependencyProperty.Register("Timer", typeof(Timer), typeof(MainWindow), new PropertyMetadata());
         #endregion
@@ -40,16 +35,7 @@ namespace MyHealth
         public TaskListViewModel TaskListViewModel { get; set; }
 
         //Step List
-        public ObservableCollection<StepData> StepList
-        {
-            get { return (ObservableCollection<StepData>)GetValue(StepListProperty); }
-            set { SetValue(StepListProperty, value); }
-        }
-        public StepData SelectedStep
-        {
-            get { return (StepData)GetValue(SelectedStepProperty); }
-            set { SetValue(SelectedStepProperty, value); }
-        }
+        public StepListViewModel StepListViewModel { get; set; }
 
         //Timer
         public Timer Timer
@@ -63,9 +49,7 @@ namespace MyHealth
         public MainWindow()
         {
             TaskListViewModel = new TaskListViewModel();
-            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-
-            AppSettings.Data.PropertyChanged += Data_PropertyChanged; ;
+            StepListViewModel = new StepListViewModel();
 
             InitalizeTimer();
             
@@ -73,49 +57,18 @@ namespace MyHealth
             InitializeComponent();
         }
 
-
-
-        #region StepList
-        //Update StepList When Changed In Settings
-        private void Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
-            {
-                StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-                lstSteps.SelectedIndex = 0;
-            }
-        }
-        //Prevent Selecting Seperator Item in StepList
-        private void lstSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SelectedStep != null && SelectedStep.StepType == StepData.StepTypes.Seperator)
-                GoToNextStep();
-        }
-        //Slide Next When Click On FreshStart
-        private void StepContent_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (SelectedStep.StepType == StepData.StepTypes.FreshStart)
-                GoToNextStep();
-        }
-        #endregion
         #region Timer Initialization
         private void InitalizeTimer()
         {
             Timer = new Timer();
             Timer.Completed += Timer_Completed;
-            BindingOperations.SetBinding(Timer, Timer.DurationProperty, new Binding("SelectedStep.Duration") { Source = this });
+            BindingOperations.SetBinding(Timer, Timer.DurationProperty, new Binding("SelectedStep.Duration") { Source = StepListViewModel });
         }
         private void Timer_Completed(object sender, RoutedEventArgs e)
         {
-            GoToNextStep();
+            StepListViewModel.GoToNextStep();
         }
-        private void GoToNextStep()
-        {
-            int curIndex = lstSteps.SelectedIndex;
-            curIndex++;
-            curIndex %= StepList.Count;
-            lstSteps.SelectedIndex = curIndex;
-        }
+
         #endregion
         #region Menu Events
         private void mnuReset_Click(object sender, RoutedEventArgs e)
