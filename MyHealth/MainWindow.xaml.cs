@@ -64,8 +64,8 @@ namespace MyHealth
         {
             TaskListViewModel = new TaskListViewModel();
             StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-            
-            AppSettings.Data.StepDataListChanged += StepDataListChanged;
+
+            AppSettings.Data.PropertyChanged += Data_PropertyChanged; ;
 
             InitalizeTimer();
             
@@ -73,12 +73,17 @@ namespace MyHealth
             InitializeComponent();
         }
 
+
+
         #region StepList
         //Update StepList When Changed In Settings
-        private void StepDataListChanged(object sender, RoutedEventArgs e)
+        private void Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-            lstSteps.SelectedIndex = 0;
+            if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
+            {
+                StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
+                lstSteps.SelectedIndex = 0;
+            }
         }
         //Prevent Selecting Seperator Item in StepList
         private void lstSteps_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -79,28 +81,36 @@ namespace MyHealth
         
     }
 
-    public class MyHealthSettings 
+    public class MyHealthSettings : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        #region INotifyPropertyChanged Implamentation
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
         //Props
+
         public Color FreshStartBgColor { get; set; }
         public Color ShortBreakBgColor { get; set; }
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
+        public TaskView[] TaskList { set; get; }
 
-        public event RoutedEventHandler StepDataListChanged;
-        
         private StepData[] _stepDataList;
         public StepData[] StepDataList
         {
             get { return _stepDataList; }
-            set { 
+            set
+            {
                 _stepDataList = value;
-                StepDataListChanged?.Invoke(this, null);
+                OnPropertyChanged();
             }
         }
 
-        public TaskView[] TaskList { set; get; }
-        
+
 
         //Methods
         public MyHealthSettings Clone()
