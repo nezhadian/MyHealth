@@ -82,7 +82,6 @@ namespace MyHealth
             if (Remained <= TimeSpan.Zero)
             {
                 Completed?.Invoke(this, null);
-                IsPaused = true;
             }
         }
 
