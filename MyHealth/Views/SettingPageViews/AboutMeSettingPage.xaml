@@ -49,39 +49,44 @@
                     <ColumnDefinition Width="auto" />
 
                 </Grid.ColumnDefinitions>
-                <local:CardButton
+
+                <local:SocialLinkCardButton
                     Grid.Column="0"
-                    Click="OpenLinkCardButton_Click"
-                    Style="{StaticResource AboutMe.Website}"
-                    ToolTip="https://www.theyasin.ir" />
-                <local:CardButton
+                    Background="{StaticResource Social.WebsiteColor}"
+                    IconPathData="{StaticResource Website}"
+                    Link="https://www.theyasin.ir"
+                    Text="Website" />
+
+                <local:SocialLinkCardButton
                     Grid.Column="2"
-                    Click="CopyGmail_Click"
-                    Style="{StaticResource AboutMe.Gmail}"
-                    ToolTip="yasin.ebr.nezh@gmail.com" />
-                <local:CardButton
+                    Background="{StaticResource Social.GmailColor}"
+                    Click="Gmail_Click"
+                    Command="{x:Null}"
+                    IconPathData="{StaticResource Gmail}"
+                    Link="yasin.ebr.nezh@gmail.com"
+                    Text="Gmail" />
+
+                <local:SocialLinkCardButton
                     Grid.Column="4"
-                    Click="OpenLinkCardButton_Click"
-                    Style="{StaticResource AboutMe.Telegram}"
-                    ToolTip="https://t.me/nezhadian" />
-                <local:CardButton
+                    Background="{StaticResource Social.TelegramColor}"
+                    IconPathData="{StaticResource Telegram}"
+                    Link="https://t.me/nezhadian"
+                    Text="Telegram" />
+
+                <local:SocialLinkCardButton
                     Grid.Column="6"
-                    Click="OpenLinkCardButton_Click"
-                    Style="{StaticResource AboutMe.GitHub}"
-                    ToolTip="https://github.com/nezhadian" />
-                <local:CardButton
+                    Background="{StaticResource Social.GithubColor}"
+                    IconPathData="{StaticResource Github}"
+                    Link="https://github.com/nezhadian"
+                    Text="Github" />
+
+                <local:SocialLinkCardButton
                     Grid.Column="8"
-                    Click="OpenLinkCardButton_Click"
-                    Style="{StaticResource AboutMe.LinkedIn}"
-                    ToolTip="https://linkedin.com/in/nezhadian" />
+                    Background="{StaticResource Social.LinkedInColor}"
+                    IconPathData="{StaticResource LinkedIn}"
+                    Link="https://linkedin.com/in/nezhadian"
+                    Text="LinkedIn" />
             </Grid>
         </Grid>
-        <TextBlock
-            Margin="20"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom"
-            Style="{StaticResource Texts.NormalText}">
-            Send your feed back by<Hyperlink Click="CopyGmail_Click" ToolTip="yasin.ebr.nezh@gmail.com">E-mail</Hyperlink>
-        </TextBlock>
     </Grid>
 </UserControl>

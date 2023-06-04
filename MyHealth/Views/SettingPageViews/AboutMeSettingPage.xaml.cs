@@ -23,16 +23,12 @@ namespace MyHealth
         {
             InitializeComponent();
         }
-        private void OpenLinkCardButton_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (CardButton)sender;
-            Process.Start(new ProcessStartInfo(button.ToolTip.ToString()) { UseShellExecute = true });
-        }
 
-        private void CopyGmail_Click(object sender, RoutedEventArgs e)
+        private void Gmail_Click(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText("yasin.ebr.nezh@gmail.com");
-            MainWindow.TaskBarIcon.ShowBalloonTip("Gmail", "Gmail Copied", Hardcodet.Wpf.TaskbarNotification.BalloonIcon.Info);
+            SocialLinkCardButton socialLink = (SocialLinkCardButton)sender;
+            Clipboard.SetText(socialLink.Link.ToString()); ;
+            AdonisUI.Controls.MessageBox.Show( "Gmail Address Copied to your Clipboard", "Gmail", AdonisUI.Controls.MessageBoxButton.OK, AdonisUI.Controls.MessageBoxImage.Information);
         }
     }
 }
