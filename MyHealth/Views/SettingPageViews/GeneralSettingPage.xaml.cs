@@ -81,6 +81,7 @@ namespace MyHealth
             {
                 LoadSettingValuesFrom(AppSettings.DEFAULT_DATA_VALUES);
                 chkStartAtStartup.IsChecked = App.StartAtStartup;
+                IsChanged = true;
             }
         }
 
