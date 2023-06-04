@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -21,23 +22,32 @@ namespace MyHealth
             {
                 _selTask = value;
                 OnPropertyChanged();
+
+                if (SaveCommand.CanExecute(null))
+                    SaveCommand.Execute(null);
             }
         }
 
         public TaskListDropHandler TaskListDropHandler { get; set; }
+        public bool NeedSave { get; set; }
+
+        //Commands
         public TaskListAddTaskCommand AddTaskCommand { get; set; }
-        
+        public TaskListSaveCommand SaveCommand { get; set; }
+
         //ctor
         public TaskListViewModel()
         {
             TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList ?? new TaskView[0]);
-
             Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += OnTaskChanged);
+
             AddTaskCommand = new TaskListAddTaskCommand(this);
+            SaveCommand = new TaskListSaveCommand(this);
+
             TaskListDropHandler = new TaskListDropHandler();
         }
 
-        //Public Methods
+        //Methods
         public void CreateNewTask(string title)
         {
             TaskView newTask = new TaskView()
@@ -48,14 +58,15 @@ namespace MyHealth
             SaveTaskList();
         }
 
-        //Private Methods
         private void OnTaskChanged(object sender, PropertyChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+            NeedSave = true;
         }
-        private void SaveTaskList()
+        public void SaveTaskList()
         {
-            //throw new NotImplementedException();
+            AppSettings.Data.TaskList = TaskList.ToArray();
+            AppSettings.Save();
+            NeedSave = false;
         }
     }
 
@@ -70,6 +81,19 @@ namespace MyHealth
         public override void Execute(TaskListViewModel context, object parameter)
         {
             context.CreateNewTask(parameter.ToString());
+        }
+    }
+    public class TaskListSaveCommand : ViewModelCommands<TaskListViewModel>
+    {
+        public TaskListSaveCommand(TaskListViewModel context) : base(context) { }
+
+        public override bool CanExecute(TaskListViewModel context, object parameter)
+        {
+            return context.NeedSave;
+        }
+        public override void Execute(TaskListViewModel context, object parameter)
+        {
+            context.SaveTaskList();
         }
     }
 }

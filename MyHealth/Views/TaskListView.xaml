@@ -4,6 +4,7 @@
     xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:csm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:dragdrop="urn:gong-wpf-dragdrop"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:MyHealth">
     <!--  List Box Items Container Style  -->
     <Style
@@ -85,7 +86,11 @@
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>
-
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <i:InvokeCommandAction Command="{Binding SaveCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </Grid>
 
 
