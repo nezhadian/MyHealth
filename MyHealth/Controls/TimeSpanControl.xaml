@@ -11,9 +11,26 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
+        <Style x:Key="TimeSpanControl.TextboxStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.Text}" />
+            <Setter Property="Background" Value="{DynamicResource TimeSpanControl.Background}" />
+
+        </Style>
+        <Style x:Key="TimeSpanControl.TextBlockBetween" TargetType="TextBlock">
+            <Setter Property="Padding" Value="0,0,3,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.BlockBetweenColor}" />
+
+        </Style>
         <Style
             x:Key="TimeSpanControl.TextBoxStyle"
-            BasedOn="{StaticResource TimeSpanControl.Textbox}"
+            BasedOn="{StaticResource TimeSpanControl.TextboxStyle}"
             TargetType="TextBox">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="MaxLength" Value="2" />

@@ -28,30 +28,21 @@
         <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
         <Setter Property="FontSize" Value="12" />
     </Style>
-
     <Style x:Key="Texts.CaptionText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
         <Setter Property="FontSize" Value="16" />
     </Style>
-
     <Style
         x:Key="Texts.SmallTitle"
         BasedOn="{StaticResource Texts.NormalText}"
         TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
-
     <Style
         x:Key="Texts.BigTitle"
         BasedOn="{StaticResource Texts.NormalText}"
         TargetType="TextBlock">
         <Setter Property="FontSize" Value="24" />
-    </Style>
-
-    <!--  Hyperlink  -->
-    <Style TargetType="Hyperlink">
-        <Setter Property="Foreground" Value="{DynamicResource HyperlinkColor}" />
-        <Setter Property="FontSize" Value="12" />
     </Style>
 
     <!--  ____________________________________________ Icon Styles ______________________  -->
@@ -157,18 +148,6 @@
         BasedOn="{StaticResource Buttons.Base}"
         TargetType="Button">
         <Setter Property="Padding" Value="{adonis:Space 2, 0.75}" />
-    </Style>
-
-    <Style
-        x:Key="Buttons.CTAIconButton"
-        BasedOn="{StaticResource Buttons.CTA}"
-        TargetType="Button">
-        <Setter Property="Padding" Value="10" />
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value="0.3" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <!--  ____________________________________________ My Buttons ______________________  -->
@@ -456,19 +435,6 @@
         </Setter>
     </Style>
 
-    <!--  ____________________________________________ Step Data Style ______________________  -->
-
-
-
-    <!--  ____________________________________________ Task View Style ______________________  -->
-
-
-
-
-
-
-
-    <!--  ____________________________________________ Data Templates ______________________  -->
 
     <!--  ____________________________________________ MainWindow Menu Style ______________________  -->
 
@@ -742,9 +708,6 @@
         </Setter>
     </Style>
 
-    <!--  Main Window Task List Group  Style  -->
-
-
     <!--  Timer Border  -->
     <Style x:Key="Main.TimerBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
@@ -752,7 +715,6 @@
         <Setter Property="Padding" Value="5,0" />
         <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
         <Setter Property="BorderThickness" Value="1,1,1,0" />
-
     </Style>
 
     <!--  AboutMe Social Styles  -->
@@ -857,24 +819,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource SettingWindow.TabControl.ItemStyle}" />
     </Style>
 
-    <!--  Time Span Control  -->
-    <Style x:Key="TimeSpanControl.Textbox" TargetType="TextBox">
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.Text}" />
-        <Setter Property="Background" Value="{DynamicResource TimeSpanControl.Background}" />
 
-    </Style>
-    <Style x:Key="TimeSpanControl.TextBlockBetween" TargetType="TextBlock">
-        <Setter Property="Padding" Value="0,0,3,0" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{DynamicResource TimeSpanControl.BlockBetweenColor}" />
-
-    </Style>
 
     <!--  Color Selector  -->
     <Style x:Key="ColorSelector.ColorBoxBorder" TargetType="Border">

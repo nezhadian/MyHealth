@@ -15,7 +15,6 @@
 
     <!--  Texts  -->
     <SolidColorBrush x:Key="NormalTextColor" Color="{DynamicResource {x:Static adonis:Colors.ForegroundColor}}" />
-    <SolidColorBrush x:Key="HyperlinkColor" Color="{DynamicResource {x:Static adonis:Colors.HyperlinkColor}}" />
 
     <!--  Buttons  -->
     <SolidColorBrush
