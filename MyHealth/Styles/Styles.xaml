@@ -155,67 +155,8 @@
         <Setter Property="Background" Value="{DynamicResource Buttons.Glass.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
     </Style>
-    
-    <!--  Card Button  -->
-    <Style BasedOn="{StaticResource Buttons.MaskedButtonBase}" TargetType="local:CardButton">
-        <Setter Property="MinWidth" Value="60" />
-        <Setter Property="Height" Value="80" />
-        <Setter Property="Padding" Value="10,10,10,5" />
 
-        <Setter Property="Background" Value="Red" />
-        <Setter Property="Foreground" Value="{DynamicResource Buttons.Foreground}" />
-        <Setter Property="FontSize" Value="12" />
 
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:CardButton">
-                    <!--  Bg Border  -->
-                    <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{DynamicResource CardButton.CornerRadius}">
-
-                        <!--  Masked Border  -->
-                        <Border
-                            x:Name="mask"
-                            Padding="{TemplateBinding Padding}"
-                            Background="Transparent"
-                            CornerRadius="{DynamicResource CardButton.CornerRadius}">
-                            <Grid>
-
-                                <!--  Rows  -->
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-
-                                <!--  Main Content  -->
-                                <ContentPresenter Grid.Row="2" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-
-                                <!--  Upper Content  -->
-                                <ContentPresenter Grid.Row="0" Content="{TemplateBinding UpperContent}" />
-                            </Grid>
-                        </Border>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Hover}" />
-                        </Trigger>
-
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="mask" Property="Background" Value="{DynamicResource Buttons.Masked.Pressed}" />
-                        </Trigger>
-
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" Value="0.3" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <!--  Icon Buttons  -->
     <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
