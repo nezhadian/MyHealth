@@ -766,12 +766,10 @@
     </Style>
 
     <!--  Settings Window TabControl  -->
-    <Style x:Key="SettingWindow.TabControl.ItemStyle" TargetType="TabItem">
+    <Style x:Key="TabControl.ItemStyle" TargetType="TabItem">
         <Setter Property="Padding" Value="20,10" />
         <Setter Property="MinWidth" Value="140" />
-
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
@@ -813,10 +811,10 @@
         </Setter>
 
     </Style>
-    <Style x:Key="SettingWindow.TabControlStyle" TargetType="TabControl">
+    <Style x:Key="TabControlStyle" TargetType="TabControl">
         <Setter Property="TabStripPlacement" Value="left" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource SettingWindow.TabControl.ItemStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource TabControl.ItemStyle}" />
     </Style>
-    
+
 </ResourceDictionary>

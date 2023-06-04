@@ -19,13 +19,12 @@
             Executed="Save_Executed" />
     </Window.CommandBindings>
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="tbcPages" Style="{StaticResource SettingWindow.TabControlStyle}">
+        <TabControl x:Name="tbcPages" Style="{StaticResource TabControlStyle}">
             <TabItem Header="General">
                 <local:GeneralSettingPage />
             </TabItem>
