@@ -23,6 +23,8 @@
 
                 <ResourceDictionary Source="/ViewModels/ViewModels.xaml" />
 
+                <ResourceDictionary Source="/Controls/ControlStyles.xaml" />
+
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

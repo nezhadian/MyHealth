@@ -69,8 +69,6 @@ namespace MyHealth
         {
             InitializeTimer();
             ResetCommand = new TimerControlResetCommand(this);
-
-            InitializeComponent();
         }
         #endregion
 
@@ -130,7 +128,7 @@ namespace MyHealth
         #endregion
 
     }
-    public class TimerControlResetCommand : ViewModelCommands<TimerControl>
+    public class TimerControlResetCommand : ContextCommand<TimerControl>
     {
         public TimerControlResetCommand(TimerControl context) : base(context) { }
 
