@@ -70,7 +70,7 @@ namespace MyHealth
         }
     }
 
-    public class TaskListAddTaskCommand : ViewModelCommands<TaskListViewModel>
+    public class TaskListAddTaskCommand : ContextCommand<TaskListViewModel>
     {
         public TaskListAddTaskCommand(TaskListViewModel context) : base(context) { }
 
@@ -83,7 +83,7 @@ namespace MyHealth
             context.CreateNewTask(parameter.ToString());
         }
     }
-    public class TaskListSaveCommand : ViewModelCommands<TaskListViewModel>
+    public class TaskListSaveCommand : ContextCommand<TaskListViewModel>
     {
         public TaskListSaveCommand(TaskListViewModel context) : base(context) { }
 

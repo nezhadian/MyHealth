@@ -69,7 +69,7 @@ namespace MyHealth
         }
     }
 
-    public class StepListIgnoreSeperatorsCommand : ViewModelCommands<StepListViewModel>
+    public class StepListIgnoreSeperatorsCommand : ContextCommand<StepListViewModel>
     {
         public StepListIgnoreSeperatorsCommand(StepListViewModel context) : base(context) { }
 
@@ -82,7 +82,7 @@ namespace MyHealth
             context.GoToNextStep();
         }
     }
-    public class StepListClickCommand : ViewModelCommands<StepListViewModel>
+    public class StepListClickCommand : ContextCommand<StepListViewModel>
     {
         public StepListClickCommand(StepListViewModel context) : base(context) { }
 
