@@ -469,10 +469,6 @@
 
 
     <!--  ____________________________________________ Data Templates ______________________  -->
-    <!--  Timer Style  -->
-    <DataTemplate DataType="{x:Type local:Timer}">
-        <TextBlock Style="{StaticResource Texts.CaptionText}" Text="{Binding Remained, Converter={StaticResource TimeSpanConverter}}" />
-    </DataTemplate>
 
     <!--  ____________________________________________ MainWindow Menu Style ______________________  -->
 
