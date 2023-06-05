@@ -18,7 +18,12 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Click="MuteButton_Click"
-            Content="{StaticResource MuteIcon}"
-            Style="{StaticResource Buttons.GlassButton}" />
+            Style="{StaticResource Buttons.GlassButton}">
+            <Path
+                Width="25"
+                Data="{StaticResource Mute}"
+                Fill="{DynamicResource BackgroundColor}"
+                Stretch="Uniform" />
+        </Button>
     </Grid>
 </Page>
