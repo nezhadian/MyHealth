@@ -34,9 +34,9 @@
     </Style>
     <Style
         x:Key="Texts.SmallTitle"
-        BasedOn="{StaticResource Texts.NormalText}"
+        BasedOn="{StaticResource Texts.CaptionText}"
         TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontWeight" Value="DemiBold" />
     </Style>
     <Style
         x:Key="Texts.BigTitle"
@@ -155,8 +155,6 @@
         <Setter Property="Background" Value="{DynamicResource Buttons.Glass.Background}" />
         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}" />
     </Style>
-
-
 
     <!--  Icon Buttons  -->
     <Style x:Key="Buttons.OnlyIcon" TargetType="Button">
@@ -472,11 +470,9 @@
             <Trigger Property="IsChecked" Value="False">
                 <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
                 <Setter Property="Header" Value="Pause" />
-
             </Trigger>
         </Style.Triggers>
     </Style>
-
     <!--  Lock Menuitem  -->
     <Style
         x:Key="LockMenuItem.Style"
@@ -496,29 +492,16 @@
         </Style.Triggers>
     </Style>
 
+    <!--  Timer Border  -->
+    <Style x:Key="Main.TimerBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Timer.CornerRadius}" />
+        <Setter Property="Padding" Value="5,0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
+        <Setter Property="BorderThickness" Value="1,1,1,0" />
+    </Style>
 
     <!--  ____________________________________________ Custom Styles ______________________  -->
-    <!--  Step Data MenuItem  -->
-    <Style x:Key="StepData.MenuItemIcon" TargetType="Path">
-        <Setter Property="Stretch" Value="Uniform" />
-        <Setter Property="Width" Value="14" />
-    </Style>
-    <Style
-        x:Key="StepData.MenuItem"
-        BasedOn="{StaticResource {x:Type MenuItem}}"
-        TargetType="MenuItem">
-        <Setter Property="IsCheckable" Value="True" />
-        <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.IconColor}" />
-        <Setter Property="Padding" Value="3,0,10,0" />
-        <Style.Triggers>
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="BorderBrush" Value="{DynamicResource StepData.MenuItem.SelectionColor}" />
-                <Setter Property="Foreground" Value="{DynamicResource StepData.MenuItem.SelectionColor}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <!--  Expander Style  -->
     <Style x:Key="Expander.ToggleButton" TargetType="ToggleButton">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -599,15 +582,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
-
-    <!--  Timer Border  -->
-    <Style x:Key="Main.TimerBorder" TargetType="Border">
-        <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
-        <Setter Property="CornerRadius" Value="{DynamicResource Timer.CornerRadius}" />
-        <Setter Property="Padding" Value="5,0" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
-        <Setter Property="BorderThickness" Value="1,1,1,0" />
     </Style>
 
     <!--  Settings Window TabControl  -->

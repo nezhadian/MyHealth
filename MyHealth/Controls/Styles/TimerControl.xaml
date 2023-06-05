@@ -8,11 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:TimerControl">
-                    <TextBlock
-                        FontWeight="DemiBold"
-                        Style="{StaticResource Texts.CaptionText}"
-                        Text="{TemplateBinding Remained,
-                                               Converter={StaticResource TimeSpanConverter}}" />
+                    <TextBlock Style="{StaticResource Texts.SmallTitle}" Text="{TemplateBinding Remained, Converter={StaticResource TimeSpanConverter}}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
