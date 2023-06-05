@@ -1,4 +1,4 @@
-﻿<Window
+﻿<local:DockedWindow
     x:Class="MyHealth.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -11,13 +11,7 @@
     Title="MainWindow"
     d:Height="768"
     d:Width="1366"
-    AllowsTransparency="True"
-    Background="Transparent"
-    ResizeMode="NoResize"
-    ShowInTaskbar="False"
-    Topmost="True"
-    WindowState="Maximized"
-    WindowStyle="None"
+    Style="{StaticResource {x:Type local:DockedWindow}}"
     mc:Ignorable="d">
 
     <Window.Resources>
@@ -27,193 +21,149 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <!--  Pages Content  -->
-        <Grid Background="Transparent" MouseDown="PagesContent_MouseDown">
-            <Frame Content="{Binding StepListViewModel.SelectedStep, Converter={StaticResource StepData2PageConverter}}" NavigationUIVisibility="Hidden" />
-        </Grid>
+    <local:DockedWindow.Dock>
+        <!--  Expander  -->
+        <Grid>
+            <!--  rows  -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="3*" MinWidth="250" />
+            </Grid.ColumnDefinitions>
 
-        <!--  Container  -->
-        <Border
-            x:Name="bdrMainMenu"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Style="{StaticResource Main.TimerBorder}">
-            <Grid>
-                <!--  Rows  -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+            <!--  Task ListBox  -->
+            <ContentControl Content="{Binding TaskListViewModel}" />
 
-                <!--  Caption  -->
-                <Grid
-                    Grid.Row="1"
-                    Margin="3,3,3,5"
-                    HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <!--  Timer  -->
-                        <local:TimerControl
-                            x:Name="tmrMain"
-                            Margin="0,0,10,0"
-                            Completed="Timer_Completed"
-                            Visibility="{Binding StepListViewModel.SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}"
-                            Duration="{Binding StepListViewModel.SelectedStep.Duration}" />
+            <!--  Step List  -->
+            <Expander
+                Grid.Column="1"
+                Margin="10,5,0,0"
+                Header="Steps"
+                IsExpanded="True">
+                <ContentControl Content="{Binding StepListViewModel}" />
+            </Expander>
 
-                        <!--  Title  -->
-                        <TextBlock Style="{StaticResource Texts.CaptionText}">
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource CaptionTextSwitchConverter}" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding Path="StepListViewModel.SelectedStep.StepName" />
-                                    <Binding Path="TaskListViewModel.SelectedTask.Title" />
-                                    <Binding Path="StepListViewModel.SelectedStep.StepType" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
-                    </StackPanel>
-
-                </Grid>
-
-                <!--  Expander  -->
-                <Grid
-                    x:Name="grdExpander"
-                    MinWidth="700"
-                    MinHeight="550"
-                    MaxHeight="630">
-                    <!--  rows  -->
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="3*" MinWidth="250" />
-                    </Grid.ColumnDefinitions>
-
-                    <!--  Task ListBox  -->
-                    <ContentControl Content="{Binding TaskListViewModel}" />
-
-                    <!--  Step List  -->
-                    <Expander
-                        Grid.Column="1"
-                        Margin="10,5,0,0"
-                        Header="Steps"
-                        IsExpanded="True">
-                        <ContentControl Content="{Binding StepListViewModel}" />
-                    </Expander>
-
-                    <!--  Add Textbox  -->
-                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                        <!--  Input TextBox  -->
-                        <TextBox
-                            x:Name="txtCommand"
-                            Height="36"
-                            Margin="30,0"
-                            Padding="18,0"
-                            adonisEx:CornerRadiusExtension.CornerRadius="18"
-                            adonisEx:WatermarkExtension.IsWatermarkVisible="True"
-                            adonisEx:WatermarkExtension.Watermark="Add New Task"
-                            KeyDown="TextBox_KeyDown"
-                            MaxLength="{StaticResource TaskView.MaxLength}" />
-                    </Grid>
-
-                    <!--  Menu  -->
-                    <Grid Grid.Row="2" Grid.ColumnSpan="2">
-                        <Menu HorizontalAlignment="Center" ItemContainerStyle="{StaticResource MainWindow.Menu.MenuItemStyle}">
-                            <!--  Reset btn  -->
-                            <MenuItem
-                                Command="{Binding ElementName=tmrMain, Path=ResetCommand}"
-                                Header="Reset"
-                                Icon="{StaticResource RestartIcon}"
-                                ToolTip="Reset timer to zero"
-                                Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
-
-                            <!--  Play and Pause btn  -->
-                            <MenuItem
-                                IsChecked="{Binding IsPaused, ElementName=tmrMain}"
-                                Style="{StaticResource PlayPauseMenuItem.Style}"
-                                ToolTip="Pause/Continue Timer"
-                                Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
-
-                            <!--  Settings btn  -->
-                            <MenuItem
-                                Click="mnuSettings_Click"
-                                Header="Settings"
-                                Icon="{StaticResource SettingIcon}"
-                                ToolTip="Open Settings Window" />
-
-
-                        </Menu>
-
-                        <!--  Always On Top btn  -->
-                        <MenuItem
-                            HorizontalAlignment="Left"
-                            IsChecked="{Binding Topmost}"
-                            Style="{StaticResource LockMenuItem.Style}"
-                            ToolTip="Lock on Screen" />
-
-                        <!--  Exit btn  -->
-                        <MenuItem
-                            HorizontalAlignment="Right"
-                            Click="mnuExit_Click"
-                            Header="Exit"
-                            Icon="{StaticResource CloseIcon}"
-                            Style="{StaticResource MainWindow.Menu.MenuItemStyle}"
-                            ToolTip="Exit application" />
-                    </Grid>
-
-                    <!--  Expander Scaler  -->
-                    <Grid.LayoutTransform>
-                        <ScaleTransform x:Name="grdExpanderScale" ScaleX="1" ScaleY="1" />
-                    </Grid.LayoutTransform>
-                </Grid>
+            <!--  Add Textbox  -->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <!--  Input TextBox  -->
+                <TextBox
+                    x:Name="txtCommand"
+                    Height="36"
+                    Margin="30,0"
+                    Padding="18,0"
+                    adonisEx:CornerRadiusExtension.CornerRadius="18"
+                    adonisEx:WatermarkExtension.IsWatermarkVisible="True"
+                    adonisEx:WatermarkExtension.Watermark="Add New Task"
+                    KeyDown="TextBox_KeyDown"
+                    MaxLength="{StaticResource TaskView.MaxLength}" />
             </Grid>
 
-
-        </Border>
-
-        <!--  TaskBar Icon  -->
-        <tb:TaskbarIcon
-            x:Name="tbNotify"
-            IconSource="Assets/Images/icon.ico"
-            TrayLeftMouseDown="Open_Click">
-            <!--  Left Click Menu  -->
-            <tb:TaskbarIcon.ContextMenu>
-                <ContextMenu Loaded="ContextMenu_Loaded">
-                    <MenuItem Click="Open_Click" Header="Open" />
+            <!--  Menu  -->
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Menu HorizontalAlignment="Center" ItemContainerStyle="{StaticResource RibbonLikeMenuItemStyle}">
+                    <!--  Reset btn  -->
                     <MenuItem
-                        x:Name="mnuLockOnScreen"
-                        Header="Luck On Screen"
-                        IsCheckable="True"
-                        StaysOpenOnClick="True" />
-                    <Separator />
-                    <MenuItem Click="mnuSettings_Click" Header="Settings" />
-                    <MenuItem Click="mnuExit_Click" Header="Exit" />
-                </ContextMenu>
-            </tb:TaskbarIcon.ContextMenu>
-        </tb:TaskbarIcon>
+                        Header="Reset"
+                        Icon="{StaticResource RestartIcon}"
+                        ToolTip="Reset timer to zero" />
+                    <!--  Command="{Binding ElementName=tmrMain, Path=ResetCommand}"  -->
+                    <!--  Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />  -->
 
-        <!--  Duck Expand and Collapse Animation  -->
-        <Grid.Triggers>
-            <!--  Expand Duck When MouseEnter  -->
-            <EventTrigger RoutedEvent="MouseEnter" SourceName="bdrMainMenu">
-                <BeginStoryboard x:Name="ExpandBeginStroyboard" Storyboard="{StaticResource ExpandStoryboard}" />
-            </EventTrigger>
-            <!--  Keep Duck Open when dragging  -->
-            <EventTrigger RoutedEvent="PreviewDragOver">
-                <BeginStoryboard Storyboard="{StaticResource ExpandStoryboard}" />
-            </EventTrigger>
+                    <!--  Play and Pause btn  -->
+                    <MenuItem Style="{StaticResource PlayPauseMenuItem.Style}" ToolTip="Pause/Continue Timer" />
+                    <!--  IsChecked="{Binding IsPaused, ElementName=tmrMain}"  -->
+                    <!--  Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />  -->
 
-            <!--  Collapse Duck When MouseLeaved  -->
-            <EventTrigger RoutedEvent="MouseLeave" SourceName="bdrMainMenu">
-                <BeginStoryboard Storyboard="{StaticResource DelayedCollapseStoryboard}" />
-            </EventTrigger>
-            <!--  Collapse After 1.5s When App Loaded  -->
-            <EventTrigger RoutedEvent="Loaded">
-                <BeginStoryboard Storyboard="{StaticResource DelayedCollapseStoryboard}" />
-            </EventTrigger>
-        </Grid.Triggers>
+                    <!--  Settings btn  -->
+                    <MenuItem
+                        Click="mnuSettings_Click"
+                        Header="Settings"
+                        Icon="{StaticResource SettingIcon}"
+                        ToolTip="Open Settings Window" />
 
-    </Grid>
-</Window>
+
+                </Menu>
+
+                <!--  Always On Top btn  -->
+                <MenuItem
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Topmost}"
+                    Style="{StaticResource LockMenuItem.Style}"
+                    ToolTip="Lock on Screen" />
+
+                <!--  Exit btn  -->
+                <MenuItem
+                    HorizontalAlignment="Right"
+                    Click="mnuExit_Click"
+                    Header="Exit"
+                    Icon="{StaticResource CloseIcon}"
+                    Style="{StaticResource RibbonLikeMenuItemStyle}"
+                    ToolTip="Exit application" />
+            </Grid>
+        </Grid>
+    </local:DockedWindow.Dock>
+    <local:DockedWindow.ConstantDockPart>
+        <!--  Caption  -->
+        <Grid
+            Grid.Row="1"
+            Margin="3,3,3,5"
+            HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <!--  Timer  -->
+                <local:TimerControl
+                    x:Name="tmrMain"
+                    Margin="0,0,10,0"
+                    Completed="Timer_Completed"
+                    Visibility="{Binding StepListViewModel.SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='WorkTime,ImageSlider,ShortBreak'}"
+                    Duration="{Binding StepListViewModel.SelectedStep.Duration}" />
+
+                <!--  Title  -->
+                <TextBlock Style="{StaticResource Texts.CaptionText}">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource CaptionTextSwitchConverter}" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="StepListViewModel.SelectedStep.StepName" />
+                            <Binding Path="TaskListViewModel.SelectedTask.Title" />
+                            <Binding Path="StepListViewModel.SelectedStep.StepType" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </local:DockedWindow.ConstantDockPart>
+    <local:DockedWindow.Content>
+        <Grid>
+            <!--  Pages Content  -->
+            <Grid Background="Transparent" MouseDown="PagesContent_MouseDown">
+                <Frame Content="{Binding StepListViewModel.SelectedStep, Converter={StaticResource StepData2PageConverter}}" NavigationUIVisibility="Hidden" />
+            </Grid>
+
+            <!--  TaskBar Icon  -->
+            <tb:TaskbarIcon
+                x:Name="tbNotify"
+                IconSource="Assets/Images/icon.ico"
+                TrayLeftMouseDown="Open_Click">
+                <!--  Left Click Menu  -->
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu Loaded="ContextMenu_Loaded">
+                        <MenuItem Click="Open_Click" Header="Open" />
+                        <MenuItem
+                            x:Name="mnuLockOnScreen"
+                            Header="Luck On Screen"
+                            IsCheckable="True"
+                            StaysOpenOnClick="True" />
+                        <Separator />
+                        <MenuItem Click="mnuSettings_Click" Header="Settings" />
+                        <MenuItem Click="mnuExit_Click" Header="Exit" />
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+
+        </Grid>
+    </local:DockedWindow.Content>
+
+</local:DockedWindow>

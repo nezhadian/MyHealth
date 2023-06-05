@@ -22,7 +22,7 @@ namespace MyHealth
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : DockedWindow
     {
         public static TaskbarIcon TaskBarIcon => ((MainWindow)App.Current.MainWindow).tbNotify;
 
@@ -85,7 +85,7 @@ namespace MyHealth
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Activate();
-            ExpandBeginStroyboard.Storyboard.Begin();
+            //ExpandBeginStroyboard.Storyboard.Begin();
         }
 
 
