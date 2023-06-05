@@ -77,12 +77,15 @@
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 SelectedItem="{Binding SelectedTask}"
                 Style="{StaticResource TaskView.ListBox}">
+                <ListBox.InputBindings>
+                    <KeyBinding Key="Delete" Command="{Binding DeleteTaskCommand}" />
+                </ListBox.InputBindings>
                 <ListBox.GroupStyle>
                     <GroupStyle ContainerStyle="{StaticResource MainWindow.TaskList.GroupItem}" />
                 </ListBox.GroupStyle>
                 <ListBox.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Delete" />
+                        <MenuItem Command="{Binding DeleteTaskCommand}" Header="Delete" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>
