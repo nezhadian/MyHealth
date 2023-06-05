@@ -21,63 +21,11 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-        <!--  Storyboards  -->
-        <Storyboard x:Key="DelayedCollapseStoryboard">
-            <!--  Expander Height Anim  -->
-            <DoubleAnimation
-                BeginTime="0:0:1.5"
-                Storyboard.TargetName="grdExpanderScale"
-                Storyboard.TargetProperty="ScaleY"
-                To="0"
-                Duration="0:00:0.2" />
-            <!--  Expander Width Anim  -->
-            <DoubleAnimation
-                BeginTime="0:0:1.5"
-                Storyboard.TargetName="grdExpanderScale"
-                Storyboard.TargetProperty="ScaleX"
-                To="0"
-                Duration="0:00:0.2" />
-            <!--  Expander Opacity Anim  -->
-            <DoubleAnimation
-                BeginTime="0:0:1.5"
-                Storyboard.TargetName="grdExpander"
-                Storyboard.TargetProperty="Opacity"
-                To="0"
-                Duration="0:0:0.2" />
-            <!--  Timer Border Opacity  -->
-            <DoubleAnimation
-                BeginTime="0:0:1.5"
-                Storyboard.TargetName="bdrMainMenu"
-                Storyboard.TargetProperty="Background.Opacity"
-                To="0.3"
-                Duration="0:0:0.2" />
-        </Storyboard>
-        <Storyboard x:Key="ExpandStoryboard">
-            <!--  Expander Height Anim  -->
-            <DoubleAnimation
-                Storyboard.TargetName="grdExpanderScale"
-                Storyboard.TargetProperty="ScaleY"
-                To="1"
-                Duration="0:00:0.15" />
-            <!--  Expander Width Anim  -->
-            <DoubleAnimation
-                Storyboard.TargetName="grdExpanderScale"
-                Storyboard.TargetProperty="ScaleX"
-                To="1"
-                Duration="0:00:0.15" />
-            <!--  Expander Opacity Anim  -->
-            <DoubleAnimation
-                Storyboard.TargetName="grdExpander"
-                Storyboard.TargetProperty="Opacity"
-                To="1"
-                Duration="0:0:0.15" />
-            <!--  Timer Border Opacity  -->
-            <DoubleAnimation
-                Storyboard.TargetName="bdrMainMenu"
-                Storyboard.TargetProperty="Background.Opacity"
-                To="1"
-                Duration="0:0:0.15" />
-        </Storyboard>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MainWindow.Resources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <!--  Pages Content  -->

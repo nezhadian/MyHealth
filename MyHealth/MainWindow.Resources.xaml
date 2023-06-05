@@ -1,0 +1,158 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Setting Icon  -->
+    <Path
+        x:Key="SettingIcon"
+        Width="32"
+        Data="{StaticResource Setting}"
+        Fill="{DynamicResource IconsColor.Settings}"
+        Stretch="Uniform" />
+    <!--  Restart Icon  -->
+    <Path
+        x:Key="RestartIcon"
+        Width="32"
+        Data="{StaticResource Restart}"
+        Fill="{DynamicResource Menu.Icons}"
+        Stretch="Uniform" />
+    <!--  Close Icon  -->
+    <Path
+        x:Key="CloseIcon"
+        Width="24"
+        Data="{StaticResource Close}"
+        Fill="{DynamicResource IconsColor.Settings}"
+        Stretch="Uniform" />
+
+
+
+    <!--  Play Pause Menuitem  -->
+    <Path
+        x:Key="PlayPauseMenuItem.PlayIcon"
+        Width="32"
+        Data="{StaticResource Continue}"
+        Fill="{DynamicResource IconsColor.Play}"
+        Stretch="Uniform" />
+    <Path
+        x:Key="PlayPauseMenuItem.PauseIcon"
+        Width="32"
+        Data="{StaticResource Stop}"
+        Fill="{DynamicResource IconsColor.Pause}"
+        Stretch="Uniform" />
+    <Style
+        x:Key="PlayPauseMenuItem.Style"
+        BasedOn="{StaticResource MainWindow.Menu.MenuItemStyle}"
+        TargetType="MenuItem">
+        <Setter Property="IsCheckable" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
+                <Setter Property="Header" Value="Continue" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
+                <Setter Property="Header" Value="Pause" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  Lock And Unlock Menuitem  -->
+    <Path
+        x:Key="LockMenuItem.LockIcon"
+        Width="32"
+        Data="{StaticResource Lock}"
+        Fill="{DynamicResource IconsColor.Lock}"
+        Stretch="Uniform" />
+    <Path
+        x:Key="LockMenuItem.UnLockIcon"
+        Width="32"
+        Data="{StaticResource UnLock}"
+        Fill="{DynamicResource IconsColor.Lock}"
+        Stretch="Uniform" />
+    <Style
+        x:Key="LockMenuItem.Style"
+        BasedOn="{StaticResource MainWindow.Menu.MenuItemStyle}"
+        TargetType="MenuItem">
+        <Setter Property="IsCheckable" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Icon" Value="{StaticResource LockMenuItem.LockIcon}" />
+                <Setter Property="Header" Value="Locked" />
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Icon" Value="{StaticResource LockMenuItem.UnLockIcon}" />
+                <Setter Property="Header" Value="UnLocked" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <!--  Timer Border  -->
+    <Style x:Key="Main.TimerBorder" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource Timer.Background}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource Timer.CornerRadius}" />
+        <Setter Property="Padding" Value="5,0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Timer.Border}" />
+        <Setter Property="BorderThickness" Value="1,1,1,0" />
+    </Style>
+
+
+    <!--  Storyboards  -->
+    <Storyboard x:Key="DelayedCollapseStoryboard">
+        <!--  Expander Height Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:1.5"
+            Storyboard.TargetName="grdExpanderScale"
+            Storyboard.TargetProperty="ScaleY"
+            To="0"
+            Duration="0:00:0.2" />
+        <!--  Expander Width Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:1.5"
+            Storyboard.TargetName="grdExpanderScale"
+            Storyboard.TargetProperty="ScaleX"
+            To="0"
+            Duration="0:00:0.2" />
+        <!--  Expander Opacity Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:1.5"
+            Storyboard.TargetName="grdExpander"
+            Storyboard.TargetProperty="Opacity"
+            To="0"
+            Duration="0:0:0.2" />
+        <!--  Timer Border Opacity  -->
+        <DoubleAnimation
+            BeginTime="0:0:1.5"
+            Storyboard.TargetName="bdrMainMenu"
+            Storyboard.TargetProperty="Background.Opacity"
+            To="0.3"
+            Duration="0:0:0.2" />
+    </Storyboard>
+    <Storyboard x:Key="ExpandStoryboard">
+        <!--  Expander Height Anim  -->
+        <DoubleAnimation
+            Storyboard.TargetName="grdExpanderScale"
+            Storyboard.TargetProperty="ScaleY"
+            To="1"
+            Duration="0:00:0.15" />
+        <!--  Expander Width Anim  -->
+        <DoubleAnimation
+            Storyboard.TargetName="grdExpanderScale"
+            Storyboard.TargetProperty="ScaleX"
+            To="1"
+            Duration="0:00:0.15" />
+        <!--  Expander Opacity Anim  -->
+        <DoubleAnimation
+            Storyboard.TargetName="grdExpander"
+            Storyboard.TargetProperty="Opacity"
+            To="1"
+            Duration="0:0:0.15" />
+        <!--  Timer Border Opacity  -->
+        <DoubleAnimation
+            Storyboard.TargetName="bdrMainMenu"
+            Storyboard.TargetProperty="Background.Opacity"
+            To="1"
+            Duration="0:0:0.15" />
+    </Storyboard>
+
+</ResourceDictionary>
