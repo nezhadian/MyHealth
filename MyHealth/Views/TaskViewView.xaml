@@ -47,21 +47,26 @@
                 IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Completed,Tasks'}" />
 
             <!--  Text  -->
-            <TextBox
-                x:Name="text"
+            <Grid
+                x:Name="grdTitleContainer"
                 Grid.Column="1"
-                MinWidth="150"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
-                MaxLength="{StaticResource TaskView.MaxLength}"
-                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <ScrollViewer x:Name="PART_ContentHost" Padding="{TemplateBinding Padding}" />
-                    </ControlTemplate>
-                </TextBox.Template>
-            </TextBox>
+                HorizontalAlignment="Left">
+                <TextBlock
+                    x:Name="txtTitleBlock"
+                    Padding="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
+                    Style="{StaticResource Texts.NormalText}"
+                    Text="{Binding Title}" />
+                <TextBox
+                    x:Name="txtTitle"
+                    Padding="5,3,10,3"
+                    VerticalAlignment="Center"
+                    MaxLength="{StaticResource TaskView.MaxLength}"
+                    Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="Collapsed" />
+            </Grid>
+
 
             <!--  Star Icon - IsImporant ToggleButton  -->
             <ToggleButton
@@ -71,5 +76,16 @@
                 IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Importants,Tasks'}"
                 Style="{StaticResource StarToggleButtonStyle}" />
         </Grid>
+
+        <DataTemplate.Triggers>
+            <Trigger SourceName="grdTitleContainer" Property="IsMouseOver" Value="true">
+                <Setter TargetName="txtTitleBlock" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="txtTitle" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger SourceName="txtTitle" Property="IsKeyboardFocusWithin" Value="true">
+                <Setter TargetName="txtTitleBlock" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="txtTitle" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </DataTemplate.Triggers>
     </DataTemplate>
 </ResourceDictionary>
