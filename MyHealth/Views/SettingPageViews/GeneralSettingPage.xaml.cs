@@ -14,43 +14,14 @@ using System.Windows.Shapes;
 
 namespace MyHealth
 {
-    public partial class GeneralSettingPage : UserControl, ISavebleSettingPage
+    public partial class GeneralSettingPage : UserControl
     {
-        //Implement ISavebleSettingPage
-        public bool IsChanged { get; set; } = false;
-        public bool CanSave => false;
-        public void Save()
-        {
-            //App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-            //AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
-            //AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
-            //AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
-            AppSettings.Save();
-        }
-
         //ctor
         public GeneralSettingPage()
         {
             DataContext = AppSettings.Data;
             InitializeComponent();
         }
-
-        //Loading
-        private void OnInitialized(object sender, EventArgs e)
-        {
-            LoadSettingValuesFrom(AppSettings.Data);
-            //chkStartAtStartup.IsChecked = App.StartAtStartup;
-            IsChanged = false;
-        }
-        private void LoadSettingValuesFrom(MyHealthSettings settings)
-        {
-            //cselFreshStart.Color = settings.FreshStartBgColor;
-            //cselShortBreak.Color = settings.ShortBreakBgColor;
-            //tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
-        }
-
-        //Detect Changes
-        private void OnAnyChanged(object sender, RoutedEventArgs e) => IsChanged = true;
 
         //Open Folder Buttons
         private void OpenImageSliderFolders_Click(object sender, RoutedEventArgs e)
@@ -81,7 +52,6 @@ namespace MyHealth
             if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?", "Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
             {
                 AppSettings.Reset();
-                IsChanged = true;
             }
         }
 
