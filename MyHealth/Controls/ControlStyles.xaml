@@ -3,5 +3,6 @@
         <ResourceDictionary Source="/Controls/Styles/TimerControl.xaml" />
         <ResourceDictionary Source="/Controls/Styles/SocialLinkCardButton.xaml" />
         <ResourceDictionary Source="/Controls/Styles/DockedWindow.xaml" />
+        <ResourceDictionary Source="/Controls/Styles/TimeSpanControlStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
