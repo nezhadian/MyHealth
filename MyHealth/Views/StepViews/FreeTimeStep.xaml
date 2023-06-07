@@ -8,10 +8,8 @@
     Title="ShortBreak"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="{Binding ShortBreakBgColor, Mode=TwoWay, Converter={StaticResource Color2SolidColorBrushConverter}}"
     mc:Ignorable="d">
-    <Page.Background>
-        <SolidColorBrush Color="{Binding Source={x:Static local:AppSettings.Data}, Path=ShortBreakBgColor}" />
-    </Page.Background>
 
     <Grid>
         <TextBlock

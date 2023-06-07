@@ -23,7 +23,7 @@ namespace MyHealth
     {
         public FreeTimeStep()
         {
-            DataContext = this;
+            DataContext = AppSettings.Data;
             InitializeComponent();
         }
 
