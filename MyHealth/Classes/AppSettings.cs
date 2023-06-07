@@ -15,15 +15,6 @@ namespace MyHealth
     {
         //Props
         public static MyHealthSettings Data = new MyHealthSettings();
-        public static readonly MyHealthSettings DEFAULT_DATA_VALUES = new MyHealthSettings()
-        {
-            ImageSliderDelay = new TimeSpan(0, 0, 20),
-            FreshStartBgColor = Color.FromRgb(0x00, 0x80, 0x00),
-            ShortBreakBgColor = Color.FromRgb(0x00, 0x00, 0x00),
-            IsFirstRun = true,
-            StepDataList = (StepData[])App.Current.Resources["StepData.PomodoroTemplate"],
-            TaskList = new TaskView[0]
-        };
 
         static string DataFilePath;
         static bool isInitialized = false;
@@ -48,6 +39,7 @@ namespace MyHealth
                 XmlSerializer xml = new XmlSerializer(Data.GetType());
 
                 Data = (MyHealthSettings)xml.Deserialize(stream);
+                Data.OnLoaded();
             }
             catch
             {
@@ -60,7 +52,7 @@ namespace MyHealth
         }
         public static void Reset()
         {
-            Data = DEFAULT_DATA_VALUES.Clone();
+            Data.ResetValues();
         }
         public static void Save()
         {
@@ -72,28 +64,38 @@ namespace MyHealth
                 stream.SetLength(0);
                 xml.Serialize(stream, Data);
 
+                Data.OnSaved();
+
             }
             finally
             {
                 stream?.Close();
             }
         }
+
+        public static void UndoAll()
+        {
+            Data.UndoChanges();
+        }
         
     }
 
-    public class MyHealthSettings : INotifyPropertyChanged
+    public class MyHealthSettings : SettingData
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        #region INotifyPropertyChanged Implamentation
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected override Dictionary<string, SettingItem> Variables { get; set; } = new Dictionary<string, SettingItem>()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            {nameof(FreshStartBgColor), new SettingItem(Color.FromRgb(0x00, 0x80, 0x00)) },
+        };
+
+        public Color FreshStartBgColor
+        {
+            get => (Color)GetMyValue();
+            set
+            {
+                SetMyValue(value);
+            }
         }
-        #endregion
 
-        //Props
-
-        public Color FreshStartBgColor { get; set; }
         public Color ShortBreakBgColor { get; set; }
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
@@ -109,22 +111,105 @@ namespace MyHealth
                 OnPropertyChanged();
             }
         }
+    }
 
-
-
-        //Methods
-        public MyHealthSettings Clone()
+    public abstract class SettingData : INotifyPropertyChanged
+    {
+        #region INotifyPropertyChanged Implamentation
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            return new MyHealthSettings()
-            {
-                FreshStartBgColor = FreshStartBgColor,
-                ShortBreakBgColor = ShortBreakBgColor,
-                ImageSliderDelay = ImageSliderDelay,
-                IsFirstRun = IsFirstRun,
-                StepDataList = StepDataList,
-                TaskList = TaskList
-            };
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #endregion
+
+        [XmlIgnore]
+        protected abstract Dictionary<string, SettingItem> Variables { set; get; }
+
+        protected virtual object GetMyValue([CallerMemberName] string propertyName = null)
+        {
+            if(Variables.TryGetValue(propertyName,out SettingItem item))
+            {
+                return item.Value;
+            }
+            return null;
+        }
+        protected virtual void SetMyValue(object value, [CallerMemberName] string propertyName = null)
+        {
+            if (Variables.TryGetValue(propertyName, out SettingItem item))
+            {
+                Variables[propertyName].Value = value;
+            }
+            else
+            {
+                Variables.Add(propertyName, new SettingItem(value));
+            }
+            OnPropertyChanged(propertyName);
+        }
+
+        public void OnSaved()
+        {
+            foreach (var item in Variables)
+            {
+                item.Value.ClearPreviousValue();
+            }
+        }
+        public void ResetValues()
+        {
+            foreach (var item in Variables)
+            {
+                item.Value.ResetToDefault();
+                OnPropertyChanged(item.Key);
+            }
+        }
+        public void UndoChanges()
+        {
+            foreach (var item in Variables)
+            {
+                item.Value.Undo();
+                OnPropertyChanged(item.Key);
+            }
+        }
+        public void OnLoaded()
+        {
+            foreach (var item in Variables)
+            {
+                item.Value.Init();
+            }
+        }
+    }
+    public class SettingItem
+    {
+        public readonly object Default;
+
+        public object Value;
+        public object Previous;
+
+        public SettingItem() { }
+        public SettingItem(object defaultValue)
+        {
+            Default = defaultValue;
+            Value = defaultValue;
+            Previous = defaultValue;
+
+        }
+
+        public void ClearPreviousValue()
+        {
+            Previous = Value;
+        }
+        public void ResetToDefault()
+        {
+            Value =  Default;
+        }
+        public void Undo()
+        {
+            Value = Previous;
+        }
+        public void Init()
+        {
+            Previous = Value;
+        }
     }
 }
