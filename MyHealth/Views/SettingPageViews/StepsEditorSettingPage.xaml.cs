@@ -18,22 +18,20 @@ namespace MyHealth
     public partial class StepsEditorSettingPage : UserControl,ISavebleSettingPage
     {
         //ISavebleSettingItem Implementation
-        public bool CanSave
-        {
-            get
-            {
-                int effectiveSteps = StepList.Count((item) => 
-                        item.StepType != StepData.StepTypes.FreshStart &&
-                        item.StepType != StepData.StepTypes.Seperator);
 
-                return effectiveSteps > 0;
-            }
-        }
         public bool IsChanged { get; set ; }
         public void Save()
         {
             AppSettings.Data.StepDataList = StepList.ToArray();
             AppSettings.Save();
+        }
+        public bool CanSave()
+        {
+            int effectiveSteps = StepList.Count((item) =>
+                item.StepType != StepData.StepTypes.FreshStart &&
+                item.StepType != StepData.StepTypes.Seperator);
+
+            return effectiveSteps > 0;
         }
 
         //Props
@@ -99,7 +97,7 @@ namespace MyHealth
             {
                 if (isChangedFromLastTemplateChange)
                 {
-                    if(!YesNoMessageBox("Changes","Are You Sure Clear Changes?"))
+                    if(!Utils.YesNoMessageBox("Changes","Are You Sure Clear Changes?"))
                     {
                         cboTemplates.SelectedItem = e.RemovedItems[0];
                         return;
@@ -110,10 +108,6 @@ namespace MyHealth
                 IsChanged = true;
                 isChangedFromLastTemplateChange = false;
             }
-        }
-        private static bool YesNoMessageBox(string caption,string message)
-        {
-            return AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show(message, caption, AdonisUI.Controls.MessageBoxButton.YesNo);
         }
 
         //Changes Detection
