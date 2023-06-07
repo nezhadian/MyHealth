@@ -87,6 +87,7 @@ namespace MyHealth
             {nameof(FreshStartBgColor), new SettingItem(Color.FromRgb(0x00, 0x80, 0x00)) },
         };
 
+        //Settings
         public Color FreshStartBgColor
         {
             get => (Color)GetMyValue();
@@ -99,12 +100,24 @@ namespace MyHealth
         public Color ShortBreakBgColor { get; set; }
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
-        public TaskView[] TaskList { set; get; }
+
+
+        //Arrays
+        private TaskView[] _taskList;
+        public TaskView[] TaskList
+        {
+            get => _taskList ?? new TaskView[0];
+            set
+            {
+                _taskList = value;
+                OnPropertyChanged();
+            }
+        }
 
         private StepData[] _stepDataList;
         public StepData[] StepDataList
         {
-            get { return _stepDataList; }
+            get => (StepData[])(_stepDataList ?? App.Current.TryFindResource("StepData.PomodoroTemplate"));
             set
             {
                 _stepDataList = value;

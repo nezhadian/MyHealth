@@ -40,7 +40,7 @@ namespace MyHealth
         //ctor
         public TaskListViewModel()
         {
-            TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList ?? new TaskView[0]);
+            TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList);
             Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += OnTaskChanged);
 
             AddTaskCommand = new TaskListAddTaskCommand(this);
