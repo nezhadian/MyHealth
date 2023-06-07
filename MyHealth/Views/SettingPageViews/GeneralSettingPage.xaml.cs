@@ -21,7 +21,7 @@ namespace MyHealth
         public bool CanSave => tscImageSliderDelay.TimeSpan != TimeSpan.Zero;
         public void Save()
         {
-            App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
+            //App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
             //AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
             AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
             AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
@@ -39,7 +39,7 @@ namespace MyHealth
         private void OnInitialized(object sender, EventArgs e)
         {
             LoadSettingValuesFrom(AppSettings.Data);
-            chkStartAtStartup.IsChecked = App.StartAtStartup;
+            //chkStartAtStartup.IsChecked = App.StartAtStartup;
             IsChanged = false;
         }
         private void LoadSettingValuesFrom(MyHealthSettings settings)

@@ -39,7 +39,7 @@
                 </Grid.RowDefinitions>
 
                 <!--  Start At Startup CheckBox  -->
-                <CheckBox x:Name="chkStartAtStartup" Click="OnAnyChanged">Start At Startup</CheckBox>
+                <CheckBox IsChecked="{Binding StartAtStartup}">Start At Startup</CheckBox>
 
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
