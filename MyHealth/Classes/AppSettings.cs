@@ -86,6 +86,7 @@ namespace MyHealth
         {
             {nameof(FreshStartBgColor), new SettingItem(Color.FromRgb(0x00, 0x80, 0x00)) },
             {nameof(ShortBreakBgColor), new SettingItem(Color.FromRgb(0x00, 0x00, 0x00)) },
+            {nameof(ImageSliderDelay), new SettingItem(TimeSpan.FromSeconds(20))},
             {nameof(StartAtStartup), new SettingItem(true) },
         };
 
@@ -106,8 +107,16 @@ namespace MyHealth
                 SetMyValue(value);
             }
         }
+        public TimeSpan ImageSliderDelay
+        {
+            get => (TimeSpan)GetMyValue();
+            set
+            {
+                SetMyValue(value);
+            }
+        }
 
-        public TimeSpan ImageSliderDelay { get; set; }
+
         public bool IsFirstRun { get; set; }
 
         //dynamic Values
