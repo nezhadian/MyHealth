@@ -22,7 +22,7 @@ namespace MyHealth
         public void Save()
         {
             App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
-            AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
+            //AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
             AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
             AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
             AppSettings.Save();
@@ -31,6 +31,7 @@ namespace MyHealth
         //ctor
         public GeneralSettingPage()
         {
+            DataContext = AppSettings.Data;
             InitializeComponent();
         }
 
@@ -43,7 +44,7 @@ namespace MyHealth
         }
         private void LoadSettingValuesFrom(MyHealthSettings settings)
         {
-            cselFreshStart.Color = settings.FreshStartBgColor;
+            //cselFreshStart.Color = settings.FreshStartBgColor;
             cselShortBreak.Color = settings.ShortBreakBgColor;
             tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
         }
@@ -79,8 +80,7 @@ namespace MyHealth
         {
             if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?", "Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
             {
-                LoadSettingValuesFrom(AppSettings.DEFAULT_DATA_VALUES);
-                chkStartAtStartup.IsChecked = App.StartAtStartup;
+                AppSettings.Reset();
                 IsChanged = true;
             }
         }

@@ -43,10 +43,10 @@
 
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
-                    x:Name="cselFreshStart"
                     Grid.Row="2"
                     ColorChanged="OnAnyChanged"
-                    Text="Fresh Start Background Color" />
+                    Text="Fresh Start Background Color"
+                    Color="{Binding FreshStartBgColor, Mode=TwoWay}" />
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector

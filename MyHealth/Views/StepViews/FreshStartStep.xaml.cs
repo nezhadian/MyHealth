@@ -23,7 +23,7 @@ namespace MyHealth
     {
         public FreshStartStep()
         {
-            DataContext = this;
+            DataContext = AppSettings.Data;
             InitializeComponent();
         }
 
