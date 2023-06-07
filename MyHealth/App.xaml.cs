@@ -16,6 +16,7 @@ namespace MyHealth
     /// </summary>
     public partial class App : Application
     {
+        #region StartAtStartup Property
         public static bool StartAtStartup
         {
             get => System.IO.File.Exists(GetStartupShortcutPath());
@@ -48,23 +49,13 @@ namespace MyHealth
             string filename = Assembly.GetExecutingAssembly().GetName().Name;
             return Path.ChangeExtension(Path.Combine(directory, filename), ".lnk");
         }
+        #endregion
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            if (AppSettings.Data.IsFirstRun)
-                ResetAllSettings();
-            
             Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
             AppSettings.Init();
-        }
-
-        internal static void ResetAllSettings()
-        {
-            AppSettings.Reset();
-            StartAtStartup = true;
-            AppSettings.Data.IsFirstRun = false;
-            AppSettings.Save();
         }
 
         public static string GetAssetsPath(string path)
