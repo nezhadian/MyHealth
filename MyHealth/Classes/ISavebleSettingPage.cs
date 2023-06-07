@@ -7,7 +7,7 @@ namespace MyHealth
     public interface ISavebleSettingPage
     {
         public bool IsChanged { get; set; }
-        public void Save();
+        public void SetValuesToAppSettings();
         public bool CanSave();
     }
 }

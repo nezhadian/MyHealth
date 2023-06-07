@@ -20,10 +20,9 @@ namespace MyHealth
         //ISavebleSettingItem Implementation
 
         public bool IsChanged { get; set ; }
-        public void Save()
+        public void SetValuesToAppSettings()
         {
             AppSettings.Data.StepDataList = StepList.ToArray();
-            AppSettings.Save();
         }
         public bool CanSave()
         {

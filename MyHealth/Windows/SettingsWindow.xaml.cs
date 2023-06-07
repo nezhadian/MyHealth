@@ -38,9 +38,9 @@ namespace MyHealth
             savebles.ForEach(i =>
             {
                 if (i.IsChanged)
-                    i.Save();
+                    i.SetValuesToAppSettings();
             });
-
+            AppSettings.Save();
             DialogResult = true;
         }
 
