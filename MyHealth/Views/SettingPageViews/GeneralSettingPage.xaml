@@ -77,12 +77,11 @@
                 <!--  Image Slider Sliding Delay Control  -->
                 <TextBlock Style="{StaticResource Texts.NormalText}">Image Slider Sliding Delay</TextBlock>
                 <local:TimeSpanControl
-                    x:Name="tscImageSliderDelay"
                     Grid.Column="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HourVisibility="Collapsed"
-                    TextChanged="OnAnyChanged" />
+                    TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay}" />
 
                 <!--  Eye Folder Open Control  -->
                 <TextBlock Grid.Row="2" Style="{StaticResource Texts.NormalText}">Eye Images Folder</TextBlock>

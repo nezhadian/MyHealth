@@ -18,13 +18,13 @@ namespace MyHealth
     {
         //Implement ISavebleSettingPage
         public bool IsChanged { get; set; } = false;
-        public bool CanSave => tscImageSliderDelay.TimeSpan != TimeSpan.Zero;
+        public bool CanSave => false;
         public void Save()
         {
             //App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
             //AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
             //AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
-            AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
+            //AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
             AppSettings.Save();
         }
 
@@ -46,7 +46,7 @@ namespace MyHealth
         {
             //cselFreshStart.Color = settings.FreshStartBgColor;
             //cselShortBreak.Color = settings.ShortBreakBgColor;
-            tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
+            //tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
         }
 
         //Detect Changes
