@@ -23,7 +23,7 @@ namespace MyHealth
         {
             //App.StartAtStartup = chkStartAtStartup.IsChecked.Value;
             //AppSettings.Data.FreshStartBgColor = cselFreshStart.Color;
-            AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
+            //AppSettings.Data.ShortBreakBgColor = cselShortBreak.Color;
             AppSettings.Data.ImageSliderDelay = tscImageSliderDelay.TimeSpan;
             AppSettings.Save();
         }
@@ -45,7 +45,7 @@ namespace MyHealth
         private void LoadSettingValuesFrom(MyHealthSettings settings)
         {
             //cselFreshStart.Color = settings.FreshStartBgColor;
-            cselShortBreak.Color = settings.ShortBreakBgColor;
+            //cselShortBreak.Color = settings.ShortBreakBgColor;
             tscImageSliderDelay.TimeSpan = settings.ImageSliderDelay;
         }
 

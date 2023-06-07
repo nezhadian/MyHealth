@@ -50,10 +50,9 @@
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector
-                    x:Name="cselShortBreak"
                     Grid.Row="4"
-                    ColorChanged="OnAnyChanged"
-                    Text="Short Break Background Color" />
+                    Text="Short Break Background Color"
+                    Color="{Binding ShortBreakBgColor, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
 
