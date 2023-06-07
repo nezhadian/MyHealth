@@ -12,4 +12,7 @@
     <local:StepData2PageConverter x:Key="StepData2PageConverter" />
 
     <local:ListIndexPlusOneConverter x:Key="ListIndexPlusOneConverter" />
+
+    <local:Color2SolidColorBrushConverter x:Key="Color2SolidColorBrushConverter" />
+
 </ResourceDictionary>
