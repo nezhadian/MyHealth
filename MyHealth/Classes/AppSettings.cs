@@ -85,6 +85,7 @@ namespace MyHealth
         protected override Dictionary<string, SettingItem> Variables { get; set; } = new Dictionary<string, SettingItem>()
         {
             {nameof(FreshStartBgColor), new SettingItem(Color.FromRgb(0x00, 0x80, 0x00)) },
+            {nameof(ShortBreakBgColor), new SettingItem(Color.FromRgb(0x00, 0x00, 0x00)) },
             {nameof(StartAtStartup), new SettingItem(true) },
         };
 
@@ -97,8 +98,15 @@ namespace MyHealth
                 SetMyValue(value);
             }
         }
+        public Color ShortBreakBgColor
+        {
+            get => (Color)GetMyValue();
+            set
+            {
+                SetMyValue(value);
+            }
+        }
 
-        public Color ShortBreakBgColor { get; set; }
         public TimeSpan ImageSliderDelay { get; set; }
         public bool IsFirstRun { get; set; }
 
@@ -111,13 +119,11 @@ namespace MyHealth
                 SetMyValue(value);
             }
         }
-
         public override void OnLoaded()
         {
             base.OnLoaded();
             StartAtStartup = App.StartAtStartup;
         }
-
         public override void OnSaved()
         {
             base.OnSaved();
