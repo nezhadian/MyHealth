@@ -30,6 +30,12 @@ namespace MyHealth
 
             isInitialized = true;
         }
+
+        internal static bool CanSave()
+        {
+            return Data.ValidateAll();
+        }
+
         static void Load()
         {
             FileStream stream = null;
@@ -139,6 +145,13 @@ namespace MyHealth
             App.StartAtStartup = StartAtStartup;
         }
 
+        public override bool ValidateAll()
+        {
+            return FreshStartBgColor.A == 0xff && 
+                ShortBreakBgColor.A == 0xff && 
+                ImageSliderDelay != TimeSpan.Zero;
+        }
+
 
         //Arrays
         private TaskView[] _taskList;
@@ -229,6 +242,8 @@ namespace MyHealth
                 item.Value.Init();
             }
         }
+
+        public abstract bool ValidateAll();
     }
     public class SettingItem
     {
