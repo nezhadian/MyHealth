@@ -38,19 +38,21 @@
                 </Grid.RowDefinitions>
 
                 <!--  Start At Startup CheckBox  -->
-                <CheckBox IsChecked="{Binding StartAtStartup}">Start At Startup</CheckBox>
+                <CheckBox IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}" SourceUpdated="Controls_SourceUpdated">Start At Startup</CheckBox>
 
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
                     Grid.Row="2"
+                    SourceUpdated="Controls_SourceUpdated"
                     Text="Fresh Start Background Color"
-                    Color="{Binding FreshStartBgColor, Mode=TwoWay}" />
+                    Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector
                     Grid.Row="4"
+                    SourceUpdated="Controls_SourceUpdated"
                     Text="Short Break Background Color"
-                    Color="{Binding ShortBreakBgColor, Mode=TwoWay}" />
+                    Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
             </Grid>
         </GroupBox>
 
@@ -79,7 +81,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     HourVisibility="Collapsed"
-                    TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay}" />
+                    SourceUpdated="Controls_SourceUpdated"
+                    TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Eye Folder Open Control  -->
                 <TextBlock Grid.Row="2" Style="{StaticResource Texts.NormalText}">Eye Images Folder</TextBlock>

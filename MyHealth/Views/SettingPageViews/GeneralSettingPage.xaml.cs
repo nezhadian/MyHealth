@@ -14,13 +14,22 @@ using System.Windows.Shapes;
 
 namespace MyHealth
 {
-    public partial class GeneralSettingPage : UserControl
+    public partial class GeneralSettingPage : UserControl, ISavebleSettingPage
     {
+        public bool IsChanged { get; set; }
+        public void SetValuesToAppSettings() { }
+
+        public bool CanSave()
+        {
+            return AppSettings.CanSave();
+        }
+
         //ctor
         public GeneralSettingPage()
         {
             DataContext = AppSettings.Data;
             InitializeComponent();
+            IsChanged = false;
         }
 
         //Open Folder Buttons
@@ -55,6 +64,9 @@ namespace MyHealth
             }
         }
 
-
+        private void Controls_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            IsChanged = true;
+        }
     }
 }
