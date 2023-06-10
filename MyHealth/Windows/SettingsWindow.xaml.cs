@@ -54,7 +54,7 @@ namespace MyHealth
 
             if (hasChangedItem)
             {
-                if (Utils.YesNoMessageBox("Cancel Settings", "there is Unsaved Changes do you want to clear them?"))
+                if (Utils.YesNoMessageBox("Cancel Settings", "there is Unsaved Changes do you want to clear them?","Discard","Cancel"))
                 {
                     AppSettings.UndoAll();
                     DialogResult = false;

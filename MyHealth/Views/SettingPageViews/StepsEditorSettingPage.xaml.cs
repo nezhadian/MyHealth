@@ -67,7 +67,7 @@ namespace MyHealth
             {
                 if (isChangedFromLastTemplateChange)
                 {
-                    if(!Utils.YesNoMessageBox("Changes","Are You Sure Clear Changes?"))
+                    if(!Utils.YesNoMessageBox("Changes","do you want to Clear Changes?","Clear","Cancel"))
                     {
                         cboTemplates.SelectedItem = e.RemovedItems[0];
                         return;
