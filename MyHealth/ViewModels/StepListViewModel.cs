@@ -5,13 +5,23 @@ namespace MyHealth
 {
     public class StepListViewModel : StepListViewModelBase
     {
+
+        private StepData[] _stepsArray;
+        public StepData[] StepsArray
+        {
+            get => _stepsArray;
+            set
+            {
+                _stepsArray = value;
+                OnPropertyChanged();
+            }
+        }
+
         public StepListIgnoreSeperatorsCommand IgnoreSeperatorsCommand { set; get; }
         public StepListClickCommand ClickCommand { set; get; }
 
         public StepListViewModel()
         {
-            StepList = new ObservableCollection<StepData>(AppSettings.Data.StepDataList);
-
             IgnoreSeperatorsCommand = new StepListIgnoreSeperatorsCommand(this);
             ClickCommand = new StepListClickCommand(this);
 
@@ -21,24 +31,21 @@ namespace MyHealth
         private void Data_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
-                MatchStepList(AppSettings.Data.StepDataList);
+            {
+                ReloadStepsFromSettings();
+            }
         }
 
-        private void MatchStepList(StepData[] list)
+        public void ReloadStepsFromSettings()
         {
-            StepList.Clear();
-            foreach (var item in list)
-            {
-                StepList.Add(item);
-            }
+            StepsArray = AppSettings.Data.StepDataList;
             SelectedStepIndex = 0;
         }
-
-        internal void GoToNextStep()
+        public void GoToNextStep()
         {
             int curIndex = SelectedStepIndex;
             curIndex++;
-            curIndex %= StepList.Count;
+            curIndex %= StepsArray.Length;
             SelectedStepIndex = curIndex;
         }
     }

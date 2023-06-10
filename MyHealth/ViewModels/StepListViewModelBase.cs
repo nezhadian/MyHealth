@@ -4,7 +4,6 @@ namespace MyHealth
 {
     public class StepListViewModelBase : ViewModelBase
     {
-        public virtual ObservableCollection<StepData> StepList { get; set; }
 
         private StepData _selStep;
         public StepData SelectedStep

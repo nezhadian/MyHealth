@@ -36,6 +36,8 @@ namespace MyHealth
             
             DataContext = this;
             InitializeComponent();
+
+            StepListViewModel.ReloadStepsFromSettings();
         }
 
         private void Timer_Completed(object sender, RoutedEventArgs e)

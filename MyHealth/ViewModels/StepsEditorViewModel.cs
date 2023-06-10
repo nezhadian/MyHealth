@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace MyHealth
 {
     public class StepsEditorViewModel : StepListViewModelBase
     {
+        public ObservableCollection<StepData> StepList { get; set; }
+
         public StepsEditorNewCommand NewCommand { get; set; }
         public StepsEditorDeleteCommand DeleteCommand { get; set; }
 

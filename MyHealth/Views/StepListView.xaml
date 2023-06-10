@@ -36,7 +36,7 @@
         <ListBox
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
-            ItemsSource="{Binding StepList}"
+            ItemsSource="{Binding StepsArray}"
             SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
             SelectedItem="{Binding SelectedStep, Mode=TwoWay}">
             <i:Interaction.Triggers>
