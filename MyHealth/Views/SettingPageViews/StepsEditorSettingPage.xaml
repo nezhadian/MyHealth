@@ -65,7 +65,7 @@
                 <!--  Step Type ComboBox  -->
                 <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
                 <ComboBox
-                    ItemsSource="{Binding StepTypesArray}"
+                    ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=StepTypes, Mode=OneTime}"
                     SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
                     SourceUpdated="OnPropertiesChanged" />
 
@@ -91,7 +91,7 @@
                 <StackPanel Visibility="{Binding SelectedStep.StepType, Converter={StaticResource Enum2VisibilityConverter}, ConverterParameter='ImageSlider', UpdateSourceTrigger=PropertyChanged}">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
                     <ComboBox
-                        ItemsSource="{Binding ImageListesArray}"
+                        ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=ImageListes, Mode=OneTime}"
                         SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
                         SourceUpdated="OnPropertiesChanged" />
                 </StackPanel>

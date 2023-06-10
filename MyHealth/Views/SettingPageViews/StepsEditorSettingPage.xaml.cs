@@ -52,15 +52,9 @@ namespace MyHealth
         }
         public bool IsSelected => SelectedStep != null;
 
-        //Arrays
-        public Array StepTypesArray { get; set; }
-        public Array ImageListesArray { get; set; }
-
         //ctor
         public StepsEditorSettingPage()
         {
-            StepTypesArray = Enum.GetValues(typeof(StepData.StepTypes));
-            ImageListesArray = Enum.GetValues(typeof(StepData.ImageListes));
 
             SetCloneOfStepDataArray(AppSettings.Data.StepDataList);
 
