@@ -3,36 +3,10 @@ using System.ComponentModel;
 
 namespace MyHealth
 {
-    public class StepListViewModel : ViewModelBase
+    public class StepListViewModel : StepListViewModelBase
     {
-
-        public ObservableCollection<StepData> StepList { get; set; }
-
-        private StepData _selStep;
-        public StepData SelectedStep
-        {
-            get => _selStep;
-            set
-            {
-                _selStep = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _selStepIndex;
-        public int SelectedStepIndex
-        {
-            get => _selStepIndex;
-            set
-            {
-                _selStepIndex = value;
-                OnPropertyChanged();
-            }
-        }
-
         public StepListIgnoreSeperatorsCommand IgnoreSeperatorsCommand { set; get; }
         public StepListClickCommand ClickCommand { set; get; }
-
 
         public StepListViewModel()
         {
