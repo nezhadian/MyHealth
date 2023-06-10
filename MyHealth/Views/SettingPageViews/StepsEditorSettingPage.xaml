@@ -10,16 +10,10 @@
     d:Width="600"
     mc:Ignorable="d">
 
-    <UserControl.CommandBindings>
-        <CommandBinding
-            CanExecute="New_CanExecute"
-            Command="{x:Static ApplicationCommands.New}"
-            Executed="New_Executed" />
-        <CommandBinding
-            CanExecute="Delete_CanExecute"
-            Command="{x:Static ApplicationCommands.Delete}"
-            Executed="Delete_Executed" />
-    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N" />
+        <KeyBinding Command="{Binding DeleteCommand}" Gesture="Delete" />
+    </UserControl.InputBindings>
 
     <Grid Margin="20">
         <!--  rows  -->
@@ -50,9 +44,9 @@
             dragdrop:DragDrop.IsDragSource="True"
             dragdrop:DragDrop.IsDropTarget="True"
             dragdrop:DragDrop.SelectDroppedItems="True"
-            Drop="lstItems_Drop"
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList}"
+            SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
             SelectedItem="{Binding SelectedStep}" />
 
         <!--  Properties  -->
@@ -104,14 +98,14 @@
         <!--  New And Delete Buttons  -->
         <Grid Grid.Row="3">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                <Button Command="{x:Static ApplicationCommands.New}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button Command="{Binding NewCommand}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path
                         Width="17"
                         Data="{StaticResource Add}"
                         Fill="{DynamicResource IconsColor.Add}"
                         Stretch="Uniform" />
                 </Button>
-                <Button Command="{x:Static ApplicationCommands.Delete}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button Command="{Binding DeleteCommand}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path
                         Width="13"
                         Data="{StaticResource Delete}"

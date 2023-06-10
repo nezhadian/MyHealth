@@ -9,10 +9,9 @@ namespace MyHealth
         public StepsEditorNewCommand NewCommand { get; set; }
         public StepsEditorDeleteCommand DeleteCommand { get; set; }
 
-        public StepsEditorViewModel(StepData[] stepDataList)
+        public StepsEditorViewModel()
         {
             StepList = new System.Collections.ObjectModel.ObservableCollection<StepData>();
-            SetStepListFromArray(stepDataList);
 
             NewCommand = new StepsEditorNewCommand(this);
             DeleteCommand = new StepsEditorDeleteCommand(this);

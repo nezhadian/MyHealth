@@ -17,64 +17,41 @@ namespace MyHealth
 {
     public partial class StepsEditorSettingPage : UserControl,ISavebleSettingPage
     {
-        //ISavebleSettingItem Implementation
 
+        StepsEditorViewModel StepsEditorViewModel;
+
+        //ISavebleSettingItem Implementation
         public bool IsChanged { get; set ; }
         public void SetValuesToAppSettings()
         {
-            AppSettings.Data.StepDataList = StepList.ToArray();
+            AppSettings.Data.StepDataList = StepsEditorViewModel.StepList.ToArray();
         }
         public bool CanSave()
         {
-            int effectiveSteps = StepList.Count((item) =>
+            int effectiveSteps = StepsEditorViewModel.StepList.Count((item) =>
                 item.StepType != StepData.StepTypes.FreshStart &&
                 item.StepType != StepData.StepTypes.Seperator);
 
             return effectiveSteps > 0;
         }
 
-        //Props
-        #region Dependency Properties
-        public static readonly DependencyProperty StepListProperty =
-            DependencyProperty.Register("StepList", typeof(ObservableCollection<StepData>), typeof(StepsEditorSettingPage), new PropertyMetadata());
-        public static readonly DependencyProperty SelectedStepProperty =
-            DependencyProperty.Register("SelectedStep", typeof(StepData), typeof(StepsEditorSettingPage), new PropertyMetadata());
-        #endregion
-        public ObservableCollection<StepData> StepList
-        {
-            get { return (ObservableCollection<StepData>)GetValue(StepListProperty); }
-            set { SetValue(StepListProperty, value); }
-        }
-        public StepData SelectedStep
-        {
-            get { return (StepData)GetValue(SelectedStepProperty); }
-            set { SetValue(SelectedStepProperty, value); }
-        }
-        public bool IsSelected => SelectedStep != null;
+        //fields
+        bool isChangedFromLastTemplateChange = true;
+        bool isChangingTemplate = false;
 
         //ctor
         public StepsEditorSettingPage()
         {
+            StepsEditorViewModel = new StepsEditorViewModel();
 
-            SetCloneOfStepDataArray(AppSettings.Data.StepDataList);
-
-            StepList.CollectionChanged += StepList_CollectionChanged;
-            
-            DataContext = this;
+            DataContext = StepsEditorViewModel;
             InitializeComponent();
+
+            StepsEditorViewModel.SetStepListFromArray(AppSettings.Data.StepDataList);
+            StepsEditorViewModel.StepList.CollectionChanged += StepList_CollectionChanged;
         }
-
-        private void SetCloneOfStepDataArray(StepData[] stepDataList)
-        {
-            StepList = new ObservableCollection<StepData>(stepDataList.Select((i) =>(StepData)i.Clone()));
-        }
-
-
-
-
 
         //Templates
-        bool isChangedFromLastTemplateChange = true;
         private void cboTemplates_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboTemplates.SelectedItem == null)
@@ -96,55 +73,30 @@ namespace MyHealth
                         return;
                     }
                 }
+                isChangingTemplate = true;
 
-                SetCloneOfStepDataArray(template);
+                StepsEditorViewModel.SetStepListFromArray(template);
+
+                isChangingTemplate = false;
                 IsChanged = true;
                 isChangedFromLastTemplateChange = false;
             }
         }
 
         //Changes Detection
+        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
         private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            IsChanged = true;
-            isChangedFromLastTemplateChange = true;
+            UserChangeValues();
         }
 
-        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
-        private void lstItems_Drop(object sender, DragEventArgs e) => UserChangeValues();
         private void UserChangeValues()
         {
-            cboTemplates.SelectedIndex = 2;
+            if(!isChangingTemplate)
+                cboTemplates.SelectedIndex = 2;
+
             IsChanged = true;
             isChangedFromLastTemplateChange = true;
         }
-
-
-        //commands
-        #region Commands
-        private void New_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
-        private void New_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            StepData step = new StepData();
-            if (IsSelected)
-            {
-                int index = lstItems.SelectedIndex + 1;
-                StepList.Insert(index, step);
-                SelectedStep = step;
-            }
-            else
-                StepList.Add(step);
-        }
-
-        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = IsSelected;
-        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            int selIndex = lstItems.SelectedIndex;
-            StepList.RemoveAt(selIndex);
-            lstItems.SelectedIndex = Math.Min(selIndex, lstItems.Items.Count - 1);
-            lstItems.Focus();
-        }
-        #endregion
-
     }
 }
