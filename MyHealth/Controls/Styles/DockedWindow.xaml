@@ -4,6 +4,42 @@
     xmlns:local="clr-namespace:MyHealth">
 
     <!--  Storyboards  -->
+    <Storyboard x:Key="DelayedCollapseStoryboard">
+
+        <!--  Expander Height Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:2"
+            Storyboard.TargetName="dockScale"
+            Storyboard.TargetProperty="ScaleY"
+            To="0"
+            Duration="0:00:0.2" />
+
+        <!--  Expander Width Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:2"
+            Storyboard.TargetName="dockScale"
+            Storyboard.TargetProperty="ScaleX"
+            To="0"
+            Duration="0:00:0.2" />
+
+        <!--  Expander Opacity Anim  -->
+        <DoubleAnimation
+            BeginTime="0:0:2"
+            Storyboard.TargetName="dock"
+            Storyboard.TargetProperty="Opacity"
+            To="0"
+            Duration="0:0:0.2" />
+
+        <!--  Timer Border Opacity  -->
+        <DoubleAnimation
+            BeginTime="0:0:2"
+            Storyboard.TargetName="dockBorder"
+            Storyboard.TargetProperty="Background.Opacity"
+            To="0.3"
+            Duration="0:0:0.2" />
+
+    </Storyboard>
+
     <Storyboard x:Key="CollapseStoryboard">
 
         <!--  Expander Height Anim  -->
@@ -131,7 +167,13 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="beginExpand" Storyboard="{StaticResource ExpandStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginCollapse" />
+                                <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard x:Name="beginDelayedCollapse" Storyboard="{StaticResource DelayedCollapseStoryboard}" />
+                                <RemoveStoryboard BeginStoryboardName="beginCollapse" />
+                                <RemoveStoryboard BeginStoryboardName="beginExpand" />
+                            </Trigger.ExitActions>
                         </Trigger>
 
                         <MultiTrigger>
@@ -142,6 +184,7 @@
                             <MultiTrigger.EnterActions>
                                 <BeginStoryboard Name="beginCollapse" Storyboard="{StaticResource CollapseStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginExpand" />
+                                <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
                             </MultiTrigger.EnterActions>
                         </MultiTrigger>
 
