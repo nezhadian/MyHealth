@@ -15,4 +15,6 @@
 
     <local:Color2SolidColorBrushConverter x:Key="Color2SolidColorBrushConverter" />
 
+    <local:Enum2ArrayConverter x:Key="Enum2ArrayConverter" />
+
 </ResourceDictionary>
