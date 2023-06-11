@@ -53,7 +53,7 @@
                     <Button Command="{Binding NextCommand}" Style="{StaticResource Buttons.GlassButton}">
                         <Path
                             Width="30"
-                            Data="{StaticResource ArrowLeft}"
+                            Data="{StaticResource Icons.ArrowLeft}"
                             Fill="White"
                             Stretch="Uniform" />
                     </Button>
@@ -81,7 +81,7 @@
                         Style="{StaticResource Buttons.GlassButton}">
                         <Path
                             Width="30"
-                            Data="{StaticResource ArrowRight}"
+                            Data="{StaticResource Icons.ArrowRight}"
                             Fill="White"
                             Stretch="Uniform" />
                     </Button>

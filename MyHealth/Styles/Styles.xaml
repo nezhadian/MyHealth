@@ -232,7 +232,7 @@
                             <Path
                                 x:Name="checkMark"
                                 Width="10"
-                                Data="{StaticResource CheckMark}"
+                                Data="{StaticResource Icons.CheckMark}"
                                 Fill="{DynamicResource Menu.Icons}"
                                 Stretch="Uniform"
                                 Visibility="Collapsed" />
@@ -249,7 +249,7 @@
                                 x:Name="indicator"
                                 Grid.Column="2"
                                 Width="4.5"
-                                Data="{StaticResource ArrowRightIndicator}"
+                                Data="{StaticResource Icons.ArrowRightIndicator}"
                                 Fill="{TemplateBinding Foreground}"
                                 Stretch="Uniform" />
 
@@ -337,7 +337,7 @@
                                 Grid.Column="1"
                                 Width="5"
                                 VerticalAlignment="Center"
-                                Data="{StaticResource ArrowRightIndicator}"
+                                Data="{StaticResource Icons.ArrowRightIndicator}"
                                 Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
                                 Stretch="Uniform" />
                         </Grid>
@@ -349,7 +349,7 @@
                         </Trigger>
 
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="arrow" Property="Data" Value="{StaticResource ArrowDown}" />
+                            <Setter TargetName="arrow" Property="Data" Value="{StaticResource Icons.ArrowDown}" />
                             <Setter TargetName="arrow" Property="Width" Value="9" />
 
                         </Trigger>

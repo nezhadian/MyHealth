@@ -22,7 +22,7 @@
             Style="{StaticResource Buttons.GlassButton}">
             <Path
                 Width="25"
-                Data="{StaticResource Mute}"
+                Data="{StaticResource Icons.Mute}"
                 Fill="{DynamicResource BackgroundColor}"
                 Stretch="Uniform" />
         </Button>

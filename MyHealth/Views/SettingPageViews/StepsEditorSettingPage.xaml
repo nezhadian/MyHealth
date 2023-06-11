@@ -101,14 +101,14 @@
                 <Button Command="{Binding NewCommand}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path
                         Width="17"
-                        Data="{StaticResource Add}"
+                        Data="{StaticResource Icons.Add}"
                         Fill="{DynamicResource IconsColor.Add}"
                         Stretch="Uniform" />
                 </Button>
                 <Button Command="{Binding DeleteCommand}" Style="{StaticResource Buttons.OnlyIcon}">
                     <Path
                         Width="13"
-                        Data="{StaticResource Delete}"
+                        Data="{StaticResource Icons.Delete}"
                         Fill="{DynamicResource Buttons.OnlyIcon.IconColor}"
                         Stretch="Uniform" />
                 </Button>

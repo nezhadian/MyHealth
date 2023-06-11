@@ -4,21 +4,21 @@
     <Path
         x:Key="SettingIcon"
         Width="32"
-        Data="{StaticResource Setting}"
+        Data="{StaticResource Icons.Setting}"
         Fill="{DynamicResource IconsColor.Settings}"
         Stretch="Uniform" />
     <!--  Restart Icon  -->
     <Path
         x:Key="RestartIcon"
         Width="32"
-        Data="{StaticResource Restart}"
+        Data="{StaticResource Icons.Restart}"
         Fill="{DynamicResource Menu.Icons}"
         Stretch="Uniform" />
     <!--  Close Icon  -->
     <Path
         x:Key="CloseIcon"
         Width="24"
-        Data="{StaticResource Close}"
+        Data="{StaticResource Icons.Close}"
         Fill="{DynamicResource IconsColor.Settings}"
         Stretch="Uniform" />
 
@@ -28,13 +28,13 @@
     <Path
         x:Key="PlayPauseMenuItem.PlayIcon"
         Width="32"
-        Data="{StaticResource Continue}"
+        Data="{StaticResource Icons.Continue}"
         Fill="{DynamicResource IconsColor.Play}"
         Stretch="Uniform" />
     <Path
         x:Key="PlayPauseMenuItem.PauseIcon"
         Width="32"
-        Data="{StaticResource Stop}"
+        Data="{StaticResource Icons.Stop}"
         Fill="{DynamicResource IconsColor.Pause}"
         Stretch="Uniform" />
     <Style
@@ -59,13 +59,13 @@
     <Path
         x:Key="LockMenuItem.LockIcon"
         Width="32"
-        Data="{StaticResource Lock}"
+        Data="{StaticResource Icons.Lock}"
         Fill="{DynamicResource IconsColor.Lock}"
         Stretch="Uniform" />
     <Path
         x:Key="LockMenuItem.UnLockIcon"
         Width="32"
-        Data="{StaticResource UnLock}"
+        Data="{StaticResource Icons.UnLock}"
         Fill="{DynamicResource IconsColor.Lock}"
         Stretch="Uniform" />
     <Style
