@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace MyHealth
 {
-    class ListIndexPlusOneConverter : IValueConverter
+    class PlusOneConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

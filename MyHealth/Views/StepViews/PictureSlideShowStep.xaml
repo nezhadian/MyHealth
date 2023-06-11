@@ -61,7 +61,7 @@
                     <!--  Current Index Location  -->
                     <StackPanel Margin="15,0" VerticalAlignment="Center">
                         <TextBlock Style="{StaticResource Texts.BigTitle}">
-                            <Run FontWeight="DemiBold" Text="{Binding Path=SelectedIndex, Mode=OneWay, Converter={StaticResource ListIndexPlusOneConverter}}" />
+                            <Run FontWeight="DemiBold" Text="{Binding Path=SelectedIndex, Mode=OneWay, Converter={StaticResource PlusOneConverter}}" />
                             <Run>of</Run>
                             <Run Text="{Binding ImageList.Count, Mode=OneWay}" />
                         </TextBlock>
