@@ -4,8 +4,8 @@
     xmlns:local="clr-namespace:MyHealth">
 
     <local:Enum2VisibilityConverter x:Key="Enum2VisibilityConverter" />
-    <local:TimeSpanConverter x:Key="TimeSpanConverter" />
-    <local:StepDataIconConverter x:Key="StepDataIconConverter" />
+    <local:TimeSpan2StringFormatter x:Key="TimeSpan2StringFormatter" />
+    <local:StepData2IconConverter x:Key="StepData2IconConverter" />
     <local:Bool2EnumConverter x:Key="Bool2EnumConverter" />
 
     <local:CaptionTextSwitchConverter x:Key="CaptionTextSwitchConverter" />

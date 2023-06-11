@@ -27,7 +27,7 @@
                 Fill="{DynamicResource StepData.IconColor}"
                 Stretch="Uniform">
                 <Path.Data>
-                    <MultiBinding Converter="{StaticResource StepDataIconConverter}">
+                    <MultiBinding Converter="{StaticResource StepData2IconConverter}">
                         <MultiBinding.Bindings>
                             <Binding Mode="TwoWay" Path="StepType" />
                             <Binding Mode="TwoWay" Path="ImageList" />
@@ -46,7 +46,7 @@
                 x:Name="tsDuration"
                 Grid.Column="4"
                 VerticalAlignment="Center"
-                Text="{Binding Duration, Converter={StaticResource TimeSpanConverter}}"
+                Text="{Binding Duration, Converter={StaticResource TimeSpan2StringFormatter}}"
                 Visibility="Visible" />
 
         </Grid>
