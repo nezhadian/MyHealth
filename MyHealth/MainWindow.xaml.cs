@@ -33,12 +33,28 @@ namespace MyHealth
         {
             TaskListViewModel = new TaskListViewModel();
             StepListViewModel = new StepListViewModel();
-            
+
+            AppSettings.Initialized += AppSettings_Initialized;
+            Task.Run(AppSettings.AsyncInit);
+
             DataContext = this;
             InitializeComponent();
 
-            StepListViewModel.ReloadStepsFromSettings();
         }
+
+        private void AppSettings_Initialized(object sender, RoutedEventArgs e)
+        {
+            TaskListViewModel.AddArrayToTaskList(AppSettings.Data.TaskList);
+            StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
+
+            AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
+        }
+        private void AppSettings_Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
+                StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
+        }
+
 
         private void Timer_Completed(object sender, RoutedEventArgs e)
         {
@@ -60,17 +76,15 @@ namespace MyHealth
         {
             if (e.Key == Key.Enter)
             {
-                if (TaskListViewModel.AddTaskCommand.CanExecute(txtCommand.Text))
+                if(Utils.RaiseCommand(TaskListViewModel.AddTaskCommand, txtCommand.Text))
                 {
-                    TaskListViewModel.AddTaskCommand.Execute(txtCommand.Text);
                     txtCommand.Text = "";
                 }
             }
         }
         private void PagesContent_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (StepListViewModel.ClickCommand.CanExecute(null))
-                StepListViewModel.ClickCommand.Execute(null);
+            Utils.RaiseCommand(StepListViewModel.ClickCommand, null);
         }
 
         #region TaskBar Icon ContextMenu
@@ -87,7 +101,6 @@ namespace MyHealth
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Activate();
-            //ExpandBeginStroyboard.Storyboard.Begin();
         }
 
 
