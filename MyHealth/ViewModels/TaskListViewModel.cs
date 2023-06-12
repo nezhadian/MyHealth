@@ -82,7 +82,7 @@ namespace MyHealth
         public void SaveTaskList()
         {
             AppSettings.Data.TaskList = TaskList.ToArray();
-            AppSettings.Save();
+            AppSettings.SaveAsync();
             NeedSave = false;
         }
     }

@@ -40,7 +40,7 @@ namespace MyHealth
                 if (i.IsChanged)
                     i.SetValuesToAppSettings();
             });
-            AppSettings.Save();
+            AppSettings.SaveAsync();
             DialogResult = true;
         }
 
