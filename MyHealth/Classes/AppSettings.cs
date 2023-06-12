@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -16,8 +17,12 @@ namespace MyHealth
         //Props
         public static MyHealthSettings Data = new MyHealthSettings();
 
+        //Privates
         static string DataFilePath;
         static bool isInitialized = false;
+
+        //Events
+        public static event RoutedEventHandler Initialized;
 
         //Methods
         public static void Init()
@@ -28,6 +33,18 @@ namespace MyHealth
             DataFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
             Load();
 
+            Initialized?.Invoke(null, null);
+            isInitialized = true;
+        }
+        public static void AsyncInit()
+        {
+            if (isInitialized)
+                return;
+
+            DataFilePath = Path.Combine(Environment.CurrentDirectory, "Settings.xml");
+            Load();
+
+            Application.Current.Dispatcher.Invoke(delegate { Initialized?.Invoke(null, null); });
             isInitialized = true;
         }
 
@@ -56,6 +73,7 @@ namespace MyHealth
                 stream?.Close();
             }
         }
+
         public static void Reset()
         {
             Data.ResetValues();
