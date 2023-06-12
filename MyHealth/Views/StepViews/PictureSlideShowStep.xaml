@@ -50,7 +50,7 @@
                     </StackPanel.InputBindings>
 
                     <!--  Move Left Button  -->
-                    <Button Command="{Binding NextCommand}" Style="{StaticResource Buttons.GlassButton}">
+                    <Button Command="{Binding PreviousCommand}" Style="{StaticResource Buttons.GlassButton}">
                         <Path
                             Width="30"
                             Data="{StaticResource Icons.ArrowLeft}"
@@ -63,13 +63,12 @@
                         <TextBlock Style="{StaticResource Texts.BigTitle}">
                             <Run FontWeight="DemiBold" Text="{Binding Path=SelectedIndex, Mode=OneWay, Converter={StaticResource PlusOneConverter}}" />
                             <Run>of</Run>
-                            <Run Text="{Binding ImageList.Count, Mode=OneWay}" />
+                            <Run Text="{Binding ImageArray.Count, Mode=OneWay}" />
                         </TextBlock>
                         <local:TimerControl
                             x:Name="tmrSlider"
                             HorizontalAlignment="Center"
                             Completed="tmrSlider_Completed"
-                            IsPaused="True"
                             Opacity="0.2"
                             Duration="{Binding Source={x:Static local:AppSettings.Data}, Path=ImageSliderDelay}" />
                     </StackPanel>
@@ -77,7 +76,7 @@
                     <!--  Move Right Button  -->
                     <Button
                         x:Name="btnMoveRight"
-                        Command="{Binding PreviousCommand}"
+                        Command="{Binding NextCommand}"
                         Style="{StaticResource Buttons.GlassButton}">
                         <Path
                             Width="30"

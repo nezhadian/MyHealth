@@ -41,24 +41,21 @@ namespace MyHealth
                     break;
             }
             DataContext = PictureSlideShowViewModel;
-            PictureSlideShowViewModel.SelectionChanged += PictureSlideShowViewModel_SelectionChanged;
+            PictureSlideShowViewModel.SelectionChanged += ViewModel_SelectionChanged;
         }
 
-        private void PictureSlideShowViewModel_SelectionChanged(object sender, RoutedEventArgs e)
+        private void ViewModel_SelectionChanged(object sender, RoutedEventArgs e)
         {
             tmrSlider.Reset();
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             btnMoveRight.Focus();
-            tmrSlider.IsPaused = false;
+            tmrSlider.IsPaused = true;
         }
         private void tmrSlider_Completed(object sender, RoutedEventArgs e)
         {
-            if (PictureSlideShowViewModel.NextCommand.CanExecute(null))
-            {
-                PictureSlideShowViewModel.NextCommand.Execute(null);
-            }
+            Utils.RaiseCommand(PictureSlideShowViewModel.NextCommand, null);
         }
     }
 }

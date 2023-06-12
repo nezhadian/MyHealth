@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Imaging;
@@ -12,8 +15,38 @@ namespace MyHealth
 {
     class PictureSlideShowViewModel : ViewModelBase
     {
+        //Events
         public event RoutedEventHandler SelectionChanged;
-        public ObservableCollection<BitmapImage> ImageList { get; set; }
+
+        //Props
+
+        private BitmapImage[] _imgArray;
+        public BitmapImage[] ImageArray
+        {
+            get => _imgArray;
+            set
+            {
+                _imgArray = value;
+                OnPropertyChanged();
+
+                if(value.Length > 0)
+                    SelectedIndex = new Random().Next(0, ImageArray.Length);
+
+            }
+        }
+
+        private int _selIndex;
+        public int SelectedIndex
+        {
+            get => _selIndex;
+            set
+            {
+                _selIndex = value;
+                SelectedImage = ImageArray?[value];
+                SelectionChanged?.Invoke(this, null);
+                OnPropertyChanged();
+            }
+        }
 
         private BitmapImage _selImg;
         public BitmapImage SelectedImage
@@ -26,68 +59,80 @@ namespace MyHealth
             }
         }
 
-        private int _selIndex;
-        public int SelectedIndex
-        {
-            get => _selIndex;
-            set
-            {
-                _selIndex = value;
-                SelectedImage = ImageList[value];
-                SelectionChanged?.Invoke(this, null);
-                OnPropertyChanged();
-            }
-        }
-
-        private string _imgDir;
-        public string ImageDirectory
-        {
-            get => _imgDir;
-            set
-            {
-                //Dirrectory Info
-                DirectoryInfo dirInfo = new DirectoryInfo(value);
-
-                //Check if exists
-                if (!dirInfo.Exists)
-                    throw new DirectoryNotFoundException();
-
-                _imgDir = value;
-
-                //Get Images In Directory
-                ImageList = new ObservableCollection<BitmapImage>(
-                    dirInfo.EnumerateFiles().Select((i) => new BitmapImage(new Uri(i.FullName))));
-
-                //Set Properties
-                SelectedIndex = new Random().Next(0, ImageList.Count);
-                OnPropertyChanged();
-            }
-        }
-
+        //Commands
         public PictureSlideShowNextCommand NextCommand { get; set; }
         public PictureSlideShowPreviousCommand PreviousCommand { get; set; }
 
-        public PictureSlideShowViewModel(string imagePath)
+        //Privates Statics
+        public PictureSlideShowViewModel(string dirPath)
         {
-            ImageDirectory = imagePath;
+            ImageArray = new BitmapImage[0];
             NextCommand = new PictureSlideShowNextCommand(this);
             PreviousCommand = new PictureSlideShowPreviousCommand(this);
+
+            LoadDirectoryAsync(dirPath);
         }
 
+        //Load Images
+        private void LoadDirectoryAsync(string dirPath)
+        {
+
+            if (!Directory.Exists(dirPath))
+                throw new DirectoryNotFoundException();
+
+            Task.Run(() =>
+            {
+                
+                BitmapImage[] imgs = Directory.GetFiles(dirPath).Select((path) => LoadImage(path)).ToArray();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    ImageArray = imgs;
+                });
+
+
+            });
+        }
+
+        static Dictionary<string, BitmapImage> cache = new Dictionary<string, BitmapImage>();
+        private BitmapImage LoadImage(string imagePath)
+        {
+            if (cache.TryGetValue(imagePath, out BitmapImage img))
+                return img;
+
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.DecodePixelWidth = 600;
+            bi.CacheOption = BitmapCacheOption.None;
+            bi.UriSource = new Uri(imagePath);
+            bi.EndInit();
+            bi.Freeze();
+
+            cache.Add(imagePath, bi);
+            return bi;
+        }
+
+        //Navigation
         public void GoToNextIndex()
         {
+            if (ImageArray.Length == 0)
+                return;
+            
             int nextIndex = SelectedIndex;
             nextIndex++;
-            if (nextIndex >= ImageList.Count)
+            if (nextIndex >= ImageArray.Length)
                 nextIndex = 0;
             SelectedIndex = nextIndex;
         }
         public void BackToPreviousIndex()
         {
+            if (ImageArray.Length == 0)
+                return;
+
             int previousIndex = SelectedIndex;
             previousIndex--;
             if (previousIndex < 0)
-                previousIndex = ImageList.Count - 1;
+                previousIndex = ImageArray.Length - 1;
             SelectedIndex = previousIndex;
         }
     }
