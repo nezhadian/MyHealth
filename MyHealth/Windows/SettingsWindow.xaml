@@ -10,15 +10,10 @@
     Height="600"
     Background="{DynamicResource BackgroundColor}"
     Closing="Window_Closing"
+    IsVisibleChanged="Window_IsVisibleChanged"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Window.CommandBindings>
-        <CommandBinding
-            CanExecute="Save_CanExecute"
-            Command="{x:Static ApplicationCommands.Save}"
-            Executed="Save_Executed" />
-    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -45,13 +40,13 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
-                Command="{x:Static ApplicationCommands.Save}"
+                Click="Save_Click"
                 Content="Save"
                 Style="{StaticResource Buttons.CTA}" />
             <Button
                 Margin="10,0,0,0"
+                Click="Cancel_Click"
                 Content="Cancel"
-                IsCancel="True"
                 Style="{StaticResource Buttons.Secondary}" />
         </StackPanel>
     </Grid>

@@ -24,50 +24,65 @@ namespace MyHealth
             InitializeComponent();
         }
 
-        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            var savebles = tbcPages.Items.OfType<TabItem>().Select(i => i.Content).OfType<ISavebleSettingPage>().ToList();
-            var hasChangedItem = savebles.Any(i => i.IsChanged);
-            var hasUnSavbleItem = savebles.Any(i => i.IsChanged && !i.CanSave());
 
-            e.CanExecute = !hasChangedItem || !hasUnSavbleItem;
-        }
-        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
-            var savebles = tbcPages.Items.OfType<TabItem>().Select(i => i.Content).OfType<ISavebleSettingPage>().ToList();
-            savebles.ForEach(i =>
+            var tabItems = tbcPages.Items.OfType<TabItem>();
+
+            foreach (var tabItem in tabItems)
             {
-                if (i.IsChanged)
-                    i.SetValuesToAppSettings();
-            });
+                if(tabItem.Content is ISavebleSettingPage item)
+                {
+                    if (!item.IsChanged)
+                        continue;
+
+                    tabItem.IsSelected = true;
+
+                    if (item.CanSave())
+                        item.SetValuesToAppSettings();
+                    else
+                        return;
+                }
+            }
+
             AppSettings.SaveAsync();
-            DialogResult = true;
+            Hide();
+        }
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (IsVisible)
+            {
+                var savebles = tbcPages.Items.OfType<TabItem>().Select(i => i.Content).OfType<ISavebleSettingPage>().ToList();
+                savebles.ForEach((i) => i.Reset());
+            }
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (DialogResult == true)
-                return;
-
             var savebles = tbcPages.Items.OfType<TabItem>().Select(i => i.Content).OfType<ISavebleSettingPage>().ToList();
             var hasChangedItem = savebles.Any((i) => i.IsChanged);
 
             if (hasChangedItem)
             {
-                if (Utils.YesNoMessageBox("Cancel Settings", "there is Unsaved Changes do you want to clear them?","Clear All","Don`t Clear"))
+                var isClearAccepted = Utils.YesNoMessageBox("Cancel Settings", "there is Unsaved Changes do you want to clear them?", "Clear All", "Don`t Clear");
+                if (isClearAccepted)
                 {
-                    AppSettings.UndoAll();
-                    DialogResult = false;
+                    savebles.ForEach((i) => i.UndoChanges());
                 }
                 else
                 {
                     e.Cancel = true;
+                    return;
                 }
             }
-            else
-            {
-                DialogResult = false;
-            }
+
+            Hide();
+            e.Cancel = true;
         }
+
     }
 }

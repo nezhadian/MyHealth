@@ -3,6 +3,7 @@ using Hardcodet.Wpf.TaskbarNotification;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -29,13 +31,15 @@ namespace MyHealth
         public TaskListViewModel TaskListViewModel { get; set; }
         public StepListViewModel StepListViewModel { get; set; }
 
+        SettingsWindow settingsWin;
+
         public MainWindow()
         {
             TaskListViewModel = new TaskListViewModel();
             StepListViewModel = new StepListViewModel();
 
             AppSettings.Initialized += AppSettings_Initialized;
-            Task.Run(AppSettings.AsyncInit);
+            Task.Run(AppSettings.InitAsync);
 
             DataContext = this;
             InitializeComponent();
@@ -46,6 +50,7 @@ namespace MyHealth
         {
             TaskListViewModel.AddArrayToTaskList(AppSettings.Data.TaskList);
             StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
+            settingsWin = new SettingsWindow();
 
             AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
         }
@@ -55,7 +60,6 @@ namespace MyHealth
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
         }
 
-
         private void Timer_Completed(object sender, RoutedEventArgs e)
         {
             StepListViewModel.GoToNextStep();
@@ -63,8 +67,7 @@ namespace MyHealth
 
         private void mnuSettings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow win = new SettingsWindow();
-            win.ShowDialog();
+            settingsWin.Show();
         }
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
