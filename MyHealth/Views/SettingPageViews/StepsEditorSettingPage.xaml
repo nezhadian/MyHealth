@@ -47,7 +47,8 @@
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
             ItemsSource="{Binding StepList}"
             SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
-            SelectedItem="{Binding SelectedStep}" />
+            SelectedItem="{Binding SelectedStep}"
+            SelectionChanged="lstItems_SelectionChanged" />
 
         <!--  Properties  -->
         <Grid

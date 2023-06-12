@@ -102,7 +102,6 @@ namespace MyHealth
         {
             UserChangeValues();
         }
-
         private void UserChangeValues()
         {
             if(!isChangingTemplate)
@@ -112,6 +111,10 @@ namespace MyHealth
             isChangedFromLastTemplateChange = true;
         }
 
-
+        //Keep Focus When Item Deleted
+        private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (sender as ListBox).Focus();
+        }
     }
 }
