@@ -10,6 +10,8 @@ namespace MyHealth
         public void SetValuesToAppSettings();
         public bool CanSave();
         public void UndoChanges();
+        public void Reset();
+
 
     }
 }
