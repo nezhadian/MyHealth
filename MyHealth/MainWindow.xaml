@@ -67,17 +67,18 @@
                 <Menu HorizontalAlignment="Center" ItemContainerStyle="{StaticResource RibbonLikeMenuItemStyle}">
                     <!--  Reset btn  -->
                     <MenuItem
+                        Command="{Binding ElementName=tmrMain, Path=ResetCommand}"
                         Header="Reset"
                         Icon="{StaticResource RestartIcon}"
-                        ToolTip="Reset timer to zero" />
-                    <!--  Command="{Binding ElementName=tmrMain, Path=ResetCommand}"  -->
-                    <!--  Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />  -->
+                        ToolTip="Reset timer to zero"
+                        Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
 
                     <!--  Play and Pause btn  -->
-                    <MenuItem Style="{StaticResource PlayPauseMenuItem.Style}" ToolTip="Pause/Continue Timer" />
-                    <!--  IsChecked="{Binding IsPaused, ElementName=tmrMain}"  -->
-                    <!--  Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />  -->
-
+                    <MenuItem
+                        IsChecked="{Binding IsPaused, ElementName=tmrMain}"
+                        Style="{StaticResource PlayPauseMenuItem.Style}"
+                        ToolTip="Pause/Continue Timer"
+                        Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
                     <!--  Settings btn  -->
                     <MenuItem
                         Click="mnuSettings_Click"
