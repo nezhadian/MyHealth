@@ -77,7 +77,7 @@ namespace MyHealth
         {
             timerBase = new DispatcherTimer()
             {
-                Interval = new TimeSpan(10000),
+                Interval = new TimeSpan(0,0,0,0,900),
                 IsEnabled = true
             };
             timerBase.Tick += Updater_Tick;
