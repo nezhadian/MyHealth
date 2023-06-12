@@ -9,5 +9,7 @@ namespace MyHealth
         public bool IsChanged { get; set; }
         public void SetValuesToAppSettings();
         public bool CanSave();
+        public void UndoChanges();
+
     }
 }
