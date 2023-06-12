@@ -29,6 +29,10 @@ namespace MyHealth
         {
             AppSettings.UndoAll();
         }
+        public void Reset()
+        {
+            IsChanged = false;
+        }
 
         //ctor
         public GeneralSettingPage()
