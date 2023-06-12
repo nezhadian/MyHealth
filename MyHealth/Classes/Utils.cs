@@ -1,4 +1,6 @@
 ﻿using AdonisUI.Controls;
+using System.Windows.Input;
+
 namespace MyHealth
 {
     internal class Utils
@@ -16,6 +18,16 @@ namespace MyHealth
             model.Caption = caption;
             
             return MessageBoxResult.Yes == MessageBox.Show(model);
+        }
+
+        public static bool RaiseCommand(ICommand command,object param)
+        {
+            if (command.CanExecute(param))
+            {
+                command.Execute(param);
+                return true;
+            }
+            return false;
         }
     }
 }
