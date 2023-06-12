@@ -18,10 +18,16 @@ namespace MyHealth
     {
         public bool IsChanged { get; set; }
         public void SetValuesToAppSettings() { }
-
         public bool CanSave()
         {
-            return AppSettings.CanSave();
+            if (tscImageSliderDelay.TimeSpan == TimeSpan.Zero)
+                tscImageSliderDelay.TimeSpan = new TimeSpan(0, 0, 5);
+
+            return true;
+        }
+        public void UndoChanges()
+        {
+            AppSettings.UndoAll();
         }
 
         //ctor
@@ -29,7 +35,6 @@ namespace MyHealth
         {
             DataContext = AppSettings.Data;
             InitializeComponent();
-            IsChanged = false;
         }
 
         //Open Folder Buttons
@@ -68,5 +73,7 @@ namespace MyHealth
         {
             IsChanged = true;
         }
+
+
     }
 }
