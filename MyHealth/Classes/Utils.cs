@@ -5,6 +5,11 @@ namespace MyHealth
 {
     internal class Utils
     {
+        public static void InfoMessageBox(string caption,string message)
+        {
+            MessageBox.Show(message, caption, MessageBoxButton.OK);
+
+        }
         public static bool YesNoMessageBox(string caption, string message,string yesLabel = "Yes",string noLabel = "No")
         {
             MessageBoxModel model = new MessageBoxModel();
