@@ -87,7 +87,6 @@ namespace MyHealth
                 stream = File.OpenWrite(DataFilePath);
                 stream.SetLength(0);
                 xml.Serialize(stream, Data);
-
                 Data.OnSaved();
 
             }
@@ -95,6 +94,40 @@ namespace MyHealth
             {
                 stream?.Close();
             }
+        }
+
+        static CancellationTokenSource ctsSave = new CancellationTokenSource();
+        public static void SaveAsync()
+        {
+            ctsSave?.Cancel();
+
+            Thread thSave = new Thread(new ParameterizedThreadStart((obj) => {
+                CancellationToken token = (CancellationToken)obj;
+
+                FileStream stream = null;
+                XmlSerializer xml = new XmlSerializer(Data.GetType());
+                try
+                {
+                    token.Register(() =>
+                    {
+                        stream?.Close();
+                    });
+
+                    stream = File.OpenWrite(DataFilePath);
+                    xml.Serialize(stream, Data);
+                    stream.SetLength(stream.Position);
+
+                    Application.Current.Dispatcher.Invoke(Data.OnSaved);
+
+                }
+                finally
+                {
+                    stream?.Close();
+                }
+
+            }));
+
+            thSave.Start(ctsSave.Token);
         }
 
         public static void UndoAll()
