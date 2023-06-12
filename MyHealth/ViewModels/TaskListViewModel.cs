@@ -40,8 +40,7 @@ namespace MyHealth
         //ctor
         public TaskListViewModel()
         {
-            TaskList = new ObservableCollection<TaskView>(AppSettings.Data.TaskList);
-            Array.ForEach(AppSettings.Data.TaskList, (i) => i.PropertyChanged += OnTaskChanged);
+            TaskList = new ObservableCollection<TaskView>();
 
             AddTaskCommand = new TaskListAddTaskCommand(this);
             SaveCommand = new TaskListSaveCommand(this);
@@ -49,6 +48,7 @@ namespace MyHealth
 
             TaskListDropHandler = new TaskListDropHandler();
         }
+
 
         //Methods
         public void CreateNewTask(string title)
@@ -64,6 +64,15 @@ namespace MyHealth
         {
             TaskList.Remove(SelectedTask);
             SaveTaskList();
+        }
+
+        public void AddArrayToTaskList(TaskView[] array)
+        {
+            foreach (var item in array)
+            {
+                TaskList.Add(item);
+                item.PropertyChanged += OnTaskChanged;
+            }
         }
 
         private void OnTaskChanged(object sender, PropertyChangedEventArgs e)
