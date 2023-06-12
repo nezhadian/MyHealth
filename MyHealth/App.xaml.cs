@@ -22,6 +22,9 @@ namespace MyHealth
             get => System.IO.File.Exists(GetStartupShortcutPath());
             set
             {
+                if (value == StartAtStartup)
+                    return;
+
                 if (value)
                     CreateStartupFile();
                 else
