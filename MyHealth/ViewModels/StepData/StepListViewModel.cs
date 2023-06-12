@@ -14,6 +14,7 @@ namespace MyHealth
             {
                 _stepsArray = value;
                 OnPropertyChanged();
+                SelectedStepIndex = 0;
             }
         }
 
@@ -22,31 +23,20 @@ namespace MyHealth
 
         public StepListViewModel()
         {
+            StepsArray = new StepData[0];
             IgnoreSeperatorsCommand = new StepListIgnoreSeperatorsCommand(this);
             ClickCommand = new StepListClickCommand(this);
-
-            AppSettings.Data.PropertyChanged += Data_PropertyChanged;
-        }
-
-        private void Data_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
-            {
-                ReloadStepsFromSettings();
-            }
-        }
-
-        public void ReloadStepsFromSettings()
-        {
-            StepsArray = AppSettings.Data.StepDataList;
-            SelectedStepIndex = 0;
         }
         public void GoToNextStep()
         {
-            int curIndex = SelectedStepIndex;
-            curIndex++;
-            curIndex %= StepsArray.Length;
-            SelectedStepIndex = curIndex;
+            if (StepsArray.Length == 0)
+                return;
+
+            int nextIndex = SelectedStepIndex;
+            nextIndex++;
+            if (nextIndex >= StepsArray.Length)
+                nextIndex = 0;
+            SelectedStepIndex = nextIndex;
         }
     }
 
