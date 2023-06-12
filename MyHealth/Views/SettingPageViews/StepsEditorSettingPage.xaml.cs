@@ -32,7 +32,21 @@ namespace MyHealth
                 item.StepType != StepData.StepTypes.FreshStart &&
                 item.StepType != StepData.StepTypes.Seperator);
 
-            return effectiveSteps > 0;
+            bool canSave = effectiveSteps > 0;
+
+            if (!canSave)
+            {
+                Utils.InfoMessageBox("Steps Editor","there is no effective Steps ");
+            }
+
+            return canSave;
+        }
+        public void UndoChanges() { }
+        public void Reset()
+        {
+            StepsEditorViewModel.SetStepListFromArray(AppSettings.Data.StepDataList);
+            IsChanged = false;
+
         }
 
         //fields
@@ -47,7 +61,6 @@ namespace MyHealth
             DataContext = StepsEditorViewModel;
             InitializeComponent();
 
-            StepsEditorViewModel.SetStepListFromArray(AppSettings.Data.StepDataList);
             StepsEditorViewModel.StepList.CollectionChanged += StepList_CollectionChanged;
         }
 
@@ -98,5 +111,7 @@ namespace MyHealth
             IsChanged = true;
             isChangedFromLastTemplateChange = true;
         }
+
+
     }
 }
