@@ -36,7 +36,7 @@ namespace MyHealth
             Initialized?.Invoke(null, null);
             isInitialized = true;
         }
-        public static void AsyncInit()
+        public static void InitAsync()
         {
             if (isInitialized)
                 return;
@@ -46,11 +46,6 @@ namespace MyHealth
 
             Application.Current.Dispatcher.Invoke(delegate { Initialized?.Invoke(null, null); });
             isInitialized = true;
-        }
-
-        internal static bool CanSave()
-        {
-            return Data.ValidateAll();
         }
 
         static void Load()
@@ -196,14 +191,6 @@ namespace MyHealth
             App.StartAtStartup = StartAtStartup;
         }
 
-        public override bool ValidateAll()
-        {
-            return FreshStartBgColor.A == 0xff && 
-                ShortBreakBgColor.A == 0xff && 
-                ImageSliderDelay != TimeSpan.Zero;
-        }
-
-
         //Arrays
         private TaskView[] _taskList;
         public TaskView[] TaskList
@@ -293,8 +280,6 @@ namespace MyHealth
                 item.Value.Init();
             }
         }
-
-        public abstract bool ValidateAll();
     }
     public class SettingItem
     {
