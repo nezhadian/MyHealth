@@ -74,16 +74,31 @@ namespace MyHealth
         }
 
         //Load Images
+        static CancellationTokenSource ctsLoading;
         private void LoadDirectoryAsync(string dirPath)
-        {
-
+        {   
             if (!Directory.Exists(dirPath))
                 throw new DirectoryNotFoundException();
 
+            ctsLoading?.Cancel();
+            ctsLoading = new CancellationTokenSource();
+
             Task.Run(() =>
             {
-                
-                BitmapImage[] imgs = Directory.GetFiles(dirPath).Select((path) => LoadImage(path)).ToArray();
+
+                CancellationToken cancelToken = ctsLoading.Token;
+
+                string[] fileAddresses = Directory.GetFiles(dirPath);
+                BitmapImage[] imgs = new BitmapImage[fileAddresses.Length];
+
+                for (int i = 0; i < fileAddresses.Length && !cancelToken.IsCancellationRequested; i++)
+                {
+                    string path = fileAddresses[i];
+                    imgs[i] = LoadImage(path);
+                }
+
+                if (cancelToken.IsCancellationRequested)
+                    return;
 
                 Application.Current.Dispatcher.Invoke(() =>
                 {
