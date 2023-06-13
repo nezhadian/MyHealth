@@ -28,15 +28,11 @@ namespace MyHealth
             InitializeComponent();
         }
 
-        SoundPlayer sp;
+        static SoundPlayer sp;
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                LoadAndPlaySoundAsync();
-            }catch { }
-            Background = new SolidColorBrush(AppSettings.Data.FreshStartBgColor);
+            LoadAndPlaySoundAsync();
         }
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
@@ -47,9 +43,22 @@ namespace MyHealth
         {
             Task.Run(delegate
             {
-                sp = new SoundPlayer(App.GetAssetsPath("Songs", "alarm.wav"));
-                sp.Load();
-                sp.PlayLooping();
+                try
+                {
+                    if (sp == null)
+                    {
+                        sp = new SoundPlayer(App.GetAssetsPath("Songs", "alarm.wav"));
+                        sp.Load();
+                    }
+                    sp.PlayLooping();
+
+                }
+                catch (Exception ex)
+                {
+                    Utils.InfoMessageBox("Loading Alarm", $"Error in Loading : {ex.Message}");
+                }
+
+
             });
         }
         private void StopSoundAsync()
