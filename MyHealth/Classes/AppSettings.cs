@@ -91,13 +91,15 @@ namespace MyHealth
             }
         }
 
-        static CancellationTokenSource ctsSave = new CancellationTokenSource();
+        static CancellationTokenSource ctsSave;
         public static void SaveAsync()
         {
             ctsSave?.Cancel();
+            ctsSave = new CancellationTokenSource();
 
-            Thread thSave = new Thread(new ParameterizedThreadStart((obj) => {
-                CancellationToken token = (CancellationToken)obj;
+            Thread thSave = new Thread(() => {
+
+                CancellationToken token = ctsSave.Token;
 
                 FileStream stream = null;
                 XmlSerializer xml = new XmlSerializer(Data.GetType());
@@ -120,7 +122,7 @@ namespace MyHealth
                     stream?.Close();
                 }
 
-            }));
+            });
 
             thSave.Start(ctsSave.Token);
         }
