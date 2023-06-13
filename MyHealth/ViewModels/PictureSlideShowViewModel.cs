@@ -123,7 +123,7 @@ namespace MyHealth
             bi.EndInit();
             bi.Freeze();
 
-            cache.Add(imagePath, bi);
+            cache[imagePath] = bi;
             return bi;
         }
 
