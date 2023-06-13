@@ -124,7 +124,7 @@ namespace MyHealth
 
             });
 
-            thSave.Start(ctsSave.Token);
+            thSave.Start();
         }
 
         public static void UndoAll()
