@@ -8,7 +8,7 @@
     Title="ShortBreak"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    Background="{Binding ShortBreakBgColor, Mode=TwoWay, Converter={StaticResource Color2SolidColorBrushConverter}}"
+    Background="{Binding ShortBreakBgColor, Source={x:Static local:AppSettings.Data}, Mode=TwoWay, Converter={StaticResource Color2SolidColorBrushConverter}}"
     mc:Ignorable="d">
 
     <Grid>
@@ -16,6 +16,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Style="{StaticResource Texts.PageTitle.Negative}"
-            Text="{Binding Title}" />
+            Text="{Binding StepName}" />
     </Grid>
 </Page>

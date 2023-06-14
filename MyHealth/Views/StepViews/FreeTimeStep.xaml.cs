@@ -23,14 +23,13 @@ namespace MyHealth
     {
         public FreeTimeStep()
         {
-            DataContext = AppSettings.Data;
             InitializeComponent();
         }
 
         public FreeTimeStep(StepData step)
             :this()
         {
-            Title = step.StepName;
+            DataContext = step;
         }
     }
 }
