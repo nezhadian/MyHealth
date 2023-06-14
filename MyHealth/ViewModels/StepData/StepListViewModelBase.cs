@@ -6,7 +6,7 @@ namespace MyHealth
     {
 
         private StepData _selStep;
-        public StepData SelectedStep
+        public virtual StepData SelectedStep
         {
             get => _selStep;
             set
@@ -17,7 +17,7 @@ namespace MyHealth
         }
 
         private int _selStepIndex;
-        public int SelectedStepIndex
+        public virtual int SelectedStepIndex
         {
             get => _selStepIndex;
             set

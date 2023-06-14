@@ -9,6 +9,16 @@ namespace MyHealth
     {
         public ObservableCollection<StepData> StepList { get; set; }
 
+        public override int SelectedStepIndex
+        {
+            get => base.SelectedStepIndex;
+            set
+            {
+                base.SelectedStepIndex = value;
+                DeleteCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         public StepsEditorNewCommand NewCommand { get; set; }
         public StepsEditorDeleteCommand DeleteCommand { get; set; }
 
@@ -62,13 +72,11 @@ namespace MyHealth
 
         public override bool CanExecute(StepsEditorViewModel context, object parameter)
         {
-            return true;
+            return context.SelectedStepIndex != -1;
         }
 
         public override void Execute(StepsEditorViewModel context, object parameter)
         {
-            if (context.SelectedStepIndex == -1)
-                return;
 
             int selIndex = context.SelectedStepIndex;
             context.StepList.RemoveAt(selIndex);
