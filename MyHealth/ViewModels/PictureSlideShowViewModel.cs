@@ -118,7 +118,7 @@ namespace MyHealth
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
             bi.DecodePixelWidth = 600;
-            bi.CacheOption = BitmapCacheOption.None;
+            bi.CacheOption = BitmapCacheOption.OnLoad;
             bi.UriSource = new Uri(imagePath);
             bi.EndInit();
             bi.Freeze();
