@@ -8,7 +8,7 @@
 
         <!--  Expander Height Anim  -->
         <DoubleAnimation
-            BeginTime="0:0:2"
+            BeginTime="0:0:1.2"
             Storyboard.TargetName="dockScale"
             Storyboard.TargetProperty="ScaleY"
             To="0"
@@ -16,7 +16,7 @@
 
         <!--  Expander Width Anim  -->
         <DoubleAnimation
-            BeginTime="0:0:2"
+            BeginTime="0:0:1.2"
             Storyboard.TargetName="dockScale"
             Storyboard.TargetProperty="ScaleX"
             To="0"
@@ -24,7 +24,7 @@
 
         <!--  Expander Opacity Anim  -->
         <DoubleAnimation
-            BeginTime="0:0:2"
+            BeginTime="0:0:1.2"
             Storyboard.TargetName="dock"
             Storyboard.TargetProperty="Opacity"
             To="0"
@@ -32,7 +32,7 @@
 
         <!--  Timer Border Opacity  -->
         <DoubleAnimation
-            BeginTime="0:0:2"
+            BeginTime="0:0:1.2"
             Storyboard.TargetName="dockBorder"
             Storyboard.TargetProperty="Background.Opacity"
             To="0.3"
@@ -124,7 +124,10 @@
                 <ControlTemplate TargetType="local:DockedWindow">
                     <Grid Background="{TemplateBinding Background}">
                         <!--  Content  -->
-                        <Grid Grid.Row="3" Grid.ColumnSpan="3">
+                        <Grid
+                            x:Name="grdContent"
+                            Grid.Row="3"
+                            Grid.ColumnSpan="3">
                             <ContentPresenter />
                         </Grid>
 
@@ -169,11 +172,14 @@
                                 <RemoveStoryboard BeginStoryboardName="beginCollapse" />
                                 <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
                             </Trigger.EnterActions>
-                            <Trigger.ExitActions>
+                        </Trigger>
+
+                        <Trigger SourceName="grdContent" Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
                                 <BeginStoryboard x:Name="beginDelayedCollapse" Storyboard="{StaticResource DelayedCollapseStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginCollapse" />
                                 <RemoveStoryboard BeginStoryboardName="beginExpand" />
-                            </Trigger.ExitActions>
+                            </Trigger.EnterActions>
                         </Trigger>
 
                         <MultiTrigger>
