@@ -31,15 +31,19 @@ namespace MyHealth
         public TaskListViewModel TaskListViewModel { get; set; }
         public StepListViewModel StepListViewModel { get; set; }
 
-        SettingsWindow settingsWin;
+        SettingsWindow settingsWin = new SettingsWindow();
 
         public MainWindow()
         {
             TaskListViewModel = new TaskListViewModel();
             StepListViewModel = new StepListViewModel();
 
-            AppSettings.Initialized += AppSettings_Initialized;
-            Task.Run(AppSettings.InitAsync);
+            if (AppSettings.IsInitialized)
+                AppSettings_Initialized(null, null);
+            else
+                AppSettings.Initialized += AppSettings_Initialized;
+
+            AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
 
             DataContext = this;
             InitializeComponent();
@@ -50,15 +54,13 @@ namespace MyHealth
         {
             TaskListViewModel.AddArrayToTaskList(AppSettings.Data.TaskList);
             StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
-            settingsWin = new SettingsWindow();
-
-            AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
         }
         private void AppSettings_Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
         }
+
 
         private void Timer_Completed(object sender, RoutedEventArgs e)
         {
