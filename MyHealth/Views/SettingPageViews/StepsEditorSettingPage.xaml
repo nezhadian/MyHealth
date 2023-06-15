@@ -15,6 +15,10 @@
         <KeyBinding Command="{Binding DeleteCommand}" Gesture="Delete" />
     </UserControl.InputBindings>
 
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="StepsListEditorCollectionView" Source="{Binding StepList}" />
+    </UserControl.Resources>
+
     <Grid Margin="20">
         <!--  rows  -->
         <Grid.RowDefinitions>
@@ -45,7 +49,7 @@
             dragdrop:DragDrop.IsDropTarget="True"
             dragdrop:DragDrop.SelectDroppedItems="True"
             ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
-            ItemsSource="{Binding StepList}"
+            ItemsSource="{Binding Source={StaticResource StepsListEditorCollectionView}}"
             SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
             SelectedItem="{Binding SelectedStep}"
             SelectionChanged="lstItems_SelectionChanged" />
