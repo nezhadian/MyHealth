@@ -142,6 +142,7 @@ namespace MyHealth
             {nameof(FreshStartBgColor), new SettingItem(Color.FromRgb(0x00, 0x80, 0x00)) },
             {nameof(ShortBreakBgColor), new SettingItem(Color.FromRgb(0x00, 0x00, 0x00)) },
             {nameof(ImageSliderDelay), new SettingItem(TimeSpan.FromSeconds(20))},
+            {nameof(GoOnTaskbar), new SettingItem(false) },
             {nameof(StartAtStartup), new SettingItem(true) },
         };
 
@@ -170,7 +171,15 @@ namespace MyHealth
                 SetPropertyValue(value);
             }
         }
-        
+
+        public bool GoOnTaskbar
+        {
+            get => (bool)GetPropertyValue();
+            set
+            {
+                SetPropertyValue(value);
+            }
+        }
 
 
         //dynamic Values
