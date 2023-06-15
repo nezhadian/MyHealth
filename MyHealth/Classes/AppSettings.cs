@@ -56,7 +56,8 @@ namespace MyHealth
                 stream = File.OpenRead(DataFilePath);
                 XmlSerializer xml = new XmlSerializer(Data.GetType());
 
-                Data = (MyHealthSettings)xml.Deserialize(stream);
+                var loadedData = (MyHealthSettings)xml.Deserialize(stream);
+                Data.SetData(loadedData);
                 Data.OnLoaded();
             }
             catch
@@ -147,39 +148,38 @@ namespace MyHealth
         //Settings
         public Color FreshStartBgColor
         {
-            get => (Color)GetMyValue();
+            get => (Color)GetPropertyValue();
             set
             {
-                SetMyValue(value);
+                SetPropertyValue(value);
             }
         }
         public Color ShortBreakBgColor
         {
-            get => (Color)GetMyValue();
+            get => (Color)GetPropertyValue();
             set
             {
-                SetMyValue(value);
+                SetPropertyValue(value);
             }
         }
         public TimeSpan ImageSliderDelay
         {
-            get => (TimeSpan)GetMyValue();
+            get => (TimeSpan)GetPropertyValue();
             set
             {
-                SetMyValue(value);
+                SetPropertyValue(value);
             }
         }
+        
 
-
-        public bool IsFirstRun { get; set; }
 
         //dynamic Values
         public bool StartAtStartup
         {
-            get => (bool)GetMyValue();
+            get => (bool)GetPropertyValue();
             set
             {
-                SetMyValue(value);
+                SetPropertyValue(value);
             }
         }
         public override void OnLoaded()
@@ -231,7 +231,7 @@ namespace MyHealth
         [XmlIgnore]
         protected abstract Dictionary<string, SettingItem> Variables { set; get; }
 
-        protected virtual object GetMyValue([CallerMemberName] string propertyName = null)
+        protected virtual object GetPropertyValue([CallerMemberName] string propertyName = null)
         {
             if(Variables.TryGetValue(propertyName,out SettingItem item))
             {
@@ -239,7 +239,7 @@ namespace MyHealth
             }
             return null;
         }
-        protected virtual void SetMyValue(object value, [CallerMemberName] string propertyName = null)
+        protected virtual void SetPropertyValue(object value, [CallerMemberName] string propertyName = null)
         {
             if (Variables.TryGetValue(propertyName, out SettingItem item))
             {
@@ -273,6 +273,15 @@ namespace MyHealth
             foreach (var item in Variables)
             {
                 item.Value.ClearPreviousValue();
+            }
+        }
+
+
+        public void SetData(SettingData data)
+        {
+            foreach (var item in data.Variables)
+            {
+                SetPropertyValue(item.Value.Value,item.Key);
             }
         }
         public virtual void OnLoaded()
