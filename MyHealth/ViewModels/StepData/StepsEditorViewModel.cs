@@ -16,6 +16,7 @@ namespace MyHealth
             {
                 base.SelectedStepIndex = value;
                 DeleteCommand.RaiseCanExecuteChanged();
+                NewCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -47,7 +48,7 @@ namespace MyHealth
 
         public override bool CanExecute(StepsEditorViewModel context, object parameter)
         {
-            return true;
+            return context.StepList.Count < 100;
         }
 
         public override void Execute(StepsEditorViewModel context, object parameter)
