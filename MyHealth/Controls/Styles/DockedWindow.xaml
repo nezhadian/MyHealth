@@ -119,49 +119,49 @@
         <Setter Property="Topmost" Value="True" />
         <Setter Property="WindowState" Value="Maximized" />
         <Setter Property="WindowStyle" Value="None" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DockedWindow">
-                    <Grid Background="{TemplateBinding Background}">
-                        <!--  Content  -->
-                        <Grid
-                            x:Name="grdContent"
-                            Grid.Row="3"
-                            Grid.ColumnSpan="3">
-                            <ContentPresenter />
-                        </Grid>
-
-                        <!--  Dock  -->
-                        <Border
-                            x:Name="dockBorder"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Bottom"
-                            Style="{StaticResource Dock.Border}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-
-
-                                <Grid
-                                    x:Name="dock"
-                                    MinWidth="{TemplateBinding DockMinWidth}"
-                                    MinHeight="{TemplateBinding DockMinHeight}"
-                                    MaxWidth="{TemplateBinding DockMaxWidth}"
-                                    MaxHeight="{TemplateBinding DockMaxHeight}">
-                                    <ContentPresenter Content="{TemplateBinding Dock}" />
-
-                                    <Grid.LayoutTransform>
-                                        <ScaleTransform x:Name="dockScale" ScaleX="1" ScaleY="1" />
-                                    </Grid.LayoutTransform>
-                                </Grid>
-
-                                <Grid Grid.Row="1">
-                                    <ContentPresenter Content="{TemplateBinding ConstantDockPart}" />
-                                </Grid>
+                    <Grid x:Name="root" Background="{TemplateBinding Background}">
+                        <Grid x:Name="contentContainer">
+                            <!--  Content  -->
+                            <Grid x:Name="grdContent">
+                                <ContentPresenter />
                             </Grid>
-                        </Border>
+
+                            <!--  Dock  -->
+                            <Border
+                                x:Name="dockBorder"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Bottom"
+                                Style="{StaticResource Dock.Border}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+
+                                    <Grid
+                                        x:Name="dock"
+                                        MinWidth="{TemplateBinding DockMinWidth}"
+                                        MinHeight="{TemplateBinding DockMinHeight}"
+                                        MaxWidth="{TemplateBinding DockMaxWidth}"
+                                        MaxHeight="{TemplateBinding DockMaxHeight}">
+                                        <ContentPresenter Content="{TemplateBinding Dock}" />
+
+                                        <Grid.LayoutTransform>
+                                            <ScaleTransform x:Name="dockScale" ScaleX="1" ScaleY="1" />
+                                        </Grid.LayoutTransform>
+                                    </Grid>
+
+                                    <Grid Grid.Row="1">
+                                        <ContentPresenter Content="{TemplateBinding ConstantDockPart}" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Grid>
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -193,6 +193,12 @@
                                 <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
                             </MultiTrigger.EnterActions>
                         </MultiTrigger>
+
+                        <Trigger Property="GoOnTaskbar" Value="true">
+                            <Setter TargetName="root" Property="VerticalAlignment" Value="Top" />
+                            <Setter TargetName="root" Property="Height" Value="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" />
+                            <Setter TargetName="contentContainer" Property="Margin" Value="0,0,0,16" />
+                        </Trigger>
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

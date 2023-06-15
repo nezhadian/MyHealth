@@ -54,5 +54,18 @@ namespace MyHealth
             get { return (double)GetValue(DockMaxWidthProperty); }
             set { SetValue(DockMaxWidthProperty, value); }
         }
+
+
+
+        public bool GoOnTaskbar
+        {
+            get { return (bool)GetValue(GoOnTaskbarProperty); }
+            set { SetValue(GoOnTaskbarProperty, value); }
+        }
+        public static readonly DependencyProperty GoOnTaskbarProperty =
+            DependencyProperty.Register("GoOnTaskbar", typeof(bool), typeof(DockedWindow), new PropertyMetadata(false));
+
+
+
     }
 }
