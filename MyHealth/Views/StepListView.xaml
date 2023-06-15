@@ -33,17 +33,24 @@
     </Style>
 
     <DataTemplate DataType="{x:Type local:StepListViewModel}">
-        <ListBox
-            ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
-            ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
-            ItemsSource="{Binding StepsArray}"
-            SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
-            SelectedItem="{Binding SelectedStep, Mode=TwoWay}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding IgnoreSeperatorsCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </ListBox>
+        <Grid>
+            <Grid.Resources>
+                <CollectionViewSource x:Key="StepListCollectionView" Source="{Binding StepsArray}" />
+
+            </Grid.Resources>
+            <ListBox
+                ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
+                ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
+                ItemsSource="{Binding Source={StaticResource StepListCollectionView}}"
+                SelectedIndex="{Binding SelectedStepIndex, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedStep, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding IgnoreSeperatorsCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+        </Grid>
+
     </DataTemplate>
 </ResourceDictionary>
