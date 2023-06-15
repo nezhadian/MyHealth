@@ -1,4 +1,5 @@
 ﻿using AdonisUI.Controls;
+using System;
 using System.Windows.Input;
 
 namespace MyHealth
@@ -33,6 +34,16 @@ namespace MyHealth
                 return true;
             }
             return false;
+        }
+
+        internal static void MatchPropertiesValue<T>(T sourceObject, T targetObject)
+        {
+            foreach (var item in targetObject.GetType().GetProperties())
+            {
+                var propertySetMethod = item.GetSetMethod();
+                var value = item.GetGetMethod().Invoke(sourceObject, null);
+                propertySetMethod.Invoke(targetObject, new object[] { value });
+            }
         }
     }
 }
