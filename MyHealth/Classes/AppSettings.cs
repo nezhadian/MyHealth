@@ -46,15 +46,10 @@ namespace MyHealth
 
                 var loadedData = (MyHealthSettings)xml.Deserialize(stream);
 
-                foreach (var item in Data.GetType().GetProperties())
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var propertySetMethod = item.GetSetMethod();
-                    var value = item.GetGetMethod().Invoke(loadedData, null);
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        propertySetMethod.Invoke(Data, new object[] { value });
-                    });
-                }
+                    Utils.MatchPropertiesValue(loadedData, Data);
+                });
 
                 Data.OnLoaded();
             }
