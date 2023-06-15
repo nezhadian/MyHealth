@@ -58,6 +58,7 @@ namespace MyHealth
         {
             base.OnStartup(e);
             Environment.CurrentDirectory = new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName;
+            AppSettings.Init();
         }
 
         public static string GetAssetsPath(string path)
