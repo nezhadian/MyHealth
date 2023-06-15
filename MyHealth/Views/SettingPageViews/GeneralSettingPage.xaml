@@ -35,21 +35,32 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="5" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+
                 </Grid.RowDefinitions>
 
                 <!--  Start At Startup CheckBox  -->
                 <CheckBox IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}" SourceUpdated="Controls_SourceUpdated">Start At Startup</CheckBox>
 
+                <!--  Go on Taskbar CheckBox  -->
+                <CheckBox
+                    Grid.Row="2"
+                    IsChecked="{Binding GoOnTaskbar, NotifyOnSourceUpdated=True, Mode=TwoWay}"
+                    SourceUpdated="Controls_SourceUpdated">
+                    Go on Taskbar
+                </CheckBox>
+
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
-                    Grid.Row="2"
+                    Grid.Row="4"
                     SourceUpdated="Controls_SourceUpdated"
                     Text="Fresh Start Background Color"
                     Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector
-                    Grid.Row="4"
+                    Grid.Row="6"
                     SourceUpdated="Controls_SourceUpdated"
                     Text="Short Break Background Color"
                     Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
