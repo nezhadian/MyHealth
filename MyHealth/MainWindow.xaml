@@ -11,6 +11,7 @@
     Title="MainWindow"
     d:Height="768"
     d:Width="1366"
+    GoOnTaskbar="{Binding Source={x:Static local:AppSettings.Data}, Path=GoOnTaskbar}"
     Style="{StaticResource {x:Type local:DockedWindow}}"
     mc:Ignorable="d">
 
