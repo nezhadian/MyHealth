@@ -97,7 +97,11 @@ namespace MyHealth
         }
 
         //Changes Detection
-        private void OnPropertiesChanged(object sender, DataTransferEventArgs e) => UserChangeValues();
+        private void OnPropertiesChanged(object sender, DataTransferEventArgs e)
+        {
+            UserChangeValues();
+        }
+
         private void StepList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UserChangeValues();
@@ -115,6 +119,37 @@ namespace MyHealth
         private void lstItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             (sender as ListBox).Focus();
+        }
+
+        private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cboStepType.SelectedItem)
+            {
+                case StepData.StepTypes.WorkTime:
+                case StepData.StepTypes.ShortBreak:
+                    stkStepName.Visibility = Visibility.Visible;
+                    stkDuration.Visibility = Visibility.Visible;
+                    stkImageList.Visibility = Visibility.Collapsed;
+                    break;
+
+                case StepData.StepTypes.ImageSlider:
+                    stkStepName.Visibility = Visibility.Visible;
+                    stkDuration.Visibility = Visibility.Visible;
+                    stkImageList.Visibility = Visibility.Visible;
+                    break;
+
+                case StepData.StepTypes.FreshStart:
+                    stkStepName.Visibility = Visibility.Visible;
+                    stkDuration.Visibility = Visibility.Collapsed;
+                    stkImageList.Visibility = Visibility.Collapsed;
+                    break;
+
+                default:
+                    stkStepName.Visibility = Visibility.Collapsed;
+                    stkDuration.Visibility = Visibility.Collapsed;
+                    stkImageList.Visibility = Visibility.Collapsed;
+                    break;
+            }
         }
     }
 }
