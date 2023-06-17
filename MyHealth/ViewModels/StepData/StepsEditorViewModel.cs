@@ -7,7 +7,7 @@ namespace MyHealth
 {
     public class StepsEditorViewModel : StepListViewModelBase
     {
-        public ObservableCollection<StepData> StepList { get; set; }
+        public MyObservableCollection<StepData> StepList { get; set; }
 
         public override int SelectedStepIndex
         {
@@ -25,7 +25,7 @@ namespace MyHealth
 
         public StepsEditorViewModel()
         {
-            StepList = new System.Collections.ObjectModel.ObservableCollection<StepData>();
+            StepList = new MyObservableCollection<StepData>();
 
             NewCommand = new StepsEditorNewCommand(this);
             DeleteCommand = new StepsEditorDeleteCommand(this);
@@ -33,11 +33,7 @@ namespace MyHealth
         internal void SetStepListFromArray(StepData[] collection)
         {
             StepList.Clear();
-
-            foreach (var item in collection)
-            {
-                StepList.Add((StepData)item.Clone());
-            }
+            StepList.AddRange(collection);
 
             SelectedStepIndex = 0;
         }
