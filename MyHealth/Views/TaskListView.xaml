@@ -56,8 +56,7 @@
                 <CollectionViewSource
                     x:Key="TaskListCollectionView"
                     IsLiveGroupingRequested="True"
-                    IsLiveSortingRequested="True"
-                    Source="{Binding TaskList}">
+                    Source="{Binding TaskList, IsAsync=True}">
                     <CollectionViewSource.GroupDescriptions>
                         <PropertyGroupDescription PropertyName="Grouping">
                             <PropertyGroupDescription.SortDescriptions>
@@ -67,6 +66,7 @@
                     </CollectionViewSource.GroupDescriptions>
                 </CollectionViewSource>
             </Grid.Resources>
+
 
             <ListBox
                 dragdrop:DragDrop.DropHandler="{Binding TaskListDropHandler}"

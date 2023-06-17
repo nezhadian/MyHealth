@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MyHealth
@@ -15,7 +17,7 @@ namespace MyHealth
         private TaskView _selTask;
 
         //Properties
-        public ObservableCollection<TaskView> TaskList { set; get; }
+        public MyObservableCollection<TaskView> TaskList { set; get; }
         public TaskView SelectedTask
         {
             get => _selTask;
@@ -40,7 +42,7 @@ namespace MyHealth
         //ctor
         public TaskListViewModel()
         {
-            TaskList = new ObservableCollection<TaskView>();
+            TaskList = new MyObservableCollection<TaskView>();
 
             AddTaskCommand = new TaskListAddTaskCommand(this);
             SaveCommand = new TaskListSaveCommand(this);
@@ -68,11 +70,7 @@ namespace MyHealth
 
         public void AddArrayToTaskList(TaskView[] array)
         {
-            foreach (var item in array)
-            {
-                TaskList.Add(item);
-                item.PropertyChanged += OnTaskChanged;
-            }
+            TaskList.AddRange(array);
         }
 
         private void OnTaskChanged(object sender, PropertyChangedEventArgs e)
@@ -86,6 +84,7 @@ namespace MyHealth
             NeedSave = false;
         }
     }
+
 
     public class TaskListAddTaskCommand : ContextCommand<TaskListViewModel>
     {
@@ -113,7 +112,6 @@ namespace MyHealth
             context.DeleteSelectedTask();
         }
     }
-
     public class TaskListSaveCommand : ContextCommand<TaskListViewModel>
     {
         public TaskListSaveCommand(TaskListViewModel context) : base(context) { }
