@@ -23,5 +23,7 @@
 
     <System:String x:Key="MainWindow.StepList.ExpanderHeader">Steps</System:String>
 
+    <System:String x:Key="MainWindow.TaskList.Menu.DeleteHeader">Delete</System:String>
+
 
 </ResourceDictionary>

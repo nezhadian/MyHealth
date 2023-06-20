@@ -24,5 +24,8 @@
 
     <System:String x:Key="MainWindow.StepList.ExpanderHeader">قدم ها</System:String>
 
+    <System:String x:Key="MainWindow.TaskList.Menu.DeleteHeader">حذف</System:String>
+
+
 
 </ResourceDictionary>

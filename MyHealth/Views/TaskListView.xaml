@@ -85,7 +85,7 @@
                 </ListBox.GroupStyle>
                 <ListBox.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Command="{Binding DeleteTaskCommand}" Header="Delete" />
+                        <MenuItem Command="{Binding DeleteTaskCommand}" Header="{DynamicResource MainWindow.TaskList.Menu.DeleteHeader}" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
             </ListBox>
