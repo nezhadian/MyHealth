@@ -49,10 +49,11 @@ namespace MyHealth
             try
             {
                 Process.Start("explorer.exe", directoryPath);
+                throw new NotImplementedException("this is this is ");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Can`t Open Folder \r\n {ex.Message}");
+                Utils.ErrorMessageBox(ex);
             }
 
         }
@@ -67,7 +68,7 @@ namespace MyHealth
         //Reset Settings Button
         private void btnResetSettings_Click(object sender, RoutedEventArgs e)
         {
-            if (AdonisUI.Controls.MessageBoxResult.Yes == AdonisUI.Controls.MessageBox.Show("Are you sure?", "Reset Settings", AdonisUI.Controls.MessageBoxButton.YesNo))
+            if (Utils.YesNoMessageBoxFromResources("GeneralSettings.Reset"))
             {
                 AppSettings.Reset();
             }

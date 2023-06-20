@@ -80,4 +80,9 @@
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.YesLabel">پاک کردن تغییرات</System:String>
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.NoLabel">لغو</System:String>
 
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.Caption">بازنشانی تنظیمات</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.Text">آیا میخواهید تنظیمات را بازنشانی کنید</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.YesLabel">بازنشانی</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.NoLabel">لفو</System:String>
+
 </ResourceDictionary>

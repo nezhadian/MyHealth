@@ -79,6 +79,10 @@
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.YesLabel">Clear All</System:String>
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.NoLabel">Don`t Clear</System:String>
 
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.Caption">Reset Settings</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.Text">Do you want to reset settings?</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.YesLabel">Reset</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.NoLabel">Cancel</System:String>
 
 
 
