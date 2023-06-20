@@ -74,5 +74,10 @@
     <System:String x:Key="AboutMe.Socials.Github">Github</System:String>
     <System:String x:Key="AboutMe.Socials.LinkedIn">LinkedIn</System:String>
 
+    <!--  Message Boxes  -->
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Caption">انصراف از تغییرات</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Text">آیا واقعا میخواهید تغییرات را بر باد بدهید؟</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.YesLabel">پاک کردن تغییرات</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.NoLabel">لغو</System:String>
 
 </ResourceDictionary>

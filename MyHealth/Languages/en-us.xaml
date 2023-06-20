@@ -73,5 +73,13 @@
     <System:String x:Key="AboutMe.Socials.Github">Github</System:String>
     <System:String x:Key="AboutMe.Socials.LinkedIn">LinkedIn</System:String>
 
+    <!--  Message Boxes  -->
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Caption">Cancel Settings</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Text">there is Unsaved Changes do you want to clear them?</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.YesLabel">Clear All</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.NoLabel">Don`t Clear</System:String>
+
+
+
 
 </ResourceDictionary>

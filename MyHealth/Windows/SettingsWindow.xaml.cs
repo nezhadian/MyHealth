@@ -68,7 +68,7 @@ namespace MyHealth
 
             if (hasChangedItem)
             {
-                var isClearAccepted = Utils.YesNoMessageBox("Cancel Settings", "there is Unsaved Changes do you want to clear them?", "Clear All", "Don`t Clear");
+                var isClearAccepted = Utils.YesNoMessageBoxFromResources("SettingWindow.ClearChanges");
                 if (isClearAccepted)
                 {
                     savebles.ForEach((i) => i.UndoChanges());
