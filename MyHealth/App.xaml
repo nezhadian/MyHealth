@@ -16,6 +16,8 @@
 
                 <ResourceDictionary Source="/Styles/Dimensions.xaml" />
                 <ResourceDictionary Source="/Styles/ColorSchemes/Adonis.xaml" />
+                <ResourceDictionary Source="/Languages/en-us.xaml" />
+
                 <ResourceDictionary Source="/Styles/IconsData.xaml" />
                 <ResourceDictionary Source="/Styles/Styles.xaml" />
 
