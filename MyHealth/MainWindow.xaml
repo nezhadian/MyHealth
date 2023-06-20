@@ -69,23 +69,23 @@
                     <!--  Reset btn  -->
                     <MenuItem
                         Command="{Binding ElementName=tmrMain, Path=ResetCommand}"
-                        Header="Reset"
+                        Header="{DynamicResource MainWindow.Menu.ResetHeader}"
                         Icon="{StaticResource RestartIcon}"
-                        ToolTip="Reset timer to zero"
+                        ToolTip="{DynamicResource MainWindow.Menu.ResetTooltip}"
                         Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
 
                     <!--  Play and Pause btn  -->
                     <MenuItem
                         IsChecked="{Binding IsPaused, ElementName=tmrMain}"
                         Style="{StaticResource PlayPauseMenuItem.Style}"
-                        ToolTip="Pause/Continue Timer"
+                        ToolTip="{DynamicResource MainWindow.Menu.PlayPauseTooltip}"
                         Visibility="{Binding ElementName=tmrMain, Path=Visibility}" />
                     <!--  Settings btn  -->
                     <MenuItem
                         Click="mnuSettings_Click"
-                        Header="Settings"
+                        Header="{DynamicResource MainWindow.Menu.SettingsHeader}"
                         Icon="{StaticResource SettingIcon}"
-                        ToolTip="Open Settings Window" />
+                        ToolTip="{DynamicResource MainWindow.Menu.SettingsTooltip}" />
 
 
                 </Menu>
@@ -95,16 +95,16 @@
                     HorizontalAlignment="Left"
                     IsChecked="{Binding Topmost}"
                     Style="{StaticResource LockMenuItem.Style}"
-                    ToolTip="Lock on Screen" />
+                    ToolTip="{DynamicResource MainWindow.Menu.LockOnScreenTooltip}" />
 
                 <!--  Exit btn  -->
                 <MenuItem
                     HorizontalAlignment="Right"
                     Click="mnuExit_Click"
-                    Header="Exit"
+                    Header="{DynamicResource MainWindow.Menu.ExitHeader}"
                     Icon="{StaticResource CloseIcon}"
                     Style="{StaticResource RibbonLikeMenuItemStyle}"
-                    ToolTip="Exit application" />
+                    ToolTip="{DynamicResource MainWindow.Menu.ExitTooltip}" />
             </Grid>
         </Grid>
     </local:DockedWindow.Dock>

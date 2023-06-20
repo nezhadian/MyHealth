@@ -1,4 +1,21 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=System.Runtime">
+
+    <System:String x:Key="MainWindow.Menu.ResetHeader">Reset</System:String>
+    <System:String x:Key="MainWindow.Menu.ExitHeader">Exit</System:String>
+    <System:String x:Key="MainWindow.Menu.SettingsHeader">Settings</System:String>
+    <System:String x:Key="MainWindow.Menu.PlayHeader">Continue</System:String>
+    <System:String x:Key="MainWindow.Menu.PauseHeader">Pause</System:String>
+    <System:String x:Key="MainWindow.Menu.LockHeader">Locked</System:String>
+    <System:String x:Key="MainWindow.Menu.UnLockHeader">UnLocked</System:String>
+
+
+    <System:String x:Key="MainWindow.Menu.ResetTooltip">Reset timer to zero</System:String>
+    <System:String x:Key="MainWindow.Menu.PlayPauseTooltip">Pause/Continue Timer</System:String>
+    <System:String x:Key="MainWindow.Menu.SettingsTooltip">Open Settings Window</System:String>
+    <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">Lock on Screen</System:String>
+    <System:String x:Key="MainWindow.Menu.ExitTooltip">Exit application</System:String>
+
 </ResourceDictionary>

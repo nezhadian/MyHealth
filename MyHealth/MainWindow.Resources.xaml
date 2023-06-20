@@ -45,12 +45,12 @@
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PlayIcon}" />
-                <Setter Property="Header" Value="Continue" />
+                <Setter Property="Header" Value="{DynamicResource MainWindow.Menu.PlayHeader}" />
             </Trigger>
 
             <Trigger Property="IsChecked" Value="False">
                 <Setter Property="Icon" Value="{StaticResource PlayPauseMenuItem.PauseIcon}" />
-                <Setter Property="Header" Value="Pause" />
+                <Setter Property="Header" Value="{DynamicResource MainWindow.Menu.PauseHeader}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -76,12 +76,12 @@
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Icon" Value="{StaticResource LockMenuItem.LockIcon}" />
-                <Setter Property="Header" Value="Locked" />
+                <Setter Property="Header" Value="{DynamicResource MainWindow.Menu.LockHeader}" />
             </Trigger>
 
             <Trigger Property="IsChecked" Value="False">
                 <Setter Property="Icon" Value="{StaticResource LockMenuItem.UnLockIcon}" />
-                <Setter Property="Header" Value="UnLocked" />
+                <Setter Property="Header" Value="{DynamicResource MainWindow.Menu.UnLockHeader}" />
             </Trigger>
         </Style.Triggers>
     </Style>
