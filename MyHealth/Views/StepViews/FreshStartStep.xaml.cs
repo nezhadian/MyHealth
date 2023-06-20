@@ -55,7 +55,7 @@ namespace MyHealth
                 }
                 catch (Exception ex)
                 {
-                    Utils.InfoMessageBox("Loading Alarm", $"Error in Loading : {ex.Message}");
+                    Utils.ErrorMessageBox(ex);
                 }
 
 
