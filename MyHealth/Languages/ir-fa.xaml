@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=System.Runtime">
 
+    <!--  MainWindow  -->
     <System:String x:Key="MainWindow.Menu.ResetHeader">از اول</System:String>
     <System:String x:Key="MainWindow.Menu.ExitHeader">خروج</System:String>
     <System:String x:Key="MainWindow.Menu.SettingsHeader">تنظبمات</System:String>
@@ -26,7 +27,7 @@
 
     <System:String x:Key="MainWindow.TaskList.Menu.DeleteHeader">حذف</System:String>
 
-
+    <!--  Setting Window  -->
     <System:String x:Key="SettingWindow.Tabs.GeneralHeader">عمومی</System:String>
     <System:String x:Key="SettingWindow.Tabs.StepsEditorHeader">ویرایشگر قدم ها</System:String>
     <System:String x:Key="SettingWindow.Tabs.AboutMeHeader">درباره من</System:String>
@@ -34,6 +35,7 @@
     <System:String x:Key="SettingWindow.Buttons.SaveCaption">ذخیره</System:String>
     <System:String x:Key="SettingWindow.Buttons.CancelCaption">انصراف</System:String>
 
+    <!--  General Settings  -->
     <System:String x:Key="GeneralSettings.GeneralSectionHeader">عمومی</System:String>
     <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">نمایشگر عکس</System:String>
 
@@ -49,6 +51,19 @@
     <System:String x:Key="GeneralSettings.Folders.ButtonsCaption">بازکردن پوشه</System:String>
 
     <System:String x:Key="GeneralSettings.ResetSettingsCaption">بازنشانی تنظیمات</System:String>
+
+    <!--  Steps Editor  -->
+    <System:String x:Key="StepsEditor.Templates.PomodoroLabel">طرح پومودورو</System:String>
+    <System:String x:Key="StepsEditor.Templates.57-17StandardLabel">طرح 52/17 استندارد</System:String>
+    <System:String x:Key="StepsEditor.Templates.Custom">سفارشی</System:String>
+
+    <System:String x:Key="StepsEditor.Settings.StepTypeLabel">نوع قدم</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepNameLabel">نام قدم</System:String>
+    <System:String x:Key="StepsEditor.Settings.DurationLabel">مدت زمان</System:String>
+    <System:String x:Key="StepsEditor.Settings.ImageListLabel">لیست عکس</System:String>
+
+    <System:String x:Key="StepsEditor.Buttons.AddTooltip">ایجاد قدم جدید | محدودیت : 100 قدم</System:String>
+    <System:String x:Key="StepsEditor.Buttons.DeleteTooltip">حذف قدم انتخاب شده</System:String>
 
 
 

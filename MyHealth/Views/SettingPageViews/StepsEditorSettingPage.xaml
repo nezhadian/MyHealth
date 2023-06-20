@@ -36,9 +36,9 @@
 
         <!--  templates  Selection  -->
         <ComboBox x:Name="cboTemplates" SelectionChanged="cboTemplates_SelectionChanged">
-            <ComboBoxItem Content="Pomodoro" Tag="StepData.PomodoroTemplate" />
-            <ComboBoxItem Content="52/17 Standard" Tag="StepData.Standard52/17Template" />
-            <ComboBoxItem Content="Custom" IsSelected="True" />
+            <ComboBoxItem Content="{DynamicResource StepsEditor.Templates.PomodoroLabel}" Tag="StepData.PomodoroTemplate" />
+            <ComboBoxItem Content="{DynamicResource StepsEditor.Templates.57-17StandardLabel}" Tag="StepData.Standard52/17Template" />
+            <ComboBoxItem Content="{DynamicResource StepsEditor.Templates.Custom}" IsSelected="True" />
         </ComboBox>
 
         <!--  StepList ListBox  -->
@@ -62,7 +62,7 @@
 
             <StackPanel>
                 <!--  Step Type ComboBox  -->
-                <TextBlock Style="{StaticResource Texts.NormalText}">Step Type</TextBlock>
+                <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.StepTypeLabel}" />
                 <ComboBox
                     Name="cboStepType"
                     ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=StepTypes, Mode=OneTime}"
@@ -72,7 +72,7 @@
 
                 <!--  StepName Textbox  -->
                 <StackPanel x:Name="stkStepName">
-                    <TextBlock Style="{StaticResource Texts.NormalText}">Step Name</TextBlock>
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.StepNameLabel}" />
                     <TextBox
                         MaxLength="25"
                         SourceUpdated="OnPropertiesChanged"
@@ -81,7 +81,7 @@
 
                 <!--  Duration TimeSpanControl  -->
                 <StackPanel x:Name="stkDuration">
-                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="Duration" />
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.DurationLabel}" />
                     <local:TimeSpanControl
                         HorizontalAlignment="Left"
                         SourceUpdated="OnPropertiesChanged"
@@ -90,7 +90,7 @@
 
                 <!--  ImageList ComboBox  -->
                 <StackPanel x:Name="stkImageList">
-                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="Image List Selection" />
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.ImageListLabel}" />
                     <ComboBox
                         ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=ImageListes, Mode=OneTime}"
                         SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
@@ -105,14 +105,20 @@
         <!--  New And Delete Buttons  -->
         <Grid Grid.Row="3">
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                <Button Command="{Binding NewCommand}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button
+                    Command="{Binding NewCommand}"
+                    Style="{StaticResource Buttons.OnlyIcon}"
+                    ToolTip="{DynamicResource StepsEditor.Buttons.AddTooltip}">
                     <Path
                         Width="17"
                         Data="{StaticResource Icons.Add}"
                         Fill="{DynamicResource IconsColor.Add}"
                         Stretch="Uniform" />
                 </Button>
-                <Button Command="{Binding DeleteCommand}" Style="{StaticResource Buttons.OnlyIcon}">
+                <Button
+                    Command="{Binding DeleteCommand}"
+                    Style="{StaticResource Buttons.OnlyIcon}"
+                    ToolTip="{DynamicResource StepsEditor.Buttons.DeleteTooltip}">
                     <Path
                         Width="13"
                         Data="{StaticResource Icons.Delete}"
