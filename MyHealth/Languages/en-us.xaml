@@ -93,5 +93,8 @@
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">there is no Effective Steps please add someone</System:String>
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.OKLabel">Okay</System:String>
 
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Caption">Gmail</System:String>
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">Gmail Address Copied to your Clipboard</System:String>
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.OKLabel">Okay</System:String>
 
 </ResourceDictionary>

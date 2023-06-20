@@ -28,7 +28,7 @@ namespace MyHealth
         {
             SocialLinkCardButton socialLink = (SocialLinkCardButton)sender;
             Clipboard.SetText(socialLink.Link.ToString()); ;
-            AdonisUI.Controls.MessageBox.Show( "Gmail Address Copied to your Clipboard", "Gmail", AdonisUI.Controls.MessageBoxButton.OK, AdonisUI.Controls.MessageBoxImage.Information);
+            Utils.InfoMessageBoxFromResources("AboutMe.GmailCopied");
         }
     }
 }

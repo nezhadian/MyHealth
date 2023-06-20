@@ -94,5 +94,8 @@
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">هیچ قدم تاثرگذاری باقی نذاشته‌اید لطفا چند قدم تاثیرگذار اضافه کنید</System:String>
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.OKLabel">باشه</System:String>
 
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Caption">جیمیل | Gmail</System:String>
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">آدرس جیمیل به کلیپ‌بورد کپی شد</System:String>
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.OKLabel">باشه</System:String>
 
 </ResourceDictionary>
