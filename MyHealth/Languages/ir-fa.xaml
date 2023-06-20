@@ -27,5 +27,29 @@
     <System:String x:Key="MainWindow.TaskList.Menu.DeleteHeader">حذف</System:String>
 
 
+    <System:String x:Key="SettingWindow.Tabs.GeneralHeader">عمومی</System:String>
+    <System:String x:Key="SettingWindow.Tabs.StepsEditorHeader">ویرایشگر قدم ها</System:String>
+    <System:String x:Key="SettingWindow.Tabs.AboutMeHeader">درباره من</System:String>
+
+    <System:String x:Key="SettingWindow.Buttons.SaveCaption">ذخیره</System:String>
+    <System:String x:Key="SettingWindow.Buttons.CancelCaption">انصراف</System:String>
+
+    <System:String x:Key="GeneralSettings.GeneralSectionHeader">عمومی</System:String>
+    <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">نمایشگر عکس</System:String>
+
+    <System:String x:Key="GeneralSettings.StartAtStartupLabel">بازکرن هنگام راه‌اندازی سیستم عامل</System:String>
+    <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">قرار گرفتن بر روی نوار پایینی</System:String>
+
+    <System:String x:Key="GeneralSettings.FreshStartBgColorSelectorText">رنگ پیش‌زمینه صفحه شروع دوباره</System:String>
+    <System:String x:Key="GeneralSettings.ShortBreakBgColorSelectorText">رنگ پیش‌زمینه صفحه استراحت مطلق</System:String>
+    <System:String x:Key="GeneralSettings.ImageSliderDelayText">تاخیر رد کردن نمایشگر عکس</System:String>
+
+    <System:String x:Key="GeneralSettings.Folders.ImageSlider.EyeFolderLabel">پوشه تصاویر تمرینات چشمی</System:String>
+    <System:String x:Key="GeneralSettings.Folders.ImageSlider.BodyFolderLabel">پوشه تصاویر تمرینات بدنی</System:String>
+    <System:String x:Key="GeneralSettings.Folders.ButtonsCaption">بازکردن پوشه</System:String>
+
+    <System:String x:Key="GeneralSettings.ResetSettingsCaption">بازنشانی تنظیمات</System:String>
+
+
 
 </ResourceDictionary>

@@ -21,15 +21,15 @@
         </Grid.RowDefinitions>
 
         <TabControl x:Name="tbcPages" Style="{StaticResource TabControlStyle}">
-            <TabItem Header="General">
+            <TabItem Header="{DynamicResource SettingWindow.Tabs.GeneralHeader}">
                 <local:GeneralSettingPage />
             </TabItem>
 
-            <TabItem Header="Steps Editor">
+            <TabItem Header="{DynamicResource SettingWindow.Tabs.StepsEditorHeader}">
                 <local:StepsEditorSettingPage />
             </TabItem>
 
-            <TabItem Header="About Me">
+            <TabItem Header="{DynamicResource SettingWindow.Tabs.AboutMeHeader}">
                 <local:AboutMeSettingPage />
             </TabItem>
         </TabControl>
@@ -41,12 +41,12 @@
             Orientation="Horizontal">
             <Button
                 Click="Save_Click"
-                Content="Save"
+                Content="{DynamicResource SettingWindow.Buttons.SaveCaption}"
                 Style="{StaticResource Buttons.CTA}" />
             <Button
                 Margin="10,0,0,0"
                 Click="Cancel_Click"
-                Content="Cancel"
+                Content="{DynamicResource SettingWindow.Buttons.CancelCaption}"
                 Style="{StaticResource Buttons.Secondary}" />
         </StackPanel>
     </Grid>

@@ -25,5 +25,29 @@
 
     <System:String x:Key="MainWindow.TaskList.Menu.DeleteHeader">Delete</System:String>
 
+    <!--  //  -->
+    <System:String x:Key="SettingWindow.Tabs.GeneralHeader">General</System:String>
+    <System:String x:Key="SettingWindow.Tabs.StepsEditorHeader">Steps Editor</System:String>
+    <System:String x:Key="SettingWindow.Tabs.AboutMeHeader">About Me</System:String>
+
+    <System:String x:Key="SettingWindow.Buttons.SaveCaption">Save</System:String>
+    <System:String x:Key="SettingWindow.Buttons.CancelCaption">Cancel</System:String>
+
+    <System:String x:Key="GeneralSettings.GeneralSectionHeader">General</System:String>
+    <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">Image Slider</System:String>
+
+    <System:String x:Key="GeneralSettings.StartAtStartupLabel">Start At Startup</System:String>
+    <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">Go on Taskbar</System:String>
+
+    <System:String x:Key="GeneralSettings.FreshStartBgColorSelectorText">Fresh Start Background Color</System:String>
+    <System:String x:Key="GeneralSettings.ShortBreakBgColorSelectorText">Short Break Background Color</System:String>
+    <System:String x:Key="GeneralSettings.ImageSliderDelayText">Image Slider Sliding Delay</System:String>
+
+    <System:String x:Key="GeneralSettings.Folders.ImageSlider.EyeFolderLabel">Eye Images Folder</System:String>
+    <System:String x:Key="GeneralSettings.Folders.ImageSlider.BodyFolderLabel">Body Images Folder</System:String>
+    <System:String x:Key="GeneralSettings.Folders.ButtonsCaption">Open Folder</System:String>
+
+    <System:String x:Key="GeneralSettings.ResetSettingsCaption">Reset Settings</System:String>
+
 
 </ResourceDictionary>

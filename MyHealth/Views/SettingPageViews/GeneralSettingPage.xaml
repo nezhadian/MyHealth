@@ -14,7 +14,7 @@
             x:Key="OpenFolderButtonsStyle"
             BasedOn="{StaticResource Buttons.Secondary}"
             TargetType="Button">
-            <Setter Property="Content" Value="Open Folder" />
+            <Setter Property="Content" Value="{DynamicResource GeneralSettings.Folders.ButtonsCaption}" />
             <Setter Property="Padding" Value="7,4" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="..." />
@@ -26,7 +26,7 @@
 
     <StackPanel Margin="20">
         <!--  General Settings  -->
-        <GroupBox Header="General">
+        <GroupBox Header="{DynamicResource GeneralSettings.GeneralSectionHeader}">
             <Grid>
                 <!--  Rows  -->
                 <Grid.RowDefinitions>
@@ -41,34 +41,36 @@
                 </Grid.RowDefinitions>
 
                 <!--  Start At Startup CheckBox  -->
-                <CheckBox IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}" SourceUpdated="Controls_SourceUpdated">Start At Startup</CheckBox>
+                <CheckBox
+                    Content="{DynamicResource GeneralSettings.StartAtStartupLabel}"
+                    IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}"
+                    SourceUpdated="Controls_SourceUpdated" />
 
                 <!--  Go on Taskbar CheckBox  -->
                 <CheckBox
                     Grid.Row="2"
+                    Content="{DynamicResource GeneralSettings.GoOnTaskbarLabel}"
                     IsChecked="{Binding GoOnTaskbar, NotifyOnSourceUpdated=True, Mode=TwoWay}"
-                    SourceUpdated="Controls_SourceUpdated">
-                    Go on Taskbar
-                </CheckBox>
+                    SourceUpdated="Controls_SourceUpdated" />
 
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
                     Grid.Row="4"
                     SourceUpdated="Controls_SourceUpdated"
-                    Text="Fresh Start Background Color"
+                    Text="{DynamicResource GeneralSettings.FreshStartBgColorSelectorText}"
                     Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector
                     Grid.Row="6"
                     SourceUpdated="Controls_SourceUpdated"
-                    Text="Short Break Background Color"
+                    Text="{DynamicResource GeneralSettings.ShortBreakBgColorSelectorText}"
                     Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
             </Grid>
         </GroupBox>
 
         <!--  Image Slider Settings  -->
-        <GroupBox Margin="0,10,0,0" Header="Image Slider">
+        <GroupBox Margin="0,10,0,0" Header="{DynamicResource GeneralSettings.ImageSliderSectionHeader}">
             <Grid>
                 <!--  Columns  -->
                 <Grid.ColumnDefinitions>
@@ -86,7 +88,7 @@
                 </Grid.RowDefinitions>
 
                 <!--  Image Slider Sliding Delay Control  -->
-                <TextBlock Style="{StaticResource Texts.NormalText}">Image Slider Sliding Delay</TextBlock>
+                <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource GeneralSettings.ImageSliderDelayText}" />
                 <local:TimeSpanControl
                     x:Name="tscImageSliderDelay"
                     Grid.Column="1"
@@ -97,7 +99,10 @@
                     TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Eye Folder Open Control  -->
-                <TextBlock Grid.Row="2" Style="{StaticResource Texts.NormalText}">Eye Images Folder</TextBlock>
+                <TextBlock
+                    Grid.Row="2"
+                    Style="{StaticResource Texts.NormalText}"
+                    Text="{DynamicResource GeneralSettings.Folders.ImageSlider.EyeFolderLabel}" />
                 <Button
                     Grid.Row="2"
                     Grid.Column="1"
@@ -105,7 +110,10 @@
                     Tag="eye" />
 
                 <!--  Body Folder Open Control  -->
-                <TextBlock Grid.Row="4" Style="{StaticResource Texts.NormalText}">Body Images Folder</TextBlock>
+                <TextBlock
+                    Grid.Row="4"
+                    Style="{StaticResource Texts.NormalText}"
+                    Text="{DynamicResource GeneralSettings.Folders.ImageSlider.BodyFolderLabel}" />
                 <Button
                     Grid.Row="4"
                     Grid.Column="1"
@@ -120,7 +128,7 @@
             Margin="0,10,0,0"
             HorizontalAlignment="Left"
             Click="btnResetSettings_Click"
-            Content="Reset Settings"
+            Content="{DynamicResource GeneralSettings.ResetSettingsCaption}"
             Style="{StaticResource Buttons.Secondary}" />
     </StackPanel>
 </UserControl>
