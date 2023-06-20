@@ -31,7 +31,7 @@
                 Grid.Row="2"
                 HorizontalAlignment="Center"
                 Style="{StaticResource Texts.BigTitle}"
-                Text="Yasin Ebrahim Nezhadian" />
+                Text="{DynamicResource AboutMe.MyFullName}" />
             <Grid Grid.Row="4" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
@@ -55,7 +55,7 @@
                     Background="{StaticResource Social.WebsiteColor}"
                     IconPathData="{StaticResource Icons.Website}"
                     Link="https://www.theyasin.ir"
-                    Text="Website" />
+                    Text="{DynamicResource AboutMe.Socials.Website}" />
 
                 <local:SocialLinkCardButton
                     Grid.Column="2"
@@ -64,28 +64,28 @@
                     Command="{x:Null}"
                     IconPathData="{StaticResource Icons.Gmail}"
                     Link="yasin.ebr.nezh@gmail.com"
-                    Text="Gmail" />
+                    Text="{DynamicResource AboutMe.Socials.Gmail}" />
 
                 <local:SocialLinkCardButton
                     Grid.Column="4"
                     Background="{StaticResource Social.TelegramColor}"
                     IconPathData="{StaticResource Icons.Telegram}"
                     Link="https://t.me/nezhadian"
-                    Text="Telegram" />
+                    Text="{DynamicResource AboutMe.Socials.Telegram}" />
 
                 <local:SocialLinkCardButton
                     Grid.Column="6"
                     Background="{StaticResource Social.GithubColor}"
                     IconPathData="{StaticResource Icons.Github}"
                     Link="https://github.com/nezhadian"
-                    Text="Github" />
+                    Text="{DynamicResource AboutMe.Socials.Github}" />
 
                 <local:SocialLinkCardButton
                     Grid.Column="8"
                     Background="{StaticResource Social.LinkedInColor}"
                     IconPathData="{StaticResource Icons.LinkedIn}"
                     Link="https://linkedin.com/in/nezhadian"
-                    Text="LinkedIn" />
+                    Text="{DynamicResource AboutMe.Socials.LinkedIn}" />
             </Grid>
         </Grid>
     </Grid>

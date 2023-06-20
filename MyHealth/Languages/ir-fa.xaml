@@ -65,6 +65,14 @@
     <System:String x:Key="StepsEditor.Buttons.AddTooltip">ایجاد قدم جدید | محدودیت : 100 قدم</System:String>
     <System:String x:Key="StepsEditor.Buttons.DeleteTooltip">حذف قدم انتخاب شده</System:String>
 
+    <!--  About Me  -->
+
+    <System:String x:Key="AboutMe.MyFullName">یاسین ابراهیم نژادیان</System:String>
+    <System:String x:Key="AboutMe.Socials.Website">Website</System:String>
+    <System:String x:Key="AboutMe.Socials.Gmail">Gmail</System:String>
+    <System:String x:Key="AboutMe.Socials.Telegram">Telegram</System:String>
+    <System:String x:Key="AboutMe.Socials.Github">Github</System:String>
+    <System:String x:Key="AboutMe.Socials.LinkedIn">LinkedIn</System:String>
 
 
 </ResourceDictionary>

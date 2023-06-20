@@ -64,5 +64,14 @@
     <System:String x:Key="StepsEditor.Buttons.AddTooltip">Add new Step (Limit : 100  Steps)</System:String>
     <System:String x:Key="StepsEditor.Buttons.DeleteTooltip">Delete Selected Step</System:String>
 
+    <!--  About Me  -->
+
+    <System:String x:Key="AboutMe.MyFullName">Yasin Ebrahim Nezhadian</System:String>
+    <System:String x:Key="AboutMe.Socials.Website">Website</System:String>
+    <System:String x:Key="AboutMe.Socials.Gmail">Gmail</System:String>
+    <System:String x:Key="AboutMe.Socials.Telegram">Telegram</System:String>
+    <System:String x:Key="AboutMe.Socials.Github">Github</System:String>
+    <System:String x:Key="AboutMe.Socials.LinkedIn">LinkedIn</System:String>
+
 
 </ResourceDictionary>
