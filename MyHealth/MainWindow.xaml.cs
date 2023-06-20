@@ -1,4 +1,5 @@
-﻿using GongSolutions.Wpf.DragDrop;
+﻿using AdonisUI;
+using GongSolutions.Wpf.DragDrop;
 using Hardcodet.Wpf.TaskbarNotification;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,8 @@ namespace MyHealth
 
             DataContext = this;
             InitializeComponent();
-
+            
+            //
         }
 
         private void AppSettings_Initialized(object sender, RoutedEventArgs e)
@@ -61,10 +63,12 @@ namespace MyHealth
         {
             if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
+
             else if (e.PropertyName == nameof(AppSettings.Data.LanguageCode))
                 LanguageSelector.SetLanguage(AppSettings.Data.LanguageCode);
-            
 
+            else if (e.PropertyName == nameof(AppSettings.Data.IsDarkMode))
+                ResourceLocator.SetColorScheme(Application.Current.Resources, AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme);
         }
 
 
