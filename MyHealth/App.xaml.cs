@@ -41,7 +41,7 @@ namespace MyHealth
         {
             WshShell shell = new WshShell();
             IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(GetStartupShortcutPath());
-            shortcut.Description = "this is my health startup item";
+            shortcut.Description = "this is MyHealth startup item";
             shortcut.TargetPath = Path.ChangeExtension(Assembly.GetExecutingAssembly().Location,".exe");
             shortcut.Save();
 
