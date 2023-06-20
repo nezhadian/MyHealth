@@ -6,11 +6,33 @@ namespace MyHealth
 {
     internal class Utils
     {
-        public static void InfoMessageBox(string caption,string message)
+        public static void InfoMessageBox(string caption,string message,string okLabel = "Ok")
         {
-            MessageBox.Show(message, caption, MessageBoxButton.OK);
+            MessageBoxModel model = new MessageBoxModel();
+            model.Buttons = new MessageBoxButtonModel[]
+            {
+                new MessageBoxButtonModel(okLabel,MessageBoxResult.OK),
+            };
+
+            model.Text = message;
+            model.Caption = caption;
+
+            MessageBox.Show(model);
 
         }
+        public static void InfoMessageBoxFromResources(string key)
+        {
+            InfoMessageBox(
+                 GetTextResource($"MessageBox.{key}.Caption"),
+                 GetTextResource($"MessageBox.{key}.Text"),
+                 GetTextResource($"MessageBox.{key}.OKLabel"));
+        }
+        public static void ErrorMessageBox(Exception ex)
+        {
+            InfoMessageBox("Error",ex.ToString(),"OK");
+        }
+
+
         public static bool YesNoMessageBox(string caption, string message,string yesLabel = "Yes",string noLabel = "No")
         {
             MessageBoxModel model = new MessageBoxModel();
@@ -25,7 +47,6 @@ namespace MyHealth
             
             return MessageBoxResult.Yes == MessageBox.Show(model);
         }
-
         public static bool YesNoMessageBoxFromResources(string key)
         {
             return YesNoMessageBox(
