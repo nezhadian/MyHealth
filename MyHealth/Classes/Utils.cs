@@ -26,6 +26,16 @@ namespace MyHealth
             return MessageBoxResult.Yes == MessageBox.Show(model);
         }
 
+        public static bool YesNoMessageBoxFromResources(string key)
+        {
+            return YesNoMessageBox(
+                GetTextResource($"MessageBox.{key}.Caption"),
+                GetTextResource($"MessageBox.{key}.Text"),
+                GetTextResource($"MessageBox.{key}.YesLabel"),
+                GetTextResource($"MessageBox.{key}.NoLabel"));
+        }
+
+
         public static bool RaiseCommand(ICommand command,object param)
         {
             if (command.CanExecute(param))
@@ -35,7 +45,6 @@ namespace MyHealth
             }
             return false;
         }
-
         internal static void MatchPropertiesValue<T>(T sourceObject, T targetObject)
         {
             foreach (var item in targetObject.GetType().GetProperties())
@@ -44,6 +53,11 @@ namespace MyHealth
                 var value = item.GetGetMethod().Invoke(sourceObject, null);
                 propertySetMethod.Invoke(targetObject, new object[] { value });
             }
+        }
+
+        public static string GetTextResource(string key)
+        {
+            return (string)(System.Windows.Application.Current.TryFindResource(key) ?? "");
         }
     }
 }
