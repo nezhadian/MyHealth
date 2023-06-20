@@ -67,6 +67,16 @@ namespace MyHealth
             }
         }
 
+        [DefaultValue(false)]
+        public bool IsDarkMode
+        {
+            get => (bool)GetPropertyValue();
+            set
+            {
+                SetPropertyValue(value);
+            }
+        }
+
         //set and get Dynamic Values
         public override void OnLoaded()
         {
