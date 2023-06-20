@@ -19,5 +19,7 @@
 
     <System:String x:Key="MainWindow.TaskbarMenu.OpenHeader">Open</System:String>
 
+    <System:String x:Key="MainWindow.AddTaskTextBox.Placeholder">Add New Task</System:String>
+
 
 </ResourceDictionary>

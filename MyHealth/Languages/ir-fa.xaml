@@ -20,5 +20,6 @@
 
     <System:String x:Key="MainWindow.TaskbarMenu.OpenHeader">بازآوری پنجره</System:String>
 
+    <System:String x:Key="MainWindow.AddTaskTextBox.Placeholder">هر چی تو ذهنته بنویس</System:String>
 
 </ResourceDictionary>

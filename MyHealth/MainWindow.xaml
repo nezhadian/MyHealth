@@ -58,7 +58,7 @@
                     Padding="18,0"
                     adonisEx:CornerRadiusExtension.CornerRadius="18"
                     adonisEx:WatermarkExtension.IsWatermarkVisible="True"
-                    adonisEx:WatermarkExtension.Watermark="Add New Task"
+                    adonisEx:WatermarkExtension.Watermark="{DynamicResource MainWindow.AddTaskTextBox.Placeholder}"
                     KeyDown="TextBox_KeyDown"
                     MaxLength="{StaticResource TaskView.MaxLength}" />
             </Grid>
