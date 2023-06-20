@@ -1,0 +1,21 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=System.Runtime">
+
+    <System:String x:Key="MainWindow.Menu.ResetHeader">از اول</System:String>
+    <System:String x:Key="MainWindow.Menu.ExitHeader">خروج</System:String>
+    <System:String x:Key="MainWindow.Menu.SettingsHeader">تنظبمات</System:String>
+    <System:String x:Key="MainWindow.Menu.PlayHeader">ادامه</System:String>
+    <System:String x:Key="MainWindow.Menu.PauseHeader">توقف</System:String>
+    <System:String x:Key="MainWindow.Menu.LockHeader">قفل</System:String>
+    <System:String x:Key="MainWindow.Menu.UnLockHeader">باز</System:String>
+
+
+    <System:String x:Key="MainWindow.Menu.ResetTooltip">بازنشانی تایمر به صفر</System:String>
+    <System:String x:Key="MainWindow.Menu.PlayPauseTooltip">ادامه یا توقف تایمر</System:String>
+    <System:String x:Key="MainWindow.Menu.SettingsTooltip">باز کرن پنجره تنظمیات</System:String>
+    <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">قفل کردن به صفحه</System:String>
+    <System:String x:Key="MainWindow.Menu.ExitTooltip">خروج از برنامه</System:String>
+
+</ResourceDictionary>
