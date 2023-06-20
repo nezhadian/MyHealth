@@ -36,7 +36,7 @@ namespace MyHealth
 
             if (!canSave)
             {
-                Utils.InfoMessageBox("Steps Editor","there is no effective Steps ");
+                Utils.InfoMessageBoxFromResources("StepsEditor.NoEffectiveStep");
             }
 
             return canSave;
@@ -80,7 +80,7 @@ namespace MyHealth
             {
                 if (isChangedFromLastTemplateChange)
                 {
-                    if(!Utils.YesNoMessageBox("Changes","do you want to Clear Changes?","Clear All","Don`t Clear"))
+                    if(!Utils.YesNoMessageBoxFromResources("StepsEditor.SwitchTemplatesClear"))
                     {
                         cboTemplates.SelectedItem = e.RemovedItems[0];
                         return;

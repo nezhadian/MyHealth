@@ -84,6 +84,14 @@
     <System:String x:Key="MessageBox.GeneralSettings.Reset.YesLabel">Reset</System:String>
     <System:String x:Key="MessageBox.GeneralSettings.Reset.NoLabel">Cancel</System:String>
 
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.Caption">Switch Template</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.Text">do you want to clear your Custom Template?</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.YesLabel">Yes Clear All</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.NoLabel">No</System:String>
+
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Caption">Steps Editor Saving Error</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">there is no Effective Steps please add someone</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.OKLabel">Okay</System:String>
 
 
 </ResourceDictionary>

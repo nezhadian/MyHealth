@@ -85,4 +85,14 @@
     <System:String x:Key="MessageBox.GeneralSettings.Reset.YesLabel">بازنشانی</System:String>
     <System:String x:Key="MessageBox.GeneralSettings.Reset.NoLabel">لفو</System:String>
 
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.Caption">تغییر طرح</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.Text">آیا میخواهید طرح سفارشی خود را پاک کنید ؟</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.YesLabel">بله حذفش کن</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.NoLabel">خیر</System:String>
+
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Caption">خطا در ویرایشگر قدم ها</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">هیچ قدم تاثرگذاری باقی نذاشته‌اید لطفا چند قدم تاثیرگذار اضافه کنید</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.OKLabel">باشه</System:String>
+
+
 </ResourceDictionary>
