@@ -22,4 +22,7 @@
 
     <System:String x:Key="MainWindow.AddTaskTextBox.Placeholder">هر چی تو ذهنته بنویس</System:String>
 
+    <System:String x:Key="MainWindow.StepList.ExpanderHeader">قدم ها</System:String>
+
+
 </ResourceDictionary>
