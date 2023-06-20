@@ -152,15 +152,15 @@
                 <!--  Left Click Menu  -->
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu Loaded="ContextMenu_Loaded">
-                        <MenuItem Click="Open_Click" Header="Open" />
+                        <MenuItem Click="Open_Click" Header="{DynamicResource MainWindow.TaskbarMenu.OpenHeader}" />
                         <MenuItem
                             x:Name="mnuLockOnScreen"
-                            Header="Luck On Screen"
+                            Header="{DynamicResource MainWindow.Menu.LockOnScreenTooltip}"
                             IsCheckable="True"
                             StaysOpenOnClick="True" />
                         <Separator />
-                        <MenuItem Click="mnuSettings_Click" Header="Settings" />
-                        <MenuItem Click="mnuExit_Click" Header="Exit" />
+                        <MenuItem Click="mnuSettings_Click" Header="{DynamicResource MainWindow.Menu.SettingsHeader}" />
+                        <MenuItem Click="mnuExit_Click" Header="{DynamicResource MainWindow.Menu.ExitHeader}" />
                     </ContextMenu>
                 </tb:TaskbarIcon.ContextMenu>
             </tb:TaskbarIcon>

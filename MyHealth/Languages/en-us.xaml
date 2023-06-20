@@ -11,11 +11,13 @@
     <System:String x:Key="MainWindow.Menu.LockHeader">Locked</System:String>
     <System:String x:Key="MainWindow.Menu.UnLockHeader">UnLocked</System:String>
 
-
     <System:String x:Key="MainWindow.Menu.ResetTooltip">Reset timer to zero</System:String>
     <System:String x:Key="MainWindow.Menu.PlayPauseTooltip">Pause/Continue Timer</System:String>
     <System:String x:Key="MainWindow.Menu.SettingsTooltip">Open Settings Window</System:String>
     <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">Lock on Screen</System:String>
     <System:String x:Key="MainWindow.Menu.ExitTooltip">Exit application</System:String>
+
+    <System:String x:Key="MainWindow.TaskbarMenu.OpenHeader">Open</System:String>
+
 
 </ResourceDictionary>

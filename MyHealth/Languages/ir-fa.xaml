@@ -18,4 +18,7 @@
     <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">قفل کردن به صفحه</System:String>
     <System:String x:Key="MainWindow.Menu.ExitTooltip">خروج از برنامه</System:String>
 
+    <System:String x:Key="MainWindow.TaskbarMenu.OpenHeader">بازآوری پنجره</System:String>
+
+
 </ResourceDictionary>
