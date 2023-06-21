@@ -26,7 +26,7 @@
         MouseDown="Grid_MouseDown">
         <!--  Columns  -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" MinWidth="170" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
