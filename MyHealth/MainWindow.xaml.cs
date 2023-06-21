@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace MyHealth
 
         public MainWindow()
         {
+
             TaskListViewModel = new TaskListViewModel();
             StepListViewModel = new StepListViewModel();
 
@@ -59,6 +61,10 @@ namespace MyHealth
         {
             if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
+            else if (e.PropertyName == nameof(AppSettings.Data.LanguageCode))
+                LanguageSelector.SetLanguage(AppSettings.Data.LanguageCode);
+            
+
         }
 
 
