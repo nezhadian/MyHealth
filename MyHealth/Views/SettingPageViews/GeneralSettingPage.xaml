@@ -37,32 +37,44 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="5" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
 
                 </Grid.RowDefinitions>
 
+                <!--  Language Selector  -->
+                <ComboBox
+                    SelectedValue="{Binding LanguageCode, NotifyOnSourceUpdated=True, Mode=TwoWay}"
+                    SelectedValuePath="Tag"
+                    SourceUpdated="Controls_SourceUpdated">
+                    <ComboBoxItem Content="English" Tag="en-us" />
+                    <ComboBoxItem Content="فارسی" Tag="fa-ir" />
+                </ComboBox>
+
                 <!--  Start At Startup CheckBox  -->
                 <CheckBox
+                    Grid.Row="2"
                     Content="{DynamicResource GeneralSettings.StartAtStartupLabel}"
                     IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}"
                     SourceUpdated="Controls_SourceUpdated" />
 
                 <!--  Go on Taskbar CheckBox  -->
                 <CheckBox
-                    Grid.Row="2"
+                    Grid.Row="4"
                     Content="{DynamicResource GeneralSettings.GoOnTaskbarLabel}"
                     IsChecked="{Binding GoOnTaskbar, NotifyOnSourceUpdated=True, Mode=TwoWay}"
                     SourceUpdated="Controls_SourceUpdated" />
 
                 <!--  Fresh Start Color Selector  -->
                 <local:ColorSelector
-                    Grid.Row="4"
+                    Grid.Row="6"
                     SourceUpdated="Controls_SourceUpdated"
                     Text="{DynamicResource GeneralSettings.FreshStartBgColorSelectorText}"
                     Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
                 <!--  Short Break Color Selector  -->
                 <local:ColorSelector
-                    Grid.Row="6"
+                    Grid.Row="8"
                     SourceUpdated="Controls_SourceUpdated"
                     Text="{DynamicResource GeneralSettings.ShortBreakBgColorSelectorText}"
                     Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
