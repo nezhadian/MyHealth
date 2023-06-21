@@ -99,4 +99,10 @@
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">Gmail Address Copied to your Clipboard</System:String>
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.OKLabel">Okay</System:String>
 
+    <!--  Color Selector  -->
+    <System:String x:Key="ColorSelector.TimeSign.Hour">h</System:String>
+    <System:String x:Key="ColorSelector.TimeSign.Minute">m</System:String>
+    <System:String x:Key="ColorSelector.TimeSign.Second">s</System:String>
+
+
 </ResourceDictionary>

@@ -100,4 +100,9 @@
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">آدرس جیمیل به کلیپ‌بورد کپی شد</System:String>
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.OKLabel">باشه</System:String>
 
+    <!--  Color Selector  -->
+    <System:String x:Key="ColorSelector.TimeSign.Hour">ساعت</System:String>
+    <System:String x:Key="ColorSelector.TimeSign.Minute">دقیقه</System:String>
+    <System:String x:Key="ColorSelector.TimeSign.Second">ثانیه</System:String>
+
 </ResourceDictionary>

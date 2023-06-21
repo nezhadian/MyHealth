@@ -52,18 +52,18 @@
                             <!--  h Sign  -->
                             <TextBlock
                                 Style="{StaticResource TimeSpanControl.TextBlockBetween}"
-                                Text="h"
+                                Text="{DynamicResource ColorSelector.TimeSign.Hour}"
                                 Visibility="{TemplateBinding HourVisibility}" />
 
                             <!--  Minutes Textbox  -->
                             <TextBox Style="{StaticResource TimeSpanControl.TextBoxStyle}" Text="{Binding Minutes, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <!--  m Sign  -->
-                            <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="m" />
+                            <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="{DynamicResource ColorSelector.TimeSign.Minute}" />
 
                             <!--  Seconds Textbox  -->
                             <TextBox Style="{StaticResource TimeSpanControl.TextBoxStyle}" Text="{Binding Seconds, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                             <!--  s Sign  -->
-                            <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="s" />
+                            <TextBlock Style="{StaticResource TimeSpanControl.TextBlockBetween}" Text="{DynamicResource ColorSelector.TimeSign.Second}" />
 
                         </StackPanel>
                     </Border>
