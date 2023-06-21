@@ -46,7 +46,7 @@ namespace MyHealth
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
 
-            Instance.ContentFlowDirection = lang == "fa-ir" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+            Instance.ContentFlowDirection = culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         }
 
         static LanguageSelector()
