@@ -53,14 +53,9 @@
                 <!--  Input TextBox  -->
                 <TextBox
                     x:Name="txtCommand"
-                    Height="36"
-                    Margin="30,0"
-                    Padding="18,0"
-                    adonisEx:CornerRadiusExtension.CornerRadius="18"
-                    adonisEx:WatermarkExtension.IsWatermarkVisible="True"
                     adonisEx:WatermarkExtension.Watermark="{DynamicResource MainWindow.AddTaskTextBox.Placeholder}"
                     KeyDown="TextBox_KeyDown"
-                    MaxLength="{StaticResource TaskView.MaxLength}" />
+                    Style="{StaticResource MainWindow.AddTaskTextBox}" />
             </Grid>
 
             <!--  Menu  -->

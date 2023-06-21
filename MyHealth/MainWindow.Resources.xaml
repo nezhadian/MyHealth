@@ -1,4 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+    xmlns:local="clr-namespace:MyHealth">
 
     <!--  Setting Icon  -->
     <Path
@@ -84,6 +88,20 @@
                 <Setter Property="Header" Value="{DynamicResource MainWindow.Menu.UnLockHeader}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="MainWindow.AddTaskTextBox"
+        BasedOn="{StaticResource {x:Type TextBox}}"
+        TargetType="TextBox">
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Margin" Value="30,0" />
+        <Setter Property="Padding" Value="18,0" />
+        <Setter Property="adonisEx:CornerRadiusExtension.CornerRadius" Value="18" />
+        <Setter Property="adonisEx:WatermarkExtension.IsWatermarkVisible" Value="True" />
+        <Setter Property="MaxLength" Value="{StaticResource TaskView.MaxLength}" />
+        <Setter Property="FlowDirection" Value="{Binding Source={x:Static local:LanguageSelector.Instance}, Path=ContentFlowDirection}" />
+
     </Style>
 
 
