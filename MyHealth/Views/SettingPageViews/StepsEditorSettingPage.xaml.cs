@@ -123,7 +123,7 @@ namespace MyHealth
 
         private void cboStepType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (cboStepType.SelectedItem)
+            switch (cboStepType.SelectedValue)
             {
                 case StepData.StepTypes.WorkTime:
                 case StepData.StepTypes.ShortBreak:

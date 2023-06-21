@@ -67,6 +67,12 @@
     <System:String x:Key="StepsEditor.Buttons.AddTooltip">ایجاد قدم جدید | محدودیت : 100 قدم</System:String>
     <System:String x:Key="StepsEditor.Buttons.DeleteTooltip">حذف قدم انتخاب شده</System:String>
 
+    <System:String x:Key="StepsEditor.Settings.StepType.WorkTime">وقت کار</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.ImageSlider">نمایشگر عکس</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.ShortBreak">استراحت مطلق</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.FreshStart">شروع تازه</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.Seperator">فاصله</System:String>
+
     <!--  About Me  -->
 
     <System:String x:Key="AboutMe.MyFullName">یاسین ابراهیم نژادیان</System:String>

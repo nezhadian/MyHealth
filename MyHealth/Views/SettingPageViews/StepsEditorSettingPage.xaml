@@ -29,9 +29,9 @@
         </Grid.RowDefinitions>
         <!--  columns  -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" MinWidth="250" />
+            <ColumnDefinition Width="*" MinWidth="250" />
             <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <!--  templates  Selection  -->
@@ -58,17 +58,36 @@
         <Grid
             Grid.Row="0"
             Grid.RowSpan="3"
-            Grid.Column="2">
+            Grid.Column="2"
+            FlowDirection="{Binding Source={x:Static local:LanguageSelector.Instance}, Path=ContentFlowDirection}">
 
             <StackPanel>
                 <!--  Step Type ComboBox  -->
                 <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.StepTypeLabel}" />
                 <ComboBox
                     Name="cboStepType"
-                    ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=StepTypes, Mode=OneTime}"
-                    SelectedItem="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                    SelectedValue="{Binding SelectedStep.StepType, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                    SelectedValuePath="Tag"
                     SelectionChanged="cboStepType_SelectionChanged"
-                    SourceUpdated="OnPropertiesChanged" />
+                    SourceUpdated="OnPropertiesChanged">
+
+                    <ComboBoxItem Tag="WorkTime">
+                        <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.StepType.WorkTime}" IconData="{StaticResource Icons.StepData.WorkTime}" />
+                    </ComboBoxItem>
+                    <ComboBoxItem Tag="ImageSlider">
+                        <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.StepType.ImageSlider}" IconData="{StaticResource Icons.StepData.ImageSlider}" />
+                    </ComboBoxItem>
+                    <ComboBoxItem Tag="ShortBreak">
+                        <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.StepType.ShortBreak}" IconData="{StaticResource Icons.StepData.ShortBreak}" />
+                    </ComboBoxItem>
+                    <ComboBoxItem Tag="FreshStart">
+                        <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.StepType.FreshStart}" IconData="{StaticResource Icons.StepData.FreshStart}" />
+                    </ComboBoxItem>
+                    <ComboBoxItem Tag="Seperator">
+                        <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.StepType.Seperator}" IconData="{StaticResource Icons.StepData.Seperator}" />
+                    </ComboBoxItem>
+
+                </ComboBox>
 
                 <!--  StepName Textbox  -->
                 <StackPanel x:Name="stkStepName">

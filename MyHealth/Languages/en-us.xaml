@@ -51,6 +51,7 @@
     <System:String x:Key="GeneralSettings.Folders.ImageSlider.BodyFolderLabel">Body Images Folder</System:String>
     <System:String x:Key="GeneralSettings.Folders.ButtonsCaption">Open Folder</System:String>
 
+
     <System:String x:Key="GeneralSettings.ResetSettingsCaption">Reset Settings</System:String>
 
     <!--  Steps Editor  -->
@@ -65,6 +66,13 @@
 
     <System:String x:Key="StepsEditor.Buttons.AddTooltip">Add new Step (Limit : 100  Steps)</System:String>
     <System:String x:Key="StepsEditor.Buttons.DeleteTooltip">Delete Selected Step</System:String>
+
+    <System:String x:Key="StepsEditor.Settings.StepType.WorkTime">Work Time</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.ImageSlider">Picture Slideshow</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.ShortBreak">Free Time</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.FreshStart">Fresh Start</System:String>
+    <System:String x:Key="StepsEditor.Settings.StepType.Seperator">Seperator</System:String>
+
 
     <!--  About Me  -->
 
