@@ -57,6 +57,16 @@ namespace MyHealth
             }
         }
 
+        [DefaultValue("en-us")]
+        public string LanguageCode
+        {
+            get => (string)GetPropertyValue();
+            set
+            {
+                SetPropertyValue(value);
+            }
+        }
+
         //set and get Dynamic Values
         public override void OnLoaded()
         {
