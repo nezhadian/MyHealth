@@ -73,6 +73,9 @@
     <System:String x:Key="StepsEditor.Settings.StepType.FreshStart">Fresh Start</System:String>
     <System:String x:Key="StepsEditor.Settings.StepType.Seperator">Seperator</System:String>
 
+    <System:String x:Key="StepsEditor.Settings.ImageListes.Eye">Eye</System:String>
+    <System:String x:Key="StepsEditor.Settings.ImageListes.Body">Body</System:String>
+
 
     <!--  About Me  -->
 

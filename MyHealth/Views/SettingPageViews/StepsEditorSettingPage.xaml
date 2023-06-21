@@ -111,9 +111,16 @@
                 <StackPanel x:Name="stkImageList">
                     <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource StepsEditor.Settings.ImageListLabel}" />
                     <ComboBox
-                        ItemsSource="{Binding Source={x:Type local:StepData}, Converter={StaticResource Enum2ArrayConverter}, ConverterParameter=ImageListes, Mode=OneTime}"
-                        SelectedItem="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
-                        SourceUpdated="OnPropertiesChanged" />
+                        SelectedValue="{Binding SelectedStep.ImageList, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                        SelectedValuePath="Tag"
+                        SourceUpdated="OnPropertiesChanged">
+                        <ComboBoxItem Tag="Body">
+                            <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.ImageListes.Body}" IconData="{StaticResource Icons.StepData.ImageSlider-Body}" />
+                        </ComboBoxItem>
+                        <ComboBoxItem Tag="Eye">
+                            <local:IconTextContent Content="{DynamicResource StepsEditor.Settings.ImageListes.Eye}" IconData="{StaticResource Icons.StepData.ImageSlider-Eye}" />
+                        </ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
 
 

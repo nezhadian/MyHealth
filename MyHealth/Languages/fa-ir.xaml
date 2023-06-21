@@ -73,6 +73,8 @@
     <System:String x:Key="StepsEditor.Settings.StepType.FreshStart">شروع تازه</System:String>
     <System:String x:Key="StepsEditor.Settings.StepType.Seperator">فاصله</System:String>
 
+    <System:String x:Key="StepsEditor.Settings.ImageListes.Eye">تمرینات چشم</System:String>
+    <System:String x:Key="StepsEditor.Settings.ImageListes.Body">تمرینات بدنی</System:String>
     <!--  About Me  -->
 
     <System:String x:Key="AboutMe.MyFullName">یاسین ابراهیم نژادیان</System:String>
