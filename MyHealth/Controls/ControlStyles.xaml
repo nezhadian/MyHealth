@@ -4,5 +4,6 @@
         <ResourceDictionary Source="/Controls/Styles/SocialLinkCardButton.xaml" />
         <ResourceDictionary Source="/Controls/Styles/DockedWindow.xaml" />
         <ResourceDictionary Source="/Controls/Styles/TimeSpanControlStyle.xaml" />
+        <ResourceDictionary Source="/Controls/Styles/IconTextContent.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
