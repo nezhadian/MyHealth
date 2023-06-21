@@ -49,7 +49,6 @@ namespace MyHealth
             try
             {
                 Process.Start("explorer.exe", directoryPath);
-                throw new NotImplementedException("this is this is ");
             }
             catch (Exception ex)
             {

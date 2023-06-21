@@ -2,6 +2,8 @@
     x:Class="MyHealth.GeneralSettingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI"
+    xmlns:adonisEx="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,128 +21,169 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="ToolTip" Value="..." />
             <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="adonisEx:LayerExtension.Layer" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
             <EventSetter Event="Click" Handler="OpenImageSliderFolders_Click" />
             <EventSetter Event="ToolTipOpening" Handler="ShowFolderPath_ToolTipOpening" />
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Margin="20">
-        <!--  General Settings  -->
-        <GroupBox Header="{DynamicResource GeneralSettings.GeneralSectionHeader}">
-            <Grid>
-                <!--  Rows  -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel Margin="20" FlowDirection="{Binding Source={x:Static local:LanguageSelector.Instance}, Path=ContentFlowDirection}">
+            <!--  General Settings  -->
+            <GroupBox Header="{DynamicResource GeneralSettings.GeneralSectionHeader}">
+                <Grid>
+                    <!--  Columns  -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" MinWidth="220" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--  Rows  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                </Grid.RowDefinitions>
+                    <!--  Language Selector  -->
+                    <TextBlock
+                        Grid.Row="0"
+                        Padding="0,0,0,7"
+                        Style="{StaticResource Texts.NormalText}"
+                        Text="Language" />
 
-                <!--  Language Selector  -->
-                <ComboBox
-                    SelectedValue="{Binding LanguageCode, NotifyOnSourceUpdated=True, Mode=TwoWay}"
-                    SelectedValuePath="Tag"
-                    SourceUpdated="Controls_SourceUpdated">
-                    <ComboBoxItem Content="English" Tag="en-us" />
-                    <ComboBoxItem Content="فارسی" Tag="fa-ir" />
-                </ComboBox>
+                    <ComboBox
+                        Grid.Column="2"
+                        MinWidth="150"
+                        HorizontalAlignment="Left"
+                        SelectedValue="{Binding LanguageCode, NotifyOnSourceUpdated=True, Mode=TwoWay}"
+                        SelectedValuePath="Tag"
+                        SourceUpdated="Controls_SourceUpdated">
+                        <ComboBoxItem Content="English" Tag="en-us" />
+                        <ComboBoxItem Content="فارسی" Tag="fa-ir" />
+                    </ComboBox>
 
-                <!--  Start At Startup CheckBox  -->
-                <CheckBox
-                    Grid.Row="2"
-                    Content="{DynamicResource GeneralSettings.StartAtStartupLabel}"
-                    IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}"
-                    SourceUpdated="Controls_SourceUpdated" />
+                    <!--  Start At Startup CheckBox  -->
+                    <CheckBox
+                        Grid.Row="1"
+                        Padding="7,5"
+                        Content="{DynamicResource GeneralSettings.StartAtStartupLabel}"
+                        IsChecked="{Binding StartAtStartup, NotifyOnSourceUpdated=True}"
+                        SourceUpdated="Controls_SourceUpdated"
+                        Style="{StaticResource {x:Static adonis:Styles.ToggleSwitch}}" />
 
-                <!--  Go on Taskbar CheckBox  -->
-                <CheckBox
-                    Grid.Row="4"
-                    Content="{DynamicResource GeneralSettings.GoOnTaskbarLabel}"
-                    IsChecked="{Binding GoOnTaskbar, NotifyOnSourceUpdated=True, Mode=TwoWay}"
-                    SourceUpdated="Controls_SourceUpdated" />
+                    <!--  Go on Taskbar CheckBox  -->
+                    <CheckBox
+                        Grid.Row="2"
+                        Padding="7,5"
+                        Content="{DynamicResource GeneralSettings.GoOnTaskbarLabel}"
+                        IsChecked="{Binding GoOnTaskbar, NotifyOnSourceUpdated=True, Mode=TwoWay}"
+                        SourceUpdated="Controls_SourceUpdated"
+                        Style="{StaticResource {x:Static adonis:Styles.ToggleSwitch}}" />
+                </Grid>
+            </GroupBox>
 
-                <!--  Fresh Start Color Selector  -->
-                <local:ColorSelector
-                    Grid.Row="6"
-                    SourceUpdated="Controls_SourceUpdated"
-                    Text="{DynamicResource GeneralSettings.FreshStartBgColorSelectorText}"
-                    Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
+            <!--  General Settings  -->
+            <GroupBox Margin="0,10,0,0" Header="Colors">
+                <Grid>
+                    <!--  Columns  -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" MinWidth="220" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--  Rows  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <!--  Short Break Color Selector  -->
-                <local:ColorSelector
-                    Grid.Row="8"
-                    SourceUpdated="Controls_SourceUpdated"
-                    Text="{DynamicResource GeneralSettings.ShortBreakBgColorSelectorText}"
-                    Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
-            </Grid>
-        </GroupBox>
+                    <!--  Fresh Start Color Selector  -->
+                    <TextBlock
+                        Grid.Row="0"
+                        Style="{StaticResource Texts.NormalText}"
+                        Text="{DynamicResource GeneralSettings.FreshStartBgColorSelectorText}" />
+                    <local:ColorSelector
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        HorizontalAlignment="Left"
+                        SourceUpdated="Controls_SourceUpdated"
+                        Color="{Binding FreshStartBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
-        <!--  Image Slider Settings  -->
-        <GroupBox Margin="0,10,0,0" Header="{DynamicResource GeneralSettings.ImageSliderSectionHeader}">
-            <Grid>
-                <!--  Columns  -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
+                    <!--  Short Break Color Selector  -->
+                    <TextBlock
+                        Grid.Row="1"
+                        Style="{StaticResource Texts.NormalText}"
+                        Text="{DynamicResource GeneralSettings.ShortBreakBgColorSelectorText}" />
+                    <local:ColorSelector
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        SourceUpdated="Controls_SourceUpdated"
+                        Text=""
+                        Color="{Binding ShortBreakBgColor, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
+                </Grid>
+            </GroupBox>
 
-                <!--  Rows  -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+            <!--  Image Slider Settings  -->
+            <GroupBox Margin="0,10,0,0" Header="{DynamicResource GeneralSettings.ImageSliderSectionHeader}">
+                <Grid>
+                    <!--  Columns  -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" MinWidth="220" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--  Rows  -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
 
-                <!--  Image Slider Sliding Delay Control  -->
-                <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource GeneralSettings.ImageSliderDelayText}" />
-                <local:TimeSpanControl
-                    x:Name="tscImageSliderDelay"
-                    Grid.Column="1"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    HourVisibility="Collapsed"
-                    SourceUpdated="Controls_SourceUpdated"
-                    TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
+                    <!--  Image Slider Sliding Delay Control  -->
+                    <TextBlock Style="{StaticResource Texts.NormalText}" Text="{DynamicResource GeneralSettings.ImageSliderDelayText}" />
+                    <local:TimeSpanControl
+                        x:Name="tscImageSliderDelay"
+                        Grid.Column="2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        HourVisibility="Collapsed"
+                        SourceUpdated="Controls_SourceUpdated"
+                        TimeSpan="{Binding ImageSliderDelay, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
 
-                <!--  Eye Folder Open Control  -->
-                <TextBlock
-                    Grid.Row="2"
-                    Style="{StaticResource Texts.NormalText}"
-                    Text="{DynamicResource GeneralSettings.Folders.ImageSlider.EyeFolderLabel}" />
-                <Button
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Style="{StaticResource OpenFolderButtonsStyle}"
-                    Tag="eye" />
+                    <!--  Eye Folder Open Control  -->
+                    <TextBlock
+                        Grid.Row="1"
+                        Style="{StaticResource Texts.NormalText}"
+                        Text="{DynamicResource GeneralSettings.Folders.ImageSlider.EyeFolderLabel}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Style="{StaticResource OpenFolderButtonsStyle}"
+                        Tag="eye" />
 
-                <!--  Body Folder Open Control  -->
-                <TextBlock
-                    Grid.Row="4"
-                    Style="{StaticResource Texts.NormalText}"
-                    Text="{DynamicResource GeneralSettings.Folders.ImageSlider.BodyFolderLabel}" />
-                <Button
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Style="{StaticResource OpenFolderButtonsStyle}"
-                    Tag="body" />
+                    <!--  Body Folder Open Control  -->
+                    <TextBlock
+                        Grid.Row="2"
+                        Style="{StaticResource Texts.NormalText}"
+                        Text="{DynamicResource GeneralSettings.Folders.ImageSlider.BodyFolderLabel}" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource OpenFolderButtonsStyle}"
+                        Tag="body" />
 
-            </Grid>
-        </GroupBox>
+                </Grid>
+            </GroupBox>
 
-        <!--  Reset Settings Button  -->
-        <Button
-            Margin="0,10,0,0"
-            HorizontalAlignment="Left"
-            Click="btnResetSettings_Click"
-            Content="{DynamicResource GeneralSettings.ResetSettingsCaption}"
-            Style="{StaticResource Buttons.Secondary}" />
-    </StackPanel>
+            <!--  Reset Settings Button  -->
+            <Button
+                Margin="0,10,0,0"
+                HorizontalAlignment="Left"
+                Click="btnResetSettings_Click"
+                Content="{DynamicResource GeneralSettings.ResetSettingsCaption}"
+                Style="{StaticResource Buttons.Secondary}" />
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
