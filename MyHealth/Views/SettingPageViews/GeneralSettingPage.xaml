@@ -51,7 +51,7 @@
                         Grid.Row="0"
                         Padding="0,0,0,7"
                         Style="{StaticResource Texts.NormalText}"
-                        Text="Language" />
+                        Text="{DynamicResource GeneralSettings.LanguageLabel}" />
 
                     <ComboBox
                         Grid.Column="2"
@@ -84,8 +84,8 @@
                 </Grid>
             </GroupBox>
 
-            <!--  General Settings  -->
-            <GroupBox Margin="0,10,0,0" Header="Colors">
+            <!--  Color Settings  -->
+            <GroupBox Margin="0,10,0,0" Header="{DynamicResource GeneralSettings.ColorsSectionHeader}">
                 <Grid>
                     <!--  Columns  -->
                     <Grid.ColumnDefinitions>

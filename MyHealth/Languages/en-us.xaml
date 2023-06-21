@@ -36,8 +36,10 @@
 
     <!--  General Settings  -->
     <System:String x:Key="GeneralSettings.GeneralSectionHeader">General</System:String>
+    <System:String x:Key="GeneralSettings.ColorsSectionHeader">Colors</System:String>
     <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">Image Slider</System:String>
 
+    <System:String x:Key="GeneralSettings.LanguageLabel">Language</System:String>
     <System:String x:Key="GeneralSettings.StartAtStartupLabel">Start At Startup</System:String>
     <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">Go on Taskbar</System:String>
 

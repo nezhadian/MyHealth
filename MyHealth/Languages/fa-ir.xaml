@@ -37,8 +37,10 @@
 
     <!--  General Settings  -->
     <System:String x:Key="GeneralSettings.GeneralSectionHeader">عمومی</System:String>
+    <System:String x:Key="GeneralSettings.ColorsSectionHeader">رنگ ها</System:String>
     <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">نمایشگر عکس</System:String>
 
+    <System:String x:Key="GeneralSettings.LanguageLabel">زبان</System:String>
     <System:String x:Key="GeneralSettings.StartAtStartupLabel">بازکرن هنگام راه‌اندازی سیستم عامل</System:String>
     <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">قرار گرفتن بر روی نوار پایینی</System:String>
 
