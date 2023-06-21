@@ -12,15 +12,32 @@ using System.Windows.Data;
 
 namespace MyHealth
 {
-    public class LanguageSelector 
+    public class LanguageSelector : INotifyPropertyChanged
     {
+
+        #region INotifyPropertyChanged Implamentation
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+
+        private FlowDirection _flwDirection;
+        public FlowDirection ContentFlowDirection
+        {
+            get => _flwDirection;
+            set
+            {
+                _flwDirection = value;
+                OnPropertyChanged();
+            }
+        }
+
         public static LanguageSelector Instance;
 
         static ResourceDictionary languageDictornary;
-        public LanguageSelector()
-        {
-            languageDictornary = App.Current.Resources.MergedDictionaries.First((rs) => rs.Source.OriginalString == "/Languages/en-us.xaml");
-        }
         public static void SetLanguage(string lang)
         {
             CultureInfo culture = new CultureInfo(lang);
@@ -28,6 +45,8 @@ namespace MyHealth
             languageDictornary.Source = new Uri($"/Languages/{lang}.xaml", UriKind.Relative);
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
+
+            Instance.ContentFlowDirection = lang == "fa-ir" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         }
 
         static LanguageSelector()
