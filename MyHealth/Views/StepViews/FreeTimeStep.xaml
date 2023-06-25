@@ -15,7 +15,7 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource Texts.PageTitle.Negative}"
+            Style="{StaticResource Texts.PageTitle}"
             Text="{Binding StepName}" />
     </Grid>
 </Page>
