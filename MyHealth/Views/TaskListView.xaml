@@ -55,7 +55,6 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Name}" Value="Completed">
                             <Setter TargetName="expander" Property="Header" Value="{DynamicResource TaskList.GroupNames.Completed}" />
-                            <Setter TargetName="expander" Property="IsExpanded" Value="false" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

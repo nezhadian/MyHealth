@@ -373,10 +373,7 @@
                             </Grid.RowDefinitions>
 
                             <!--  Expand and collapse Toggle Button  -->
-                            <ToggleButton
-                                Foreground="{TemplateBinding Foreground}"
-                                IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                Style="{StaticResource Expander.ToggleButton}">
+                            <ToggleButton Foreground="{TemplateBinding Foreground}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource Expander.ToggleButton}">
                                 <!--  Header  -->
                                 <ContentPresenter Content="{TemplateBinding Header}" />
                             </ToggleButton>

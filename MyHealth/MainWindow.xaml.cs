@@ -61,25 +61,14 @@ namespace MyHealth
         }
         private void AppSettings_Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
+            if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
 
             else if (e.PropertyName == nameof(AppSettings.Data.LanguageCode))
                 LanguageSelector.SetLanguage(AppSettings.Data.LanguageCode);
 
             else if (e.PropertyName == nameof(AppSettings.Data.IsDarkMode))
-            {
-                //ResourceLocator.SetColorScheme(Application.Current.Resources, AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme);
-                //ResourceDictionary rs = Application.Current.Resources;
-
-                //MyAdonisResourceLocator.SetColorScheme(AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme);
-
-                //Application.Current.Resources.MergedDictionaries[0].Source = AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme;
-            }
-
-
-
-
+                ResourceLocator.SetColorScheme(Application.Current.Resources, AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme);
         }
 
 

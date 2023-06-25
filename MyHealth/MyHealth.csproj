@@ -214,10 +214,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Styles\ColorSchemes\Light.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\ColorSchemes\Adonis.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
