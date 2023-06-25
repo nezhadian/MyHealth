@@ -14,6 +14,8 @@ namespace MyHealth
 {
     public class LanguageSelector : INotifyPropertyChanged
     {
+        public static LanguageSelector Instance;
+
 
         #region INotifyPropertyChanged Implamentation
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,8 +24,6 @@ namespace MyHealth
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
-
         private FlowDirection _flwDirection;
         public FlowDirection ContentFlowDirection
         {
@@ -35,23 +35,31 @@ namespace MyHealth
             }
         }
 
-        public static LanguageSelector Instance;
 
-        static ResourceDictionary languageDictornary;
+
+        static ResourceDictionaryLocator languageFileChanger;
         public static void SetLanguage(string lang)
         {
+            //change lanuage dictonary file
+            languageFileChanger.ChangeFile(lang + ".xaml");
+
+            //change application cultue
             CultureInfo culture = new CultureInfo(lang);
 
-            languageDictornary.Source = new Uri($"/Languages/{lang}.xaml", UriKind.Relative);
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
 
+            //change application direction
             Instance.ContentFlowDirection = culture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+        }
+
+        public LanguageSelector()
+        {
+            languageFileChanger = new ResourceDictionaryLocator("/Languages/en-us.xaml");
         }
 
         static LanguageSelector()
         {
-            languageDictornary = App.Current.Resources.MergedDictionaries.First((rs) => rs.Source.OriginalString == "/Languages/en-us.xaml");
             Instance = new LanguageSelector();
         }
     }
