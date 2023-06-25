@@ -48,7 +48,7 @@ namespace MyHealth
                 AppSettings.Initialized += AppSettings_Initialized;
 
             AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
-            themeLocator = new ResourceDictionaryLocator("/Styles/ColorSchemes/Dark.xaml");
+            themeLocator = new ResourceDictionaryLocator("/Styles/ColorSchemes/Light.xaml");
 
             DataContext = this;
             InitializeComponent();
