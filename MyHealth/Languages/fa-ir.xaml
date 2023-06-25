@@ -113,9 +113,12 @@
     <System:String x:Key="ColorSelector.TimeSign.Minute">دقیقه</System:String>
     <System:String x:Key="ColorSelector.TimeSign.Second">ثانیه</System:String>
 
-    <!--  Tasklist Group Names  -->
+    <!--  Tasklist  -->
     <System:String x:Key="TaskList.GroupNames.Tasks">کار های امروز</System:String>
     <System:String x:Key="TaskList.GroupNames.Importants">کار های مهم</System:String>
     <System:String x:Key="TaskList.GroupNames.Completed">کار های انجام شده</System:String>
+
+    <System:String x:Key="TaskList.Controls.IsCompletedToolTip">علامت زدن به عنوان انجام شده</System:String>
+    <System:String x:Key="TaskList.Controls.IsImporantToolTip">علامت زدن به عنوان کار مهم</System:String>
 
 </ResourceDictionary>

@@ -115,10 +115,13 @@
     <System:String x:Key="ColorSelector.TimeSign.Minute">m</System:String>
     <System:String x:Key="ColorSelector.TimeSign.Second">s</System:String>
 
-    <!--  Tasklist Group Names  -->
+    <!--  Tasklist  -->
     <System:String x:Key="TaskList.GroupNames.Tasks">Tasks</System:String>
     <System:String x:Key="TaskList.GroupNames.Importants">Importants</System:String>
     <System:String x:Key="TaskList.GroupNames.Completed">Completed</System:String>
+
+    <System:String x:Key="TaskList.Controls.IsCompletedToolTip">Mark this task as completed</System:String>
+    <System:String x:Key="TaskList.Controls.IsImporantToolTip">Mark this task as Important</System:String>
 
 
 

@@ -44,7 +44,8 @@
             <CheckBox
                 x:Name="chkIsCompleted"
                 HorizontalAlignment="Center"
-                IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Completed,Tasks'}" />
+                IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Completed,Tasks'}"
+                ToolTip="{DynamicResource TaskList.Controls.IsCompletedToolTip}" />
 
             <!--  Text  -->
             <Grid
@@ -74,7 +75,8 @@
                 Grid.Column="2"
                 Foreground="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem, Mode=FindAncestor}, Path=Foreground}"
                 IsChecked="{Binding Grouping, Converter={StaticResource Bool2EnumConverter}, ConverterParameter='Importants,Tasks'}"
-                Style="{StaticResource StarToggleButtonStyle}" />
+                Style="{StaticResource StarToggleButtonStyle}"
+                ToolTip="{DynamicResource TaskList.Controls.IsImporantToolTip}" />
         </Grid>
 
         <DataTemplate.Triggers>
