@@ -1,0 +1,78 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonis="clr-namespace:AdonisUI;assembly=AdonisUI">
+
+    <!--  Primary  -->
+    <SolidColorBrush x:Key="BackgroundColor" Color="#2A2B34" />
+
+    <!--  Texts  -->
+    <SolidColorBrush x:Key="NormalTextColor" Color="#f0f0f0" />
+
+    <!--  Buttons  -->
+    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Buttons.OnlyIcon.Hover" Color="#4C4F62" />
+    <SolidColorBrush x:Key="Buttons.Masked.Hover">#1fffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="Buttons.Masked.Pressed">#2f333333</SolidColorBrush>
+    <SolidColorBrush x:Key="Buttons.Glass.Background">#2FFFFFFF</SolidColorBrush>
+
+    <!--  Social Media Icons  -->
+    <SolidColorBrush x:Key="Social.WebsiteColor">#aaa</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.GmailColor">red</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.TelegramColor">#09f</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.GithubColor">#333</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.LinkedInColor">#FF0D53A8</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.FillColor">#fff</SolidColorBrush>
+    <SolidColorBrush x:Key="Social.TextColor">#fff</SolidColorBrush>
+
+    <!--  TimeSpan Control  -->
+    <SolidColorBrush x:Key="TimeSpanControl.Text" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="TimeSpanControl.BlockBetweenColor" Color="#4A4A5E" />
+    <SolidColorBrush x:Key="TimeSpanControl.Background" Color="#2A2B34" />
+    <SolidColorBrush x:Key="TimeSpanControl.Border" Color="#4A4A5E" />
+
+    <!--  Menu  -->
+    <SolidColorBrush x:Key="Menu.Icons" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Menu.Border" Color="#4A4A5E" />
+    <SolidColorBrush x:Key="Menu.Pressed" Color="#31acff" />
+    <SolidColorBrush x:Key="Menu.Hover" Color="#4C4F62" />
+    <SolidColorBrush x:Key="Menu.TextColor" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Menu.Background" Color="#2A2B34" />
+
+    <!--  SettingListMenuItem  -->
+    <SolidColorBrush x:Key="SettingWindow.TabItem.SelectionColor" Color="#0099ff" />
+    <SolidColorBrush x:Key="SettingWindow.TabItem.Hover" Color="#4C4F62" />
+    <SolidColorBrush x:Key="SettingWindow.TabItem.TextColor" Color="#f0f0f0" />
+
+
+    <!--  Color Selector  -->
+    <SolidColorBrush x:Key="ColorSelector.Border">#999</SolidColorBrush>
+
+    <!--  StepData  -->
+    <SolidColorBrush x:Key="StepData.MenuItem.IconColor" Color="#4cf0f0f0" />
+    <SolidColorBrush x:Key="StepData.MenuItem.SelectionColor" Color="#0099ff" />
+
+    <SolidColorBrush x:Key="StepData.IconColor" Color="#7ff0f0f0" />
+    <SolidColorBrush x:Key="StepData.SeperatorLineColor" Color="#4A4A5E" />
+    <SolidColorBrush x:Key="StepData.Hover" Color="#4C4F62" />
+    <SolidColorBrush x:Key="StepData.SelectionColor" Color="#0099ff" />
+    <SolidColorBrush x:Key="StepData.TextColor" Color="#f0f0f0" />
+
+    <!--  Image Slider  -->
+    <SolidColorBrush x:Key="ImageSlider.Navigation.Background" Color="#4A4A5E" />
+
+    <!--  Timer  -->
+    <SolidColorBrush x:Key="Timer.Border" Color="#4A4A5E" />
+    <SolidColorBrush x:Key="Timer.Background" Color="#2A2B34" />
+
+    <!--  Expander  -->
+    <SolidColorBrush x:Key="Expander.TextColor" Color="#f0f0f0" />
+
+    <!--  Icons  -->
+    <SolidColorBrush x:Key="IconsColor.Play">#FF2EAC2E</SolidColorBrush>
+    <SolidColorBrush x:Key="IconsColor.Pause">#FFEE4747</SolidColorBrush>
+    <SolidColorBrush x:Key="IconsColor.Settings" Color="#d8d8d8" />
+    <SolidColorBrush x:Key="IconsColor.Lock" Color="#d8d8d8" />
+    <SolidColorBrush x:Key="IconsColor.Add">#FF34B02E</SolidColorBrush>
+
+</ResourceDictionary>
