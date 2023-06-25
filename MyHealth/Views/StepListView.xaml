@@ -33,11 +33,15 @@
     </Style>
 
     <DataTemplate DataType="{x:Type local:StepListViewModel}">
-        <Grid>
-            <Grid.Resources>
-                <CollectionViewSource x:Key="StepListCollectionView" Source="{Binding StepsArray}" />
+        <!--  Expander  -->
+        <Expander Header="{DynamicResource MainWindow.StepList.ExpanderHeader}" IsExpanded="True">
 
-            </Grid.Resources>
+            <!--  Collection Source  -->
+            <Expander.Resources>
+                <CollectionViewSource x:Key="StepListCollectionView" Source="{Binding StepsArray}" />
+            </Expander.Resources>
+
+            <!--  StepList View  -->
             <ListBox
                 ItemContainerStyle="{StaticResource StepData.ListBoxItemContainer}"
                 ItemTemplate="{StaticResource StepData.HiddenSeperatorTemplate}"
@@ -50,7 +54,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListBox>
-        </Grid>
+        </Expander>
 
     </DataTemplate>
 </ResourceDictionary>

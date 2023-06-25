@@ -40,13 +40,10 @@
             <ContentControl Content="{Binding TaskListViewModel}" />
 
             <!--  Step List  -->
-            <Expander
+            <ContentControl
                 Grid.Column="1"
                 Margin="10,5,0,0"
-                Header="{DynamicResource MainWindow.StepList.ExpanderHeader}"
-                IsExpanded="True">
-                <ContentControl Content="{Binding StepListViewModel}" />
-            </Expander>
+                Content="{Binding StepListViewModel}" />
 
             <!--  Add Textbox  -->
             <Grid Grid.Row="1" Grid.ColumnSpan="2">
