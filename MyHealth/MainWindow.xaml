@@ -46,7 +46,7 @@
                 Content="{Binding StepListViewModel}" />
 
             <!--  Add Textbox  -->
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10">
                 <!--  Input TextBox  -->
                 <TextBox
                     x:Name="txtCommand"
