@@ -34,6 +34,7 @@ namespace MyHealth
         public StepListViewModel StepListViewModel { get; set; }
 
         SettingsWindow settingsWin = new SettingsWindow();
+        ResourceDictionaryLocator themeLocator;
 
         public MainWindow()
         {
@@ -47,6 +48,7 @@ namespace MyHealth
                 AppSettings.Initialized += AppSettings_Initialized;
 
             AppSettings.Data.PropertyChanged += AppSettings_Data_PropertyChanged;
+            themeLocator = new ResourceDictionaryLocator("/Styles/ColorSchemes/Dark.xaml");
 
             DataContext = this;
             InitializeComponent();
@@ -61,14 +63,17 @@ namespace MyHealth
         }
         private void AppSettings_Data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(AppSettings.Data.StepDataList))
+            if (e.PropertyName == nameof(AppSettings.Data.StepDataList))
                 StepListViewModel.StepsArray = AppSettings.Data.StepDataList;
 
             else if (e.PropertyName == nameof(AppSettings.Data.LanguageCode))
                 LanguageSelector.SetLanguage(AppSettings.Data.LanguageCode);
 
             else if (e.PropertyName == nameof(AppSettings.Data.IsDarkMode))
+            {
+                themeLocator.ChangeFile(AppSettings.Data.IsDarkMode ? "Dark.xaml" : "Light.xaml");
                 ResourceLocator.SetColorScheme(Application.Current.Resources, AppSettings.Data.IsDarkMode ? ResourceLocator.DarkColorScheme : ResourceLocator.LightColorScheme);
+            }
         }
 
 
