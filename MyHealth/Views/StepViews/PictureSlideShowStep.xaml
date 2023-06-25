@@ -9,11 +9,12 @@
     Title="ShortBreak"
     d:DesignHeight="728"
     d:DesignWidth="1366"
+    Background="{DynamicResource BackgroundColor}"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
 
 
-    <Grid Background="White">
+    <Grid>
         <Grid Margin="40">
             <!--  rows  -->
             <Grid.RowDefinitions>
