@@ -360,7 +360,7 @@
         </Setter>
     </Style>
     <Style TargetType="Expander">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static adonis:Brushes.ForegroundBrush}}" />
+        <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Expander">
@@ -373,7 +373,7 @@
                             </Grid.RowDefinitions>
 
                             <!--  Expand and collapse Toggle Button  -->
-                            <ToggleButton IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource Expander.ToggleButton}">
+                            <ToggleButton Foreground="{TemplateBinding Foreground}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" Style="{StaticResource Expander.ToggleButton}">
                                 <!--  Header  -->
                                 <ContentPresenter Content="{TemplateBinding Header}" />
                             </ToggleButton>
@@ -400,7 +400,7 @@
         <Setter Property="MinWidth" Value="140" />
         <Setter Property="Background" Value="{DynamicResource BackgroundColor}" />
         <Setter Property="Foreground" Value="{DynamicResource NormalTextColor}" />
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
