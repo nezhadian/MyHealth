@@ -6,17 +6,17 @@
     <!--  MainWindow  -->
     <System:String x:Key="MainWindow.Menu.ResetHeader">از اول</System:String>
     <System:String x:Key="MainWindow.Menu.ExitHeader">خروج</System:String>
-    <System:String x:Key="MainWindow.Menu.SettingsHeader">تنظبمات</System:String>
+    <System:String x:Key="MainWindow.Menu.SettingsHeader">تنظیمات</System:String>
     <System:String x:Key="MainWindow.Menu.PlayHeader">ادامه</System:String>
     <System:String x:Key="MainWindow.Menu.PauseHeader">توقف</System:String>
-    <System:String x:Key="MainWindow.Menu.LockHeader">قفل</System:String>
-    <System:String x:Key="MainWindow.Menu.UnLockHeader">باز</System:String>
+    <System:String x:Key="MainWindow.Menu.LockHeader">قفل شده</System:String>
+    <System:String x:Key="MainWindow.Menu.UnLockHeader">آزاد</System:String>
 
 
     <System:String x:Key="MainWindow.Menu.ResetTooltip">بازنشانی تایمر به صفر</System:String>
     <System:String x:Key="MainWindow.Menu.PlayPauseTooltip">ادامه یا توقف تایمر</System:String>
     <System:String x:Key="MainWindow.Menu.SettingsTooltip">باز کرن پنجره تنظمیات</System:String>
-    <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">قفل کردن به صفحه</System:String>
+    <System:String x:Key="MainWindow.Menu.LockOnScreenTooltip">قفل کردن روی صفحه اصلی</System:String>
     <System:String x:Key="MainWindow.Menu.ExitTooltip">خروج از برنامه</System:String>
 
     <System:String x:Key="MainWindow.TaskbarMenu.OpenHeader">بازآوری پنجره</System:String>
@@ -41,8 +41,8 @@
     <System:String x:Key="GeneralSettings.ImageSliderSectionHeader">نمایشگر عکس</System:String>
 
     <System:String x:Key="GeneralSettings.LanguageLabel">زبان</System:String>
-    <System:String x:Key="GeneralSettings.StartAtStartupLabel">بازکرن هنگام راه‌اندازی سیستم عامل</System:String>
-    <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">قرار گرفتن بر روی نوار پایینی</System:String>
+    <System:String x:Key="GeneralSettings.StartAtStartupLabel">بازکردن هنگام راه‌اندازی سیستم عامل</System:String>
+    <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">قرار گرفتن بر روی نوار پایینی. تسک بار</System:String>
     <System:String x:Key="GeneralSettings.DarkModeLabel">فعالسازی حالت تاریک</System:String>
 
 
@@ -58,7 +58,7 @@
 
     <!--  Steps Editor  -->
     <System:String x:Key="StepsEditor.Templates.PomodoroLabel">طرح پومودورو</System:String>
-    <System:String x:Key="StepsEditor.Templates.57-17StandardLabel">طرح 52/17 استندارد</System:String>
+    <System:String x:Key="StepsEditor.Templates.57-17StandardLabel">طرح 52/17 استاندارد</System:String>
     <System:String x:Key="StepsEditor.Templates.Custom">سفارشی</System:String>
 
     <System:String x:Key="StepsEditor.Settings.StepTypeLabel">نوع قدم</System:String>
@@ -88,12 +88,12 @@
 
     <!--  Message Boxes  -->
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Caption">انصراف از تغییرات</System:String>
-    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Text">آیا واقعا میخواهید تغییرات را بر باد بدهید؟</System:String>
+    <System:String x:Key="MessageBox.SettingWindow.ClearChanges.Text">آیا واقعا میخواهید تغییرات را پاک کنید؟</System:String>
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.YesLabel">پاک کردن تغییرات</System:String>
     <System:String x:Key="MessageBox.SettingWindow.ClearChanges.NoLabel">لغو</System:String>
 
     <System:String x:Key="MessageBox.GeneralSettings.Reset.Caption">بازنشانی تنظیمات</System:String>
-    <System:String x:Key="MessageBox.GeneralSettings.Reset.Text">آیا میخواهید تنظیمات را بازنشانی کنید</System:String>
+    <System:String x:Key="MessageBox.GeneralSettings.Reset.Text">آیا میخواهید تنظیمات را بازنشانی کنید؟</System:String>
     <System:String x:Key="MessageBox.GeneralSettings.Reset.YesLabel">بازنشانی</System:String>
     <System:String x:Key="MessageBox.GeneralSettings.Reset.NoLabel">لفو</System:String>
 
@@ -103,11 +103,11 @@
     <System:String x:Key="MessageBox.StepsEditor.SwitchTemplatesClear.NoLabel">خیر</System:String>
 
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Caption">خطا در ویرایشگر قدم ها</System:String>
-    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">هیچ قدم تاثرگذاری باقی نذاشته‌اید لطفا چند قدم تاثیرگذار اضافه کنید</System:String>
+    <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.Text">هیچ قدم تاثرگذاری باقی نذاشته‌اید لطفا چند قدم تاثیرگذار اضافه کنید | قدم های تاثیر گذار شامل قدم هایی میشود که دارای زمان هستند</System:String>
     <System:String x:Key="MessageBox.StepsEditor.NoEffectiveStep.OKLabel">باشه</System:String>
 
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.Caption">جیمیل | Gmail</System:String>
-    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">آدرس جیمیل به کلیپ‌بورد کپی شد</System:String>
+    <System:String x:Key="MessageBox.AboutMe.GmailCopied.Text">آدرس جیمیل به کلیپ‌بورد(بریده دان) کپی شد</System:String>
     <System:String x:Key="MessageBox.AboutMe.GmailCopied.OKLabel">باشه</System:String>
 
     <!--  Color Selector  -->
@@ -117,10 +117,10 @@
 
     <!--  Tasklist  -->
     <System:String x:Key="TaskList.GroupNames.Tasks">کار های امروز</System:String>
-    <System:String x:Key="TaskList.GroupNames.Importants">کار های مهم</System:String>
+    <System:String x:Key="TaskList.GroupNames.Importants">کار های پر‌اهمیت</System:String>
     <System:String x:Key="TaskList.GroupNames.Completed">کار های انجام شده</System:String>
 
     <System:String x:Key="TaskList.Controls.IsCompletedToolTip">علامت زدن به عنوان انجام شده</System:String>
-    <System:String x:Key="TaskList.Controls.IsImporantToolTip">علامت زدن به عنوان کار مهم</System:String>
+    <System:String x:Key="TaskList.Controls.IsImporantToolTip">علامت زدن به عنوان پر‌اهمیت</System:String>
 
 </ResourceDictionary>
