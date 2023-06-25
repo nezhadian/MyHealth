@@ -171,6 +171,7 @@
                                 <BeginStoryboard x:Name="beginExpand" Storyboard="{StaticResource ExpandStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginCollapse" />
                                 <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
+                                <RemoveStoryboard BeginStoryboardName="beginExpandOnActive" />
                             </Trigger.EnterActions>
                         </Trigger>
 
@@ -179,6 +180,7 @@
                                 <BeginStoryboard x:Name="beginDelayedCollapse" Storyboard="{StaticResource DelayedCollapseStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginCollapse" />
                                 <RemoveStoryboard BeginStoryboardName="beginExpand" />
+                                <RemoveStoryboard BeginStoryboardName="beginExpandOnActive" />
                             </Trigger.EnterActions>
                         </Trigger>
 
@@ -191,14 +193,25 @@
                                 <BeginStoryboard Name="beginCollapse" Storyboard="{StaticResource CollapseStoryboard}" />
                                 <RemoveStoryboard BeginStoryboardName="beginExpand" />
                                 <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
+                                <RemoveStoryboard BeginStoryboardName="beginExpandOnActive" />
                             </MultiTrigger.EnterActions>
                         </MultiTrigger>
+
+                        <Trigger Property="IsActive" Value="true">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard x:Name="beginExpandOnActive" Storyboard="{StaticResource ExpandStoryboard}" />
+                                <RemoveStoryboard BeginStoryboardName="beginExpand" />
+                                <RemoveStoryboard BeginStoryboardName="beginDelayedCollapse" />
+                                <RemoveStoryboard BeginStoryboardName="beginCollapse" />
+                            </Trigger.EnterActions>
+                        </Trigger>
 
                         <Trigger Property="GoOnTaskbar" Value="true">
                             <Setter TargetName="root" Property="VerticalAlignment" Value="Top" />
                             <Setter TargetName="root" Property="Height" Value="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" />
                             <Setter TargetName="contentContainer" Property="Margin" Value="0,0,0,16" />
                         </Trigger>
+
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
