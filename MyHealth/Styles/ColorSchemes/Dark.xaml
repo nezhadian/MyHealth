@@ -10,7 +10,7 @@
     <SolidColorBrush x:Key="NormalTextColor" Color="#f0f0f0" />
 
     <!--  Buttons  -->
-    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Buttons.OnlyIcon.IconColor" Color="#66f0f0f0" />
     <SolidColorBrush x:Key="Buttons.OnlyIcon.Hover" Color="#4C4F62" />
     <SolidColorBrush x:Key="Buttons.Masked.Hover">#1fffffff</SolidColorBrush>
     <SolidColorBrush x:Key="Buttons.Masked.Pressed">#2f333333</SolidColorBrush>
@@ -32,11 +32,11 @@
     <SolidColorBrush x:Key="TimeSpanControl.Border" Color="#4A4A5E" />
 
     <!--  Menu  -->
-    <SolidColorBrush x:Key="Menu.Icons" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Menu.Icons" Color="#e5f0f0f0" />
     <SolidColorBrush x:Key="Menu.Border" Color="#4A4A5E" />
-    <SolidColorBrush x:Key="Menu.Pressed" Color="#31acff" />
+    <SolidColorBrush x:Key="Menu.Pressed" Color="#3731acff" />
     <SolidColorBrush x:Key="Menu.Hover" Color="#4C4F62" />
-    <SolidColorBrush x:Key="Menu.TextColor" Color="#f0f0f0" />
+    <SolidColorBrush x:Key="Menu.TextColor" Color="#e5f0f0f0" />
     <SolidColorBrush x:Key="Menu.Background" Color="#2A2B34" />
 
     <!--  SettingListMenuItem  -->
