@@ -115,5 +115,11 @@
     <System:String x:Key="ColorSelector.TimeSign.Minute">m</System:String>
     <System:String x:Key="ColorSelector.TimeSign.Second">s</System:String>
 
+    <!--  Tasklist Group Names  -->
+    <System:String x:Key="TaskList.GroupNames.Tasks">Tasks</System:String>
+    <System:String x:Key="TaskList.GroupNames.Importants">Importants</System:String>
+    <System:String x:Key="TaskList.GroupNames.Completed">Completed</System:String>
+
+
 
 </ResourceDictionary>
