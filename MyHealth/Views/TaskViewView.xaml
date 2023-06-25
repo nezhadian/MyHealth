@@ -88,6 +88,11 @@
                 <Setter TargetName="txtTitleBlock" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="txtTitle" Property="Visibility" Value="Visible" />
             </Trigger>
+
+            <DataTrigger Binding="{Binding Grouping}" Value="Completed">
+                <Setter TargetName="txtTitleBlock" Property="TextDecorations" Value="Strikethrough" />
+            </DataTrigger>
+
         </DataTemplate.Triggers>
     </DataTemplate>
 </ResourceDictionary>
