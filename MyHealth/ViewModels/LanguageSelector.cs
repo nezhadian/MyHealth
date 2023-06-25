@@ -51,7 +51,7 @@ namespace MyHealth
 
         static LanguageSelector()
         {
-            languageDictornary = App.Current.Resources.MergedDictionaries.First((rs) => rs.Source.OriginalString == "/Languages/en-us.xaml");
+            languageDictornary = App.Current.Resources.MergedDictionaries.First((rs) =>rs.Source != null && rs.Source.OriginalString == "/Languages/en-us.xaml");
             Instance = new LanguageSelector();
         }
     }

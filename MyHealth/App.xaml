@@ -9,16 +9,17 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 
-                <ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI.ClassicTheme;component/Resources.xaml" />
 
-                <ResourceDictionary Source="/Converters/Converters.xaml" />
-
                 <ResourceDictionary Source="/Styles/Dimensions.xaml" />
-                <ResourceDictionary Source="/Styles/ColorSchemes/Adonis.xaml" />
+
+                <ResourceDictionary Source="/Styles/ColorSchemes/Dark.xaml" />
                 <ResourceDictionary Source="/Languages/en-us.xaml" />
 
                 <ResourceDictionary Source="/Styles/IconsData.xaml" />
+
+                <ResourceDictionary Source="/Converters/Converters.xaml" />
                 <ResourceDictionary Source="/Styles/Styles.xaml" />
 
                 <ResourceDictionary Source="/Views/Views.xaml" />
@@ -29,6 +30,14 @@
 
 
             </ResourceDictionary.MergedDictionaries>
+
+            <!--  Customized Adonis Colors  -->
+            <Color x:Key="{x:Static adonis:Colors.AccentColor}">#0099ff</Color>
+            <Color x:Key="{x:Static adonis:Colors.AccentHighlightColor}">#31acff</Color>
+            <Color x:Key="{x:Static adonis:Colors.AccentIntenseHighlightColor}">#00a8ff</Color>
+            <Color x:Key="{x:Static adonis:Colors.AccentIntenseHighlightBorderColor}">#00a8ff</Color>
+            <Color x:Key="{x:Static adonis:Colors.AccentInteractionColor}">#008aff</Color>
+            <Color x:Key="{x:Static adonis:Colors.AccentInteractionBorderColor}">#008aff</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
