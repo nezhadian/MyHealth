@@ -1,7 +1,8 @@
-﻿<Window
+﻿<adonisControl:AdonisWindow
     x:Class="MyHealth.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:adonisControl="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MyHealth"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -50,4 +51,4 @@
                 Style="{StaticResource Buttons.Secondary}" />
         </StackPanel>
     </Grid>
-</Window>
+</adonisControl:AdonisWindow>
