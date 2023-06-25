@@ -42,6 +42,7 @@
     <System:String x:Key="GeneralSettings.LanguageLabel">Language</System:String>
     <System:String x:Key="GeneralSettings.StartAtStartupLabel">Start At Startup</System:String>
     <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">Go on Taskbar</System:String>
+    <System:String x:Key="GeneralSettings.DarkModeLabel">Enable Dark Mode</System:String>
 
     <System:String x:Key="GeneralSettings.FreshStartBgColorSelectorText">Fresh Start Background Color</System:String>
     <System:String x:Key="GeneralSettings.ShortBreakBgColorSelectorText">Short Break Background Color</System:String>

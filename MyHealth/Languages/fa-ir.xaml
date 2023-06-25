@@ -43,6 +43,8 @@
     <System:String x:Key="GeneralSettings.LanguageLabel">زبان</System:String>
     <System:String x:Key="GeneralSettings.StartAtStartupLabel">بازکرن هنگام راه‌اندازی سیستم عامل</System:String>
     <System:String x:Key="GeneralSettings.GoOnTaskbarLabel">قرار گرفتن بر روی نوار پایینی</System:String>
+    <System:String x:Key="GeneralSettings.DarkModeLabel">فعالسازی حالت تاریک</System:String>
+
 
     <System:String x:Key="GeneralSettings.FreshStartBgColorSelectorText">رنگ پیش‌زمینه صفحه شروع دوباره</System:String>
     <System:String x:Key="GeneralSettings.ShortBreakBgColorSelectorText">رنگ پیش‌زمینه صفحه استراحت مطلق</System:String>

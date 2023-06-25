@@ -65,16 +65,16 @@
                         <ComboBoxItem Content="فارسی" Tag="fa-ir" />
                     </ComboBox>
 
-                    
+
                     <!--  Dark Mode Switch  -->
                     <CheckBox
                         Grid.Row="1"
                         Padding="7,5"
-                        Content="Enable DarkMode"
+                        Content="{DynamicResource GeneralSettings.DarkModeLabel}"
                         IsChecked="{Binding IsDarkMode, NotifyOnSourceUpdated=True}"
                         SourceUpdated="Controls_SourceUpdated"
                         Style="{StaticResource {x:Static adonis:Styles.ToggleSwitch}}" />
-                    
+
                     <!--  Start At Startup CheckBox  -->
                     <CheckBox
                         Grid.Row="2"
