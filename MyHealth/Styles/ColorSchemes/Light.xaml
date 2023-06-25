@@ -75,4 +75,7 @@
     <SolidColorBrush x:Key="IconsColor.Lock" Color="#1A1A1A" />
     <SolidColorBrush x:Key="IconsColor.Add">#FF34B02E</SolidColorBrush>
 
+    <!--  Short Break Step  -->
+    <SolidColorBrush x:Key="ShortBreak.Text">#FFF</SolidColorBrush>
+
 </ResourceDictionary>

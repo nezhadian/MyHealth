@@ -15,7 +15,8 @@
         <TextBlock
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource Texts.PageTitle}"
+            Foreground="{DynamicResource ShortBreak.Text}"
+            Style="{StaticResource Texts.PageTitle.Negative}"
             Text="{Binding StepName}" />
     </Grid>
 </Page>
